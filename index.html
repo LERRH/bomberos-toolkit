@@ -201,8 +201,34 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/utils.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/main.js"></script>
+<!-- <script src="js/utils.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/main.js"></script> -->
+    <script>
+function openTool(tool) {
+    window.location.href = 'herramientas/' + tool + '/index.html';
+}
+
+function openModule(module) {
+    window.location.href = 'modulos/' + module + '/index.html';
+}
+
+function showAbout() {
+    alert('Bomberos Toolkit CGBVP v1.0\nDesarrollado para bomberos por bomberos');
+}
+
+function showContact() { 
+    alert('GitHub: lerrh.github.io/bomberos-toolkit'); 
+}
+
+function showContribute() { 
+    alert('¡Contribuye al proyecto en GitHub!'); 
+}
+
+function showHelp() { 
+    alert('Ayuda:\n• Usa herramientas para consultas rápidas\n• Navega módulos para aprender'); 
+}
+</script>
 </body>
+
 </html>
