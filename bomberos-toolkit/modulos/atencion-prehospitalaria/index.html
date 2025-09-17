@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atención Prehospitalaria - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-red: #e74c3c;
+            --primary-dark-red: #c0392b;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --info-blue: #3498db;
+            --dark-gray: #2c3e50;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.15);
+            --border-radius-md: 15px;
+            --spacing-md: 20px;
+            --spacing-lg: 30px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+            color: var(--white);
+            padding: var(--spacing-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px var(--spacing-md);
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+
+        .intro-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .intro-section p {
+            color: var(--dark-gray);
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-red);
+        }
+
+        .module-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .module-title {
+            color: var(--dark-gray);
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .module-description {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .module-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .topic-tag {
+            background: var(--light-gray);
+            color: var(--dark-gray);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .module-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .status-disponible {
+            background: var(--success-green);
+            color: var(--white);
+        }
+
+        .status-desarrollo {
+            background: var(--warning-orange);
+            color: var(--white);
+        }
+
+        .status-planificado {
+            background: var(--info-blue);
+            color: var(--white);
+        }
+
+        .module-priority {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .priority-high {
+            color: var(--primary-red);
+        }
+
+        .priority-medium {
+            color: var(--warning-orange);
+        }
+
+        .priority-low {
+            color: var(--success-green);
+        }
+
+        .quick-access {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-access h3 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-link {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .quick-link:hover {
+            background: var(--primary-dark-red);
+            transform: translateY(-2px);
+        }
+
+        .stats-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 15px;
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-red);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--dark-gray);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .module-card {
+                padding: 20px;
+            }
+
+            .module-icon {
+                font-size: 2.5em;
+            }
+
+            .module-title {
+                font-size: 1.2em;
+            }
+
+            .quick-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .coming-soon {
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .coming-soon::after {
+            content: "Próximamente";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .coming-soon:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">← Inicio</a> > <a href="../">Módulos</a> > Atención Prehospitalaria
+        </div>
+        <h1>🚑 Atención Prehospitalaria</h1>
+        <p>Protocolos médicos de emergencia y primeros auxilios especializados</p>
+    </header>
+
+    <div class="container">
+        <!-- Introducción -->
+        <div class="intro-section">
+            <h2>Fundamentos de la Atención Médica de Emergencia</h2>
+            <p>
+                La atención prehospitalaria es el conjunto de cuidados médicos de emergencia brindados 
+                antes del traslado a un centro hospitalario. Este módulo contiene protocolos, 
+                procedimientos y técnicas esenciales para bomberos en situaciones de emergencia médica.
+            </p>
+        </div>
+
+        <!-- Estadísticas del módulo -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Submódulos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Protocolos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Disponible</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Actualizado</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid de submódulos -->
+        <div class="modules-grid">
+            <!-- Evaluación Primaria -->
+            <div class="module-card" onclick="navigateToModule('evaluacion-primaria')">
+                <div class="module-status status-desarrollo">EN DESARROLLO</div>
+                <div class="module-icon">🔍</div>
+                <div class="module-title">Evaluación Primaria</div>
+                <div class="module-description">
+                    Protocolo ABCDE para evaluación inicial del paciente en emergencias. 
+                    Identificación y manejo de amenazas inmediatas para la vida.
+                </div>
+                <div class="module-topics">
+                    <span class="topic-tag">Vía Aérea</span>
+                    <span class="topic-tag">Respiración</span>
+                    <span class="topic-tag">Circulación</span>
+                    <span class="topic-tag">Discapacidad</span>
+                    <span class="topic-tag">Exposición</span>
+                </div>
+                <div class="module-priority priority-high">
+                    ⭐ Prioridad Alta
+                </div>
+            </div>
+
+            <!-- Evaluación Secundaria -->
+            <div class="module-card" onclick="navigateToModule('evaluacion-secundaria')">
+                <div class="module-status status-disponible">DISPONIBLE</div>
+                <div class="module-icon">📋</div>
+                <div class="module-title">Evaluación Secundaria</div>
+                <div class="module-description">
+                    Examen físico detallado y evaluación completa del paciente. 
+                    Historia clínica SAMPLE y identificación de lesiones secundarias.
+                </div>
+                <div class="module-topics">
+                    <span class="topic-tag">Protocolo SAMPLE</span>
+                    <span class="topic-tag">Examen Físico</span>
+                    <span class="topic-tag">Signos Vitales</span>
+                    <span class="topic-tag">Documentación</span>
+                </div>
+                <div class="module-priority priority-high">
+                    ⭐ Prioridad Alta
+                </div>
+            </div>
+
+            <!-- Oxigenoterapia -->
+            <div class="module-card coming-soon" onclick="navigateToModule('oxigenoterapia')">
+                <div class="module-status status-planificado">PLANIFICADO</div>
+                <div class="module-icon">🫁</div>
+                <div class="module-title">Oxigenoterapia</div>
+                <div class="module-description">
+                    Administración de oxígeno suplementario y manejo de la vía aérea. 
+                    Dispositivos, flujos y técnicas de oxigenación.
+                </div>
+                <div class="module-topics">
+                    <span class="topic-tag">Mascarillas</span>
+                    <span class="topic-tag">Cánulas</span>
+                    <span class="topic-tag">Bolsa-Válvula</span>
+                    <span class="topic-tag">Flujos de O2</span>
+                </div>
+                <div class="module-priority priority-high">
+                    ⭐ Prioridad Alta
+                </div>
+            </div>
+
+            <!-- Quemaduras -->
+            <div class="module-card coming-soon" onclick="navigateToModule('quemaduras')">
+                <div class="module-status status-planificado">PLANIFICADO</div>
+                <div class="module-icon">🔥</div>
+                <div class="module-title">Quemaduras</div>
+                <div class="module-description">
+                    Evaluación, clasificación y tratamiento de quemaduras. 
+                    Cálculo de superficie corporal y manejo de fluidos.
+                </div>
+                <div class="module-topics">
+                    <span class="topic-tag">Regla del 9</span>
+                    <span class="topic-tag">Profundidad</span>
+                    <span class="topic-tag">Reposición Fluidos</span>
+                    <span class="topic-tag">Parkland</span>
+                </div>
+                <div class="module-priority priority-high">
+                    ⭐ Prioridad Alta
+                </div>
+            </div>
+
+            <!-- Triaje -->
+            <div class="module-card coming-soon" onclick="navigateToModule('triaje')">
+                <div class="module-status status-planificado">PLANIFICADO</div>
+                <div class="module-icon">🏥</div>
+                <div class="module-title">Triaje</div>
+                <div class="module-description">
+                    Clasificación y priorización de pacientes en emergencias masivas. 
+                    Sistemas START, JumpSTART y protocolos de clasificación.
+                </div>
+                <div class="module-topics">
+                    <span class="topic-tag">START</span>
+                    <span class="topic-tag">JumpSTART</span>
+                    <span class="topic-tag">Tarjetas</span>
+                    <span class="topic-tag">Prioridades</span>
+                </div>
+                <div class="module-priority priority-medium">
+                    ⭐ Prioridad Media
+                </div>
+            </div>
+
+            <!-- RCP Avanzado -->
+            <div class="module-card coming-soon" onclick="navigateToModule('rcp-avanzado')">
+                <div class="module-status status-planificado">PLANIFICADO</div>
+                <div class="module-icon">❤️</div>
+                <div class="module-title">RCP Avanzado</div>
+                <div class="module-description">
+                    Reanimación cardiopulmonar avanzada y manejo de paro cardíaco. 
+                    Algoritmos AHA, farmacología y procedimientos invasivos.
+                </div>
+                <div class="module-topics">
+                    <span class="topic-tag">Algoritmos AHA</span>
+                    <span class="topic-tag">Desfibrilación</span>
+                    <span class="topic-tag">Medicamentos</span>
+                    <span class="topic-tag">Vía Aérea</span>
+                </div>
+                <div class="module-priority priority-high">
+                    ⭐ Prioridad Alta
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateToModule(moduleId) {
+            // Navegación a submódulos disponibles
+            if (moduleId === 'evaluacion-primaria') {
+                window.location.href = 'evaluacion-primaria/index.html';
+            } else if (moduleId === 'evaluacion-secundaria') {
+                window.location.href = 'evaluacion-secundaria/index.html';
+            } else {
+                alert('🚧 Módulo planificado\n\nEste módulo será desarrollado próximamente.\n\n¿Te interesa que prioricemos este contenido?');
+            }
+        }
+
+        // Scroll suave para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animación de entrada para las tarjetas
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.module-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,525 @@
+/* css/responsive.css - Estilos Responsive */
+
+/* Breakpoints */
+/* 
+- Mobile: 0-767px
+- Tablet: 768-1023px  
+- Desktop: 1024px+
+*/
+
+/* Mobile First - Ajustes para pantallas pequeñas */
+@media (max-width: 767px) {
+    /* Variables móvil */
+    :root {
+        --spacing-xs: 3px;
+        --spacing-sm: 8px;
+        --spacing-md: 15px;
+        --spacing-lg: 20px;
+        --spacing-xl: 25px;
+    }
+
+    /* Header principal */
+    .main-title {
+        font-size: 1.8rem;
+    }
+
+    .main-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .header-container {
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Navegación móvil */
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--primary-red);
+        flex-direction: column;
+        padding: var(--spacing-md);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-menu li {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-sm);
+        text-align: center;
+    }
+
+    /* Búsqueda */
+    .search-section {
+        margin: var(--spacing-md);
+        transform: translateY(-5px);
+    }
+
+    .search-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .search-input {
+        padding: var(--spacing-md);
+    }
+
+    .search-btn {
+        padding: var(--spacing-md);
+        width: 100%;
+    }
+
+    /* Secciones principales */
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .herramientas-rapidas,
+    .modulos-ensenanza {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Grids responsive */
+    .herramientas-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .modulos-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    /* Cards móvil */
+    .herramienta-card,
+    .modulo-card {
+        padding: var(--spacing-md);
+    }
+
+    .tool-icon,
+    .module-icon {
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .tool-title,
+    .module-title {
+        font-size: 1.2rem;
+    }
+
+    .tool-description,
+    .module-description {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .module-topics {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .topic-tag {
+        font-size: 0.7rem;
+        padding: 2px var(--spacing-xs);
+        margin: 2px;
+    }
+
+    /* Status badges móvil */
+    .tool-status,
+    .module-status {
+        position: static;
+        display: block;
+        margin-top: var(--spacing-sm);
+        text-align: center;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    /* Estadísticas móvil */
+    .stats-section {
+        margin: var(--spacing-md);
+        padding: var(--spacing-md);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* Footer móvil */
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .footer-content {
+        padding: var(--spacing-md);
+    }
+
+    /* Botón flotante móvil */
+    .floating-help {
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    /* Modal móvil */
+    .modal {
+        width: 95%;
+        margin: var(--spacing-sm);
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: var(--spacing-md);
+    }
+
+    /* Breadcrumb móvil */
+    .breadcrumb {
+        font-size: 0.8rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    /* Tabs móvil */
+    .tab-nav {
+        border-bottom: 1px solid var(--light-gray);
+    }
+
+    .tab-nav-link {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+    }
+
+    /* Forms móvil */
+    .form-control {
+        font-size: 16px; /* Previene zoom en iOS */
+    }
+
+    /* Botones móvil */
+    .btn {
+        padding: var(--spacing-md);
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .btn-large {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 1rem;
+    }
+
+    /* Procedimientos móvil */
+    .procedure-step {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+
+    .procedure-number {
+        margin: 0 auto var(--spacing-sm) auto;
+    }
+
+    /* Loading overlay móvil */
+    .loading-overlay p {
+        font-size: 1rem;
+        text-align: center;
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Tooltip móvil - desactivar */
+    .tooltip:hover .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+/* Tablet - Ajustes para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Header tablet */
+    .main-title {
+        font-size: 2rem;
+    }
+
+    /* Grids tablet */
+    .herramientas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .modulos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    /* Stats tablet */
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    /* Navigation tablet */
+    .nav-menu {
+        gap: var(--spacing-md);
+    }
+
+    /* Cards tablet */
+    .tool-icon,
+    .module-icon {
+        font-size: 3rem;
+    }
+
+    /* Modal tablet */
+    .modal {
+        max-width: 600px;
+    }
+}
+
+/* Desktop - Optimizaciones para pantallas grandes */
+@media (min-width: 1024px) {
+    /* Container más grande */
+    .container {
+        max-width: 1400px;
+    }
+
+    /* Header desktop */
+    .header-container {
+        max-width: 1400px;
+    }
+
+    /* Grids desktop */
+    .herramientas-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-xl);
+    }
+
+    .modulos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: var(--spacing-xl);
+    }
+
+    /* Hover effects desktop */
+    .herramienta-card:hover,
+    .modulo-card:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+
+    /* Búsqueda desktop */
+    .search-container {
+        max-width: 800px;
+    }
+
+    /* Stats desktop */
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-xl);
+    }
+
+    .stat-number {
+        font-size: 3rem;
+    }
+}
+
+/* Ultra wide screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .header-container {
+        max-width: 1600px;
+    }
+
+    .modulos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Orientación landscape en móviles */
+@media (max-width: 767px) and (orientation: landscape) {
+    .herramientas-grid,
+    .modulos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .main-title {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+/* Dispositivos con pantalla táctil */
+@media (pointer: coarse) {
+    /* Botones más grandes para tocar */
+    .btn,
+    .herramienta-card,
+    .modulo-card {
+        min-height: 44px; /* Tamaño mínimo recomendado */
+    }
+
+    .floating-help {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Links más espaciados */
+    .nav-menu a {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    /* Form controls más grandes */
+    .form-control {
+        padding: var(--spacing-md);
+        min-height: 44px;
+    }
+}
+
+/* Modo oscuro - Media query */
+@media (prefers-color-scheme: dark) {
+    /* En futuras versiones se puede implementar modo oscuro */
+    /* Por ahora mantener el diseño actual */
+}
+
+/* Reducir movimiento para usuarios sensibles */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .herramienta-card,
+    .modulo-card {
+        animation: none;
+    }
+
+    .herramienta-card:hover,
+    .modulo-card:hover {
+        transform: none;
+    }
+}
+
+/* Alto contraste para accesibilidad */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-red: #d32f2f;
+        --primary-dark-red: #b71c1c;
+        --dark-gray: #000000;
+        --light-gray: #f5f5f5;
+    }
+
+    .herramienta-card,
+    .modulo-card {
+        border: 2px solid var(--dark-gray);
+    }
+
+    .btn {
+        border: 2px solid var(--dark-gray);
+    }
+}
+
+/* Impresión */
+@media print {
+    .main-header,
+    .search-section,
+    .floating-help,
+    .main-footer {
+        display: none;
+    }
+
+    .herramienta-card,
+    .modulo-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+
+    .section-title {
+        color: #000;
+        text-shadow: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* Optimizaciones específicas para Safari iOS */
+@supports (-webkit-touch-callout: none) {
+    /* Fix para safari bounce */
+    body {
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-content {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        height: 100vh;
+    }
+
+    /* Fix para inputs en iOS */
+    .search-input,
+    .form-control {
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+}
+
+/* Firefox específico */
+@-moz-document url-prefix() {
+    .herramienta-card,
+    .modulo-card {
+        scrollbar-width: thin;
+    }
+}
+
+/* Edge específico */
+@supports (-ms-ime-align: auto) {
+    .search-input {
+        background-image: none;
+    }
+}
