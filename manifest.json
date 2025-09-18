@@ -67,28 +67,35 @@
       "name": "Claves CGBVP",
       "short_name": "Claves",
       "description": "Acceso rápido a códigos de comunicación",
-      "url": "/herramientas/claves/",
+      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/claves/",
       "icons": [{ "src": "assets/icons/shortcut-claves.png", "sizes": "96x96" }]
     },
     {
       "name": "Timer RCP",
       "short_name": "RCP",
       "description": "Cronómetro para reanimación cardiopulmonar",
-      "url": "/herramientas/rcp-timer/",
+      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/rcp-timer/",
       "icons": [{ "src": "assets/icons/shortcut-rcp.png", "sizes": "96x96" }]
     },
     {
       "name": "Conversor",
       "short_name": "Conversor",
       "description": "Conversor de unidades y medidas",
-      "url": "/herramientas/conversor/",
+      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/conversor/",
       "icons": [{ "src": "assets/icons/shortcut-conversor.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Escala de Glasgow",
+      "short_name": "Glasgow",
+      "description": "Evaluación del nivel de consciencia",
+      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/glasgow/",
+      "icons": [{ "src": "assets/icons/shortcut-glasgow.png", "sizes": "96x96" }]
     },
     {
       "name": "Atención Prehospitalaria",
       "short_name": "Prehospitalaria",
       "description": "Protocolos médicos de emergencia",
-      "url": "/modulos/atencion-prehospitalaria/",
+      "url": "https://lerrh.github.io/bomberos-toolkit/modulos/atencion-prehospitalaria/",
       "icons": [{ "src": "assets/icons/shortcut-medical.png", "sizes": "96x96" }]
     }
   ],
@@ -115,46 +122,6 @@
       "label": "Vista desktop completa"
     }
   ],
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
-  "launch_handler": {
-    "client_mode": "focus-existing"
-  },
-  "share_target": {
-    "action": "/share-target/",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url",
-      "files": [
-        {
-          "name": "files",
-          "accept": ["image/*", "application/pdf", ".txt"]
-        }
-      ]
-    }
-  },
-  "protocol_handlers": [
-    {
-      "protocol": "web+bomberos",
-      "url": "/handle-protocol/?code=%s"
-    }
-  ],
   "prefer_related_applications": false,
-  "related_applications": [],
-  "file_handlers": [
-    {
-      "action": "/open-file/",
-      "accept": {
-        "application/pdf": [".pdf"],
-        "text/plain": [".txt"],
-        "application/json": [".json"]
-      }
-    }
-  ]
-
+  "related_applications": []
 }
-
