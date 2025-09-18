@@ -3,12 +3,12 @@
   "short_name": "Bomberos Toolkit",
   "description": "Herramientas y conocimiento para bomberos del Cuerpo General de Bomberos Voluntarios del Perú",
   "version": "1.0.0",
-  "start_url": "/bomberos-toolkit/",
+  "start_url": "https://lerrh.github.io/bomberos-toolkit/",
   "display": "standalone",
   "background_color": "#1e3c72",
   "theme_color": "#e74c3c",
   "orientation": "portrait-primary",
-  "scope": "/bomberos-toolkit/",
+  "scope": "https://lerrh.github.io/bomberos-toolkit/",
   "lang": "es",
   "dir": "ltr",
   "categories": ["education", "utilities", "productivity"],
@@ -157,3 +157,4 @@
   ]
 
 }
+
