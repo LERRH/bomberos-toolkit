@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bomberos Toolkit</title>
-    <meta name="description" content="Herramientas y conocimiento para bomberos">
+    <title>Bomberos Toolkit - CGBVP</title>
+    <meta name="description" content="Herramientas y conocimiento para bomberos del CGBVP">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#e74c3c">
     <style>
@@ -552,7 +552,7 @@
         <div class="header-container">
             <div class="logo-section">
                 <h1 class="main-title">🚒 Bomberos Toolkit</h1>
-                <p class="main-subtitle">Conocimiento que salva vidas</p>
+                <p class="main-subtitle">CGBVP - Conocimiento que salva vidas</p>
             </div>
             <nav class="main-nav">
                 <button class="nav-toggle" id="navToggle">☰</button>
@@ -565,7 +565,14 @@
         </div>
     </header>
 
- 
+    <!-- Búsqueda Global -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Buscar procedimientos, códigos, técnicas...">
+            <button class="search-btn" id="searchBtn">Buscar</button>
+        </div>
+    </section>
+
     <!-- Herramientas de Acceso Rápido -->
     <section class="herramientas-rapidas" id="herramientas">
         <div class="container">
@@ -604,6 +611,22 @@
                         <div class="tool-icon">⚕️</div>
                         <h4 class="tool-title">Verificar EsSalud</h4>
                         <p class="tool-description">Dónde me atienden</p>
+                        <div class="tool-status external">ENLACE EXTERNO</div>
+                    </div>
+
+                    <!-- Consulta Vehicular -->
+                    <div class="herramienta-card external" onclick="openExternalTool('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio')">
+                        <div class="tool-icon">🚗</div>
+                        <h4 class="tool-title">Consulta Vehicular</h4>
+                        <p class="tool-description">SUNARP consulta</p>
+                        <div class="tool-status external">ENLACE EXTERNO</div>
+                    </div>
+
+                    <!-- Consulta SOAT -->
+                    <div class="herramienta-card external" onclick="openExternalTool('https://www.interseguro.pe/soat/consulta-soat')">
+                        <div class="tool-icon">🛡️</div>
+                        <h4 class="tool-title">Consulta SOAT</h4>
+                        <p class="tool-description">Verificar seguro</p>
                         <div class="tool-status external">ENLACE EXTERNO</div>
                     </div>
                 </div>
@@ -738,14 +761,6 @@
         </div>
     </section>
 
-   <!-- Búsqueda Global -->
-    <section class="search-section">
-        <div class="search-container">
-            <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Buscar procedimientos, códigos, técnicas...">
-            <button class="search-btn" id="searchBtn">Buscar</button>
-        </div>
-    </section>
-
     <!-- Estadísticas -->
     <section class="stats-section">
         <div class="container">
@@ -774,14 +789,14 @@
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
-                <p><strong>Bomberos Toolkit</strong></p>
-                <p>Desarrollado para bomberos</p>
+                <p><strong>Bomberos Toolkit CGBVP</strong></p>
+                <p>Desarrollado por bomberos, para bomberos</p>
                 <div class="footer-links">
                     <a href="#" onclick="showAbout()">Acerca de</a>
                     <a href="#" onclick="showContact()">Contacto</a>
                     <a href="#" onclick="showContribute()">Contribuir</a>
                 </div>
-                <p class="footer-version">Versión 1.0 | Actualizado: septiembre 2025</p>
+                <p class="footer-version">Versión 1.0 | Actualizado: Diciembre 2024</p>
             </div>
         </div>
     </footer>
@@ -811,15 +826,15 @@
         }
 
         function showAbout() {
-            alert('Bomberos Toolkit v1.0\nDesarrollado para bomberos');
+            alert('Bomberos Toolkit CGBVP v1.0\nDesarrollado para bomberos por bomberos');
         }
 
         function showContact() { 
-            alert('gmail: enrriquerh0014@gmail.com'); 
+            alert('GitHub: lerrh.github.io/bomberos-toolkit'); 
         }
 
         function showContribute() { 
-            alert('¡Contribuye al proyecto: 946772995!'); 
+            alert('¡Contribuye al proyecto en GitHub!'); 
         }
 
         function showHelp() { 
@@ -915,9 +930,9 @@
             observeElements();
             
             // Mensaje de bienvenida inicial
-            console.log('🚒 Bomberos Toolkit v1.0');
+            console.log('🚒 Bomberos Toolkit CGBVP v1.0');
             console.log('Herramientas disponibles: 9');
-            console.log('Desarrollado para bomberos');
+            console.log('Desarrollado por bomberos, para bomberos');
         });
 
         // Service Worker para PWA (opcional)
