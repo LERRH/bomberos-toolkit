@@ -274,83 +274,71 @@
             color: white;
         }
 
-        /* Módulos */
+        /* Módulos - Más compactos */
         .modulos-ensenanza {
             padding: var(--spacing-xl) 0;
-            margin-top: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
         }
 
         .modulos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: var(--spacing-lg);
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
             margin-top: var(--spacing-lg);
         }
 
         .modulo-card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: var(--border-radius-lg);
-            padding: var(--spacing-lg);
+            border-radius: 10px;
+            padding: 15px;
             cursor: pointer;
             transition: var(--transition-normal);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            position: relative;
         }
 
         .modulo-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
         .module-icon {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: var(--spacing-md);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+            font-size: 2em;
+            margin-bottom: 8px;
+            display: block;
+            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
         }
 
         .module-title {
-            font-size: 1.4rem;
+            font-size: 1em;
             font-weight: bold;
             color: var(--dark-gray);
-            margin-bottom: var(--spacing-sm);
-            text-align: center;
+            margin-bottom: 5px;
         }
 
         .module-description {
             color: #666;
-            text-align: center;
-            margin-bottom: var(--spacing-md);
-            line-height: 1.5;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            font-size: 0.85em;
         }
 
         .module-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-xs);
-            margin-bottom: var(--spacing-md);
-            justify-content: center;
-        }
-
-        .topic-tag {
-            background: var(--light-gray);
-            color: var(--dark-gray);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--border-radius-sm);
-            font-size: 0.8rem;
-            font-weight: 500;
+            display: none; /* Ocultar para hacer más compacto */
         }
 
         .module-status {
-            position: absolute;
-            top: var(--spacing-md);
-            right: var(--spacing-md);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--border-radius-sm);
-            font-size: 0.7rem;
+            position: static;
+            display: block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
             font-weight: bold;
             text-transform: uppercase;
+            margin-top: 8px;
         }
 
         .module-status.ready {
@@ -544,7 +532,8 @@
             }
 
             .modulos-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
 
             .stats-grid {
@@ -812,10 +801,8 @@
         }
 
         function openExternalTool(url) {
-            // Mostrar confirmación antes de abrir enlace externo
-            if (confirm('Se abrirá un enlace externo:\n\n' + url + '\n\n¿Continuar?')) {
-                window.open(url, '_blank');
-            }
+            // Abrir directamente sin confirmación
+            window.open(url, '_blank');
         }
 
         function openModule(module) {
