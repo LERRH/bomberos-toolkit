@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bomberos Toolkit - CGBVP</title>
     <meta name="description" content="Herramientas y conocimiento para bomberos del CGBVP">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#e74c3c">
     <style>
@@ -491,10 +492,29 @@
             font-size: 1.1rem;
         }
 
+        .logo-icon {
+    width: 60px;   /* Ajusta el tamaño que quieras */
+    height: auto;  /* Mantiene la proporción */
+}
+
+
         /* Responsive */
         @media (max-width: 767px) {
             .main-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+            }
+            
+            .main-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .logo-section {
+                gap: var(--spacing-sm);
             }
 
             .nav-toggle {
@@ -551,8 +571,11 @@
     <header class="main-header">
         <div class="header-container">
             <div class="logo-section">
-                <h1 class="main-title">🚒 Bomberos Toolkit</h1>
-                <p class="main-subtitle">CGBVP - Conocimiento que salva vidas</p>
+                <img src="assets/icons/logo.svg" alt="CGBVP Logo" class="logo-icon">
+                <div class="logo-text">
+                    <h1 class="main-title">🚒 Bomberos Toolkit</h1>
+                    <p class="main-subtitle">CGBVP - Conocimiento que salva vidas</p>
+                </div>
             </div>
             <nav class="main-nav">
                 <button class="nav-toggle" id="navToggle">☰</button>
@@ -766,7 +789,7 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number" id="totalTools">9</div>
+                    <div class="stat-number" id="totalTools">11</div>
                     <div class="stat-label">Herramientas</div>
                 </div>
                 <div class="stat-item">
