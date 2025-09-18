@@ -3,12 +3,12 @@
   "short_name": "Bomberos Toolkit",
   "description": "Herramientas y conocimiento para bomberos del Cuerpo General de Bomberos Voluntarios del Perú",
   "version": "1.0.0",
-  "start_url": "/",
+  "start_url": "/bomberos-toolkit/",
   "display": "standalone",
   "background_color": "#1e3c72",
   "theme_color": "#e74c3c",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "/bomberos-toolkit/",
   "lang": "es",
   "dir": "ltr",
   "categories": ["education", "utilities", "productivity"],
@@ -155,4 +155,5 @@
       }
     }
   ]
+
 }
