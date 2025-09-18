@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escala de Glasgow - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-red: #e74c3c;
+            --primary-dark-red: #c0392b;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --danger-red: #e74c3c;
+            --info-blue: #3498db;
+            --dark-gray: #2c3e50;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.15);
+            --border-radius-md: 15px;
+            --spacing-md: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+            color: var(--white);
+            padding: 15px var(--spacing-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px var(--spacing-md);
+            font-size: 0.85em;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .glasgow-calculator {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .scale-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .scale-section {
+            background: var(--light-gray);
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid var(--info-blue);
+        }
+
+        .scale-section.ocular { border-left-color: #9b59b6; }
+        .scale-section.verbal { border-left-color: #3498db; }
+        .scale-section.motora { border-left-color: #e67e22; }
+
+        .scale-section h3 {
+            color: var(--dark-gray);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+
+        .scale-section h3::before {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .scale-section.ocular h3::before { content: "👁️"; }
+        .scale-section.verbal h3::before { content: "🗣️"; }
+        .scale-section.motora h3::before { content: "🤲"; }
+
+        .option {
+            background: var(--white);
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+        }
+
+        .option:hover {
+            border-color: var(--info-blue);
+            transform: translateY(-1px);
+        }
+
+        .option.selected {
+            border-color: var(--success-green);
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .option-text {
+            flex-grow: 1;
+            line-height: 1.2;
+        }
+
+        .option-score {
+            background: var(--info-blue);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            min-width: 25px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .option.selected .option-score {
+            background: var(--success-green);
+        }
+
+        .result-section {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .breakdown-item {
+            background: var(--light-gray);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .breakdown-score {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-red);
+        }
+
+        .breakdown-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .total-score {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+        }
+
+        .score-label {
+            font-size: 1em;
+            margin-bottom: 12px;
+            color: #666;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+        }
+
+        .severity-leve {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .severity-moderado {
+            background: var(--warning-orange);
+            color: white;
+        }
+
+        .severity-severo {
+            background: var(--danger-red);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .actions-required {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid var(--danger-red);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 0.9em;
+        }
+
+        .actions-required h4 {
+            color: var(--danger-red);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .actions-required ul {
+            text-align: left;
+            max-width: 350px;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        .actions-required li {
+            margin-bottom: 3px;
+            color: var(--dark-gray);
+            line-height: 1.3;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+        }
+
+        .reset-btn {
+            background: var(--info-blue);
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+        }
+
+        .time-stamp {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 3px solid var(--info-blue);
+            padding: 8px;
+            border-radius: 0 6px 6px 0;
+            margin-top: 12px;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .quick-info {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-info h3 {
+            color: var(--primary-red);
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+
+        .info-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .info-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .badge-leve { background: var(--success-green); color: white; }
+        .badge-moderado { background: var(--warning-orange); color: white; }
+        .badge-severo { background: var(--danger-red); color: white; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .scale-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .breakdown {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .total-score {
+                font-size: 2em;
+            }
+
+            .info-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">Inicio</a> > 
+            <a href="../">Herramientas</a> > 
+            Escala de Glasgow
+        </div>
+        <h1>🧠 Escala de Glasgow</h1>
+        <p>Evaluación rápida del nivel de consciencia</p>
+    </header>
+
+            <div class="container">
+        <!-- Calculadora principal -->
+        <div class="glasgow-calculator">
+            <h2 class="section-title">Evaluación del Paciente</h2>
+            
+            <div class="scale-grid">
+                <!-- Respuesta Ocular -->
+                <div class="scale-section ocular">
+                    <h3>Respuesta Ocular</h3>
+                    
+                    <div class="option" onclick="selectOption('ocular', 4, this)">
+                        <div class="option-text">Espontánea</div>
+                        <div class="option-score">4</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('ocular', 3, this)">
+                        <div class="option-text">Al comando verbal</div>
+                        <div class="option-score">3</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('ocular', 2, this)">
+                        <div class="option-text">Al dolor</div>
+                        <div class="option-score">2</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('ocular', 1, this)">
+                        <div class="option-text">No respuesta</div>
+                        <div class="option-score">1</div>
+                    </div>
+                </div>
+
+                <!-- Respuesta Verbal -->
+                <div class="scale-section verbal">
+                    <h3>Respuesta Verbal</h3>
+                    
+                    <div class="option" onclick="selectOption('verbal', 5, this)">
+                        <div class="option-text">Orientado y conversa</div>
+                        <div class="option-score">5</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('verbal', 4, this)">
+                        <div class="option-text">Desorientado y conversa</div>
+                        <div class="option-score">4</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('verbal', 3, this)">
+                        <div class="option-text">Palabras inapropiadas</div>
+                        <div class="option-score">3</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('verbal', 2, this)">
+                        <div class="option-text">Sonidos incomprensibles</div>
+                        <div class="option-score">2</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('verbal', 1, this)">
+                        <div class="option-text">No respuesta</div>
+                        <div class="option-score">1</div>
+                    </div>
+                </div>
+
+                <!-- Respuesta Motora -->
+                <div class="scale-section motora">
+                    <h3>Respuesta Motora</h3>
+                    
+                    <div class="option" onclick="selectOption('motora', 6, this)">
+                        <div class="option-text">Obedece órdenes simples</div>
+                        <div class="option-score">6</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('motora', 5, this)">
+                        <div class="option-text">Localiza el estímulo doloroso</div>
+                        <div class="option-score">5</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('motora', 4, this)">
+                        <div class="option-text">Retira al dolor (flexión normal)</div>
+                        <div class="option-score">4</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('motora', 3, this)">
+                        <div class="option-text">Flexión anormal (postura decorticada)</div>
+                        <div class="option-score">3</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('motora', 2, this)">
+                        <div class="option-text">Extensión anormal (postura descerebrada)</div>
+                        <div class="option-score">2</div>
+                    </div>
+                    
+                    <div class="option" onclick="selectOption('motora', 1, this)">
+                        <div class="option-text">No hay respuesta motora</div>
+                        <div class="option-score">1</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultados -->
+            <div class="result-section">
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <div class="breakdown-score" id="ocularScore">-</div>
+                        <div class="breakdown-label">Ocular</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-score" id="verbalScore">-</div>
+                        <div class="breakdown-label">Verbal</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-score" id="motoraScore">-</div>
+                        <div class="breakdown-label">Motora</div>
+                    </div>
+                </div>
+
+                <div class="total-score" id="totalScore">-</div>
+                <div class="score-label">Puntuación Total</div>
+                
+                <div id="severityBadge" class="severity-badge" style="display: none;"></div>
+                
+                <div id="actionsRequired" class="actions-required" style="display: none;">
+                    <h4>🚨 ACCIONES REQUERIDAS</h4>
+                    <ul id="actionsList"></ul>
+                </div>
+
+                <div class="controls">
+                    <button class="btn reset-btn" onclick="resetCalculator()">🔄 Resetear</button>
+                </div>
+
+                <div class="time-stamp" id="timeStamp" style="display: none;">
+                    <strong>Evaluación:</strong> <span id="evaluationTime"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let scores = {
+            ocular: 0,
+            verbal: 0,
+            motora: 0
+        };
+
+        function selectOption(category, score, element) {
+            // Remover selección anterior en la categoría
+            const categorySection = element.closest('.scale-section');
+            const options = categorySection.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Seleccionar nueva opción
+            element.classList.add('selected');
+            
+            // Actualizar puntuación
+            scores[category] = score;
+            
+            // Actualizar display
+            updateScores();
+        }
+
+        function updateScores() {
+            // Actualizar puntuaciones individuales
+            document.getElementById('ocularScore').textContent = scores.ocular || '-';
+            document.getElementById('verbalScore').textContent = scores.verbal || '-';
+            document.getElementById('motoraScore').textContent = scores.motora || '-';
+            
+            // Calcular total si todas están seleccionadas
+            if (scores.ocular && scores.verbal && scores.motora) {
+                const total = scores.ocular + scores.verbal + scores.motora;
+                document.getElementById('totalScore').textContent = total;
+                
+                // Mostrar severidad y acciones
+                showSeverityAndActions(total);
+                
+                // Mostrar timestamp
+                showTimestamp();
+            } else {
+                document.getElementById('totalScore').textContent = '-';
+                document.getElementById('severityBadge').style.display = 'none';
+                document.getElementById('actionsRequired').style.display = 'none';
+                document.getElementById('timeStamp').style.display = 'none';
+            }
+        }
+
+        function showSeverityAndActions(total) {
+            const severityBadge = document.getElementById('severityBadge');
+            const actionsRequired = document.getElementById('actionsRequired');
+            const actionsList = document.getElementById('actionsList');
+            
+            let severity, actions, badgeClass;
+            
+            if (total >= 13) {
+                severity = 'LEVE';
+                badgeClass = 'severity-leve';
+                actions = [
+                    'Monitoreo cada 30 min',
+                    'Mantener vía aérea',
+                    'Evaluación neurológica',
+                    'Documentar cambios'
+                ];
+            } else if (total >= 9) {
+                severity = 'MODERADO';
+                badgeClass = 'severity-moderado';
+                actions = [
+                    'Monitoreo cada 15 min',
+                    'Asegurar vía aérea',
+                    'Inmovilización cervical',
+                    'Traslado urgente',
+                    'Comunicar al hospital'
+                ];
+            } else {
+                severity = 'SEVERO - EMERGENCIA';
+                badgeClass = 'severity-severo';
+                actions = [
+                    '🚨 TRASLADO INMEDIATO',
+                    'Manejo avanzado vía aérea',
+                    'Soporte ventilatorio',
+                    'Inmovilización completa',
+                    'Acceso vascular',
+                    'Comunicar neurocirugía'
+                ];
+            }
+            
+            severityBadge.textContent = severity;
+            severityBadge.className = `severity-badge ${badgeClass}`;
+            severityBadge.style.display = 'inline-block';
+            
+            actionsList.innerHTML = '';
+            actions.forEach(action => {
+                const li = document.createElement('li');
+                li.textContent = action;
+                actionsList.appendChild(li);
+            });
+            
+            actionsRequired.style.display = 'block';
+            
+            // Alerta sonora para casos severos
+            if (total <= 8) {
+                playAlertSound();
+            }
+        }
+
+        function showTimestamp() {
+            const now = new Date();
+            const timeString = now.toLocaleString('es-PE', {
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            document.getElementById('evaluationTime').textContent = timeString;
+            document.getElementById('timeStamp').style.display = 'block';
+        }
+
+        function playAlertSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'square';
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (e) {
+                console.log('Audio no disponible');
+            }
+        }
+
+        function resetCalculator() {
+            // Resetear puntuaciones
+            scores = { ocular: 0, verbal: 0, motora: 0 };
+            
+            // Remover todas las selecciones
+            document.querySelectorAll('.option.selected').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Resetear displays
+            document.getElementById('ocularScore').textContent = '-';
+            document.getElementById('verbalScore').textContent = '-';
+            document.getElementById('motoraScore').textContent = '-';
+            document.getElementById('totalScore').textContent = '-';
+            document.getElementById('severityBadge').style.display = 'none';
+            document.getElementById('actionsRequired').style.display = 'none';
+            document.getElementById('timeStamp').style.display = 'none';
+        }
+
+        // Atajos de teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                resetCalculator();
+            }
+        });
+    </script>
+</body>
+</html>
