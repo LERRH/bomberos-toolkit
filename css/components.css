@@ -1,0 +1,624 @@
+/* css/components.css - Componentes Reutilizables */
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.btn-primary {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark-red);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background: var(--secondary-blue);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-success {
+    background: var(--success-green);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    background: #219a52;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-large {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1.1rem;
+}
+
+.btn-small {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    border-bottom: 1px solid var(--light-gray);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.card-body {
+    line-height: 1.6;
+}
+
+.card-footer {
+    border-top: 1px solid var(--light-gray);
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+/* Alertas */
+.alert {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background: #d4edda;
+    border-color: var(--success-green);
+    color: #155724;
+}
+
+.alert-warning {
+    background: #fff3cd;
+    border-color: var(--warning-orange);
+    color: #856404;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    border-color: var(--primary-red);
+    color: #721c24;
+}
+
+.alert-info {
+    background: #d1ecf1;
+    border-color: var(--secondary-blue);
+    color: #0c5460;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: var(--border-radius-sm);
+    line-height: 1;
+}
+
+.badge-primary {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+.badge-secondary {
+    background: var(--secondary-blue);
+    color: var(--white);
+}
+
+.badge-success {
+    background: var(--success-green);
+    color: var(--white);
+}
+
+.badge-warning {
+    background: var(--warning-orange);
+    color: var(--white);
+}
+
+.badge-light {
+    background: var(--light-gray);
+    color: var(--dark-gray);
+}
+
+/* Progress Bar */
+.progress {
+    background: var(--light-gray);
+    border-radius: var(--border-radius-sm);
+    height: 20px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary-red);
+    transition: width 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.progress-bar-success {
+    background: var(--success-green);
+}
+
+.progress-bar-warning {
+    background: var(--warning-orange);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    background: var(--white);
+    border-radius: var(--border-radius-md);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: var(--spacing-xs);
+    border-radius: 50%;
+    transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--light-gray);
+    color: var(--dark-gray);
+}
+
+.modal-body {
+    padding: var(--spacing-lg);
+}
+
+.modal-footer {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-top: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background: var(--dark-gray);
+    color: var(--white);
+    text-align: center;
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--dark-gray) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-md);
+    list-style: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    padding: 0 var(--spacing-sm);
+    color: #666;
+}
+
+.breadcrumb-item a {
+    color: var(--secondary-blue);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary-red);
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* Tabs */
+.tabs {
+    border-bottom: 2px solid var(--light-gray);
+    margin-bottom: var(--spacing-lg);
+}
+
+.tab-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.tab-nav-item {
+    white-space: nowrap;
+}
+
+.tab-nav-link {
+    display: block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-decoration: none;
+    color: #666;
+    border-bottom: 3px solid transparent;
+    transition: var(--transition-normal);
+    font-weight: 500;
+}
+
+.tab-nav-link:hover {
+    color: var(--primary-red);
+    border-bottom-color: var(--primary-red);
+}
+
+.tab-nav-link.active {
+    color: var(--primary-red);
+    border-bottom-color: var(--primary-red);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    transition: var(--transition-normal);
+    background: var(--white);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.form-control:invalid {
+    border-color: var(--primary-red);
+}
+
+.form-text {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-check-input {
+    margin-right: var(--spacing-sm);
+}
+
+/* Utilities específicas para bomberos */
+.emergency-button {
+    background: var(--primary-red);
+    color: var(--white);
+    border: 2px solid var(--primary-red);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-sm);
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.emergency-button:hover {
+    background: var(--white);
+    color: var(--primary-red);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.priority-high {
+    border-left: 5px solid var(--primary-red);
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.priority-medium {
+    border-left: 5px solid var(--warning-orange);
+    background: rgba(243, 156, 18, 0.1);
+}
+
+.priority-low {
+    border-left: 5px solid var(--success-green);
+    background: rgba(39, 174, 96, 0.1);
+}
+
+/* Estados de disponibilidad */
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: var(--spacing-xs);
+}
+
+.status-online {
+    background: var(--success-green);
+    box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+}
+
+.status-busy {
+    background: var(--warning-orange);
+    box-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+}
+
+.status-offline {
+    background: #95a5a6;
+    box-shadow: 0 0 5px rgba(149, 165, 166, 0.5);
+}
+
+/* Loading states */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+}
+
+.skeleton-title {
+    height: 1.5rem;
+    width: 60%;
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+}
+
+.skeleton-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Componentes específicos para contenido de bomberos */
+.procedure-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius-sm);
+    border-left: 4px solid var(--primary-red);
+}
+
+.procedure-number {
+    background: var(--primary-red);
+    color: var(--white);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: var(--spacing-md);
+    flex-shrink: 0;
+}
+
+.procedure-content {
+    flex: 1;
+}
+
+.procedure-title {
+    font-weight: bold;
+    margin-bottom: var(--spacing-xs);
+    color: var(--dark-gray);
+}
+
+.procedure-description {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Código de color para tipos de emergencia */
+.emergency-type-fire {
+    border-left-color: #e74c3c;
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.emergency-type-medical {
+    border-left-color: #27ae60;
+    background: rgba(39, 174, 96, 0.1);
+}
+
+.emergency-type-rescue {
+    border-left-color: #f39c12;
+    background: rgba(243, 156, 18, 0.1);
+}
+
+.emergency-type-hazmat {
+    border-left-color: #9b59b6;
+    background: rgba(155, 89, 182, 0.1);
+}

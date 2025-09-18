@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-red: #e74c3c;
+            --primary-dark-red: #c0392b;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --info-blue: #3498db;
+            --dark-gray: #2c3e50;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.15);
+            --border-radius-md: 15px;
+            --spacing-md: 20px;
+            --spacing-lg: 30px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+            color: var(--white);
+            padding: var(--spacing-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px var(--spacing-md);
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+
+        .converter-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .tab-button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-gray);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .tab-button:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        .converter-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .converter-section.active {
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--dark-gray);
+            font-size: 1.5em;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .conversion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .conversion-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .conversion-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        .conversion-title {
+            font-weight: bold;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .unit-label {
+            font-weight: bold;
+            color: var(--dark-gray);
+            min-width: 60px;
+            text-align: center;
+            background: var(--white);
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .conversion-arrow {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: var(--primary-red);
+        }
+
+        .clear-button {
+            width: 100%;
+            padding: 8px;
+            background: var(--warning-orange);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .clear-button:hover {
+            background: #e67e22;
+        }
+
+        .calculator-section {
+            background: var(--info-blue);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: var(--spacing-md);
+        }
+
+        .calculator-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .calculator-card h4 {
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .calc-input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .calc-result {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-reference {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .reference-item {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .reference-item strong {
+            color: var(--primary-red);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .conversion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .converter-tabs {
+                gap: 5px;
+            }
+
+            .tab-button {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+
+        .formula-info {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--info-blue);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9em;
+            color: var(--dark-gray);
+        }
+
+        .warning-box {
+            background: rgba(241, 196, 15, 0.1);
+            border-left: 4px solid var(--warning-orange);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9em;
+            color: var(--dark-gray);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">← Inicio</a> > <a href="../">Herramientas</a> > Conversor de Unidades
+        </div>
+        <h1>🔧 Conversor de Unidades</h1>
+        <p>Conversiones rápidas y cálculos especializados para bomberos</p>
+    </header>
+
+    <div class="container">
+        <!-- Tabs de navegación -->
+        <div class="converter-tabs">
+            <button class="tab-button active" onclick="showTab('presion')">🔩 Presión</button>
+            <button class="tab-button" onclick="showTab('caudal')">💧 Caudal</button>
+            <button class="tab-button" onclick="showTab('longitud')">📏 Longitud</button>
+            <button class="tab-button" onclick="showTab('peso')">⚖️ Peso</button>
+            <button class="tab-button" onclick="showTab('temperatura')">🌡️ Temperatura</button>
+            <button class="tab-button" onclick="showTab('calculadoras')">🧮 Cálculos</button>
+            <button class="tab-button" onclick="showTab('referencia')">📋 Referencia</button>
+        </div>
+
+        <!-- Sección de Presión -->
+        <div id="presion" class="converter-section active">
+            <div class="section-title">
+                🔩 Conversiones de Presión
+            </div>
+            <div class="conversion-grid">
+                <div class="conversion-card">
+                    <div class="conversion-title">PSI ↔ BAR</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="psi1" placeholder="0" oninput="convertPressure('psi1', 'bar1', 'psiToBar')">
+                        <span class="unit-label">PSI</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="bar1" placeholder="0" oninput="convertPressure('bar1', 'psi1', 'barToPsi')">
+                        <span class="unit-label">BAR</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['psi1', 'bar1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        PSI × 0.0689 = BAR<br>
+                        BAR × 14.504 = PSI
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">PSI ↔ kPa</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="psi2" placeholder="0" oninput="convertPressure('psi2', 'kpa1', 'psiToKpa')">
+                        <span class="unit-label">PSI</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="kpa1" placeholder="0" oninput="convertPressure('kpa1', 'psi2', 'kpaToPsi')">
+                        <span class="unit-label">kPa</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['psi2', 'kpa1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        PSI × 6.895 = kPa<br>
+                        kPa × 0.145 = PSI
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">BAR ↔ kPa</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="bar2" placeholder="0" oninput="convertPressure('bar2', 'kpa2', 'barToKpa')">
+                        <span class="unit-label">BAR</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="kpa2" placeholder="0" oninput="convertPressure('kpa2', 'bar2', 'kpaToBar')">
+                        <span class="unit-label">kPa</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['bar2', 'kpa2'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        BAR × 100 = kPa<br>
+                        kPa ÷ 100 = BAR
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Caudal -->
+        <div id="caudal" class="converter-section">
+            <div class="section-title">
+                💧 Conversiones de Caudal
+            </div>
+            <div class="conversion-grid">
+                <div class="conversion-card">
+                    <div class="conversion-title">LPM ↔ GPM</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="lpm1" placeholder="0" oninput="convertFlow('lpm1', 'gpm1', 'lpmToGpm')">
+                        <span class="unit-label">LPM</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="gpm1" placeholder="0" oninput="convertFlow('gpm1', 'lpm1', 'gpmToLpm')">
+                        <span class="unit-label">GPM</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['lpm1', 'gpm1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        LPM × 0.264 = GPM<br>
+                        GPM × 3.785 = LPM
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">LPM ↔ L/s</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="lpm2" placeholder="0" oninput="convertFlow('lpm2', 'lps1', 'lpmToLps')">
+                        <span class="unit-label">LPM</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="lps1" placeholder="0" oninput="convertFlow('lps1', 'lpm2', 'lpsToLpm')">
+                        <span class="unit-label">L/s</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['lpm2', 'lps1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        LPM ÷ 60 = L/s<br>
+                        L/s × 60 = LPM
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">GPM ↔ L/s</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="gpm2" placeholder="0" oninput="convertFlow('gpm2', 'lps2', 'gpmToLps')">
+                        <span class="unit-label">GPM</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="lps2" placeholder="0" oninput="convertFlow('lps2', 'gpm2', 'lpsToGpm')">
+                        <span class="unit-label">L/s</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['gpm2', 'lps2'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        GPM × 0.063 = L/s<br>
+                        L/s × 15.85 = GPM
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Longitud -->
+        <div id="longitud" class="converter-section">
+            <div class="section-title">
+                📏 Conversiones de Longitud
+            </div>
+            <div class="conversion-grid">
+                <div class="conversion-card">
+                    <div class="conversion-title">Metros ↔ Pies</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="metros1" placeholder="0" oninput="convertLength('metros1', 'pies1', 'mToFt')">
+                        <span class="unit-label">m</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="pies1" placeholder="0" oninput="convertLength('pies1', 'metros1', 'ftToM')">
+                        <span class="unit-label">ft</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['metros1', 'pies1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        m × 3.281 = ft<br>
+                        ft × 0.305 = m
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">Metros ↔ Pulgadas</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="metros2" placeholder="0" oninput="convertLength('metros2', 'pulgadas1', 'mToIn')">
+                        <span class="unit-label">m</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="pulgadas1" placeholder="0" oninput="convertLength('pulgadas1', 'metros2', 'inToM')">
+                        <span class="unit-label">in</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['metros2', 'pulgadas1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        m × 39.37 = in<br>
+                        in × 0.0254 = m
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">cm ↔ Pulgadas</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="cm1" placeholder="0" oninput="convertLength('cm1', 'pulgadas2', 'cmToIn')">
+                        <span class="unit-label">cm</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="pulgadas2" placeholder="0" oninput="convertLength('pulgadas2', 'cm1', 'inToCm')">
+                        <span class="unit-label">in</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['cm1', 'pulgadas2'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        cm × 0.394 = in<br>
+                        in × 2.54 = cm
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Peso -->
+        <div id="peso" class="converter-section">
+            <div class="section-title">
+                ⚖️ Conversiones de Peso
+            </div>
+            <div class="conversion-grid">
+                <div class="conversion-card">
+                    <div class="conversion-title">Kg ↔ Libras</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="kg1" placeholder="0" oninput="convertWeight('kg1', 'libras1', 'kgToLb')">
+                        <span class="unit-label">kg</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="libras1" placeholder="0" oninput="convertWeight('libras1', 'kg1', 'lbToKg')">
+                        <span class="unit-label">lb</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['kg1', 'libras1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        kg × 2.205 = lb<br>
+                        lb × 0.454 = kg
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">Gramos ↔ Onzas</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="gramos1" placeholder="0" oninput="convertWeight('gramos1', 'onzas1', 'gToOz')">
+                        <span class="unit-label">g</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="onzas1" placeholder="0" oninput="convertWeight('onzas1', 'gramos1', 'ozToG')">
+                        <span class="unit-label">oz</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['gramos1', 'onzas1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        g × 0.035 = oz<br>
+                        oz × 28.35 = g
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Temperatura -->
+        <div id="temperatura" class="converter-section">
+            <div class="section-title">
+                🌡️ Conversiones de Temperatura
+            </div>
+            <div class="conversion-grid">
+                <div class="conversion-card">
+                    <div class="conversion-title">°C ↔ °F</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="celsius1" placeholder="0" oninput="convertTemperature('celsius1', 'fahrenheit1', 'cToF')">
+                        <span class="unit-label">°C</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="fahrenheit1" placeholder="0" oninput="convertTemperature('fahrenheit1', 'celsius1', 'fToC')">
+                        <span class="unit-label">°F</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['celsius1', 'fahrenheit1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        °C × 9/5 + 32 = °F<br>
+                        (°F - 32) × 5/9 = °C
+                    </div>
+                </div>
+
+                <div class="conversion-card">
+                    <div class="conversion-title">°C ↔ Kelvin</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="celsius2" placeholder="0" oninput="convertTemperature('celsius2', 'kelvin1', 'cToK')">
+                        <span class="unit-label">°C</span>
+                    </div>
+                    <div class="conversion-arrow">⇅</div>
+                    <div class="input-group">
+                        <input type="number" class="input-field" id="kelvin1" placeholder="0" oninput="convertTemperature('kelvin1', 'celsius2', 'kToC')">
+                        <span class="unit-label">K</span>
+                    </div>
+                    <button class="clear-button" onclick="clearFields(['celsius2', 'kelvin1'])">Limpiar</button>
+                    <div class="formula-info">
+                        <strong>Fórmulas:</strong><br>
+                        °C + 273.15 = K<br>
+                        K - 273.15 = °C
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Calculadoras Especializadas -->
+        <div id="calculadoras" class="converter-section">
+            <div class="section-title">
+                🧮 Cálculos Especializados
+            </div>
+            
+            <div class="calculator-section">
+                <div class="calculator-title">Cálculos para Bomberos</div>
+                <div class="calculator-grid">
+                    <div class="calculator-card">
+                        <h4>🫁 Autonomía SCBA</h4>
+                        <input type="number" class="calc-input" id="ladder-base" placeholder="Base (m)" oninput="calculateLadder()">
+                        <div class="calc-result" id="ladder-result">Ángulo y seguridad</div>
+                        <div class="formula-info">
+                            <strong>Regla 4:1:</strong> Por cada 4m de altura, 1m de base
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h4>💧 Pérdida por Fricción</h4>
+                        <input type="number" class="calc-input" id="friction-flow" placeholder="Caudal (LPM)" oninput="calculateFriction()">
+                        <input type="number" class="calc-input" id="friction-length" placeholder="Longitud (m)" oninput="calculateFriction()">
+                        <select class="calc-input" id="friction-diameter" onchange="calculateFriction()">
+                            <option value="45">Manguera 45mm</option>
+                            <option value="65">Manguera 65mm</option>
+                            <option value="100">Manguera 100mm</option>
+                        </select>
+                        <div class="calc-result" id="friction-result">Pérdida de presión</div>
+                        <div class="warning-box">
+                            <strong>Aprox:</strong> Cálculo simplificado para estimación rápida
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h4>⏱️ Tiempo de Descarga</h4>
+                        <input type="number" class="calc-input" id="tank-volume" placeholder="Volumen tanque (L)" oninput="calculateTankTime()">
+                        <input type="number" class="calc-input" id="tank-flow" placeholder="Caudal salida (LPM)" oninput="calculateTankTime()">
+                        <div class="calc-result" id="tank-result">Tiempo de vaciado</div>
+                        <div class="formula-info">
+                            <strong>Fórmula:</strong> Volumen ÷ Caudal = Tiempo
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h4>🎯 Presión en Boquilla</h4>
+                        <input type="number" class="calc-input" id="nozzle-flow" placeholder="Caudal (LPM)" oninput="calculateNozzle()">
+                        <input type="number" class="calc-input" id="nozzle-diameter" placeholder="Diámetro (mm)" oninput="calculateNozzle()">
+                        <div class="calc-result" id="nozzle-result">Presión necesaria</div>
+                        <div class="formula-info">
+                            <strong>Para:</strong> Chorro efectivo y alcance óptimo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Referencia Rápida -->
+        <div id="referencia" class="converter-section">
+            <div class="section-title">
+                📋 Referencia Rápida
+            </div>
+            
+            <div class="quick-reference">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-red);">🔧 Conversiones Comunes</h3>
+                <div class="reference-grid">
+                    <div class="reference-item">
+                        <strong>Presión SCBA</strong>
+                        300 bar = 4,350 PSI<br>
+                        200 bar = 2,900 PSI<br>
+                        50 bar = 725 PSI
+                    </div>
+                    <div class="reference-item">
+                        <strong>Mangueras</strong>
+                        1¾" = 45mm<br>
+                        2½" = 65mm<br>
+                        4" = 100mm
+                    </div>
+                    <div class="reference-item">
+                        <strong>Caudales Típicos</strong>
+                        Ataque: 300-500 LPM<br>
+                        Defensa: 500-800 LPM<br>
+                        Monitor: 1000+ LPM
+                    </div>
+                    <div class="reference-item">
+                        <strong>Temperaturas</strong>
+                        Ignición papel: 230°C<br>
+                        Ignición madera: 300°C<br>
+                        Flashover: 500-600°C
+                    </div>
+                    <div class="reference-item">
+                        <strong>Presiones Típicas</strong>
+                        Bomba: 10-15 bar<br>
+                        Boquilla: 6-8 bar<br>
+                        Prueba manguera: 20 bar
+                    </div>
+                    <div class="reference-item">
+                        <strong>Pesos Equipos</strong>
+                        SCBA: 15-18 kg<br>
+                        Manguera 45mm: 1.2 kg/m<br>
+                        Manguera 65mm: 2.1 kg/m
+                    </div>
+                    <div class="reference-item">
+                        <strong>Distancias Seguridad</strong>
+                        GLP: 150m mínimo<br>
+                        Combustibles: 100m<br>
+                        Eléctrica: 10m/kV
+                    </div>
+                    <div class="reference-item">
+                        <strong>Autonomía SCBA</strong>
+                        Reposo: 45-60 min<br>
+                        Trabajo: 20-30 min<br>
+                        Emergencia: 15-20 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-reference">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--success-green);">🧮 Fórmulas Esenciales</h3>
+                <div class="reference-grid">
+                    <div class="reference-item">
+                        <strong>Caudal</strong>
+                        Q = A × V<br>
+                        <small>Q: caudal, A: área, V: velocidad</small>
+                    </div>
+                    <div class="reference-item">
+                        <strong>Presión Hidrostática</strong>
+                        P = ρ × g × h<br>
+                        <small>ρ: densidad, g: gravedad, h: altura</small>
+                    </div>
+                    <div class="reference-item">
+                        <strong>Pérdida por Fricción</strong>
+                        ΔP = f × (L/D) × (v²/2g)<br>
+                        <small>Aproximación Darcy-Weisbach</small>
+                    </div>
+                    <div class="reference-item">
+                        <strong>Escalera Segura</strong>
+                        Ratio = H/B = 4:1<br>
+                        <small>H: altura, B: base</small>
+                    </div>
+                    <div class="reference-item">
+                        <strong>Autonomía SCBA</strong>
+                        T = (V × P) / C<br>
+                        <small>V: volumen, P: presión, C: consumo</small>
+                    </div>
+                    <div class="reference-item">
+                        <strong>Espuma</strong>
+                        Q_esp = Q_agua × (%/100)<br>
+                        <small>Caudal espuma = agua × concentración</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar/ocultar tabs
+        function showTab(tabName) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.converter-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Desactivar todos los botones
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Mostrar sección seleccionada
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activar botón correspondiente
+            event.target.classList.add('active');
+        }
+
+        // Limpiar campos
+        function clearFields(fieldIds) {
+            fieldIds.forEach(id => {
+                document.getElementById(id).value = '';
+            });
+        }
+
+        // Formatear números para mostrar
+        function formatNumber(number, decimals = 3) {
+            if (isNaN(number) || number === '') return '';
+            return parseFloat(number).toFixed(decimals).replace(/\.?0+$/, '');
+        }
+
+        // CONVERSIONES DE PRESIÓN
+        const pressureConversions = {
+            psiToBar: (psi) => psi * 0.0689476,
+            barToPsi: (bar) => bar * 14.5038,
+            psiToKpa: (psi) => psi * 6.89476,
+            kpaToPsi: (kpa) => kpa * 0.145038,
+            barToKpa: (bar) => bar * 100,
+            kpaToBar: (kpa) => kpa * 0.01
+        };
+
+        function convertPressure(fromId, toId, conversion) {
+            const fromValue = parseFloat(document.getElementById(fromId).value);
+            if (isNaN(fromValue) || fromValue === '') {
+                document.getElementById(toId).value = '';
+                return;
+            }
+            
+            const result = pressureConversions[conversion](fromValue);
+            document.getElementById(toId).value = formatNumber(result);
+        }
+
+        // CONVERSIONES DE CAUDAL
+        const flowConversions = {
+            lpmToGpm: (lpm) => lpm * 0.264172,
+            gpmToLpm: (gpm) => gpm * 3.78541,
+            lpmToLps: (lpm) => lpm / 60,
+            lpsToLpm: (lps) => lps * 60,
+            gpmToLps: (gpm) => gpm * 0.0630902,
+            lpsToGpm: (lps) => lps * 15.8503
+        };
+
+        function convertFlow(fromId, toId, conversion) {
+            const fromValue = parseFloat(document.getElementById(fromId).value);
+            if (isNaN(fromValue) || fromValue === '') {
+                document.getElementById(toId).value = '';
+                return;
+            }
+            
+            const result = flowConversions[conversion](fromValue);
+            document.getElementById(toId).value = formatNumber(result);
+        }
+
+        // CONVERSIONES DE LONGITUD
+        const lengthConversions = {
+            mToFt: (m) => m * 3.28084,
+            ftToM: (ft) => ft * 0.3048,
+            mToIn: (m) => m * 39.3701,
+            inToM: (inch) => inch * 0.0254,
+            cmToIn: (cm) => cm * 0.393701,
+            inToCm: (inch) => inch * 2.54
+        };
+
+        function convertLength(fromId, toId, conversion) {
+            const fromValue = parseFloat(document.getElementById(fromId).value);
+            if (isNaN(fromValue) || fromValue === '') {
+                document.getElementById(toId).value = '';
+                return;
+            }
+            
+            const result = lengthConversions[conversion](fromValue);
+            document.getElementById(toId).value = formatNumber(result);
+        }
+
+        // CONVERSIONES DE PESO
+        const weightConversions = {
+            kgToLb: (kg) => kg * 2.20462,
+            lbToKg: (lb) => lb * 0.453592,
+            gToOz: (g) => g * 0.035274,
+            ozToG: (oz) => oz * 28.3495
+        };
+
+        function convertWeight(fromId, toId, conversion) {
+            const fromValue = parseFloat(document.getElementById(fromId).value);
+            if (isNaN(fromValue) || fromValue === '') {
+                document.getElementById(toId).value = '';
+                return;
+            }
+            
+            const result = weightConversions[conversion](fromValue);
+            document.getElementById(toId).value = formatNumber(result);
+        }
+
+        // CONVERSIONES DE TEMPERATURA
+        const temperatureConversions = {
+            cToF: (c) => (c * 9/5) + 32,
+            fToC: (f) => (f - 32) * 5/9,
+            cToK: (c) => c + 273.15,
+            kToC: (k) => k - 273.15
+        };
+
+        function convertTemperature(fromId, toId, conversion) {
+            const fromValue = parseFloat(document.getElementById(fromId).value);
+            if (isNaN(fromValue) || fromValue === '') {
+                document.getElementById(toId).value = '';
+                return;
+            }
+            
+            const result = temperatureConversions[conversion](fromValue);
+            document.getElementById(toId).value = formatNumber(result);
+        }
+
+        // CALCULADORAS ESPECIALIZADAS
+
+        // Cálculo autonomía SCBA
+        function calculateSCBA() {
+            const pressure = parseFloat(document.getElementById('scba-pressure').value);
+            const consumption = parseFloat(document.getElementById('scba-consumption').value);
+            
+            if (isNaN(pressure) || isNaN(consumption) || consumption === 0) {
+                document.getElementById('scba-result').textContent = 'Ingresa valores válidos';
+                return;
+            }
+            
+            // Fórmula: (Presión útil × Volumen) / Consumo
+            // Presión útil = presión total - reserva (50 bar)
+            // Volumen típico SCBA = 6.8L
+            const usablePressure = pressure - 50; // Reserva de 50 bar
+            const volume = 6.8; // Litros
+            const timeMinutes = (usablePressure * volume) / consumption;
+            
+            if (timeMinutes > 0) {
+                document.getElementById('scba-result').textContent = 
+                    `${Math.round(timeMinutes)} minutos`;
+            } else {
+                document.getElementById('scba-result').textContent = 'Presión insuficiente';
+            }
+        }
+
+        // Cálculo de espuma
+        function calculateFoam() {
+            const waterFlow = parseFloat(document.getElementById('foam-water').value);
+            const concentration = parseFloat(document.getElementById('foam-concentration').value);
+            
+            if (isNaN(waterFlow) || waterFlow === 0) {
+                document.getElementById('foam-result').textContent = 'Ingresa caudal de agua';
+                return;
+            }
+            
+            const foamFlow = waterFlow * (concentration / 100);
+            document.getElementById('foam-result').textContent = 
+                `${formatNumber(foamFlow, 1)} LPM de espuma`;
+        }
+
+        // Cálculo ángulo escalera
+        function calculateLadder() {
+            const height = parseFloat(document.getElementById('ladder-height').value);
+            const base = parseFloat(document.getElementById('ladder-base').value);
+            
+            if (isNaN(height) || isNaN(base) || base === 0) {
+                document.getElementById('ladder-result').textContent = 'Ingresa altura y base';
+                return;
+            }
+            
+            const ratio = height / base;
+            const angle = Math.atan(ratio) * (180 / Math.PI);
+            const isOptimal = ratio >= 3.8 && ratio <= 4.2;
+            
+            let status = '';
+            if (isOptimal) {
+                status = '✅ Óptimo';
+            } else if (ratio < 3.8) {
+                status = '⚠️ Muy inclinada';
+            } else {
+                status = '❌ Muy vertical';
+            }
+            
+            document.getElementById('ladder-result').innerHTML = 
+                `${Math.round(angle)}° - Ratio ${formatNumber(ratio, 1)}:1<br>${status}`;
+        }
+
+        // Cálculo pérdida por fricción
+        function calculateFriction() {
+            const flow = parseFloat(document.getElementById('friction-flow').value);
+            const length = parseFloat(document.getElementById('friction-length').value);
+            const diameter = parseFloat(document.getElementById('friction-diameter').value);
+            
+            if (isNaN(flow) || isNaN(length) || length === 0) {
+                document.getElementById('friction-result').textContent = 'Ingresa caudal y longitud';
+                return;
+            }
+            
+            // Fórmula simplificada para estimación rápida
+            // Basada en coeficientes empíricos para mangueras de bomberos
+            let coefficient;
+            switch(diameter) {
+                case 45: coefficient = 0.02; break;
+                case 65: coefficient = 0.008; break;
+                case 100: coefficient = 0.003; break;
+                default: coefficient = 0.01;
+            }
+            
+            const frictionLoss = coefficient * Math.pow(flow/100, 2) * (length/100);
+            
+            document.getElementById('friction-result').textContent = 
+                `${formatNumber(frictionLoss, 2)} bar`;
+        }
+
+        // Cálculo tiempo descarga tanque
+        function calculateTankTime() {
+            const volume = parseFloat(document.getElementById('tank-volume').value);
+            const flow = parseFloat(document.getElementById('tank-flow').value);
+            
+            if (isNaN(volume) || isNaN(flow) || flow === 0) {
+                document.getElementById('tank-result').textContent = 'Ingresa volumen y caudal';
+                return;
+            }
+            
+            const timeMinutes = volume / flow;
+            const hours = Math.floor(timeMinutes / 60);
+            const minutes = Math.round(timeMinutes % 60);
+            
+            if (hours > 0) {
+                document.getElementById('tank-result').textContent = 
+                    `${hours}h ${minutes}min`;
+            } else {
+                document.getElementById('tank-result').textContent = 
+                    `${minutes} minutos`;
+            }
+        }
+
+        // Cálculo presión boquilla
+        function calculateNozzle() {
+            const flow = parseFloat(document.getElementById('nozzle-flow').value);
+            const diameter = parseFloat(document.getElementById('nozzle-diameter').value);
+            
+            if (isNaN(flow) || isNaN(diameter) || diameter === 0) {
+                document.getElementById('nozzle-result').textContent = 'Ingresa caudal y diámetro';
+                return;
+            }
+            
+            // Fórmula para boquillas: P = (Q / (Cd × A))²
+            // Donde Cd ≈ 0.9 para boquillas estándar
+            const area = Math.PI * Math.pow(diameter/2000, 2); // m²
+            const velocity = (flow/60000) / area; // m/s
+            const pressure = Math.pow(velocity/29, 2) * 10; // Aproximación en bar
+            
+            document.getElementById('nozzle-result').textContent = 
+                `${formatNumber(pressure, 1)} bar`;
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Conversor de Unidades para Bomberos cargado');
+        });
+    </script>
+</body>
+</html>d="scba-pressure" placeholder="Presión inicial (bar)" oninput="calculateSCBA()">
+                        <input type="number" class="calc-input" id="scba-consumption" placeholder="Consumo (L/min)" oninput="calculateSCBA()">
+                        <div class="calc-result" id="scba-result">Tiempo estimado</div>
+                        <div class="warning-box">
+                            <strong>Nota:</strong> Basado en botella de 6.8L. Deja siempre reserva de 50 bar.
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h4>🧪 Cálculo de Espuma</h4>
+                        <input type="number" class="calc-input" id="foam-water" placeholder="Caudal de agua (LPM)" oninput="calculateFoam()">
+                        <select class="calc-input" id="foam-concentration" onchange="calculateFoam()">
+                            <option value="3">Espuma al 3%</option>
+                            <option value="6">Espuma al 6%</option>
+                        </select>
+                        <div class="calc-result" id="foam-result">Caudal de espuma</div>
+                        <div class="formula-info">
+                            <strong>Fórmula:</strong> Agua × (% espuma / 100)
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h4>🪜 Ángulo de Escalera</h4>
+                        <input type="number" class="calc-input" id="ladder-height" placeholder="Altura (m)" oninput="calculateLadder()">
+                        <input type="number" class="calc-input" i

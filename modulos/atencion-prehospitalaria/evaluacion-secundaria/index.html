@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Secundaria SAMPLE - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-red: #e74c3c;
+            --primary-dark-red: #c0392b;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --info-blue: #3498db;
+            --dark-gray: #2c3e50;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.15);
+            --border-radius-md: 15px;
+            --spacing-md: 20px;
+            --spacing-lg: 30px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+            color: var(--white);
+            padding: var(--spacing-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px var(--spacing-md);
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+
+        .protocol-overview {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .protocol-overview h2 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .sample-acronym {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .acronym-item {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        .acronym-letter {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .acronym-word {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border-left: 5px solid var(--primary-red);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .step-letter {
+            background: var(--primary-red);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .step-title {
+            flex: 1;
+        }
+
+        .step-title h3 {
+            color: var(--dark-gray);
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .step-subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .step-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .questions-section {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .questions-section h4 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .question-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .question-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.95em;
+        }
+
+        .question-list li:last-child {
+            border-bottom: none;
+        }
+
+        .question-list li::before {
+            content: "?";
+            position: absolute;
+            left: 0;
+            color: var(--info-blue);
+            font-weight: bold;
+            background: var(--info-blue);
+            color: var(--white);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        .considerations-section {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--info-blue);
+        }
+
+        .considerations-section h4 {
+            color: var(--info-blue);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .consideration-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .consideration-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95em;
+        }
+
+        .consideration-list li::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            font-size: 1em;
+        }
+
+        .red-flags {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid var(--primary-red);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .red-flags h5 {
+            color: var(--primary-red);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .red-flags ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .red-flags li {
+            padding: 3px 0;
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.9em;
+        }
+
+        .red-flags li::before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+
+        .physical-exam {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .physical-exam h3 {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .exam-region {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .exam-region h4 {
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .exam-region ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exam-region li {
+            padding: 3px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .vital-signs {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .vital-signs h3 {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .vitals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .vital-card {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .vital-card h4 {
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .normal-range {
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .abnormal-signs {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .interactive-tools {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .interactive-tools h3 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .tool-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: var(--info-blue);
+            color: var(--white);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .tool-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .documentation-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .documentation-section h3 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .doc-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .doc-tip {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .doc-tip h4 {
+            color: var(--dark-gray);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .doc-tip p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .sample-acronym {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-content {
+                grid-template-columns: 1fr;
+            }
+
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .step-letter {
+                margin-right: 0;
+            }
+
+            .exam-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vitals-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tool-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .priority-badge {
+            background: var(--warning-orange);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > 
+            <a href="../../">Módulos</a> > 
+            <a href="../">Atención Prehospitalaria</a> > 
+            Evaluación Secundaria
+        </div>
+        <h1>📋 Evaluación Secundaria SAMPLE</h1>
+        <p>Historia clínica sistemática y examen físico detallado</p>
+    </header>
+
+    <div class="container">
+        <!-- Resumen del protocolo -->
+        <div class="protocol-overview">
+            <h2>Protocolo SAMPLE</h2>
+            <p>Recolección sistemática de información clínica para una evaluación completa del paciente</p>
+            
+            <div class="sample-acronym">
+                <div class="acronym-item">
+                    <span class="acronym-letter">S</span>
+                    <span class="acronym-word">Síntomas</span>
+                </div>
+                <div class="acronym-item">
+                    <span class="acronym-letter">A</span>
+                    <span class="acronym-word">Alergias</span>
+                </div>
+                <div class="acronym-item">
+                    <span class="acronym-letter">M</span>
+                    <span class="acronym-word">Medicamentos</span>
+                </div>
+                <div class="acronym-item">
+                    <span class="acronym-letter">P</span>
+                    <span class="acronym-word">Patologías</span>
+                </div>
+                <div class="acronym-item">
+                    <span class="acronym-letter">L</span>
+                    <span class="acronym-word">Última comida</span>
+                </div>
+                <div class="acronym-item">
+                    <span class="acronym-letter">E</span>
+                    <span class="acronym-word">Eventos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Herramientas interactivas -->
+        <div class="interactive-tools">
+            <h3>🛠️ Herramientas de Apoyo</h3>
+            <div class="tool-buttons">
+                <button class="tool-btn" onclick="openSampleForm()">Formulario SAMPLE</button>
+                <button class="tool-btn" onclick="showVitalCalculator()">Calculadora de Signos Vitales</button>
+                <button class="tool-btn" onclick="showDocumentationGuide()">Guía de Documentación</button>
+            </div>
+        </div>
+
+        <!-- Pasos del protocolo SAMPLE -->
+        <div class="step-grid">
+            <!-- S - Síntomas -->
+            <div class="step-card">
+                <div class="step-header">
+                    <div class="step-letter">S</div>
+                    <div class="step-title">
+                        <h3>Síntomas <span class="priority-badge">PRINCIPAL</span></h3>
+                        <div class="step-subtitle">¿Qué siente el paciente actualmente?</div>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="questions-section">
+                        <h4>🔍 Preguntas Clave</h4>
+                        <ul class="question-list">
+                            <li>¿Cuál es su síntoma principal?</li>
+                            <li>¿Cuándo comenzó?</li>
+                            <li>¿Cómo describe el dolor/molestia?</li>
+                            <li>¿En qué parte del cuerpo lo siente?</li>
+                            <li>¿Se irradia a algún lugar?</li>
+                            <li>¿Del 1 al 10, qué tan intenso es?</li>
+                            <li>¿Qué lo mejora o empeora?</li>
+                            <li>¿Ha tenido esto antes?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="considerations-section">
+                        <h4>💡 Consideraciones Importantes</h4>
+                        <ul class="consideration-list">
+                            <li>Usar escala de dolor 1-10</li>
+                            <li>Describir calidad: punzante, opresivo, urente</li>
+                            <li>Factores precipitantes y aliviantes</li>
+                            <li>Cronología: súbito vs gradual</li>
+                            <li>Síntomas asociados</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="red-flags">
+                    <h5>⚠️ BANDERAS ROJAS</h5>
+                    <ul>
+                        <li>Dolor torácico con disnea</li>
+                        <li>Cefalea "la peor de mi vida"</li>
+                        <li>Dolor abdominal + hipotensión</li>
+                        <li>Dificultad respiratoria súbita</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- A - Alergias -->
+            <div class="step-card">
+                <div class="step-header">
+                    <div class="step-letter">A</div>
+                    <div class="step-title">
+                        <h3>Alergias <span class="priority-badge">CRÍTICO</span></h3>
+                        <div class="step-subtitle">Identificar alergias conocidas</div>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="questions-section">
+                        <h4>🔍 Preguntas Específicas</h4>
+                        <ul class="question-list">
+                            <li>¿Es alérgico a algún medicamento?</li>
+                            <li>¿Alergias a alimentos?</li>
+                            <li>¿Alergias ambientales?</li>
+                            <li>¿Qué tipo de reacción tiene?</li>
+                            <li>¿Cuándo fue la última reacción?</li>
+                            <li>¿Porta epinefrina?</li>
+                            <li>¿Ha requerido hospitalización?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="considerations-section">
+                        <h4>💡 Tipos de Reacciones</h4>
+                        <ul class="consideration-list">
+                            <li>Anafilaxis: compromete vía aérea</li>
+                            <li>Urticaria: rash, picazón</li>
+                            <li>Gastrointestinal: náuseas, vómitos</li>
+                            <li>Respiratoria: broncoespasmo</li>
+                            <li>Cardiovascular: hipotensión</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="red-flags">
+                    <h5>⚠️ SIGNOS DE ANAFILAXIS</h5>
+                    <ul>
+                        <li>Estridor o sibilancias</li>
+                        <li>Edema facial o labial</li>
+                        <li>Hipotensión súbita</li>
+                        <li>Urticaria generalizada</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- M - Medicamentos -->
+            <div class="step-card">
+                <div class="step-header">
+                    <div class="step-letter">M</div>
+                    <div class="step-title">
+                        <h3>Medicamentos <span class="priority-badge">IMPORTANTE</span></h3>
+                        <div class="step-subtitle">Medicamentos actuales y recientes</div>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="questions-section">
+                        <h4>🔍 Información a Obtener</h4>
+                        <ul class="question-list">
+                            <li>¿Qué medicamentos toma regularmente?</li>
+                            <li>¿Dosis y frecuencia?</li>
+                            <li>¿Cuándo tomó la última dosis?</li>
+                            <li>¿Medicamentos sin receta?</li>
+                            <li>¿Vitaminas o suplementos?</li>
+                            <li>¿Ha cambiado algún medicamento?</li>
+                            <li>¿Cumple con el tratamiento?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="considerations-section">
+                        <h4>💡 Categorías Importantes</h4>
+                        <ul class="consideration-list">
+                            <li>Anticoagulantes: riesgo de sangrado</li>
+                            <li>Antidiabéticos: hipoglucemia</li>
+                            <li>Antihipertensivos: hipotensión</li>
+                            <li>Broncodilatadores: estado respiratorio</li>
+                            <li>Psicofármacos: interacciones</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="red-flags">
+                    <h5>⚠️ MEDICAMENTOS DE RIESGO</h5>
+                    <ul>
+                        <li>Warfarina: INR elevado</li>
+                        <li>Insulina: hipoglucemia</li>
+                        <li>Digoxina: toxicidad</li>
+                        <li>Benzodiacepinas: depresión SNC</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- P - Patologías -->
+            <div class="step-card">
+                <div class="step-header">
+                    <div class="step-letter">P</div>
+                    <div class="step-title">
+                        <h3>Patologías Previas <span class="priority-badge">RELEVANTE</span></h3>
+                        <div class="step-subtitle">Historial médico significativo</div>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="questions-section">
+                        <h4>🔍 Antecedentes Médicos</h4>
+                        <ul class="question-list">
+                            <li>¿Qué enfermedades ha tenido?</li>
+                            <li>¿Cirugías previas?</li>
+                            <li>¿Hospitalizaciones recientes?</li>
+                            <li>¿Problemas cardíacos?</li>
+                            <li>¿Diabetes o hipertensión?</li>
+                            <li>¿Problemas respiratorios?</li>
+                            <li>¿Convulsiones o desmayos?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="considerations-section">
+                        <h4>💡 Patologías Relevantes</h4>
+                        <ul class="consideration-list">
+                            <li>Cardiopatías: riesgo de arritmias</li>
+                            <li>EPOC: insuficiencia respiratoria</li>
+                            <li>Diabetes: hipo/hiperglucemia</li>
+                            <li>Epilepsia: estado postical</li>
+                            <li>Insuficiencia renal: alteraciones electrolíticas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="red-flags">
+                    <h5>⚠️ COMORBILIDADES DE RIESGO</h5>
+                    <ul>
+                        <li>IAM previo: nuevo evento coronario</li>
+                        <li>EPOC severo: insuficiencia respiratoria</li>
+                        <li>Insuficiencia cardíaca: edema pulmonar</li>
+                        <li>Epilepsia: status epilepticus</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- L - Última comida -->
+            <div class="step-card">
+                <div class="step-header">
+                    <div class="step-letter">L</div>
+                    <div class="step-title">
+                        <h3>Última Comida <span class="priority-badge">PROCEDURAL</span></h3>
+                        <div class="step-subtitle">Evaluación de estado nutricional y riesgo de aspiración</div>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="questions-section">
+                        <h4>🔍 Información Nutricional</h4>
+                        <ul class="question-list">
+                            <li>¿Cuándo fue su última comida?</li>
+                            <li>¿Qué tipo de alimentos?</li>
+                            <li>¿Cuánto comió?</li>
+                            <li>¿Ha vomitado?</li>
+                            <li>¿Problemas para tragar?</li>
+                            <li>¿Cambios en el apetito?</li>
+                            <li>¿Ingesta de líquidos?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="considerations-section">
+                        <h4>💡 Consideraciones Clínicas</h4>
+                        <ul class="consideration-list">
+                            <li>Riesgo de aspiración en inconscientes</li>
+                            <li>Hipoglucemia por ayuno prolongado</li>
+                            <li>Deshidratación en ancianos</li>
+                            <li>Intoxicación alimentaria</li>
+                            <li>Preparación para procedimientos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="red-flags">
+                    <h5>⚠️ RIESGOS IMPORTANTES</h5>
+                    <ul>
+                        <li>Ayuno >12h: hipoglucemia</li>
+                        <li>Comida reciente + inconsciente: aspiración</li>
+                        <li>Vómitos persistentes: deshidratación</li>
+                        <li>Disfagia: riesgo aspirativo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- E - Eventos -->
+            <div class="step-card">
+                <div class="step-header">
+                    <div class="step-letter">E</div>
+                    <div class="step-title">
+                        <h3>Eventos Relacionados <span class="priority-badge">CONTEXTUAL</span></h3>
+                        <div class="step-subtitle">Circunstancias que llevaron a la emergencia</div>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="questions-section">
+                        <h4>🔍 Contexto del Incidente</h4>
+                        <ul class="question-list">
+                            <li>¿Qué estaba haciendo cuando comenzó?</li>
+                            <li>¿Hubo algún trauma?</li>
+                            <li>¿Pérdida de consciencia?</li>
+                            <li>¿Testigos del evento?</li>
+                            <li>¿Mecanismo de lesión?</li>
+                            <li>¿Sustancias involucradas?</li>
+                            <li>¿Factores ambientales?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="considerations-section">
+                        <h4>💡 Factores Precipitantes</h4>
