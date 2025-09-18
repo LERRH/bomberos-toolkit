@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bomberos Toolkit - CGBVP</title>
-    <meta name="description" content="Herramientas y conocimiento para bomberos del CGBVP">
+    <title>Bomberos Toolkit - Herramientas para Bomberos</title>
+    <meta name="description" content="Herramientas y conocimiento para bomberos profesionales">
     <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#e74c3c">
@@ -76,6 +76,24 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--spacing-md);
+        }
+
+        .logo-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
         }
 
         .main-title {
@@ -492,13 +510,14 @@
             font-size: 1.1rem;
         }
 
-        .logo-icon {
-    width: 60px;   /* Ajusta el tamaño que quieras */
-    height: auto;  /* Mantiene la proporción */
-}
-
-
         /* Responsive */
+        @media (min-width: 768px) {
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
         @media (max-width: 767px) {
             .main-title {
                 font-size: 1.6rem;
@@ -571,10 +590,10 @@
     <header class="main-header">
         <div class="header-container">
             <div class="logo-section">
-                <img src="assets/icons/logo.svg" alt="CGBVP Logo" class="logo-icon">
+                <img src="assets/icons/logo.svg" alt="Bomberos Logo" class="logo-icon">
                 <div class="logo-text">
                     <h1 class="main-title">Bomberos Toolkit</h1>
-                    <p class="main-subtitle">Conocimiento que salva vidas</p>
+                    <p class="main-subtitle">Herramientas profesionales para bomberos</p>
                 </div>
             </div>
             <nav class="main-nav">
@@ -587,14 +606,6 @@
             </nav>
         </div>
     </header>
-
-    <!-- Búsqueda Global -->
-    <section class="search-section">
-        <div class="search-container">
-            <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Buscar procedimientos, códigos, técnicas...">
-            <button class="search-btn" id="searchBtn">Buscar</button>
-        </div>
-    </section>
 
     <!-- Herramientas de Acceso Rápido -->
     <section class="herramientas-rapidas" id="herramientas">
@@ -659,11 +670,11 @@
             <div class="herramientas-section">
                 <h3 class="subsection-title">Herramientas Principales</h3>
                 <div class="herramientas-grid compact">
-                    <!-- Claves CGBVP -->
+                    <!-- Claves Bomberos -->
                     <div class="herramienta-card" data-tool="claves" onclick="openTool('claves')">
                         <div class="tool-icon">📻</div>
-                        <h4 class="tool-title">Claves CGBVP</h4>
-                        <p class="tool-description">Códigos de comunicación</p>
+                        <h4 class="tool-title">Claves de Comunicación</h4>
+                        <p class="tool-description">Códigos de radio bomberos</p>
                         <div class="tool-status ready">DISPONIBLE</div>
                     </div>
 
@@ -808,11 +819,19 @@
         </div>
     </section>
 
+    <!-- Búsqueda Global -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Buscar procedimientos, códigos, técnicas...">
+            <button class="search-btn" id="searchBtn">Buscar</button>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
-                <p><strong>Bomberos Toolkit CGBVP</strong></p>
+                <p><strong>Bomberos Toolkit</strong></p>
                 <p>Desarrollado por bomberos, para bomberos</p>
                 <div class="footer-links">
                     <a href="#" onclick="showAbout()">Acerca de</a>
@@ -849,7 +868,7 @@
         }
 
         function showAbout() {
-            alert('Bomberos Toolkit CGBVP v1.0\nDesarrollado para bomberos por bomberos');
+            alert('Bomberos Toolkit v1.0\nDesarrollado para bomberos profesionales');
         }
 
         function showContact() { 
@@ -953,9 +972,9 @@
             observeElements();
             
             // Mensaje de bienvenida inicial
-            console.log('🚒 Bomberos Toolkit CGBVP v1.0');
-            console.log('Herramientas disponibles: 9');
-            console.log('Desarrollado por bomberos, para bomberos');
+            console.log('🚒 Bomberos Toolkit v1.0');
+            console.log('Herramientas disponibles: 11');
+            console.log('Desarrollado para bomberos profesionales');
         });
 
         // Service Worker para PWA (opcional)

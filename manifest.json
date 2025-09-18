@@ -3,16 +3,22 @@
   "short_name": "Bomberos Toolkit",
   "description": "Herramientas y conocimiento para bomberos del Cuerpo General de Bomberos Voluntarios del Perú",
   "version": "1.0.0",
-  "start_url": "https://lerrh.github.io/bomberos-toolkit/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#1e3c72",
   "theme_color": "#e74c3c",
   "orientation": "portrait-primary",
-  "scope": "https://lerrh.github.io/bomberos-toolkit/",
+  "scope": "./",
   "lang": "es",
   "dir": "ltr",
   "categories": ["education", "utilities", "productivity"],
   "icons": [
+    {
+      "src": "assets/icons/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "assets/icons/icon-72x72.png",
       "sizes": "72x72",
@@ -67,59 +73,29 @@
       "name": "Claves CGBVP",
       "short_name": "Claves",
       "description": "Acceso rápido a códigos de comunicación",
-      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/claves/",
-      "icons": [{ "src": "assets/icons/shortcut-claves.png", "sizes": "96x96" }]
+      "url": "./?herramienta=claves",
+      "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
     },
     {
       "name": "Timer RCP",
       "short_name": "RCP",
       "description": "Cronómetro para reanimación cardiopulmonar",
-      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/rcp-timer/",
-      "icons": [{ "src": "assets/icons/shortcut-rcp.png", "sizes": "96x96" }]
+      "url": "./?herramienta=rcp",
+      "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
     },
     {
       "name": "Conversor",
-      "short_name": "Conversor",
+      "short_name": "Conversor", 
       "description": "Conversor de unidades y medidas",
-      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/conversor/",
-      "icons": [{ "src": "assets/icons/shortcut-conversor.png", "sizes": "96x96" }]
+      "url": "./?herramienta=conversor",
+      "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
     },
     {
       "name": "Escala de Glasgow",
       "short_name": "Glasgow",
       "description": "Evaluación del nivel de consciencia",
-      "url": "https://lerrh.github.io/bomberos-toolkit/herramientas/glasgow/",
-      "icons": [{ "src": "assets/icons/shortcut-glasgow.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "Atención Prehospitalaria",
-      "short_name": "Prehospitalaria",
-      "description": "Protocolos médicos de emergencia",
-      "url": "https://lerrh.github.io/bomberos-toolkit/modulos/atencion-prehospitalaria/",
-      "icons": [{ "src": "assets/icons/shortcut-medical.png", "sizes": "96x96" }]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "assets/images/screenshot-mobile-1.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "platform": "narrow",
-      "label": "Pantalla principal en móvil"
-    },
-    {
-      "src": "assets/images/screenshot-mobile-2.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "platform": "narrow",
-      "label": "Herramientas de acceso rápido"
-    },
-    {
-      "src": "assets/images/screenshot-desktop-1.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "platform": "wide",
-      "label": "Vista desktop completa"
+      "url": "./?herramienta=glasgow",
+      "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
     }
   ],
   "prefer_related_applications": false,
