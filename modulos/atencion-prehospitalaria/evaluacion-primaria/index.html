@@ -10,14 +10,8 @@
             --primary-dark-red: #c0392b;
             --success-green: #27ae60;
             --warning-orange: #f39c12;
-            --info-blue: #3498db;
             --dark-gray: #2c3e50;
-            --light-gray: #ecf0f1;
             --white: #ffffff;
-            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.15);
-            --border-radius-md: 15px;
-            --spacing-md: 20px;
-            --spacing-lg: 30px;
         }
 
         * {
@@ -36,115 +30,95 @@
         .header {
             background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
             color: var(--white);
-            padding: var(--spacing-md);
+            padding: 15px;
             text-align: center;
-            box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .breadcrumb {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px var(--spacing-md);
-            font-size: 0.9em;
+            font-size: 0.8em;
+            margin-bottom: 8px;
+            opacity: 0.9;
         }
 
         .breadcrumb a {
             color: var(--white);
             text-decoration: none;
-            opacity: 0.8;
         }
 
-        .breadcrumb a:hover {
-            opacity: 1;
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: var(--spacing-lg);
+            padding: 20px;
         }
 
-        .protocol-overview {
+        .protocol-flow {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: var(--border-radius-md);
-            padding: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg);
-            box-shadow: var(--shadow-md);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
-        .protocol-overview h2 {
-            color: var(--primary-red);
-            margin-bottom: 15px;
-            font-size: 1.8em;
-        }
-
-        .xabcde-flow {
+        .flow-items {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 20px 0;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .flow-item {
             background: var(--primary-red);
             color: var(--white);
-            padding: 12px 20px;
-            border-radius: 25px;
+            padding: 8px 15px;
+            border-radius: 20px;
             font-weight: bold;
-            font-size: 1.1em;
-            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .flow-arrow {
-            font-size: 1.5em;
-            color: var(--primary-red);
-            font-weight: bold;
+        .flow-item:hover {
+            background: var(--primary-dark-red);
+            transform: translateY(-2px);
         }
 
-        .step-grid {
+        .steps-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
+            gap: 15px;
         }
 
         .step-card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: var(--border-radius-md);
-            padding: var(--spacing-lg);
-            box-shadow: var(--shadow-md);
-            border-left: 5px solid var(--primary-red);
-            position: relative;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-red);
         }
 
         .step-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .step-letter {
             background: var(--primary-red);
             color: var(--white);
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
+            font-size: 1.2em;
             font-weight: bold;
-            margin-right: 20px;
+            margin-right: 15px;
         }
 
         .step-title {
@@ -153,563 +127,475 @@
 
         .step-title h3 {
             color: var(--dark-gray);
-            font-size: 1.4em;
-            margin-bottom: 5px;
+            font-size: 1.2em;
+            margin-bottom: 3px;
         }
 
         .step-subtitle {
             color: #666;
-            font-size: 1em;
+            font-size: 0.9em;
         }
 
         .step-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
-        .evaluation-section {
-            background: var(--light-gray);
-            padding: 15px;
-            border-radius: 10px;
+        .evaluation, .actions {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
         }
 
-        .evaluation-section h4 {
+        .evaluation h4, .actions h4 {
             color: var(--primary-red);
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            margin-bottom: 8px;
+            font-size: 0.95em;
         }
 
-        .checklist {
+        .evaluation ul, .actions ul {
             list-style: none;
             padding: 0;
         }
 
-        .checklist li {
-            padding: 5px 0;
+        .evaluation li, .actions li {
+            padding: 3px 0;
+            font-size: 0.85em;
             position: relative;
-            padding-left: 25px;
+            padding-left: 15px;
         }
 
-        .checklist li::before {
-            content: "✓";
+        .evaluation li::before {
+            content: "•";
             position: absolute;
             left: 0;
             color: var(--success-green);
             font-weight: bold;
         }
 
-        .actions-section {
-            background: rgba(231, 76, 60, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-red);
-        }
-
-        .actions-section h4 {
-            color: var(--primary-red);
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .action-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .action-list li {
-            padding: 5px 0;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .action-list li::before {
-            content: "➤";
+        .actions li::before {
+            content: "▶";
             position: absolute;
             left: 0;
             color: var(--primary-red);
             font-weight: bold;
         }
 
-        .critical-warning {
+        .critical-alert {
             background: rgba(231, 76, 60, 0.1);
             border: 2px solid var(--primary-red);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
         }
 
-        .critical-warning h5 {
+        .critical-alert h5 {
             color: var(--primary-red);
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .critical-alert p {
+            font-size: 0.8em;
+            line-height: 1.3;
+        }
+
+        .stop-bleed {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: var(--white);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .stop-bleed h5 {
             margin-bottom: 8px;
             font-size: 1em;
         }
 
-        .critical-warning p {
-            color: var(--dark-gray);
-            font-size: 0.9em;
+        .stop-bleed ol {
+            padding-left: 20px;
+            font-size: 0.85em;
             line-height: 1.4;
         }
 
-        .quick-reference {
+        .stop-bleed li {
+            margin: 3px 0;
+        }
+
+        .quick-ref {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: var(--border-radius-md);
-            padding: var(--spacing-md);
-            box-shadow: var(--shadow-md);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .quick-reference h3 {
-            color: var(--primary-red);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .reference-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .reference-card {
-            background: var(--light-gray);
+            border-radius: 12px;
             padding: 15px;
-            border-radius: 10px;
+            margin-top: 20px;
         }
 
-        .reference-card h4 {
+        .quick-ref h3 {
+            color: var(--primary-red);
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .ref-card {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .ref-card h4 {
             color: var(--dark-gray);
-            margin-bottom: 10px;
-            font-size: 1em;
+            margin-bottom: 6px;
+            font-size: 0.9em;
         }
 
-        .reference-card ul {
+        .ref-card ul {
             list-style: none;
             padding: 0;
         }
 
-        .reference-card li {
-            padding: 2px 0;
-            font-size: 0.9em;
+        .ref-card li {
+            font-size: 0.8em;
             color: #666;
-        }
-
-        .interactive-tools {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: var(--border-radius-md);
-            padding: var(--spacing-md);
-            box-shadow: var(--shadow-md);
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
-        }
-
-        .interactive-tools h3 {
-            color: var(--primary-red);
-            margin-bottom: 15px;
-        }
-
-        .tool-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .tool-btn {
-            background: var(--info-blue);
-            color: var(--white);
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .tool-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        .timer-btn {
-            background: var(--success-green);
-        }
-
-        .timer-btn:hover {
-            background: #219a52;
+            padding: 1px 0;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
-            }
-
-            .header h1 {
-                font-size: 1.6em;
-            }
-
-            .xabcde-flow {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .flow-arrow {
-                transform: rotate(90deg);
+                padding: 10px;
             }
 
             .step-content {
                 grid-template-columns: 1fr;
-            }
-
-            .step-header {
-                flex-direction: column;
-                text-align: center;
                 gap: 10px;
             }
 
-            .step-letter {
-                margin-right: 0;
-            }
-
-            .reference-grid {
+            .ref-grid {
                 grid-template-columns: 1fr;
             }
 
-            .tool-buttons {
+            .flow-items {
                 flex-direction: column;
-                align-items: center;
+                gap: 5px;
             }
-        }
-
-        .priority-indicator {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--primary-red);
-            color: var(--white);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-
-        .priority-high {
-            background: var(--primary-red);
-        }
-
-        .priority-medium {
-            background: var(--warning-orange);
-        }
-
-        .priority-low {
-            background: var(--success-green);
         }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="breadcrumb">
-            <a href="../../../index.html">← Inicio</a> > 
+            <a href="../../../index.html">Inicio</a> > 
             <a href="../../">Módulos</a> > 
             <a href="../">Atención Prehospitalaria</a> > 
             Evaluación Primaria
         </div>
-        <h1>🔍 Evaluación Primaria XABCDE</h1>
-        <p>Protocolo sistemático para evaluación inicial de pacientes en emergencias</p>
+        <h1>Evaluación Primaria XABCDE</h1>
+        <p>Protocolo sistemático para evaluación inicial</p>
     </header>
 
     <div class="container">
-        <!-- Resumen del protocolo -->
-        <div class="protocol-overview">
-            <h2>Protocolo XABCDE</h2>
-            <p>Evaluación secuencial y sistemática que identifica y trata amenazas inmediatas para la vida</p>
-            
-            <div class="xabcde-flow">
-                <div class="flow-item">X - Control de Hemorragias</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-item">A - Vía Aérea</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-item">B - Respiración</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-item">C - Circulación</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-item">D - Discapacidad</div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-item">E - Exposición</div>
+        <!-- Flujo del protocolo -->
+        <div class="protocol-flow">
+            <h3>Secuencia XABCDE</h3>
+            <div class="flow-items">
+                <div class="flow-item" onclick="scrollToStep('step-x')">X - Stop the Bleed</div>
+                <div class="flow-item" onclick="scrollToStep('step-a')">A - Vía Aérea</div>
+                <div class="flow-item" onclick="scrollToStep('step-b')">B - Respiración</div>
+                <div class="flow-item" onclick="scrollToStep('step-c')">C - Circulación</div>
+                <div class="flow-item" onclick="scrollToStep('step-d')">D - Discapacidad</div>
+                <div class="flow-item" onclick="scrollToStep('step-e')">E - Exposición</div>
             </div>
         </div>
 
-
-        <!-- Pasos del protocolo XABCDE -->
-        <div class="step-grid">
-            <!-- X - Control de Hemorragias -->
-            <div class="step-card">
-                <div class="priority-indicator priority-high">CRÍTICO</div>
+        <!-- Pasos del protocolo -->
+        <div class="steps-grid">
+            <!-- X - Stop the Bleed -->
+            <div class="step-card" id="step-x">
                 <div class="step-header">
                     <div class="step-letter">X</div>
                     <div class="step-title">
-                        <h3>Control de Hemorragias Externas</h3>
-                        <div class="step-subtitle">Primera prioridad en trauma penetrante</div>
+                        <h3>Stop the Bleed - Control de Hemorragias</h3>
+                        <div class="step-subtitle">Primera prioridad en trauma</div>
                     </div>
                 </div>
                 
                 <div class="step-content">
-                    <div class="evaluation-section">
-                        <h4>🔍 Evaluación</h4>
-                        <ul class="checklist">
-                            <li>Inspección visual rápida de hemorragias externas</li>
-                            <li>Identificar sangrado arterial vs venoso</li>
-                            <li>Localizar sitios de sangrado activo</li>
-                            <li>Evaluar cantidad de sangre perdida</li>
-                            <li>Revisar pulsos distales</li>
+                    <div class="evaluation">
+                        <h4>Tipos de Sangrado</h4>
+                        <ul>
+                            <li><strong>Arterial:</strong> Rojo brillante, a borbotones, sincrónico con pulso</li>
+                            <li><strong>Venoso:</strong> Rojo oscuro, flujo continuo, menos presión</li>
+                            <li><strong>Capilar:</strong> Goteo lento, sangrado superficial</li>
+                            <li>Evaluar volumen perdido</li>
                         </ul>
                     </div>
                     
-                    <div class="actions-section">
-                        <h4>⚡ Acciones Inmediatas</h4>
-                        <ul class="action-list">
-                            <li>Presión directa sobre la herida</li>
-                            <li>Elevación de extremidades si es posible</li>
-                            <li>Aplicar torniquete si está indicado</li>
-                            <li>Vendaje compresivo</li>
-                            <li>Puntos de presión proximal</li>
+                    <div class="actions">
+                        <h4>Métodos de Control</h4>
+                        <ul>
+                            <li><strong>Presión directa:</strong> Primera línea, todas las heridas</li>
+                            <li><strong>Vendaje compresivo:</strong> Mantener presión</li>
+                            <li><strong>Empaquetamiento:</strong> Heridas profundas/cavitarias</li>
+                            <li><strong>Torniquete:</strong> Solo extremidades, sangrado masivo</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="critical-warning">
-                    <h5>⚠️ ALERTA CRÍTICA</h5>
-                    <p>Hemorragia no controlada puede causar shock hipovolémico en minutos. Priorizar control inmediato antes de continuar evaluación.</p>
+                <div class="stop-bleed">
+                    <h5>Protocolo por Zona Anatómica</h5>
+                    <ol>
+                        <li><strong>Extremidades:</strong> Presión directa → Vendaje → Torniquete</li>
+                        <li><strong>Cuello/Axila/Ingle:</strong> Presión directa + Empaquetamiento</li>
+                        <li><strong>Abdomen/Tórax:</strong> NO empaquetamiento, presión suave</li>
+                        <li><strong>Cabeza/Cara:</strong> Presión directa, cuidado con fracturas</li>
+                        <li><strong>Reevaluar</strong> cada 2-3 minutos</li>
+                    </ol>
                 </div>
             </div>
 
             <!-- A - Vía Aérea -->
-            <div class="step-card">
-                <div class="priority-indicator priority-high">CRÍTICO</div>
+            <div class="step-card" id="step-a">
                 <div class="step-header">
                     <div class="step-letter">A</div>
                     <div class="step-title">
                         <h3>Vía Aérea con Control Cervical</h3>
-                        <div class="step-subtitle">Permeabilidad y protección de columna cervical</div>
+                        <div class="step-subtitle">Permeabilidad y protección cervical</div>
                     </div>
                 </div>
                 
                 <div class="step-content">
-                    <div class="evaluation-section">
-                        <h4>🔍 Evaluación</h4>
-                        <ul class="checklist">
-                            <li>¿Puede hablar con claridad?</li>
-                            <li>¿Hay obstrucción visible?</li>
-                            <li>¿Ruidos respiratorios anormales?</li>
-                            <li>¿Estridor, ronquidos, gorgoteo?</li>
-                            <li>¿Movimiento de tórax simétrico?</li>
+                    <div class="evaluation">
+                        <h4>Evaluación</h4>
+                        <ul>
+                            <li>¿Puede hablar normalmente?</li>
+                            <li>¿Obstrucción visible?</li>
+                            <li>¿Ruidos anormales? (estridor, ronquidos)</li>
+                            <li>¿Secreciones o vómito?</li>
                         </ul>
                     </div>
                     
-                    <div class="actions-section">
-                        <h4>⚡ Acciones Inmediatas</h4>
-                        <ul class="action-list">
+                    <div class="actions">
+                        <h4>Maniobras de Apertura</h4>
+                        <ul>
+                            <li><strong>Frente-mentón:</strong> Sin sospecha lesión cervical</li>
+                            <li><strong>Tracción mandibular:</strong> Con sospecha lesión cervical</li>
                             <li>Inmovilización cervical manual</li>
-                            <li>Maniobra frente-mentón o triple maniobra</li>
                             <li>Aspiración de secreciones</li>
                             <li>Cánula orofaríngea si inconsciente</li>
-                            <li>Posición de recuperación si está indicada</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="critical-warning">
-                    <h5>⚠️ ALERTA CRÍTICA</h5>
-                    <p>Siempre asumir lesión cervical en trauma. Mantener alineación cabeza-cuello-tronco durante toda la evaluación.</p>
+                <div class="critical-alert">
+                    <h5>Criterios NEXUS para Collarín</h5>
+                    <p><strong>Aplicar collarín si:</strong></p>
+                    <ul style="font-size: 0.8em; margin: 5px 0; padding-left: 15px;">
+                        <li>Dolor o sensibilidad cervical</li>
+                        <li>Déficit neurológico focal</li>
+                        <li>Alteración del estado mental</li>
+                        <li>Intoxicación por alcohol/drogas</li>
+                        <li>Lesión dolorosa que distrae</li>
+                    </ul>
+                    <p><strong>Solo si TODOS son negativos, se puede evaluar sin collarín</strong></p>
                 </div>
             </div>
 
             <!-- B - Respiración -->
-            <div class="step-card">
-                <div class="priority-indicator priority-high">CRÍTICO</div>
+            <div class="step-card" id="step-b">
                 <div class="step-header">
                     <div class="step-letter">B</div>
                     <div class="step-title">
                         <h3>Respiración y Ventilación</h3>
-                        <div class="step-subtitle">Oxigenación y mecánica respiratoria</div>
+                        <div class="step-subtitle">Oxigenación efectiva</div>
                     </div>
                 </div>
                 
                 <div class="step-content">
-                    <div class="evaluation-section">
-                        <h4>🔍 Evaluación</h4>
-                        <ul class="checklist">
-                            <li>Frecuencia respiratoria (normal 12-20/min)</li>
-                            <li>Calidad y esfuerzo respiratorio</li>
-                            <li>Expansión torácica simétrica</li>
-                            <li>Uso de músculos accesorios</li>
-                            <li>Saturación de oxígeno</li>
-                            <li>Color de piel y mucosas</li>
+                    <div class="evaluation">
+                        <h4>Evaluación Detallada</h4>
+                        <ul>
+                            <li><strong>Frecuencia:</strong> Normal 12-20/min</li>
+                            <li><strong>Simetría:</strong> Expansión bilateral igual</li>
+                            <li><strong>Profundidad:</strong> Superficial vs profunda</li>
+                            <li><strong>Esfuerzo:</strong> Músculos accesorios</li>
+                            <li><strong>Patrón:</strong> Regular vs irregular</li>
+                            <li><strong>Sonidos:</strong> Estridor, sibilancias, crepitaciones</li>
                         </ul>
                     </div>
                     
-                    <div class="actions-section">
-                        <h4>⚡ Acciones Inmediatas</h4>
-                        <ul class="action-list">
-                            <li>Administrar oxígeno de alto flujo</li>
-                            <li>Asistir ventilación si está indicado</li>
-                            <li>Descompresión de neumotórax a tensión</li>
-                            <li>Sellar heridas torácicas aspirantes</li>
-                            <li>Posición semi-Fowler si es posible</li>
+                    <div class="actions">
+                        <h4>Acciones</h4>
+                        <ul>
+                            <li>Oxígeno alto flujo (15L/min)</li>
+                            <li>Ventilación asistida si necesario</li>
+                            <li>Descompresión neumotórax</li>
+                            <li>Sellar heridas torácicas</li>
+                            <li>Posición semi-Fowler si tolera</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="critical-warning">
-                    <h5>⚠️ ALERTA CRÍTICA</h5>
-                    <p>Neumotórax a tensión es emergencia inmediata. Buscar desviación traqueal, distensión venosa yugular y ausencia de ruidos respiratorios.</p>
+                <div class="critical-alert">
+                    <h5>Signos de Compromiso Respiratorio</h5>
+                    <p><strong>Inmediato:</strong> Cianosis central, estridor, FR &lt;8 o &gt;30, SpO2 &lt;90%</p>
+                    <p><strong>Neumotórax tensión:</strong> Desviación traqueal, distensión yugular, ausencia ruidos respiratorios</p>
                 </div>
             </div>
 
             <!-- C - Circulación -->
-            <div class="step-card">
-                <div class="priority-indicator priority-high">CRÍTICO</div>
+            <div class="step-card" id="step-c">
                 <div class="step-header">
                     <div class="step-letter">C</div>
                     <div class="step-title">
-                        <h3>Circulación y Control de Hemorragias</h3>
+                        <h3>Circulación</h3>
                         <div class="step-subtitle">Perfusión y volemia</div>
                     </div>
                 </div>
                 
                 <div class="step-content">
-                    <div class="evaluation-section">
-                        <h4>🔍 Evaluación</h4>
-                        <ul class="checklist">
-                            <li>Pulso radial: frecuencia, ritmo, calidad</li>
-                            <li>Pulso carotídeo si radial ausente</li>
-                            <li>Llenado capilar (&lt;2 segundos normal)</li>
-                            <li>Color y temperatura de piel</li>
-                            <li>Presión arterial</li>
-                            <li>Signos de shock</li>
+                    <div class="evaluation">
+                        <h4>Puntos de Evaluación</h4>
+                        <ul>
+                            <li><strong>Radial:</strong> Muñeca, PAS &gt;80 mmHg</li>
+                            <li><strong>Femoral:</strong> Ingle, PAS &gt;70 mmHg</li>
+                            <li><strong>Carotídeo:</strong> Cuello, PAS &gt;60 mmHg</li>
+                            <li><strong>Llenado capilar:</strong> &lt;2 seg normal</li>
+                            <li><strong>Piel:</strong> Color, temperatura, humedad</li>
+                            <li><strong>Diuresis:</strong> &gt;0.5 mL/kg/h</li>
                         </ul>
                     </div>
                     
-                    <div class="actions-section">
-                        <h4>⚡ Acciones Inmediatas</h4>
-                        <ul class="action-list">
-                            <li>Control definitivo de hemorragias</li>
-                            <li>Acceso vascular (2 vías calibre 14-16G)</li>
-                            <li>Reposición de volumen si está indicada</li>
-                            <li>Posición Trendelenburg modificada</li>
-                            <li>Mantas para conservar temperatura</li>
+                    <div class="actions">
+                        <h4>Acciones</h4>
+                        <ul>
+                            <li>Control definitivo hemorragias</li>
+                            <li>Acceso vascular (2 vías 14-16G)</li>
+                            <li>Cristaloides 20 mL/kg en bolo</li>
+                            <li>Posición Trendelenburg</li>
+                            <li>Mantas para conservar calor</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="critical-warning">
-                    <h5>⚠️ ALERTA CRÍTICA</h5>
-                    <p>Shock compensado puede progresar rápidamente. Taquicardia puede ser único signo inicial en pacientes jóvenes.</p>
+                <div class="critical-alert">
+                    <h5>Clasificación del Shock Hemorrágico</h5>
+                    <p><strong>Clase I:</strong> &lt;15% pérdida, FC normal, PA normal</p>
+                    <p><strong>Clase II:</strong> 15-30%, FC 100-120, PA normal</p>
+                    <p><strong>Clase III:</strong> 30-40%, FC &gt;120, PA baja</p>
+                    <p><strong>Clase IV:</strong> &gt;40%, FC &gt;140, PA muy baja</p>
                 </div>
             </div>
 
             <!-- D - Discapacidad -->
-            <div class="step-card">
-                <div class="priority-indicator priority-medium">IMPORTANTE</div>
+            <div class="step-card" id="step-d">
                 <div class="step-header">
                     <div class="step-letter">D</div>
                     <div class="step-title">
                         <h3>Discapacidad Neurológica</h3>
-                        <div class="step-subtitle">Evaluación del estado neurológico</div>
+                        <div class="step-subtitle">Estado neurológico</div>
                     </div>
                 </div>
                 
                 <div class="step-content">
-                    <div class="evaluation-section">
-                        <h4>🔍 Evaluación</h4>
-                        <ul class="checklist">
-                            <li>Escala de Glasgow (GCS)</li>
-                            <li>Tamaño y reactividad pupilar</li>
-                            <li>Respuesta motora bilateral</li>
-                            <li>Nivel de consciencia (AVDI)</li>
-                            <li>Signos de focalización neurológica</li>
+                    <div class="evaluation">
+                        <h4>Evaluación Pupilar</h4>
+                        <ul>
+                            <li><strong>Normales:</strong> 2-4mm, reactivas, simétricas</li>
+                            <li><strong>Miosis:</strong> &lt;2mm (opiáceos, organofosforados)</li>
+                            <li><strong>Midriasis:</strong> &gt;6mm (hipoxia, atropina, cocaína)</li>
+                            <li><strong>Anisocoria:</strong> Diferencia &gt;1mm (TEC, ACV)</li>
+                            <li><strong>Arreactivas:</strong> Lesión grave del tronco</li>
                         </ul>
                     </div>
                     
-                    <div class="actions-section">
-                        <h4>⚡ Acciones Inmediatas</h4>
-                        <ul class="action-list">
-                            <li>Mantener PIC &lt;20 mmHg</li>
-                            <li>Evitar hiperventilación excesiva</li>
+                    <div class="actions">
+                        <h4>Escala de Glasgow (GCS)</h4>
+                        <ul>
+                            <li><strong>Ocular:</strong> 4=Espontánea, 3=A la voz, 2=Al dolor, 1=No abre</li>
+                            <li><strong>Verbal:</strong> 5=Orientada, 4=Confusa, 3=Palabras, 2=Sonidos, 1=No verbal</li>
+                            <li><strong>Motor:</strong> 6=Obedece, 5=Localiza dolor, 4=Retira, 3=Flexión anormal, 2=Extensión, 1=No responde</li>
                             <li>Mantener PAS &gt;90 mmHg</li>
-                            <li>Glucometría si alteración consciencia</li>
-                            <li>Naloxona si sospecha de opiáceos</li>
+                            <li>Glucometría (60-140 mg/dL)</li>
+                            <li>Naloxona 0.4-2mg si sospecha opiáceos</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="critical-warning">
-                    <h5>⚠️ ALERTA CRÍTICA</h5>
-                    <p>Deterioro neurológico puede indicar aumento de presión intracraneal. GCS &lt;9 requiere manejo avanzado de vía aérea.</p>
+                <div class="critical-alert">
+                    <h5>Causas de Alteración Neurológica</h5>
+                    <p><strong>Traumáticas:</strong> TEC, lesión medular, shock</p>
+                    <p><strong>Metabólicas:</strong> Hipoglucemia, hipoxia, hipercapnia</p>
+                    <p><strong>Tóxicas:</strong> Alcohol, drogas, monóxido de carbono</p>
+                    <p><strong>Vasculares:</strong> ACV, crisis hipertensiva</p>
                 </div>
             </div>
 
             <!-- E - Exposición -->
-            <div class="step-card">
-                <div class="priority-indicator priority-low">NECESARIO</div>
+            <div class="step-card" id="step-e">
                 <div class="step-header">
                     <div class="step-letter">E</div>
                     <div class="step-title">
                         <h3>Exposición y Control Ambiental</h3>
-                        <div class="step-subtitle">Examen corporal completo y termorregulación</div>
+                        <div class="step-subtitle">Examen completo y termorregulación</div>
                     </div>
                 </div>
                 
                 <div class="step-content">
-                    <div class="evaluation-section">
-                        <h4>🔍 Evaluación</h4>
-                        <ul class="checklist">
+                    <div class="evaluation">
+                        <h4>Evaluación</h4>
+                        <ul>
                             <li>Exposición completa del paciente</li>
-                            <li>Inspección de toda la superficie corporal</li>
-                            <li>Lesiones en espalda al movilizar</li>
+                            <li>Inspección superficie corporal</li>
+                            <li>Lesiones en espalda (volteo en bloque)</li>
                             <li>Temperatura corporal</li>
-                            <li>Signos de hipotermia</li>
+                            <li>Signos de hipotermia (&lt;35°C)</li>
                         </ul>
                     </div>
                     
-                    <div class="actions-section">
-                        <h4>⚡ Acciones Inmediatas</h4>
-                        <ul class="action-list">
-                            <li>Retirar ropa húmeda o contaminada</li>
-                            <li>Cubrir con mantas térmicas</li>
+                    <div class="actions">
+                        <h4>Acciones</h4>
+                        <ul>
+                            <li>Retirar ropa húmeda/contaminada</li>
+                            <li>Mantas térmicas/papel aluminizado</li>
                             <li>Proteger privacidad del paciente</li>
-                            <li>Volteo en bloque si trauma espinal</li>
                             <li>Documentar todas las lesiones</li>
+                            <li>Fotos si autoriza/necesario legal</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="critical-warning">
-                    <h5>⚠️ ALERTA CRÍTICA</h5>
-                    <p>Hipotermia empeora la coagulopatía traumática. Mantener normotermia es crucial en pacientes críticos.</p>
+                <div class="critical-alert">
+                    <h5>Triada Mortal del Trauma</h5>
+                    <p><strong>Hipotermia + Coagulopatía + Acidosis</strong></p>
+                    <p>Cada componente empeora los otros. Prevenir hipotermia es crucial para supervivencia.</p>
                 </div>
             </div>
         </div>
 
         <!-- Referencia rápida -->
-        <div class="quick-reference">
-            <h3>📋 Referencia Rápida</h3>
-            <div class="reference-grid">
-                <div class="reference-card">
+        <div class="quick-ref">
+            <h3>Referencia Rápida</h3>
+            <div class="ref-grid">
+                <div class="ref-card">
                     <h4>Signos Vitales Normales</h4>
                     <ul>
                         <li>FC: 60-100 lpm</li>
                         <li>FR: 12-20 rpm</li>
                         <li>PAS: 90-140 mmHg</li>
-                        <li>SpO2: >95%</li>
+                        <li>SpO2: &gt;95%</li>
                         <li>Temp: 36-37.5°C</li>
                     </ul>
                 </div>
                 
-                <div class="reference-card">
-                    <h4>Escala de Glasgow</h4>
+                <div class="ref-card">
+                    <h4>Escala Glasgow</h4>
                     <ul>
                         <li>Ocular: 4-1 puntos</li>
                         <li>Verbal: 5-1 puntos</li>
@@ -719,8 +605,8 @@
                     </ul>
                 </div>
                 
-                <div class="reference-card">
-                    <h4>Clasificación AVDI</h4>
+                <div class="ref-card">
+                    <h4>AVDI</h4>
                     <ul>
                         <li>A: Alerta</li>
                         <li>V: Responde a voz</li>
@@ -729,13 +615,13 @@
                     </ul>
                 </div>
                 
-                <div class="reference-card">
+                <div class="ref-card">
                     <h4>Signos de Shock</h4>
                     <ul>
                         <li>Taquicardia</li>
                         <li>Hipotensión</li>
                         <li>Piel fría y húmeda</li>
-                        <li>Llenado capilar >2 seg</li>
+                        <li>Llenado capilar &gt;2 seg</li>
                         <li>Alteración consciencia</li>
                     </ul>
                 </div>
@@ -744,43 +630,24 @@
     </div>
 
     <script>
-        function startChecklist() {
-            alert('🚧 Checklist Interactivo\n\nEsta funcionalidad estará disponible próximamente.\n\nIncluirá:\n• Lista de verificación paso a paso\n• Temporizadores para cada fase\n• Recordatorios de signos críticos\n• Registro de evaluación');
-        }
-
-        function showCases() {
-            alert('🚧 Casos Prácticos\n\nEsta funcionalidad estará disponible próximamente.\n\nIncluirá:\n• Casos clínicos interactivos\n• Simulaciones de decisión\n• Práctica de protocolos\n• Evaluación de competencias');
-        }
-
-        // Scroll suave para navegación interna
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Animación de entrada para las tarjetas
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.step-card');
-            cards.forEach((card, index) => {
+        function scrollToStep(stepId) {
+            const element = document.getElementById(stepId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Efecto visual temporal
+                element.style.transform = 'scale(1.02)';
+                element.style.boxShadow = '0 8px 30px rgba(231, 76, 60, 0.3)';
+                
                 setTimeout(() => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 100);
-                }, index * 150);
-            });
-        });
+                    element.style.transform = 'scale(1)';
+                    element.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                }, 500);
+            }
+        }
     </script>
 </body>
 </html>
