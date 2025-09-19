@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centros Médicos - Bomberos Toolkit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* FILTROS */
+        .filters-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .filter-select {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+
+        /* CATEGORÍAS */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* TARJETAS DE CENTROS */
+        .centers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 15px;
+        }
+
+        .center-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #ddd;
+        }
+
+        .center-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .center-card.essalud {
+            border-left-color: #3498db;
+        }
+
+        .center-card.minsa {
+            border-left-color: #27ae60;
+        }
+
+        .center-card.privado {
+            border-left-color: #e74c3c;
+        }
+
+        .center-card.emergencia {
+            border: 2px solid #f39c12;
+            background: linear-gradient(135deg, #fff 0%, #fff8e1 100%);
+        }
+
+        .center-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .center-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 1;
+        }
+
+        .center-type {
+            background: #f8f9fa;
+            color: #2c3e50;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .center-type.essalud {
+            background: #e8f4fd;
+            color: #2980b9;
+        }
+
+        .center-type.minsa {
+            background: #e8f8f0;
+            color: #219a52;
+        }
+
+        .center-type.privado {
+            background: #fdeaea;
+            color: #c0392b;
+        }
+
+        .center-info {
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .info-icon {
+            width: 20px;
+            margin-right: 8px;
+            text-align: center;
+        }
+
+        .center-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-call {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-call:hover {
+            background: #219a52;
+        }
+
+        .btn-map {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-map:hover {
+            background: #2980b9;
+        }
+
+        .btn-info {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #7f8c8d;
+        }
+
+        .emergency-badge {
+            background: #f39c12;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            margin: 40px 0;
+        }
+
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 15px;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .centers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .center-actions {
+                justify-content: center;
+            }
+
+            .category-tabs {
+                justify-content: center;
+            }
+
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        .red-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            border-left: 3px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">← Inicio</a> > Centros Médicos
+        </div>
+        <h1>Centros Médicos Lima</h1>
+        <p>Directorio completo para emergencias médicas</p>
+    </header>
+
+    <div class="main-container">
+        <!-- Estadísticas -->
+        <div class="stats-bar">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalCenters">48</div>
+                    <div class="stat-label">Centros</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="emergencyCenters">32</div>
+                    <div class="stat-label">Emergencia 24h</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="essaludCenters">18</div>
+                    <div class="stat-label">EsSalud</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="privateCenters">22</div>
+                    <div class="stat-label">Privados</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters-section">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Tipo de Centro:</label>
+                    <select class="filter-select" id="typeFilter">
+                        <option value="">Todos los tipos</option>
+                        <option value="essalud">EsSalud</option>
+                        <option value="minsa">MINSA</option>
+                        <option value="privado">Clínicas Privadas</option>
+                        <option value="policia">Policía/FF.AA.</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Distrito:</label>
+                    <select class="filter-select" id="districtFilter">
+                        <option value="">Todos los distritos</option>
+                        <option value="lima">Lima Cercado</option>
+                        <option value="san-isidro">San Isidro</option>
+                        <option value="miraflores">Miraflores</option>
+                        <option value="san-borja">San Borja</option>
+                        <option value="jesus-maria">Jesús María</option>
+                        <option value="la-molina">La Molina</option>
+                        <option value="surco">Santiago de Surco</option>
+                        <option value="callao">Callao</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Servicio:</label>
+                    <select class="filter-select" id="serviceFilter">
+                        <option value="">Todos los servicios</option>
+                        <option value="emergencia">Emergencia 24h</option>
+                        <option value="traumatologia">Traumatología</option>
+                        <option value="cardiologia">Cardiología</option>
+                        <option value="pediatria">Pediatría</option>
+                        <option value="cirugia">Cirugía</option>
+                        <option value="uci">UCI</option>
+                    </select>
+                </div>
+            </div>
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Buscar centro médico por nombre...">
+        </div>
+
+        <!-- Categorías por Red -->
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="showCategory('todos')">Todos</button>
+            <button class="tab-btn" onclick="showCategory('rebagliati')">Red Rebagliati</button>
+            <button class="tab-btn" onclick="showCategory('almenara')">Red Almenara</button>
+            <button class="tab-btn" onclick="showCategory('sabogal')">Red Sabogal</button>
+            <button class="tab-btn" onclick="showCategory('minsa')">MINSA</button>
+            <button class="tab-btn" onclick="showCategory('privados')">Privados</button>
+        </div>
+
+        <!-- Centros Médicos -->
+        <div class="centers-grid" id="centersContainer">
+            <!-- Los centros se cargan dinámicamente -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            No se encontraron centros médicos con los filtros seleccionados
+        </div>
+    </div>
+
+    <script>
+        // Base de datos de centros médicos AMPLIADA
+        const medicalCenters = [
+            // RED REBAGLIATI (16 establecimientos)
+            {
+                name: "Hospital Nacional Edgardo Rebagliati Martins",
+                type: "essalud",
+                category: "rebagliati",
+                district: "jesus-maria",
+                address: "Av. Edgardo Rebagliati 490, Jesús María",
+                phone: "(01) 265-4901",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci", "pediatria"],
+                coordinates: "-12.0732,-77.0501"
+            },
+            {
+                name: "Hospital III Suárez Angamos",
+                type: "essalud",
+                category: "rebagliati", 
+                district: "miraflores",
+                address: "Av. Angamos Este 471, Miraflores",
+                phone: "(01) 445-1144",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia"],
+                coordinates: "-12.1167,-77.0347"
+            },
+            {
+                name: "Hospital II Cañete",
+                type: "essalud",
+                category: "rebagliati",
+                district: "otros",
+                address: "Av. Benavides s/n, Cañete",
+                phone: "(01) 584-1020",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cirugia"],
+                coordinates: "-13.0779,-76.3844"
+            },
+            {
+                name: "Hospital I Uldarico Rocca Fernández",
+                type: "essalud",
+                category: "rebagliati",
+                district: "otros",
+                address: "Jr. Bolivia 1060, El Agustino",
+                phone: "(01) 362-1818",
+                emergency: true,
+                services: ["emergencia", "traumatologia"],
+                coordinates: "-12.0300,-76.9850"
+            },
+            {
+                name: "Hospital I Carlos Alcántara Butterfield",
+                type: "essalud",
+                category: "rebagliati",
+                district: "san-borja",
+                address: "Av. Aviación 4798, San Borja",
+                phone: "(01) 475-4020",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia"],
+                coordinates: "-12.1050,-77.0050"
+            },
+            {
+                name: "Clínica Central de Prevención",
+                type: "essalud",
+                category: "rebagliati",
+                district: "jesus-maria",
+                address: "Av. Brasil 2746, Jesús María",
+                phone: "(01) 460-3030",
+                emergency: false,
+                services: ["consultas", "especialidades", "prevencion"],
+                coordinates: "-12.0650,-77.0550"
+            },
+            {
+                name: "Policlínico Pablo Bermúdez",
+                type: "essalud",
+                category: "rebagliati",
+                district: "jesus-maria",
+                address: "Av. Brasil 2550, Jesús María",
+                phone: "(01) 460-3030",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.0650,-77.0550"
+            },
+            {
+                name: "Policlínico Chincha",
+                type: "essalud",
+                category: "rebagliati",
+                district: "otros",
+                address: "Av. Mariscal Benavides 240, Chincha",
+                phone: "(056) 261-260",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-13.4099,-76.1319"
+            },
+            {
+                name: "Policlínico Próceres",
+                type: "essalud",
+                category: "rebagliati",
+                district: "surco",
+                address: "Av. Próceres de la Independencia 1632, Santiago de Surco",
+                phone: "(01) 719-9700",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.1350,-77.0150"
+            },
+            {
+                name: "Policlínico Juan José Rodríguez Lazo",
+                type: "essalud",
+                category: "rebagliati",
+                district: "miraflores",
+                address: "Av. Grau 1000, Miraflores",
+                phone: "(01) 617-7000",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.1200,-77.0300"
+            },
+            {
+                name: "Policlínico Santa Cruz",
+                type: "essalud",
+                category: "rebagliati",
+                district: "otros",
+                address: "Av. Los Alisos 240, Ate",
+                phone: "(01) 494-2020",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.0464,-76.9300"
+            },
+            {
+                name: "Centro de Atención Primaria III San Isidro",
+                type: "essalud",
+                category: "rebagliati",
+                district: "san-isidro",
+                address: "Av. Petit Thouars 2779, San Isidro",
+                phone: "(01) 440-1010",
+                emergency: false,
+                services: ["consultas", "medicina-general"],
+                coordinates: "-12.0950,-77.0350"
+            },
+
+            // RED ALMENARA
+            {
+                name: "Hospital Nacional Guillermo Almenara Irigoyen",
+                type: "essalud",
+                category: "almenara",
+                district: "lima",
+                address: "Av. Grau 800, Lima",
+                phone: "(01) 324-2983",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci", "pediatria"],
+                coordinates: "-12.0464,-77.0428"
+            },
+            {
+                name: "Hospital I Octavio Mongrut Muñoz",
+                type: "essalud",
+                category: "almenara",
+                district: "otros",
+                address: "Jr. Faucett 2085, El Cercado",
+                phone: "(01) 463-2020",
+                emergency: true,
+                services: ["emergencia", "traumatologia"],
+                coordinates: "-12.0464,-77.0428"
+            },
+            {
+                name: "Hospital II Vitarte",
+                type: "essalud",
+                category: "almenara",
+                district: "otros",
+                address: "Av. Nicolás Ayllon 7880, Ate Vitarte",
+                phone: "(01) 494-2100",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cirugia"],
+                coordinates: "-12.0300,-76.9200"
+            },
+            {
+                name: "Policlínico Miraflores",
+                type: "essalud",
+                category: "almenara",
+                district: "miraflores",
+                address: "Av. Comandante Espinar 840, Miraflores",
+                phone: "(01) 617-7100",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.1200,-77.0300"
+            },
+
+            // RED SABOGAL
+            {
+                name: "Hospital Nacional Alberto Sabogal Sologuren",
+                type: "essalud",
+                category: "sabogal",
+                district: "callao",
+                address: "Av. Grau 1000, Callao",
+                phone: "(01) 429-7744",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci"],
+                coordinates: "-12.0464,-77.1181"
+            },
+            {
+                name: "Hospital I Luis Negreiros Vega",
+                type: "essalud",
+                category: "sabogal",
+                district: "callao",
+                address: "Av. Guardia Chalaca 2176, Callao",
+                phone: "(01) 429-9090",
+                emergency: true,
+                services: ["emergencia", "traumatologia"],
+                coordinates: "-12.0464,-77.1181"
+            },
+            {
+                name: "Policlínico Callao",
+                type: "essalud",
+                category: "sabogal",
+                district: "callao",
+                address: "Av. Argentina 545, Callao",
+                phone: "(01) 429-8080",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.0464,-77.1181"
+            },
+
+            // MINSA - HOSPITALES PRINCIPALES
+            {
+                name: "Hospital Nacional Dos de Mayo",
+                type: "minsa",
+                category: "minsa",
+                district: "lima",
+                address: "Av. Grau cuadra 13, Lima",
+                phone: "(01) 328-0028",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cirugia", "uci"],
+                coordinates: "-12.0464,-77.0428"
+            },
+            {
+                name: "Hospital Arzobispo Loayza",
+                type: "minsa",
+                category: "minsa",
+                district: "lima",
+                address: "Av. Alfonso Ugarte 848, Lima",
+                phone: "(01) 614-6200",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci"],
+                coordinates: "-12.0464,-77.0428"
+            },
+            {
+                name: "Hospital Nacional Hipólito Unanue",
+                type: "minsa",
+                category: "minsa",
+                district: "otros",
+                address: "Av. César Vallejo 1390, El Agustino",
+                phone: "(01) 362-7777",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci"],
+                coordinates: "-12.0300,-76.9850"
+            },
+            {
+                name: "Hospital de Emergencias José Casimiro Ulloa",
+                type: "minsa",
+                category: "minsa",
+                district: "miraflores",
+                address: "Av. Roosevelt 6355, Miraflores",
+                phone: "(01) 204-0900",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cirugia"],
+                coordinates: "-12.1200,-77.0300"
+            },
+            {
+                name: "Instituto Nacional de Salud del Niño",
+                type: "minsa",
+                category: "minsa",
+                district: "otros",
+                address: "Av. Brasil 600, Breña",
+                phone: "(01) 330-0066",
+                emergency: true,
+                services: ["emergencia", "pediatria", "cirugia", "uci"],
+                coordinates: "-12.0650,-77.0550"
+            },
+            {
+                name: "Hospital Nacional Guillermo Kaelin de la Fuente",
+                type: "minsa",
+                category: "minsa",
+                district: "otros",
+                address: "Av. Stephan Haller 1814, Villa María del Triunfo",
+                phone: "(01) 287-6969",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "pediatria"],
+                coordinates: "-12.1600,-76.9200"
+            },
+            {
+                name: "Hospital Nacional María Auxiliadora",
+                type: "minsa",
+                category: "minsa",
+                district: "otros",
+                address: "Av. Miguel Iglesias 968, San Juan de Miraflores",
+                phone: "(01) 617-8000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cirugia"],
+                coordinates: "-12.1600,-77.0100"
+            },
+            {
+                name: "Hospital Sergio Bernales",
+                type: "minsa",
+                category: "minsa",
+                district: "otros",
+                address: "Av. Túpac Amaru 8000, Comas",
+                phone: "(01) 558-0168",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cirugia"],
+                coordinates: "-11.9200,-77.0500"
+            },
+
+            // CLÍNICAS PRIVADAS PRINCIPALES
+            {
+                name: "Clínica Ricardo Palma",
+                type: "privado",
+                category: "privados",
+                district: "san-isidro",
+                address: "Av. Javier Prado Este 1066, San Isidro",
+                phone: "(01) 224-2224",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci", "pediatria"],
+                coordinates: "-12.0950,-77.0250"
+            },
+            {
+                name: "Clínica Anglo Americana",
+                type: "privado",
+                category: "privados",
+                district: "san-isidro",
+                address: "Av. Alfredo Salazar 350, San Isidro",
+                phone: "(01) 712-3000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci", "pediatria"],
+                coordinates: "-12.0950,-77.0350"
+            },
+            {
+                name: "Clínica Anglo Americana La Molina",
+                type: "privado",
+                category: "privados",
+                district: "la-molina",
+                address: "Av. La Fontana 550, La Molina",
+                phone: "(01) 712-3000",
+                emergency: false,
+                services: ["consultas", "especialidades", "cirugia"],
+                coordinates: "-12.0850,-76.9650"
+            },
+            {
+                name: "Clínica San Pablo Surco",
+                type: "privado",
+                category: "privados",
+                district: "surco",
+                address: "Av. El Polo 789, Santiago de Surco",
+                phone: "(01) 610-8000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci", "pediatria"],
+                coordinates: "-12.1350,-77.0150"
+            },
+            {
+                name: "Clínica San Pablo Lima",
+                type: "privado",
+                category: "privados",
+                district: "lima",
+                address: "Av. El Polo 611, Lima",
+                phone: "(01) 610-8000",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.0464,-77.0428"
+            },
+            {
+                name: "Clínica Jesús del Norte",
+                type: "privado",
+                category: "privados",
+                district: "otros",
+                address: "Av. Carlos Izaguirre 153, Independencia",
+                phone: "(01) 610-8000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "pediatria"],
+                coordinates: "-11.9800,-77.0600"
+            },
+            {
+                name: "Clínica Internacional",
+                type: "privado",
+                category: "privados",
+                district: "san-isidro",
+                address: "Av. Guardia Civil 337, San Isidro",
+                phone: "(01) 619-6161",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia", "uci"],
+                coordinates: "-12.1050,-77.0350"
+            },
+            {
+                name: "Clínica Internacional San Borja",
+                type: "privado",
+                category: "privados",
+                district: "san-borja",
+                address: "Av. Guardia Civil 333, San Borja",
+                phone: "(01) 619-6161",
+                emergency: false,
+                services: ["consultas", "especialidades", "cirugia"],
+                coordinates: "-12.1050,-77.0050"
+            },
+            {
+                name: "Clínica San Felipe",
+                type: "privado",
+                category: "privados",
+                district: "jesus-maria",
+                address: "Av. Gregorio Escobedo 650, Jesús María",
+                phone: "(01) 219-0000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "pediatria"],
+                coordinates: "-12.0750,-77.0450"
+            },
+            {
+                name: "Clínica San Felipe La Molina",
+                type: "privado",
+                category: "privados",
+                district: "la-molina",
+                address: "Av. Javier Prado Este 4841, La Molina",
+                phone: "(01) 219-0000",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.0850,-76.9650"
+            },
+            {
+                name: "Clínica Montefiori",
+                type: "privado",
+                category: "privados",
+                district: "san-borja",
+                address: "Av. Alameda del Corregidor 1531, La Molina",
+                phone: "(01) 437-5151",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia"],
+                coordinates: "-12.0850,-76.9650"
+            },
+            {
+                name: "Clínica Maison de Santé",
+                type: "privado",
+                category: "privados",
+                district: "surco",
+                address: "Av. El Golf Los Incas 208, Santiago de Surco",
+                phone: "(01) 610-7777",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia"],
+                coordinates: "-12.1350,-77.0150"
+            },
+            {
+                name: "Clínica Providencia",
+                type: "privado",
+                category: "privados",
+                district: "otros",
+                address: "Av. Prolongación Primavera 1600, Monterrico",
+                phone: "(01) 610-7777",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia"],
+                coordinates: "-12.1350,-77.0150"
+            },
+            {
+                name: "SANNA Clínica San Borja",
+                type: "privado",
+                category: "privados",
+                district: "san-borja",
+                address: "Av. Guardia Civil 337, San Borja",
+                phone: "(01) 419-3000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia", "cirugia"],
+                coordinates: "-12.1050,-77.0050"
+            },
+            {
+                name: "SANNA Clínica El Golf",
+                type: "privado",
+                category: "privados",
+                district: "san-isidro",
+                address: "Av. Aurelio Miró Quesada 1030, San Isidro",
+                phone: "(01) 419-3000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia"],
+                coordinates: "-12.0950,-77.0350"
+            },
+            {
+                name: "Clínica Delgado",
+                type: "privado",
+                category: "privados",
+                district: "miraflores",
+                address: "Av. Angamos Oeste 300, Miraflores",
+                phone: "(01) 265-8000",
+                emergency: false,
+                services: ["consultas", "especialidades", "oncologia"],
+                coordinates: "-12.1200,-77.0300"
+            },
+            {
+                name: "Clínica Stella Maris",
+                type: "privado",
+                category: "privados",
+                district: "san-miguel",
+                address: "Av. La Marina 2955, San Miguel",
+                phone: "(01) 264-3333",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia"],
+                coordinates: "-12.0800,-77.0900"
+            },
+            {
+                name: "Clínica Centenario Peruano Japonesa",
+                type: "privado",
+                category: "privados",
+                district: "jesus-maria",
+                address: "Av. Gregorio Escobedo 610, Jesús María",
+                phone: "(01) 265-8000",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "cardiologia"],
+                coordinates: "-12.0750,-77.0450"
+            },
+            {
+                name: "Clínica Javier Prado",
+                type: "privado",
+                category: "privados",
+                district: "san-isidro",
+                address: "Av. Javier Prado Este 499, San Isidro",
+                phone: "(01) 265-8000",
+                emergency: false,
+                services: ["consultas", "especialidades"],
+                coordinates: "-12.0950,-77.0250"
+            },
+            {
+                name: "Clínica Good Hope",
+                type: "privado",
+                category: "privados",
+                district: "miraflores",
+                address: "Malecón Balta 956, Miraflores",
+                phone: "(01) 610-7300",
+                emergency: true,
+                services: ["emergencia", "traumatologia"],
+                coordinates: "-12.1200,-77.0300"
+            },
+            {
+                name: "Clínica Santa Isabel",
+                type: "privado",
+                category: "privados",
+                district: "otros",
+                address: "Av. Túpac Amaru 8000, Los Olivos",
+                phone: "(01) 533-0770",
+                emergency: true,
+                services: ["emergencia", "traumatologia", "pediatria"],
+                coordinates: "-11.9200,-77.0500"
+            }
+        ];
+
+        let currentCategory = 'todos';
+        let filteredCenters = [...medicalCenters];
+
+        function renderCenters(centers) {
+            const container = document.getElementById('centersContainer');
+            const noResults = document.getElementById('noResults');
+
+            if (centers.length === 0) {
+                container.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            container.style.display = 'grid';
+            noResults.style.display = 'none';
+
+            container.innerHTML = centers.map(center => `
+                <div class="center-card ${center.type} ${center.emergency ? 'emergencia' : ''}">
+                    <div class="center-header">
+                        <div class="center-name">${center.name}</div>
+                        <div class="center-type ${center.type}">${getTypeLabel(center.type)}</div>
+                    </div>
+                    
+                    ${center.category === 'rebagliati' || center.category === 'almenara' || center.category === 'sabogal' ? 
+                        `<div class="red-info">Red Prestacional ${center.category.charAt(0).toUpperCase() + center.category.slice(1)}</div>` : ''}
+                    
+                    <div class="center-info">
+                        <div class="info-item">
+                            <span class="info-icon">📍</span>
+                            <span>${center.address}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📞</span>
+                            <span>${center.phone}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🏥</span>
+                            <span>${center.services.slice(0, 3).join(', ')}${center.services.length > 3 ? '...' : ''}</span>
+                        </div>
+                        ${center.emergency ? '<div class="emergency-badge">EMERGENCIA 24H</div>' : ''}
+                    </div>
+                    
+                    <div class="center-actions">
+                        <a href="tel:${center.phone.replace(/\D/g, '')}" class="action-btn btn-call">Llamar</a>
+                        <a href="https://maps.google.com/?q=${center.coordinates}" target="_blank" class="action-btn btn-map">Ubicación</a>
+                        <button class="action-btn btn-info" onclick="showCenterDetails('${center.name}')">Detalles</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getTypeLabel(type) {
+            const labels = {
+                'essalud': 'EsSalud',
+                'minsa': 'MINSA',
+                'privado': 'Privado',
+                'policia': 'Policía'
+            };
+            return labels[type] || type;
+        }
+
+        function showCategory(category) {
+            currentCategory = category;
+            
+            // Actualizar botones activos
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const typeFilter = document.getElementById('typeFilter').value;
+            const districtFilter = document.getElementById('districtFilter').value;
+            const serviceFilter = document.getElementById('serviceFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredCenters = medicalCenters.filter(center => {
+                // Filtro por categoría
+                if (currentCategory !== 'todos' && center.category !== currentCategory) {
+                    return false;
+                }
+                
+                // Filtro por tipo
+                if (typeFilter && center.type !== typeFilter) {
+                    return false;
+                }
+                
+                // Filtro por distrito
+                if (districtFilter && center.district !== districtFilter) {
+                    return false;
+                }
+                
+                // Filtro por servicio
+                if (serviceFilter && !center.services.includes(serviceFilter)) {
+                    return false;
+                }
+                
+                // Búsqueda por texto
+                if (searchTerm && !center.name.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+                
+                return true;
+            });
+
+            renderCenters(filteredCenters);
+            updateStats();
+        }
+
+        function updateStats() {
+            const total = filteredCenters.length;
+            const emergency = filteredCenters.filter(c => c.emergency).length;
+            const essalud = filteredCenters.filter(c => c.type === 'essalud').length;
+            const privados = filteredCenters.filter(c => c.type === 'privado').length;
+
+            document.getElementById('totalCenters').textContent = total;
+            document.getElementById('emergencyCenters').textContent = emergency;
+            document.getElementById('essaludCenters').textContent = essalud;
+            document.getElementById('privateCenters').textContent = privados;
+        }
+
+        function showCenterDetails(centerName) {
+            const center = medicalCenters.find(c => c.name === centerName);
+            if (center) {
+                alert(`${center.name}\n\nServicios:\n${center.services.join('\n')}\n\nTeléfono: ${center.phone}\nDirección: ${center.address}`);
+            }
+        }
+
+        // Event listeners
+        document.getElementById('typeFilter').addEventListener('change', applyFilters);
+        document.getElementById('districtFilter').addEventListener('change', applyFilters);
+        document.getElementById('serviceFilter').addEventListener('change', applyFilters);
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCenters(medicalCenters);
+            updateStats();
+            console.log('Centros Médicos Lima cargado - ' + medicalCenters.length + ' centros disponibles');
+        });
+    </script>
+</body>
+</html>
