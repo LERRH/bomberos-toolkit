@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obstrucción de Vía Aérea - Bomberos Toolkit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            font-size: 0.8em;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #ecf0f1;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+
+        .info-box.warning {
+            border-left-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .info-box.danger {
+            border-left-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .info-box.success {
+            border-left-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .info-box h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .info-box li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .info-box.warning li::before {
+            color: #f39c12;
+        }
+
+        .info-box.danger li::before {
+            color: #e74c3c;
+        }
+
+        .info-box.success li::before {
+            color: #27ae60;
+        }
+
+        .algorithm-flowchart {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .flowchart-step {
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .flowchart-step.decision {
+            border-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .flowchart-step.action {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .flowchart-step.critical {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .arrow-down {
+            text-align: center;
+            font-size: 1.2em;
+            color: #3498db;
+            margin: 5px 0;
+        }
+
+        .quick-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .value-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .value-label {
+            font-size: 0.8em;
+            color: #2c3e50;
+        }
+
+        .emergency-protocol {
+            background: #e74c3c;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .emergency-protocol h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .maneuver-sequence {
+            background: #34495e;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .maneuver-sequence h3 {
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .maneuver-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .maneuver-step {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #ecf0f1;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .age-specific {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .age-card {
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .age-card.adult {
+            border-color: #27ae60;
+        }
+
+        .age-card.child {
+            border-color: #f39c12;
+        }
+
+        .age-card.infant {
+            border-color: #e74c3c;
+        }
+
+        .age-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .emergency-banner {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .technique-demo {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .technique-demo h4 {
+            color: #3498db;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .procedure-list {
+            counter-reset: procedure-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .procedure-item {
+            counter-increment: procedure-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px 15px 15px 50px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .procedure-item::before {
+            content: counter(procedure-counter);
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: #3498db;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .contraindications {
+            background: #fee;
+            border: 2px solid #dc3545;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .contraindications h4 {
+            color: #dc3545;
+            margin-bottom: 10px;
+        }
+
+        .contraindications ul {
+            list-style: none;
+        }
+
+        .contraindications li::before {
+            content: "❌";
+            margin-right: 8px;
+        }
+
+        .differential-diagnosis {
+            background: rgba(243, 156, 18, 0.1);
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .differential-diagnosis h4 {
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.2em;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.1em;
+            }
+
+            .maneuver-steps {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .age-specific {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-values {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .procedure-item {
+                padding: 12px 12px 12px 45px;
+            }
+
+            .procedure-item::before {
+                left: 12px;
+                top: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .flowchart-step {
+                padding: 8px;
+                font-size: 0.8em;
+            }
+
+            .maneuver-step {
+                padding: 10px;
+            }
+
+            .step-number {
+                width: 25px;
+                height: 25px;
+                font-size: 0.9em;
+            }
+
+            table th,
+            table td {
+                padding: 6px 3px;
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">Inicio</a> > 
+            <a href="../../">Módulos</a> > 
+            <a href="../">Atención Prehospitalaria</a> > 
+            Obstrucción de Vía Aérea
+        </div>
+        <h1>🫁 Obstrucción de Vía Aérea</h1>
+        <p>Manejo de emergencias respiratorias y desobstrucción</p>
+    </header>
+
+    <div class="container">
+        <!-- Valores críticos -->
+        <div class="card">
+            <h2>Valores Críticos en Obstrucción</h2>
+            <div class="quick-values">
+                <div class="value-card">
+                    <div class="value-number">4-6 min</div>
+                    <div class="value-label">Daño cerebral</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">8-10 min</div>
+                    <div class="value-label">Muerte cerebral</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number"><90%</div>
+                    <div class="value-label">SatO2 Crítica</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">100%</div>
+                    <div class="value-label">O2 Alto flujo</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">15L/min</div>
+                    <div class="value-label">Flujo mínimo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Algoritmo de evaluación -->
+        <div class="card">
+            <h2>Algoritmo de Evaluación Inicial</h2>
+            
+            <div class="algorithm-flowchart">
+                <div class="flowchart-step critical">
+                    <strong>PACIENTE CONSCIENTE</strong><br>
+                    ¿Puede hablar o toser?
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step decision">
+                    <strong>TOS EFECTIVA</strong><br>
+                    Fuerte, puede hablar entre toses
+                </div>
+                
+                <div class="arrow-down">↓ SÍ</div>
+                
+                <div class="flowchart-step action">
+                    <strong>ESTIMULAR TOS</strong><br>
+                    Monitorear, administrar O2, traslado
+                </div>
+                
+                <div class="arrow-down">← NO</div>
+                
+                <div class="flowchart-step critical">
+                    <strong>TOS INEFECTIVA</strong><br>
+                    No puede hablar, tos débil, cianosis
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step action">
+                    <strong>MANIOBRA DE HEIMLICH</strong><br>
+                    5 golpes espalda + 5 compresiones abdominales
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step decision">
+                    <strong>¿OBJETO EXPULSADO?</strong>
+                </div>
+                
+                <div class="arrow-down">↓ NO</div>
+                
+                <div class="flowchart-step critical">
+                    <strong>PÉRDIDA DE CONSCIENCIA</strong><br>
+                    Iniciar RCP + revisión vía aérea
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipos de obstrucción -->
+        <div class="card">
+            <h2>Clasificación de Obstrucciones</h2>
+            
+            <div class="grid-2">
+                <div class="info-box danger">
+                    <h4>OBSTRUCCIÓN COMPLETA</h4>
+                    <ul>
+                        <li><strong>Signos universales:</strong> Manos al cuello</li>
+                        <li><strong>No puede hablar:</strong> Sonidos ausentes</li>
+                        <li><strong>No puede toser:</strong> Tos ausente/muy débil</li>
+                        <li><strong>Cianosis:</strong> Labios, cara azulados</li>
+                        <li><strong>Pánico:</strong> Extrema agitación</li>
+                        <li><strong>Pérdida consciencia:</strong> En 1-2 minutos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>OBSTRUCCIÓN PARCIAL</h4>
+                    <ul>
+                        <li><strong>Puede hablar:</strong> Voz alterada/ronca</li>
+                        <li><strong>Tos efectiva:</strong> Fuerte y productiva</li>
+                        <li><strong>Ruidos respiratorios:</strong> Estridor, sibilancias</li>
+                        <li><strong>Ansiedad:</strong> Agitación moderada</li>
+                        <li><strong>Saturación:</strong> Puede mantenerse >90%</li>
+                        <li><strong>Posición:</strong> Busca posición cómoda</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="emergency-banner">
+                🚨 OBSTRUCCIÓN COMPLETA = EMERGENCIA ABSOLUTA - ACTUAR INMEDIATAMENTE 🚨
+            </div>
+        </div>
+
+        <!-- Maniobra de Heimlich por edades -->
+        <div class="card">
+            <h2>Maniobras de Desobstrucción por Edad</h2>
+            
+            <div class="age-specific">
+                <div class="age-card adult">
+                    <h4>👨 ADULTOS (>8 años)</h4>
+                    <div class="technique-demo">
+                        <h4>Maniobra de Heimlich</h4>
+                        <ol class="procedure-list">
+                            <li class="procedure-item">Posicionarse detrás del paciente</li>
+                            <li class="procedure-item">Rodear cintura con ambos brazos</li>
+                            <li class="procedure-item">Puño cerrado 2 dedos sobre ombligo</li>
+                            <li class="procedure-item">Cubrir puño con otra mano</li>
+                            <li class="procedure-item">Compresiones rápidas hacia arriba y adentro</li>
+                            <li class="procedure-item">5 compresiones + verificar</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-box success">
+                        <h4>Si está inconsciente:</h4>
+                        <ul>
+                            <li>Colocar en posición supina</li>
+                            <li>Compresiones torácicas como RCP</li>
+                            <li>Revisar boca entre series</li>
+                            <li>Intentar ventilación</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="age-card child">
+                    <h4>🧒 NIÑOS (1-8 años)</h4>
+                    <div class="technique-demo">
+                        <h4>Técnica Modificada</h4>
+                        <ol class="procedure-list">
+                            <li class="procedure-item">5 golpes en espalda entre omóplatos</li>
+                            <li class="procedure-item">5 compresiones abdominales suaves</li>
+                            <li class="procedure-item">Usar menos fuerza que adultos</li>
+                            <li class="procedure-item">Verificar boca visualmente</li>
+                            <li class="procedure-item">Alternar hasta expulsión</li>
+                            <li class="procedure-item">Si inconsciente: RCP pediátrico</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-box warning">
+                        <h4>Consideraciones Especiales:</h4>
+                        <ul>
+                            <li>Menor fuerza en compresiones</li>
+                            <li>No usar dedos para extraer</li>
+                            <li>Tranquilizar al menor</li>
+                            <li>Permitir posición cómoda si tolera</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="age-card infant">
+                    <h4>👶 LACTANTES (<1 año)</h4>
+                    <div class="technique-demo">
+                        <h4>Técnica Específica</h4>
+                        <ol class="procedure-list">
+                            <li class="procedure-item">Colocar boca abajo en antebrazo</li>
+                            <li class="procedure-item">Sostener mandíbula con dedos</li>
+                            <li class="procedure-item">5 golpes firmes entre omóplatos</li>
+                            <li class="procedure-item">Voltear y 5 compresiones torácicas</li>
+                            <li class="procedure-item">Usar 2 dedos en centro del pecho</li>
+                            <li class="procedure-item">Verificar boca y repetir</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-box danger">
+                        <h4>NUNCA en lactantes:</h4>
+                        <ul>
+                            <li>Compresiones abdominales</li>
+                            <li>Barrido digital a ciegas</li>
+                            <li>Voltear cabeza hacia abajo</li>
+                            <li>Uso de fuerza excesiva</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Causas comunes -->
+        <div class="card">
+            <h2>Causas Comunes por Grupo de Edad</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Grupo de Edad</th>
+                        <th>Causas Principales</th>
+                        <th>Factores de Riesgo</th>
+                        <th>Prevención</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Lactantes (0-12m)</strong></td>
+                        <td>Leche, fórmula, objetos pequeños, juguetes</td>
+                        <td>Alimentación acostado, juguetes inadecuados</td>
+                        <td>Supervisión constante, juguetes apropiados</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Niños (1-8 años)</strong></td>
+                        <td>Frutos secos, caramelos duros, uvas, hot dogs</td>
+                        <td>Comer corriendo, hablar mientras come</td>
+                        <td>Cortar alimentos, comer sentado, supervisión</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adultos</strong></td>
+                        <td>Carne, espinas de pescado, dentaduras mal ajustadas</td>
+                        <td>Alcohol, comer rápido, problemas dentales</td>
+                        <td>Masticar bien, dentaduras ajustadas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adultos Mayores</strong></td>
+                        <td>Medicamentos, alimentos mal masticados</td>
+                        <td>Disfagia, demencia, medicamentos sedantes</td>
+                        <td>Dieta modificada, supervisión alimentación</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Obstrucción por cuerpo extraño vs médica -->
+        <div class="card">
+            <h2>Diagnóstico Diferencial</h2>
+            
+            <div class="grid-2">
+                <div class="differential-diagnosis">
+                    <h4>OBSTRUCCIÓN POR CUERPO EXTRAÑO</h4>
+                    <div class="info-box">
+                        <h4>Características:</h4>
+                        <ul>
+                            <li>Inicio súbito durante comida</li>
+                            <li>Testigos presentes</li>
+                            <li>Signo universal (manos al cuello)</li>
+                            <li>Paciente previamente sano</li>
+                            <li>No fiebre ni síntomas previos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="differential-diagnosis">
+                    <h4>OBSTRUCCIÓN MÉDICA</h4>
+                    <div class="info-box warning">
+                        <h4>Posibles causas:</h4>
+                        <ul>
+                            <li><strong>Laringoespasmo:</strong> Alergia, irritantes</li>
+                            <li><strong>Angioedema:</strong> Reacción alérgica</li>
+                            <li><strong>Epiglotitis:</strong> Infección, fiebre</li>
+                            <li><strong>Asma severo:</strong> Broncoespasmo</li>
+                            <li><strong>Croup:</strong> Tos perruna, estridor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Técnicas avanzadas -->
+        <div class="card">
+            <h2>Técnicas Avanzadas de Vía Aérea</h2>
+            
+            <div class="maneuver-sequence">
+                <h3>Secuencia de Manejo Avanzado</h3>
+                <div class="maneuver-steps">
+                    <div class="maneuver-step">
+                        <div class="step-number">1</div>
+                        <h4>POSICIONAMIENTO</h4>
+                        <p>Cabeza en hiperextensión, mandíbula hacia adelante</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">2</div>
+                        <h4>ASPIRACIÓN</h4>
+                        <p>Succión profunda con catéter rígido</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">3</div>
+                        <h4>LARINGOSCOPIA</h4>
+                        <p>Visualización directa de cuerdas vocales</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">4</div>
+                        <h4>EXTRACCIÓN</h4>
+                        <p>Pinzas Magill para objeto visible</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">5</div>
+                        <h4>INTUBACIÓN</h4>
+                        <p>Tubo endotraqueal si vía aérea libre</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">6</div>
+                        <h4>CRICOTIROTOMÍA</h4>
+                        <p>Última opción si falla todo anterior</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contraindications">
+                <h4>❌ Contraindicaciones para Extracción Manual</h4>
+                <ul>
+                    <li>Objeto no visible en orofaringe</li>
+                    <li>Paciente consciente y reactivo</li>
+                    <li>Riesgo de empujar objeto más profundo</li>
+                    <li>Múltiples intentos fallidos previos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Cricotirotomía de emergencia -->
+        <div class="card">
+            <h2>Cricotirotomía de Emergencia</h2>
+            
+            <div class="emergency-protocol">
+                <h3>🚨 ÚLTIMO RECURSO - "Can't Intubate, Can't Ventilate" 🚨</h3>
+                <p>Solo cuando fallan todas las demás técnicas y hay peligro inminente de muerte</p>
+            </div>
+            
+            <div class="technique-demo">
+                <h4>Técnica de Cricotirotomía con Aguja</h4>
+                <ol class="procedure-list">
+                    <li class="procedure-item">Localizar membrana cricotiroidea (entre cartílago tiroides y cricoides)</li>
+                    <li class="procedure-item">Limpiar área con antiséptico si tiempo permite</li>
+                    <li class="procedure-item">Estabilizar laringe con mano no dominante</li>
+                    <li class="procedure-item">Insertar aguja 14G con jeringa en ángulo 45° hacia abajo</li>
+                    <li class="procedure-item">Aspirar hasta obtener aire (confirma posición)</li>
+                    <li class="procedure-item">Avanzar catéter y retirar aguja</li>
+                    <li class="procedure-item">Conectar a bolsa-válvula-máscara con adaptador</li>
+                    <li class="procedure-item">Ventilar: 1 seg inspiración, 4 seg expiración</li>
+                </ol>
+            </div>
+            
+            <div class="grid-2">
+                <div class="info-box danger">
+                    <h4>Indicaciones Absolutas</h4>
+                    <ul>
+                        <li>Obstrucción completa vía aérea superior</li>
+                        <li>Fallo de intubación y ventilación</li>
+                        <li>Trauma facial severo</li>
+                        <li>Quemaduras inhalatorias graves</li>
+                        <li>Angioedema masivo</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box warning">
+                    <h4>Complicaciones</h4>
+                    <ul>
+                        <li>Hemorragia (arteria cricotiroidea)</li>
+                        <li>Neumotórax por punción pleural</li>
+                        <li>Enfisema subcutáneo</li>
+                        <li>Perforación esofágica</li>
+                        <li>Infección posterior</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manejo post-desobstrucción -->
+        <div class="card">
+            <h2>Manejo Post-Desobstrucción</h2>
+            
+            <div class="grid-3">
+                <div class="info-box success">
+                    <h4>Evaluación Inmediata</h4>
+                    <ul>
+                        <li><strong>Vía aérea:</strong> Permeabilidad completa</li>
+                        <li><strong>Respiración:</strong> Patrón y saturación</li>
+                        <li><strong>Circulación:</strong> Signos vitales</li>
+                        <li><strong>Neurológico:</strong> Nivel consciencia</li>
+                        <li><strong>Lesiones:</strong> Trauma por maniobras</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>Monitoreo Continuo</h4>
+                    <ul>
+                        <li>Saturación de oxígeno</li>
+                        <li>Frecuencia respiratoria</li>
+                        <li>Esfuerzo respiratorio</li>
+                        <li>Color de piel y mucosas</li>
+                        <li>Estado de consciencia</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Cuidados de Traslado</h4>
+                    <ul>
+                        <li>Posición semi-fowler si tolera</li>
+                        <li>Oxígeno suplementario</li>
+                        <li>Aspiración disponible</li>
+                        <li>Monitoreo cardiac</li>
+                        <li>Acceso vascular</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="info-box danger">
+                <h4>⚠️ Complicaciones Tardías a Vigilar</h4>
+                <ul>
+                    <li><strong>Re-obstrucción:</strong> Edema post-trauma</li>
+                    <li><strong>Aspiración:</strong> Contenido gástrico</li>
+                    <li><strong>Neumotórax:</strong> Por presión positiva</li>
+                    <li><strong>Lesión esofágica:</strong> Por compresiones</li>
+                    <li><strong>Fracturas costales:</strong> En ancianos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Protocolo por severidad -->
+        <div class="card">
+            <h2>Protocolo de Actuación por Severidad</h2>
+            
+            <div class="algorithm-flowchart">
+                <div class="flowchart-step critical">
+                    <strong>OBSTRUCCIÓN SEVERA</strong><br>
+                    No puede hablar, cianosis, pánico
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step action">
+                    <strong>ACCIÓN INMEDIATA</strong><br>
+                    Heimlich x5 + golpes espalda x5
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step decision">
+                    <strong>¿DESOBSTRUÍDO?</strong>
+                </div>
+                
+                <div class="arrow-down">↓ NO</div>
+                
+                <div class="flowchart-step critical">
+                    <strong>PÉRDIDA CONSCIENCIA</strong><br>
+                    RCP + revisión boca + aspiración
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step action">
+                    <strong>FALLA RCP</strong><br>
+                    Laringoscopia + extracción directa
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step critical">
+                    <strong>ÚLTIMO RECURSO</strong><br>
+                    Cricotirotomía de emergencia
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipamiento necesario -->
+        <div class="card">
+            <h2>Equipamiento para Manejo de Vía Aérea</h2>
+            
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>🚑 Equipamiento Básico</h4>
+                    <ul>
+                        <li><strong>Aspiración:</strong> Succión portátil + catéteres</li>
+                        <li><strong>Oxigenoterapia:</strong> Cilindro + mascarillas</li>
+                        <li><strong>BVM:</strong> Bolsa-válvula-máscara + reservorio</li>
+                        <li><strong>Cánulas:</strong> Orofaríngeas y nasofaríngeas</li>
+                        <li><strong>Pinzas:</strong> Magill para extracción</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>🏥 Equipamiento Avanzado</h4>
+                    <ul>
+                        <li><strong>Laringoscopio:</strong> Hojas curvas y rectas</li>
+                        <li><strong>Tubos ET:</strong> Varios tamaños + guías</li>
+                        <li><strong>Dispositivos supraglóticos:</strong> I-gel, LMA</li>
+                        <li><strong>Cricotirotomía:</strong> Kit o aguja 14G</li>
+                        <li><strong>Capnografía:</strong> Confirmación intubación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Situaciones especiales -->
+        <div class="card">
+            <h2>Situaciones Especiales</h2>
+            
+            <div class="grid-3">
+                <div class="info-box warning">
+                    <h4>Embarazadas</h4>
+                    <ul>
+                        <li><strong>Posición:</strong> Decúbito lateral izquierdo</li>
+                        <li><strong>Útero desplazado:</strong> Manual hacia izquierda</li>
+                        <li><strong>Compresiones:</strong> Más altas (tórax inferior)</li>
+                        <li><strong>Consideraciones:</strong> Dos vidas en riesgo</li>
+                        <li><strong>Traslado:</strong> Prioritario urgente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box danger">
+                    <h4>Obesos Mórbidos</h4>
+                    <ul>
+                        <li><strong>Posición:</strong> Incorporado 45°</li>
+                        <li><strong>Dificultad:</strong> Localizar anatomía</li>
+                        <li><strong>Compresiones:</strong> Mayor fuerza necesaria</li>
+                        <li><strong>Intubación:</strong> Muy difícil</li>
+                        <li><strong>Alternativas:</strong> Supraglóticos preferibles</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Discapacitados</h4>
+                    <ul>
+                        <li><strong>Comunicación:</strong> Adaptada a capacidades</li>
+                        <li><strong>Posicionamiento:</strong> Respetar deformidades</li>
+                        <li><strong>Cuidadores:</strong> Información valiosa</li>
+                        <li><strong>Medicamentos:</strong> Anticonvulsivantes, etc.</li>
+                        <li><strong>Dispositivos:</strong> Traqueostomías previas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prevención y educación -->
+        <div class="card">
+            <h2>Prevención y Educación</h2>
+            
+            <div class="grid-2">
+                <div class="info-box success">
+                    <h4>📚 Educación Comunitaria</h4>
+                    <ul>
+                        <li><strong>Reconocimiento:</strong> Signos de obstrucción</li>
+                        <li><strong>Maniobras básicas:</strong> Heimlich simplificado</li>
+                        <li><strong>Cuándo llamar:</strong> 112 inmediatamente</li>
+                        <li><strong>Qué no hacer:</strong> Barrido digital a ciegas</li>
+                        <li><strong>Grupos riesgo:</strong> Niños y ancianos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>🏠 Prevención en Hogar</h4>
+                    <ul>
+                        <li><strong>Alimentos seguros:</strong> Cortar apropiadamente</li>
+                        <li><strong>Supervisión:</strong> Niños durante comidas</li>
+                        <li><strong>Juguetes:</strong> Apropiados para edad</li>
+                        <li><strong>Objetos pequeños:</strong> Fuera del alcance</li>
+                        <li><strong>Educación:</strong> Masticar despacio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de verificación -->
+        <div class="card">
+            <h2>Lista de Verificación - Obstrucción Vía Aérea</h2>
+            
+            <div class="maneuver-sequence">
+                <h3>Checklist de Actuación</h3>
+                <div class="maneuver-steps">
+                    <div class="maneuver-step">
+                        <div class="step-number">✓</div>
+                        <h4>EVALUACIÓN</h4>
+                        <p>Tipo y severidad de obstrucción</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">✓</div>
+                        <h4>OXÍGENO</h4>
+                        <p>Alto flujo si tolera, saturación</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">✓</div>
+                        <h4>MANIOBRAS</h4>
+                        <p>Heimlich apropiado para edad</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">✓</div>
+                        <h4>ASPIRACIÓN</h4>
+                        <p>Disponible y funcional</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">✓</div>
+                        <h4>MONITOREO</h4>
+                        <p>Saturación, estado consciencia</p>
+                    </div>
+                    
+                    <div class="maneuver-step">
+                        <div class="step-number">✓</div>
+                        <h4>TRASLADO</h4>
+                        <p>Prioritario con equipo avanzado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Códigos de comunicación -->
+        <div class="card">
+            <h2>Comunicación y Códigos</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situación</th>
+                        <th>Código</th>
+                        <th>Información Clave</th>
+                        <th>Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Obstrucción Completa</strong></td>
+                        <td>Código Azul</td>
+                        <td>Edad, tipo obstrucción, maniobras realizadas</td>
+                        <td>P1 - Inmediata</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Post-Heimlich Exitoso</strong></td>
+                        <td>Urgente</td>
+                        <td>Método usado, estado actual, saturación</td>
+                        <td>P2 - Urgente</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cricotirotomía</strong></td>
+                        <td>Código Azul</td>
+                        <td>Técnica usada, permeabilidad, complicaciones</td>
+                        <td>P1 - Inmediata</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Obstrucción Parcial</strong></td>
+                        <td>Preferente</td>
+                        <td>Tolerancia, saturación, evolución</td>
+                        <td>P3 - Preferente</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        // Funcionalidades interactivas para el módulo
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar efectos hover a las tarjetas
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Efectos en pasos de maniobras
+            const maneuverSteps = document.querySelectorAll('.maneuver-step');
+            maneuverSteps.forEach((step, index) => {
+                step.addEventListener('click', function() {
+                    this.style.backgroundColor = 'rgba(52, 152, 219, 0.3)';
+                    this.style.transform = 'scale(1.05)';
+                    
+                    setTimeout(() => {
+                        this.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                        this.style.transform = 'scale(1)';
+                    }, 2000);
+                });
+            });
+
+            // Resaltar valores críticos
+            const valueCards = document.querySelectorAll('.value-card');
+            valueCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const number = this.querySelector('.value-number');
+                    number.style.fontSize = '1.8em';
+                    number.style.color = '#e74c3c';
+                    
+                    setTimeout(() => {
+                        number.style.fontSize = '1.3em';
+                        number.style.color = '#3498db';
+                    }, 1500);
+                });
+            });
+
+            // Animación para elementos de emergencia
+            const emergencyProtocols = document.querySelectorAll('.emergency-protocol');
+            emergencyProtocols.forEach(protocol => {
+                setInterval(() => {
+                    protocol.style.boxShadow = '0 0 20px rgba(231, 76, 60, 0.7)';
+                    setTimeout(() => {
+                        protocol.style.boxShadow = 'none';
+                    }, 1000);
+                }, 4000);
+            });
+
+            // Efectos en procedimientos
+            const procedureItems = document.querySelectorAll('.procedure-item');
+            procedureItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    this.style.backgroundColor = 'rgba(39, 174, 96, 0.2)';
+                    this.style.borderLeftColor = '#27ae60';
+                    
+                    setTimeout(() => {
+                        this.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                        this.style.borderLeftColor = '#3498db';
+                    }, 2000);
+                });
+            });
+
+            // Simulación de entrenamiento interactivo
+            const ageCards = document.querySelectorAll('.age-card');
+            ageCards.forEach(card => {
+                card.addEventListener('dblclick', function() {
+                    const cardType = this.classList.contains('adult') ? 'ADULTO' :
+                                   this.classList.contains('child') ? 'NIÑO' : 'LACTANTE';
+                    
+                    alert(`💡 RECORDATORIO ${cardType}:\n\n` +
+                          `${cardType === 'ADULTO' ? 'Heimlich clásico - Compresiones abdominales' :
+                            cardType === 'NIÑO' ? 'Combinar golpes espalda + compresiones suaves' :
+                            'Solo golpes espalda + compresiones torácicas - NO abdominales'}`);
+                });
+            });
+        });
+
+        // Función para marcar checklist items
+        function toggleCheck(element) {
+            const checkmark = element.querySelector('.step-number');
+            if (checkmark.innerHTML === '✓') {
+                checkmark.innerHTML = '○';
+                checkmark.style.backgroundColor = '#95a5a6';
+            } else {
+                checkmark.innerHTML = '✓';
+                checkmark.style.backgroundColor = '#27ae60';
+            }
+        }
+
+        // Agregar funcionalidad de checklist
+        document.addEventListener('DOMContentLoaded', function() {
+            const checklistItems = document.querySelectorAll('.maneuver-sequence .maneuver-step');
+            checklistItems.forEach(item => {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', function() {
+                    toggleCheck(this);
+                });
+            });
+        });
+
+        // Función de emergencia simulada
+        function emergencyDrill() {
+            const scenarios = [
+                "👨 ADULTO consciente, no puede hablar, manos al cuello",
+                "🧒 NIÑO 5 años, tos débil, cianosis labial",
+                "👶 LACTANTE inconsciente, cianosis generalizada",
+                "👵 ANCIANA obesa, estridor, sentada en trípode"
+            ];
+            
+            const randomScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+            alert(`🚨 SIMULACRO DE EMERGENCIA 🚨\n\nESCENARIO: ${randomScenario}\n\n¿Cuál sería tu primera acción?`);
+        }
+
+        // Agregar botón de simulacro (opcional)
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.header');
+            const drillButton = document.createElement('button');
+            drillButton.innerHTML = '🎯 Simulacro';
+            drillButton.style.cssText = `
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: rgba(255,255,255,0.2);
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 0.9em;
+            `;
+            drillButton.onclick = emergencyDrill;
+            header.style.position = 'relative';
+            header.appendChild(drillButton);
+        });
+    </script>
+</body>
+</html>

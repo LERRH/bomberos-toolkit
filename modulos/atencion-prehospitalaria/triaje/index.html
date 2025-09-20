@@ -72,7 +72,7 @@
 
         .grid-4 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
 
@@ -298,38 +298,233 @@
             color: white;
         }
 
+        /* RESPONSIVE DESIGN CORREGIDO */
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
+                padding: 10px;
             }
 
             .header h1 {
-                font-size: 1.3em;
+                font-size: 1.2em;
             }
 
-            table {
+            .header p {
                 font-size: 0.8em;
             }
 
-            table th,
-            table td {
-                padding: 5px;
+            /* GRID CORREGIDO PARA MÓVILES */
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
 
+            .grid-4 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            /* TARJETAS DE PRIORIDAD OPTIMIZADAS */
             .priority-box {
                 padding: 15px;
+                margin: 8px 0;
+            }
+
+            .priority-box h3 {
+                font-size: 1.1em;
+                margin-bottom: 8px;
             }
 
             .priority-box .tag {
                 font-size: 1.5em;
+                margin-bottom: 8px;
+            }
+
+            .priority-box p {
+                font-size: 0.85em;
+                line-height: 1.3;
+            }
+
+            /* CARD PRINCIPAL */
+            .card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.1em;
+                margin-bottom: 12px;
+            }
+
+            /* FLOWCHART - MANTENER ESTRUCTURA PERO REDUCIR TAMAÑOS */
+            .flowchart {
+                padding: 8px;
+                overflow-x: auto;
+            }
+
+            .flowchart-step {
+                padding: 8px;
+                font-size: 0.7em;
+                margin: 5px 0;
+            }
+
+            .flowchart-step strong {
+                font-size: 0.9em;
+            }
+
+            .flowchart-step em {
+                font-size: 0.8em;
+            }
+
+            /* ELEMENTOS DE PRIORIDAD DENTRO DEL FLOWCHART - SOLO REDUCIR TAMAÑO */
+            .flowchart .priority-red,
+            .flowchart .priority-yellow,
+            .flowchart .priority-green,
+            .flowchart .priority-black {
+                padding: 6px !important;
+                margin: 3px !important;
+                font-size: 0.65em !important;
+            }
+
+            /* ARROWS MÁS PEQUEÑAS */
+            .arrow {
+                font-size: 1em;
+                margin: 2px 0;
+            }
+
+            /* GRIDS INTERNOS - REDUCIR GAP PERO MANTENER ESTRUCTURA */
+            .flowchart div[style*="grid-template-columns: 1fr 1fr"] {
+                gap: 5px !important;
+                margin: 5px 0 !important;
+            }
+
+            /* ALGORITMOS Y FLOWCHARTS */
+            .algorithm-step {
+                padding: 12px;
+            }
+
+            .algorithm-step h4 {
+                font-size: 1em;
+            }
+
+            .algorithm-step .action {
+                padding: 8px;
+                margin: 4px 0;
+                font-size: 0.85em;
+            }
+
+            .algorithm-step .question {
+                font-size: 0.9em;
+            }
+
+            /* TABLAS RESPONSIVE */
+            table {
+                font-size: 0.8em;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            table thead,
+            table tbody,
+            table th,
+            table td,
+            table tr {
+                display: block;
+            }
+
+            table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            table tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 5px;
+                background: white;
+            }
+
+            table td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                white-space: normal;
+            }
+
+            table td:before {
+                content: attr(data-label) ": ";
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                font-weight: bold;
+            }
+
+            /* TAGS Y EJEMPLOS */
+            .tag-example {
+                display: block;
+                margin: 8px 0;
+                text-align: center;
+                padding: 10px;
+            }
+
+            /* QUICK REFERENCE */
+            .quick-reference {
+                padding: 12px;
+            }
+
+            .quick-reference h3 {
+                font-size: 1.1em;
+            }
+
+            .quick-reference li {
+                font-size: 0.85em;
+                padding: 4px 0;
+            }
+        }
+
+        /* PARA PANTALLAS EXTRA PEQUEÑAS */
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+
+            .priority-box {
+                padding: 10px;
+            }
+
+            .priority-box .tag {
+                font-size: 1.3em;
+            }
+
+            .priority-box h3 {
+                font-size: 1em;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .flowchart {
+                padding: 5px;
+            }
+
+            .flowchart-step {
+                padding: 6px;
+                font-size: 0.65em;
+            }
+
+            .flowchart .priority-red,
+            .flowchart .priority-yellow,
+            .flowchart .priority-green,
+            .flowchart .priority-black {
+                padding: 4px !important;
+                font-size: 0.6em !important;
+            }
+
+            .arrow {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -342,7 +537,7 @@
             <a href="../">Atención Prehospitalaria</a> > 
             Triaje
         </div>
-        <h1>Triaje START - SHORT</h1>
+        <h1>🏷️ Triaje START - SHORT</h1>
         <p>Simple Triage and Rapid Treatment / Short Triage</p>
     </header>
 
@@ -507,19 +702,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>0-12 meses</td>
-                            <td>30-60 rpm</td>
-                            <td><15 o >45 rpm</td>
+                            <td data-label="Edad">0-12 meses</td>
+                            <td data-label="FR Normal">30-60 rpm</td>
+                            <td data-label="Criterio ROJO"><15 o >45 rpm</td>
                         </tr>
                         <tr>
-                            <td>1-5 años</td>
-                            <td>20-40 rpm</td>
-                            <td><15 o >35 rpm</td>
+                            <td data-label="Edad">1-5 años</td>
+                            <td data-label="FR Normal">20-40 rpm</td>
+                            <td data-label="Criterio ROJO"><15 o >35 rpm</td>
                         </tr>
                         <tr>
-                            <td>6-8 años</td>
-                            <td>15-25 rpm</td>
-                            <td><15 o >30 rpm</td>
+                            <td data-label="Edad">6-8 años</td>
+                            <td data-label="FR Normal">15-25 rpm</td>
+                            <td data-label="Criterio ROJO"><15 o >30 rpm</td>
                         </tr>
                     </tbody>
                 </table>
@@ -539,35 +734,6 @@
                 <div class="action"><strong>V</strong>oz (responde a voz) → AMARILLO</div>
                 <div class="action"><strong>D</strong>olor (solo responde a dolor) → ROJO</div>
                 <div class="action"><strong>I</strong>nconsciente → ROJO</div>
-            </div>
-        </div>
-
-        <!-- Tiempos y consideraciones -->
-        <div class="card">
-            <h2>Tiempos y Consideraciones Especiales</h2>
-            
-            <div class="grid-2">
-                <div class="info-box">
-                    <h4>Tiempos de Evaluación</h4>
-                    <ul>
-                        <li><strong>Objetivo:</strong> 30-60 segundos por paciente</li>
-                        <li><strong>START:</strong> 15-30 segundos promedio</li>
-                        <li><strong>SHORT:</strong> 30-60 segundos (más complejo)</li>
-                        <li><strong>Re-triaje:</strong> Cada 15-30 minutos</li>
-                        <li><strong>Documentación:</strong> Tarjeta + hora</li>
-                    </ul>
-                </div>
-
-                <div class="info-box">
-                    <h4>Situaciones Especiales</h4>
-                    <ul>
-                        <li><strong>Embarazadas:</strong> Prioridad ROJA si >20 semanas</li>
-                        <li><strong>Quemaduras:</strong> >20% SCQ → ROJO</li>
-                        <li><strong>Intoxicaciones:</strong> Evaluar nivel consciencia</li>
-                        <li><strong>Trauma penetrante:</strong> Localización vital</li>
-                        <li><strong>Hipotermia:</strong> Puede alterar signos vitales</li>
-                    </ul>
-                </div>
             </div>
         </div>
 
@@ -630,12 +796,12 @@
             </div>
         </div>
 
-        <!-- Tarjetas de triaje -->
+        <!-- Sistema de etiquetado -->
         <div class="card">
             <h2>Sistema de Etiquetado</h2>
             
             <div class="tags-section">
-                <h3>Ejemplos de Tarjetas de Triaje</h3>
+                <h3>Tarjetas de Triaje</h3>
                 <div style="text-align: center; margin: 20px 0;">
                     <div class="tag-example tag-red">ROJO - INMEDIATO</div>
                     <div class="tag-example tag-yellow">AMARILLO - URGENTE</div>

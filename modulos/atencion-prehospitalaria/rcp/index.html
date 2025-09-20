@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCP y Desfibrilación - Bomberos Toolkit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            font-size: 0.8em;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #ecf0f1;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+
+        .info-box.warning {
+            border-left-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .info-box.danger {
+            border-left-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .info-box.success {
+            border-left-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .info-box h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .info-box li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .info-box.warning li::before {
+            color: #f39c12;
+        }
+
+        .info-box.danger li::before {
+            color: #e74c3c;
+        }
+
+        .info-box.success li::before {
+            color: #27ae60;
+        }
+
+        .rhythm-box {
+            background: white;
+            border: 3px solid;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .shockable {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.05);
+        }
+
+        .non-shockable {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.05);
+        }
+
+        .rhythm-box h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .shockable h3 {
+            color: #e74c3c;
+        }
+
+        .non-shockable h3 {
+            color: #3498db;
+        }
+
+        .cpr-sequence {
+            background: #34495e;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .cpr-sequence h3 {
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cpr-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .cpr-step {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .step-number {
+            background: #e74c3c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-weight: bold;
+        }
+
+        .dosage-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #ecf0f1;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .algorithm-flowchart {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .flowchart-step {
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .flowchart-step.decision {
+            border-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .flowchart-step.action {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .flowchart-step.shock {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .arrow-down {
+            text-align: center;
+            font-size: 1.2em;
+            color: #3498db;
+            margin: 5px 0;
+        }
+
+        .quick-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .value-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+
+        .value-label {
+            font-size: 0.8em;
+            color: #2c3e50;
+        }
+
+        .emergency-banner {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.2em;
+            }
+
+            .header p {
+                font-size: 0.8em;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.1em;
+            }
+
+            .cpr-steps {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .cpr-step {
+                padding: 12px;
+            }
+
+            .rhythm-box {
+                padding: 12px;
+            }
+
+            .algorithm-flowchart {
+                padding: 10px;
+            }
+
+            .flowchart-step {
+                padding: 10px;
+                font-size: 0.85em;
+                margin: 6px 0;
+            }
+
+            table {
+                font-size: 0.8em;
+            }
+
+            table th,
+            table td {
+                padding: 8px 5px;
+            }
+
+            .quick-values {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .value-card {
+                padding: 10px;
+            }
+
+            .info-box {
+                padding: 12px;
+            }
+
+            .info-box li {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .flowchart-step {
+                padding: 8px;
+                font-size: 0.8em;
+            }
+
+            .cpr-step {
+                padding: 10px;
+            }
+
+            .step-number {
+                width: 25px;
+                height: 25px;
+                font-size: 0.9em;
+            }
+
+            table th,
+            table td {
+                padding: 6px 3px;
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">Inicio</a> > 
+            <a href="../../">Módulos</a> > 
+            <a href="../">Atención Prehospitalaria</a> > 
+            RCP y Desfibrilación
+        </div>
+        <h1>💓 RCP y Desfibrilación</h1>
+        <p>Reanimación Cardiopulmonar y uso de DEA</p>
+    </header>
+
+    <div class="container">
+        <!-- Valores críticos -->
+        <div class="card">
+            <h2>Valores de Referencia</h2>
+            <div class="quick-values">
+                <div class="value-card">
+                    <div class="value-number">30:2</div>
+                    <div class="value-label">Compresiones:Ventilaciones</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">100-120</div>
+                    <div class="value-label">Compresiones/min</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">5-6 cm</div>
+                    <div class="value-label">Profundidad Adulto</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">2 min</div>
+                    <div class="value-label">Ciclos RCP</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number"><10 seg</div>
+                    <div class="value-label">Interrupción máxima</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Algoritmo SVCA -->
+        <div class="card">
+            <h2>Algoritmo SVCA (Soporte Vital Cardiovascular Avanzado)</h2>
+            
+            <div class="algorithm-flowchart">
+                <div class="flowchart-step">
+                    <strong>PARO CARDIACO</strong><br>
+                    Iniciar RCP de alta calidad
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step decision">
+                    <strong>EVALUAR RITMO</strong><br>
+                    ¿Es desfibrilable?
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0;">
+                    <!-- Rama Desfibrilable -->
+                    <div>
+                        <div class="flowchart-step shock">
+                            <strong>SÍ - DESFIBRILABLE</strong><br>
+                            FV/TV sin pulso
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flowchart-step action">
+                            <strong>DESCARGAR</strong><br>
+                            Seguir protocolo DEA
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flowchart-step">
+                            <strong>RCP 2 MINUTOS</strong><br>
+                            Acceso IV/IO<br>
+                            Epinefrina cada 3-5 min
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flowchart-step decision">
+                            <strong>REEVALUAR RITMO</strong><br>
+                            ¿Persiste FV/TV?
+                        </div>
+                        <div class="arrow-down">↓ SÍ</div>
+                        <div class="flowchart-step shock">
+                            <strong>DESCARGAR</strong><br>
+                            Considerar Amiodarona
+                        </div>
+                    </div>
+                    
+                    <!-- Rama No Desfibrilable -->
+                    <div>
+                        <div class="flowchart-step">
+                            <strong>NO - NO DESFIBRILABLE</strong><br>
+                            Asistolia/AESP
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flowchart-step action">
+                            <strong>RCP INMEDIATO</strong><br>
+                            Acceso IV/IO
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flowchart-step">
+                            <strong>EPINEFRINA</strong><br>
+                            1 mg IV cada 3-5 min
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flowchart-step decision">
+                            <strong>BUSCAR CAUSAS</strong><br>
+                            H's y T's reversibles
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flowchart-step">
+                            <strong>CONTINUAR RCP</strong><br>
+                            Reevaluar cada 2 min
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <div class="flowchart-step action">
+                        <strong>RETORNO CIRCULACIÓN ESPONTÁNEA (RCE)</strong><br>
+                        Cuidados post-paro
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ritmos cardíacos -->
+        <div class="card">
+            <h2>Reconocimiento de Ritmos</h2>
+            
+            <div class="grid-2">
+                <div class="rhythm-box shockable">
+                    <h3>RITMOS DESFIBRILABLES</h3>
+                    <div class="info-box danger">
+                        <h4>Fibrilación Ventricular (FV)</h4>
+                        <ul>
+                            <li>Ondas irregulares y caóticas</li>
+                            <li>No hay complejos QRS identificables</li>
+                            <li>Amplitud variable</li>
+                            <li><strong>Acción:</strong> Desfibrilar inmediatamente</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box danger">
+                        <h4>Taquicardia Ventricular sin Pulso (TV)</h4>
+                        <ul>
+                            <li>Complejos QRS anchos (>120 ms)</li>
+                            <li>Frecuencia >150 lpm</li>
+                            <li>Ritmo regular o casi regular</li>
+                            <li><strong>Acción:</strong> Desfibrilar inmediatamente</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="rhythm-box non-shockable">
+                    <h3>RITMOS NO DESFIBRILABLES</h3>
+                    <div class="info-box">
+                        <h4>Asistolia</h4>
+                        <ul>
+                            <li>Línea plana o casi plana</li>
+                            <li>Ausencia de actividad eléctrica</li>
+                            <li>Verificar conexiones y derivaciones</li>
+                            <li><strong>Acción:</strong> RCP + Epinefrina</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>Actividad Eléctrica Sin Pulso (AESP)</h4>
+                        <ul>
+                            <li>Actividad eléctrica organizada</li>
+                            <li>Sin pulso palpable</li>
+                            <li>Buscar causas reversibles</li>
+                            <li><strong>Acción:</strong> RCP + tratar causa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secuencia RCP -->
+        <div class="card">
+            <h2>Secuencia RCP de Alta Calidad</h2>
+            
+            <div class="cpr-sequence">
+                <h3>Protocolo C-A-B (Circulación-Vía aérea-Respiración)</h3>
+                <div class="cpr-steps">
+                    <div class="cpr-step">
+                        <div class="step-number">1</div>
+                        <h4>COMPROBAR</h4>
+                        <p>Inconsciencia y ausencia de respiración normal</p>
+                    </div>
+                    
+                    <div class="cpr-step">
+                        <div class="step-number">2</div>
+                        <h4>LLAMAR</h4>
+                        <p>Activar sistema de emergencias y pedir DEA</p>
+                    </div>
+                    
+                    <div class="cpr-step">
+                        <div class="step-number">3</div>
+                        <h4>COMPRIMIR</h4>
+                        <p>Centro del tórax, 5-6 cm profundidad, 100-120/min</p>
+                    </div>
+                    
+                    <div class="cpr-step">
+                        <div class="step-number">4</div>
+                        <h4>VÍA AÉREA</h4>
+                        <p>Abrir vía aérea: maniobra frente-mentón</p>
+                    </div>
+                    
+                    <div class="cpr-step">
+                        <div class="step-number">5</div>
+                        <h4>RESPIRAR</h4>
+                        <p>2 ventilaciones de 1 segundo cada una</p>
+                    </div>
+                    
+                    <div class="cpr-step">
+                        <div class="step-number">6</div>
+                        <h4>CONTINUAR</h4>
+                        <p>Ciclos 30:2 hasta llegada de ayuda avanzada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Uso del DEA -->
+        <div class="card">
+            <h2>Protocolo DEA (Desfibrilador Externo Automático)</h2>
+            
+            <div class="grid-2">
+                <div class="info-box success">
+                    <h4>Pasos para usar DEA</h4>
+                    <ul>
+                        <li><strong>1. Encender</strong> el DEA</li>
+                        <li><strong>2. Exponer</strong> tórax del paciente</li>
+                        <li><strong>3. Secar</strong> si está mojado</li>
+                        <li><strong>4. Colocar parches</strong> según diagrama</li>
+                        <li><strong>5. Conectar</strong> cables al DEA</li>
+                        <li><strong>6. Alejar</strong> a todos durante análisis</li>
+                        <li><strong>7. Descargar</strong> si indicado</li>
+                        <li><strong>8. Reanudar</strong> RCP inmediatamente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>Precauciones DEA</h4>
+                    <ul>
+                        <li><strong>Agua:</strong> Secar tórax completamente</li>
+                        <li><strong>Marcapasos:</strong> Parche >8 cm del dispositivo</li>
+                        <li><strong>Medicamentos:</strong> Remover parches transdérmicos</li>
+                        <li><strong>Metales:</strong> Alejar objetos conductores</li>
+                        <li><strong>Vello:</strong> Afeitar si impide adherencia</li>
+                        <li><strong>Niños:</strong> Parches pediátricos <8 años</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medicamentos -->
+        <div class="card">
+            <h2>Medicamentos en Paro Cardíaco</h2>
+            
+            <div class="dosage-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medicamento</th>
+                            <th>Dosis Adulto</th>
+                            <th>Dosis Pediátrica</th>
+                            <th>Indicación</th>
+                            <th>Frecuencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Epinefrina</strong></td>
+                            <td>1 mg IV/IO</td>
+                            <td>0.01 mg/kg IV/IO</td>
+                            <td>Todos los paros</td>
+                            <td>Cada 3-5 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amiodarona</strong></td>
+                            <td>300 mg IV/IO<br>(2ª dosis: 150 mg)</td>
+                            <td>5 mg/kg IV/IO</td>
+                            <td>FV/TV refractaria</td>
+                            <td>Una vez</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lidocaína</strong></td>
+                            <td>1-1.5 mg/kg IV/IO</td>
+                            <td>1 mg/kg IV/IO</td>
+                            <td>Si no hay amiodarona</td>
+                            <td>Una vez</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Atropina</strong></td>
+                            <td>Ya no recomendada</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- RCP Pediátrico -->
+        <div class="card">
+            <h2>RCP Pediátrico</h2>
+            
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Lactantes (<1 año)</h4>
+                    <ul>
+                        <li><strong>Compresiones:</strong> 2 dedos en esternón</li>
+                        <li><strong>Profundidad:</strong> 4 cm (1/3 del tórax)</li>
+                        <li><strong>Frecuencia:</strong> 100-120/min</li>
+                        <li><strong>Relación:</strong> 30:2 (1 reanimador)</li>
+                        <li><strong>Relación:</strong> 15:2 (2 reanimadores)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Niños (1-8 años)</h4>
+                    <ul>
+                        <li><strong>Compresiones:</strong> 1 o 2 manos</li>
+                        <li><strong>Profundidad:</strong> 5 cm (1/3 del tórax)</li>
+                        <li><strong>Frecuencia:</strong> 100-120/min</li>
+                        <li><strong>Relación:</strong> 30:2 (1 reanimador)</li>
+                        <li><strong>Relación:</strong> 15:2 (2 reanimadores)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Adolescentes (>8 años)</h4>
+                    <ul>
+                        <li><strong>Compresiones:</strong> 2 manos</li>
+                        <li><strong>Profundidad:</strong> 5-6 cm</li>
+                        <li><strong>Frecuencia:</strong> 100-120/min</li>
+                        <li><strong>Relación:</strong> 30:2</li>
+                        <li><strong>DEA:</strong> Parches adulto</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Causas reversibles -->
+        <div class="card">
+            <h2>Causas Reversibles de Paro (H's y T's)</h2>
+            
+            <div class="grid-2">
+                <div class="info-box warning">
+                    <h4>LAS H's</h4>
+                    <ul>
+                        <li><strong>Hipoxia:</strong> Oxigenación, ventilación</li>
+                        <li><strong>Hipovolemia:</strong> Fluidos, control hemorragia</li>
+                        <li><strong>Hidrógeno (acidosis):</strong> Bicarbonato si indicado</li>
+                        <li><strong>Hipo/Hiperpotasemia:</strong> Corregir electrolitos</li>
+                        <li><strong>Hipotermia:</strong> Recalentamiento</li>
+                        <li><strong>Hipoglucemia:</strong> Dextrosa IV</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>LAS T's</h4>
+                    <ul>
+                        <li><strong>Tóxicos:</strong> Antídotos específicos</li>
+                        <li><strong>Taponamiento cardíaco:</strong> Pericardiocentesis</li>
+                        <li><strong>Tensión (neumotórax):</strong> Descompresión</li>
+                        <li><strong>Trombosis coronaria:</strong> Fibrinólisis/ICP</li>
+                        <li><strong>Trombosis pulmonar:</strong> Fibrinólisis</li>
+                        <li><strong>Trauma:</strong> Cirugía de control de daños</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cuidados post-RCE -->
+        <div class="card">
+            <h2>Cuidados Post-Retorno de Circulación Espontánea</h2>
+            
+            <div class="info-box success">
+                <h4>Prioridades Inmediatas</h4>
+                <ul>
+                    <li><strong>Vía aérea:</strong> Intubación si necesaria</li>
+                    <li><strong>Respiración:</strong> SpO2 94-98%, evitar hiperventilación</li>
+                    <li><strong>Circulación:</strong> PA sistólica >90 mmHg</li>
+                    <li><strong>Neurología:</strong> Evaluación nivel consciencia</li>
+                    <li><strong>Temperatura:</strong> Considerar hipotermia terapéutica</li>
+                    <li><strong>Glucemia:</strong> Mantener 140-180 mg/dL</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>Traslado Urgente</h4>
+                <ul>
+                    <li>Hospital con capacidad de cuidados intensivos</li>
+                    <li>Cardiología intervencionista si disponible</li>
+                    <li>Monitoreo continuo durante traslado</li>
+                    <li>Preparación para re-paro</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Criterios de terminación -->
+        <div class="card">
+            <h2>Criterios para Terminar RCP</h2>
+            
+            <div class="emergency-banner">
+                ⚠️ La decisión de terminar RCP debe ser tomada por médico ⚠️
+            </div>
+
+            <div class="info-box warning">
+                <h4>Consideraciones para Terminación</h4>
+                <ul>
+                    <li><strong>Tiempo:</strong> >30 minutos sin RCE (variable según contexto)</li>
+                    <li><strong>Causa:</strong> No se identifica causa reversible</li>
+                    <li><strong>Calidad:</strong> RCP de alta calidad mantenida</li>
+                    <li><strong>Pronóstico:</strong> Futilidad médica establecida</li>
+                    <li><strong>Recursos:</strong> Agotamiento del equipo</li>
+                    <li><strong>Seguridad:</strong> Riesgo para reanimadores</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>Factores que Prolongan Esfuerzos</h4>
+                <ul>
+                    <li>Hipotermia (continuar hasta normotermia)</li>
+                    <li>Intoxicación por drogas</li>
+                    <li>Ahogamiento en agua fría</li>
+                    <li>Niños y jóvenes</li>
+                    <li>Paro presenciado con RCP inmediato</li>
+                    <li>Ritmo inicial desfibrilable</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Calidad del RCP -->
+        <div class="card">
+            <h2>Indicadores de Calidad en RCP</h2>
+            
+            <div class="grid-2">
+                <div class="info-box success">
+                    <h4>RCP de Alta Calidad</h4>
+                    <ul>
+                        <li><strong>Frecuencia:</strong> 100-120 compresiones/min</li>
+                        <li><strong>Profundidad:</strong> 5-6 cm (adultos)</li>
+                        <li><strong>Retroceso:</strong> Completo entre compresiones</li>
+                        <li><strong>Interrupciones:</strong> <10 segundos</li>
+                        <li><strong>Ventilación:</strong> Evitar hiperventilación</li>
+                        <li><strong>Rotación:</strong> Cada 2 minutos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box danger">
+                    <h4>Errores Comunes</h4>
+                    <ul>
+                        <li>Compresiones muy superficiales</li>
+                        <li>Frecuencia inadecuada</li>
+                        <li>No permitir retroceso completo</li>
+                        <li>Interrupciones prolongadas</li>
+                        <li>Hiperventilación</li>
+                        <li>Fatiga del reanimador</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Situaciones especiales -->
+        <div class="card">
+            <h2>Situaciones Especiales</h2>
+            
+            <div class="grid-3">
+                <div class="info-box warning">
+                    <h4>Embarazo (>20 semanas)</h4>
+                    <ul>
+                        <li>Desplazamiento uterino manual izquierdo</li>
+                        <li>Compresiones más altas en esternón</li>
+                        <li>Considerar cesárea de emergencia</li>
+                        <li>Oxigenación agresiva</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>Trauma</h4>
+                    <ul>
+                        <li>Controlar hemorragias masivas</li>
+                        <li>Evitar movimientos innecesarios</li>
+                        <li>Considerar neumotórax</li>
+                        <li>Acceso vascular rápido</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>Ahogamiento</h4>
+                    <ul>
+                        <li>5 ventilaciones de rescate iniciales</li>
+                        <li>RCP estándar si no responde</li>
+                        <li>Hipotermia frecuente</li>
+                        <li>Prolongar esfuerzos de reanimación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referencia rápida final -->
+        <div class="emergency-banner">
+            🚨 RECORDATORIO: Calidad sobre cantidad - RCP efectivo salva vidas 🚨
+        </div>
+    </div>
+</body>
+</html>

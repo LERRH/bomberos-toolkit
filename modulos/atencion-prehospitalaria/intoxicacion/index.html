@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intoxicaciones - Bomberos Toolkit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8e44ad 0%, #71368a 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            font-size: 0.8em;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #8e44ad;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #ecf0f1;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #8e44ad;
+            margin: 15px 0;
+        }
+
+        .info-box.warning {
+            border-left-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .info-box.danger {
+            border-left-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .info-box.success {
+            border-left-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .info-box.blue {
+            border-left-color: #3498db;
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .info-box h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .info-box li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8e44ad;
+            font-weight: bold;
+        }
+
+        .info-box.warning li::before {
+            color: #f39c12;
+        }
+
+        .info-box.danger li::before {
+            color: #e74c3c;
+        }
+
+        .info-box.success li::before {
+            color: #27ae60;
+        }
+
+        .info-box.blue li::before {
+            color: #3498db;
+        }
+
+        .toxin-category {
+            background: white;
+            border: 3px solid;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gases {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.05);
+        }
+
+        .chemicals {
+            border-color: #f39c12;
+            background: rgba(243, 156, 18, 0.05);
+        }
+
+        .drugs {
+            border-color: #9b59b6;
+            background: rgba(155, 89, 182, 0.05);
+        }
+
+        .alcohol {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.05);
+        }
+
+        .toxin-category h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .gases h3 { color: #e74c3c; }
+        .chemicals h3 { color: #f39c12; }
+        .drugs h3 { color: #9b59b6; }
+        .alcohol h3 { color: #3498db; }
+
+        .toxin-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .quick-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .value-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8e44ad;
+            margin-bottom: 5px;
+        }
+
+        .value-label {
+            font-size: 0.8em;
+            color: #2c3e50;
+        }
+
+        .protocol-flowchart {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .flowchart-step {
+            background: white;
+            border: 2px solid #8e44ad;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .flowchart-step.assessment {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .flowchart-step.decontamination {
+            border-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .flowchart-step.antidote {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .flowchart-step.critical {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .arrow-down {
+            text-align: center;
+            font-size: 1.2em;
+            color: #8e44ad;
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #ecf0f1;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .antidote-card {
+            background: white;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .antidote-card h4 {
+            color: #27ae60;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .dosage-info {
+            background: rgba(39, 174, 96, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .decontamination-box {
+            background: rgba(243, 156, 18, 0.1);
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .decontamination-box h4 {
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+
+        .emergency-banner {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .gas-detector {
+            background: #34495e;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .gas-detector h3 {
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .gas-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .gas-level {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .level-number {
+            background: #e74c3c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .symptom-severity {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .severity-card {
+            background: white;
+            border: 2px solid;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .mild { border-color: #27ae60; }
+        .moderate { border-color: #f39c12; }
+        .severe { border-color: #e74c3c; }
+
+        .severity-card h4 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .mild h4 { color: #27ae60; }
+        .moderate h4 { color: #f39c12; }
+        .severe h4 { color: #e74c3c; }
+
+        .contraindication-box {
+            background: #fee;
+            border: 2px solid #dc3545;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .contraindication-box h4 {
+            color: #dc3545;
+            margin-bottom: 10px;
+        }
+
+        .contraindication-box ul {
+            list-style: none;
+        }
+
+        .contraindication-box li::before {
+            content: "❌";
+            margin-right: 8px;
+        }
+
+        .epi-pen {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .carbon-monoxide {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .carbon-monoxide h3 {
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.2em;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.1em;
+            }
+
+            .gas-levels {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .quick-values {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .toxin-category {
+                padding: 12px;
+            }
+
+            .symptom-severity {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.8em;
+            }
+
+            table th,
+            table td {
+                padding: 8px 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .flowchart-step {
+                padding: 8px;
+                font-size: 0.8em;
+            }
+
+            .gas-level {
+                padding: 10px;
+            }
+
+            .level-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9em;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            table th,
+            table td {
+                padding: 6px 3px;
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">Inicio</a> > 
+            <a href="../../">Módulos</a> > 
+            <a href="../">Atención Prehospitalaria</a> > 
+            Intoxicaciones
+        </div>
+        <h1>☠️ Intoxicaciones</h1>
+        <p>Manejo de exposición a tóxicos y envenenamientos</p>
+    </header>
+
+    <div class="container">
+        <!-- Valores críticos -->
+        <div class="card">
+            <h2>Valores Críticos en Intoxicaciones</h2>
+            <div class="quick-values">
+                <div class="value-card">
+                    <div class="value-number">35 ppm</div>
+                    <div class="value-label">CO - Síntomas</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">400 ppm</div>
+                    <div class="value-label">CO - Peligroso</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">19.5%</div>
+                    <div class="value-label">O2 - Mínimo</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">10%</div>
+                    <div class="value-label">LEL - Explosión</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">0.4 mg</div>
+                    <div class="value-label">HCN - Letal/kg</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">30 min</div>
+                    <div class="value-label">Ventana terapéutica</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categorías de intoxicaciones -->
+        <div class="card">
+            <h2>Clasificación de Intoxicaciones</h2>
+            
+            <div class="grid-2">
+                <div class="toxin-category gases" onclick="showDetails('gases')">
+                    <h3>🌫️ GASES TÓXICOS</h3>
+                    <div class="info-box danger">
+                        <h4>Exposición en Incendios</h4>
+                        <ul>
+                            <li>Monóxido de carbono (CO)</li>
+                            <li>Cianuro de hidrógeno (HCN)</li>
+                            <li>Dióxido de azufre (SO2)</li>
+                            <li>Amoníaco (NH3)</li>
+                            <li>Cloro (Cl2)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="toxin-category chemicals" onclick="showDetails('chemicals')">
+                    <h3>🧪 QUÍMICOS INDUSTRIALES</h3>
+                    <div class="info-box warning">
+                        <h4>Exposición Ocupacional</h4>
+                        <ul>
+                            <li>Ácidos y bases fuertes</li>
+                            <li>Solventes orgánicos</li>
+                            <li>Pesticidas y herbicidas</li>
+                            <li>Metales pesados</li>
+                            <li>Productos de limpieza</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="toxin-category drugs" onclick="showDetails('drugs')">
+                    <h3>💊 MEDICAMENTOS/DROGAS</h3>
+                    <div class="info-box blue">
+                        <h4>Sobredosis Frecuentes</h4>
+                        <ul>
+                            <li>Opioides (heroína, fentanilo)</li>
+                            <li>Benzodiacepinas</li>
+                            <li>Antidepresivos tricíclicos</li>
+                            <li>Paracetamol</li>
+                            <li>Estimulantes (cocaína, anfetaminas)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="toxin-category alcohol" onclick="showDetails('alcohol')">
+                    <h3>🍺 ALCOHOLES/GLICOLES</h3>
+                    <div class="info-box success">
+                        <h4>Intoxicación Etílica</h4>
+                        <ul>
+                            <li>Etanol (alcohol etílico)</li>
+                            <li>Metanol (alcohol metílico)</li>
+                            <li>Etilenglicol (anticongelante)</li>
+                            <li>Isopropanol</li>
+                            <li>Alcoholes desnaturalizados</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Protocolo de evaluación -->
+        <div class="card">
+            <h2>Protocolo de Evaluación TOXIDROMAS</h2>
+            
+            <div class="protocol-flowchart">
+                <div class="flowchart-step assessment">
+                    <strong>SEGURIDAD DE LA ESCENA</strong><br>
+                    Evaluar riesgo exposición, EPP apropiado
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step decontamination">
+                    <strong>DESCONTAMINACIÓN</strong><br>
+                    Retirar de fuente, lavar, cambiar ropa
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step assessment">
+                    <strong>IDENTIFICAR TOXIDROMA</strong><br>
+                    Conjunto de signos y síntomas característicos
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step antidote">
+                    <strong>ANTÍDOTO ESPECÍFICO</strong><br>
+                    Si disponible y indicado
+                </div>
+                
+                <div class="arrow-down">↓</div>
+                
+                <div class="flowchart-step critical">
+                    <strong>SOPORTE VITAL</strong><br>
+                    ABC + monitoreo + traslado
+                </div>
+            </div>
+        </div>
+
+        <!-- Monóxido de carbono -->
+        <div class="card">
+            <h2>Intoxicación por Monóxido de Carbono</h2>
+            
+            <div class="carbon-monoxide">
+                <h3>⚠️ GAS INVISIBLE, INODORO Y LETAL ⚠️</h3>
+                <div class="gas-levels">
+                    <div class="gas-level">
+                        <div class="level-number">35</div>
+                        <h4>LEVE</h4>
+                        <p>Cefalea, náuseas, fatiga</p>
+                    </div>
+                    
+                    <div class="gas-level">
+                        <div class="level-number">200</div>
+                        <h4>MODERADA</h4>
+                        <p>Confusión, mareos, vómitos</p>
+                    </div>
+                    
+                    <div class="gas-level">
+                        <div class="level-number">800</div>
+                        <h4>SEVERA</h4>
+                        <p>Coma, convulsiones</p>
+                    </div>
+                    
+                    <div class="gas-level">
+                        <div class="level-number">1600</div>
+                        <h4>LETAL</h4>
+                        <p>Muerte en 1-2 horas</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="info-box danger">
+                    <h4>🔍 Diagnóstico Clínico</h4>
+                    <ul>
+                        <li><strong>Historia:</strong> Exposición a combustión</li>
+                        <li><strong>Síntomas:</strong> Cefalea, náuseas, confusión</li>
+                        <li><strong>Signos:</strong> Color rojo cereza (tardío)</li>
+                        <li><strong>Múltiples afectados:</strong> Mismo ambiente</li>
+                        <li><strong>Mejora:</strong> Al salir del ambiente</li>
+                    </ul>
+                </div>
+
+                <div class="antidote-card">
+                    <h4>💨 TRATAMIENTO</h4>
+                    <div class="dosage-info">
+                        <strong>Oxígeno 100%:</strong> 15L/min mascarilla reservorio
+                    </div>
+                    <div class="dosage-info">
+                        <strong>Duración:</strong> Hasta COHb <10% o asintomático
+                    </div>
+                    <div class="dosage-info">
+                        <strong>Cámara hiperbárica:</strong> Si COHb >25% o síntomas neurológicos
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intoxicación por cianuro -->
+        <div class="card">
+            <h2>Intoxicación por Cianuro</h2>
+            
+            <div class="emergency-banner">
+                🚨 EXTREMADAMENTE LETAL - Actuar en primeros 30 minutos 🚨
+            </div>
+            
+            <div class="grid-3">
+                <div class="info-box danger">
+                    <h4>⚡ Presentación Clínica</h4>
+                    <ul>
+                        <li><strong>Respiratorio:</strong> Disnea severa, cianosis</li>
+                        <li><strong>Cardiovascular:</strong> Taquicardia → bradicardia</li>
+                        <li><strong>Neurológico:</strong> Confusión, convulsiones, coma</li>
+                        <li><strong>Metabólico:</strong> Acidosis láctica severa</li>
+                        <li><strong>Olor:</strong> Almendras amargas (solo 40% detecta)</li>
+                    </ul>
+                </div>
+
+                <div class="antidote-card">
+                    <h4>🧪 ANTÍDOTOS ESPECÍFICOS</h4>
+                    <div class="dosage-info">
+                        <strong>Hidroxocobalamina:</strong> 5g IV en 15 min
+                    </div>
+                    <div class="dosage-info">
+                        <strong>Nitrito de sodio:</strong> 300mg IV lento
+                    </div>
+                    <div class="dosage-info">
+                        <strong>Tiosulfato sódico:</strong> 12.5g IV después
+                    </div>
+                </div>
+
+                <div class="info-box warning">
+                    <h4>⚠️ Fuentes de Exposición</h4>
+                    <ul>
+                        <li>Humo de incendios (plásticos, lana)</li>
+                        <li>Industria metalúrgica</li>
+                        <li>Laboratorios químicos</li>
+                        <li>Plantas galvanoplastia</li>
+                        <li>Semillas de almendras, duraznos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sobredosis de opioides -->
+        <div class="card">
+            <h2>Sobredosis de Opioides</h2>
+            
+            <div class="symptom-severity">
+                <div class="severity-card mild">
+                    <h4>🟢 LEVE</h4>
+                    <div class="info-box success">
+                        <ul>
+                            <li>Somnolencia</li>
+                            <li>Pupilas puntiformes</li>
+                            <li>Habla pastosa</li>
+                            <li>Responde a estímulos</li>
+                            <li>FR ligeramente ↓</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="severity-card moderate">
+                    <h4>🟡 MODERADA</h4>
+                    <div class="info-box warning">
+                        <ul>
+                            <li>Estupor</li>
+                            <li>Cianosis periférica</li>
+                            <li>FR <12 rpm</li>
+                            <li>Responde solo a dolor</li>
+                            <li>Bradicardia</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="severity-card severe">
+                    <h4>🔴 SEVERA</h4>
+                    <div class="info-box danger">
+                        <ul>
+                            <li>Coma profundo</li>
+                            <li>Apnea o FR <8</li>
+                            <li>Cianosis central</li>
+                            <li>No responde estímulos</li>
+                            <li>Riesgo PCR</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="antidote-card">
+                <h4>💉 NALOXONA (Narcan)</h4>
+                <div class="dosage-info">
+                    <strong>Dosis inicial:</strong> 0.4-2mg IV/IM/IN
+                </div>
+                <div class="dosage-info">
+                    <strong>Repetir:</strong> Cada 2-3 min hasta respuesta
+                </div>
+                <div class="dosage-info">
+                    <strong>Máximo:</strong> 10mg total
+                </div>
+                <div class="dosage-info">
+                    <strong>Duración:</strong> 30-90 min (re-intoxicación posible)
+                </div>
+            </div>
+        </div>
+
+        <!-- Intoxicación etílica -->
+        <div class="card">
+            <h2>Intoxicación Etílica</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nivel (mg/dl)</th>
+                        <th>Estado</th>
+                        <th>Síntomas</th>
+                        <th>Manejo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>50-150</strong></td>
+                        <td>Euforia</td>
+                        <td>Desinhibición, coordinación ↓</td>
+                        <td>Observación</td>
