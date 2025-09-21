@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Riesgos - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-red: #e74c3c;
+            --primary-dark-red: #c0392b;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --dark-gray: #2c3e50;
+            --white: #ffffff;
+            --light-gray: #ecf0f1;
+            --blue: #3498db;
+            --purple: #9b59b6;
+            --yellow: #f1c40f;
+            --teal: #1abc9c;
+            --danger-red: #c0392b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.8em;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            color: var(--primary-red);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Metodología 360° */
+        .assessment-360 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .assessment-card {
+            border-radius: 10px;
+            padding: 20px;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .structural { background: linear-gradient(135deg, var(--primary-red), var(--primary-dark-red)); }
+        .occupancy { background: linear-gradient(135deg, var(--warning-orange), #e67e22); }
+        .life-safety { background: linear-gradient(135deg, var(--success-green), #1e8449); }
+        .resources { background: linear-gradient(135deg, var(--blue), #2980b9); }
+        .environmental { background: linear-gradient(135deg, var(--purple), #8e44ad); }
+        .time { background: linear-gradient(135deg, var(--teal), #16a085); }
+
+        .assessment-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .assessment-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .assessment-checklist {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        .assessment-indicators {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        /* Matriz de riesgos */
+        .risk-matrix {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .matrix-table th {
+            background: var(--dark-gray);
+            color: var(--white);
+        }
+
+        .risk-low {
+            background: var(--success-green);
+            color: var(--white);
+        }
+
+        .risk-moderate {
+            background: var(--warning-orange);
+            color: var(--white);
+        }
+
+        .risk-high {
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        .risk-extreme {
+            background: var(--danger-red);
+            color: var(--white);
+        }
+
+        /* Señales de peligro */
+        .danger-signals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: var(--danger-red);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #8b0000;
+        }
+
+        .danger-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .danger-signals-list {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .danger-action {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Toma de decisiones */
+        .decision-process {
+            background: var(--yellow);
+            color: var(--dark-gray);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .decision-step {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .step-number {
+            background: var(--primary-red);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        /* Factores críticos */
+        .critical-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .factor-card {
+            background: var(--success-green);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .factor-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .factor-description {
+            font-size: 0.9em;
+        }
+
+        /* Escenarios de evaluación */
+        .evaluation-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .scenario-card {
+            background: var(--blue);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .scenario-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .scenario-evaluation {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .scenario-decision {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Risk vs Benefit */
+        .risk-benefit {
+            background: var(--purple);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .benefit-formula {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .benefit-rules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .benefit-rule {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        /* Punto clave */
+        .key-point {
+            background: linear-gradient(135deg, var(--warning-orange), #e67e22);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: #e74c3c;
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #c0392b;
+        }
+
+        .warning-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .content-section {
+                padding: 15px;
+            }
+
+            .assessment-360,
+            .danger-signals,
+            .critical-factors,
+            .evaluation-scenarios {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .benefit-rules {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.4em;
+            }
+
+            .assessment-icon {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">Inicio</a> > 
+            <a href="../../">Módulos</a> > 
+            <a href="../index.html">Comportamiento del Fuego</a> >
+            Evaluación de Riesgos
+        </div>
+        <h1>⚠️ Evaluación de Riesgos</h1>
+        <p>Análisis sistemático para toma de decisiones seguras</p>
+    </header>
+
+    <div class="container">
+        <!-- Introducción -->
+        <div class="content-section">
+            <h2 class="section-title">🎯 ¿Por qué Evaluar Riesgos?</h2>
+            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+                <p><strong>La evaluación de riesgos es la diferencia entre heroísmo y temeridad.</strong></p>
+                <p>Una evaluación correcta permite:</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>🎯 <strong>Decisiones informadas</strong> basadas en datos reales</li>
+                    <li>🛡️ <strong>Proteger al personal</strong> de peligros innecesarios</li>
+                    <li>⚡ <strong>Optimizar recursos</strong> limitados efectivamente</li>
+                    <li>📊 <strong>Priorizar acciones</strong> según impacto real</li>
+                    <li>🔄 <strong>Adaptarse rápidamente</strong> a cambios en la escena</li>
+                    <li>⚖️ <strong>Balance riesgo vs beneficio</strong> apropiado</li>
+                </ul>
+                <p><strong>📊 Realidad:</strong> 70% de decisiones incorrectas se deben a evaluación deficiente de riesgos.</p>
+            </div>
+        </div>
+
+        <!-- Metodología de evaluación 360° -->
+        <div class="content-section">
+            <h2 class="section-title">🔄 Metodología de Evaluación 360°</h2>
+            
+            <div class="assessment-360">
+                <!-- Factores Estructurales -->
+                <div class="assessment-card structural">
+                    <span class="assessment-icon">🏢</span>
+                    <div class="assessment-title">FACTORES ESTRUCTURALES</div>
+                    <div class="assessment-checklist">
+                        <strong>EVALUAR:</strong><br>
+                        • Tipo de construcción y edad<br>
+                        • Integridad estructural visible<br>
+                        • Sistemas de protección (sprinklers)<br>
+                        • Accesos y salidas disponibles<br>
+                        • Compartimentación
+                    </div>
+                    <div class="assessment-indicators">
+                        <strong>SEÑALES CRÍTICAS:</strong><br>
+                        Grietas, deformaciones, sonidos estructurales
+                    </div>
+                </div>
+
+                <!-- Ocupación -->
+                <div class="assessment-card occupancy">
+                    <span class="assessment-icon">👥</span>
+                    <div class="assessment-title">OCUPACIÓN</div>
+                    <div class="assessment-checklist">
+                        <strong>EVALUAR:</strong><br>
+                        • Número de ocupantes<br>
+                        • Capacidad de autoevacuación<br>
+                        • Ubicación de personas<br>
+                        • Grupos vulnerables (niños, ancianos)<br>
+                        • Densidad ocupacional
+                    </div>
+                    <div class="assessment-indicators">
+                        <strong>PRIORIDADES:</strong><br>
+                        Vida humana > Rescate animal > Propiedad
+                    </div>
+                </div>
+
+                <!-- Seguridad de Vida -->
+                <div class="assessment-card life-safety">
+                    <span class="assessment-icon">🛡️</span>
+                    <div class="assessment-title">SEGURIDAD DE VIDA</div>
+                    <div class="assessment-checklist">
+                        <strong>EVALUAR:</strong><br>
+                        • Rutas de escape disponibles<br>
+                        • Tiempo disponible para evacuación<br>
+                        • Exposición actual de víctimas<br>
+                        • Probabilidad de supervivencia<br>
+                        • Riesgo para rescatistas
+                    </div>
+                    <div class="assessment-indicators">
+                        <strong>FACTOR TIEMPO:</strong><br>
+                        Cada minuto reduce probabilidades de supervivencia
+                    </div>
+                </div>
+
+                <!-- Recursos Disponibles -->
+                <div class="assessment-card resources">
+                    <span class="assessment-icon">🚒</span>
+                    <div class="assessment-title">RECURSOS</div>
+                    <div class="assessment-checklist">
+                        <strong>EVALUAR:</strong><br>
+                        • Personal disponible<br>
+                        • Equipos y herramientas<br>
+                        • Suministro de agua<br>
+                        • Tiempo de respuesta de refuerzos<br>
+                        • Capacidades especializadas
+                    </div>
+                    <div class="assessment-indicators">
+                        <strong>LIMITACIONES:</strong><br>
+                        No intentes lo que no puedes completar
+                    </div>
+                </div>
+
+                <!-- Factores Ambientales -->
+                <div class="assessment-card environmental">
+                    <span class="assessment-icon">🌬️</span>
+                    <div class="assessment-title">AMBIENTE</div>
+                    <div class="assessment-checklist">
+                        <strong>EVALUAR:</strong><br>
+                        • Condiciones meteorológicas<br>
+                        • Dirección y velocidad del viento<br>
+                        • Exposiciones (edificios cercanos)<br>
+                        • Topografía y accesos<br>
+                        • Hora del día/visibilidad
+                    </div>
+                    <div class="assessment-indicators">
+                        <strong>CAMBIOS SÚBITOS:</strong><br>
+                        Viento, clima pueden cambiar el escenario
+                    </div>
+                </div>
+
+                <!-- Factor Tiempo -->
+                <div class="assessment-card time">
+                    <span class="assessment-icon">⏱️</span>
+                    <div class="assessment-title">TIEMPO</div>
+                    <div class="assessment-checklist">
+                        <strong>EVALUAR:</strong><br>
+                        • Tiempo desde inicio del incendio<br>
+                        • Ventana de supervivencia<br>
+                        • Progreso de deterioro<br>
+                        • Tiempo para completar rescate<br>
+                        • Duración de recursos (aire, agua)
+                    </div>
+                    <div class="assessment-indicators">
+                        <strong>REGLA CRÍTICA:</strong><br>
+                        Si no puedes completarlo en tiempo disponible, NO lo intentes
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matriz de riesgos -->
+        <div class="content-section">
+            <h2 class="section-title">📊 Matriz de Riesgos</h2>
+            <div class="risk-matrix">
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>PROBABILIDAD / IMPACTO</th>
+                            <th>Leve</th>
+                            <th>Moderado</th>
+                            <th>Grave</th>
+                            <th>Catastrófico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Muy Probable</strong></td>
+                            <td class="risk-moderate">MODERADO</td>
+                            <td class="risk-high">ALTO</td>
+                            <td class="risk-extreme">EXTREMO</td>
+                            <td class="risk-extreme">EXTREMO</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Probable</strong></td>
+                            <td class="risk-low">BAJO</td>
+                            <td class="risk-moderate">MODERADO</td>
+                            <td class="risk-high">ALTO</td>
+                            <td class="risk-extreme">EXTREMO</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Posible</strong></td>
+                            <td class="risk-low">BAJO</td>
+                            <td class="risk-low">BAJO</td>
+                            <td class="risk-moderate">MODERADO</td>
+                            <td class="risk-high">ALTO</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Improbable</strong></td>
+                            <td class="risk-low">BAJO</td>
+                            <td class="risk-low">BAJO</td>
+                            <td class="risk-low">BAJO</td>
+                            <td class="risk-moderate">MODERADO</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 15px; font-size: 0.9em; color: var(--dark-gray);">
+                    <strong>Guía de acción:</strong> BAJO = Proceder, MODERADO = Precaución, ALTO = Evaluación detallada, EXTREMO = No proceder
+                </p>
+            </div>
+        </div>
+
+        <!-- Señales de peligro crítico -->
+        <div class="content-section">
+            <h2 class="section-title">🚨 Señales de Peligro Crítico</h2>
+            
+            <div class="danger-signals">
+                <div class="danger-card">
+                    <div class="danger-title">🏢 COLAPSO INMINENTE</div>
+                    <div class="danger-signals-list">
+                        <strong>SEÑALES:</strong><br>
+                        • Grietas visibles en muros<br>
+                        • Deformación de vigas<br>
+                        • Sonidos de crujido<br>
+                        • Caída de escombros<br>
+                        • Inclinación de paredes
+                    </div>
+                    <div class="danger-action">
+                        ACCIÓN: EVACUACIÓN INMEDIATA<br>
+                        No hay rescate que valga un bombero muerto
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">💥 FLASHOVER/BACKDRAFT</div>
+                    <div class="danger-signals-list">
+                        <strong>SEÑALES:</strong><br>
+                        • Rollover en el techo<br>
+                        • Humo amarillento por grietas<br>
+                        • Ventanas manchadas de hollín<br>
+                        • Calor extremo súbito<br>
+                        • Presión negativa visible
+                    </div>
+                    <div class="danger-action">
+                        ACCIÓN: RETROCESO INMEDIATO<br>
+                        Ventilación controlada desde exterior
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">☠️ ATMÓSFERA TÓXICA</div>
+                    <div class="danger-signals-list">
+                        <strong>SEÑALES:</strong><br>
+                        • Humo denso negro<br>
+                        • Olor químico penetrante<br>
+                        • Irritación inmediata<br>
+                        • Víctimas inconscientes rápidamente<br>
+                        • Detección de gases peligrosos
+                    </div>
+                    <div class="danger-action">
+                        ACCIÓN: EPRA OBLIGATORIO<br>
+                        Evaluación HAZMAT si es necesario
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">⚡ RIESGO ELÉCTRICO</div>
+                    <div class="danger-signals-list">
+                        <strong>SEÑALES:</strong><br>
+                        • Líneas eléctricas caídas<br>
+                        • Chispas o arcos eléctricos<br>
+                        • Equipos eléctricos energizados<br>
+                        • Agua cerca de electricidad<br>
+                        • Transformadores comprometidos
+                    </div>
+                    <div class="danger-action">
+                        ACCIÓN: CORTAR SUMINISTRO<br>
+                        Coordinar con compañía eléctrica
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proceso de toma de decisiones -->
+        <div class="decision-process">
+            <h3 style="color: var(--primary-red); margin-bottom: 15px;">🧠 Proceso de Toma de Decisiones</h3>
+            
+            <div class="decision-step">
+                <span class="step-number">1</span>
+                <div class="step-title">EVALUACIÓN INICIAL (30 segundos)</div>
+                <div class="step-description">
+                    Observación rápida 360°. Identificar peligros inmediatos, víctimas visibles, recursos disponibles.
+                    <strong>Pregunta clave:</strong> ¿Es seguro proceder?
+                </div>
+            </div>
+
+            <div class="decision-step">
+                <span class="step-number">2</span>
+                <div class="step-title">ANÁLISIS RIESGO VS BENEFICIO (60 segundos)</div>
+                <div class="step-description">
+                    Evaluar probabilidad de éxito vs costo potencial. Considerar vida humana en peligro vs riesgo para rescatistas.
+                    <strong>Pregunta clave:</strong> ¿Vale la pena el riesgo?
+                </div>
+            </div>
+
+            <div class="decision-step">
+                <span class="step-number">3</span>
+                <div class="step-title">PLANIFICACIÓN TÁCTICA (90 segundos)</div>
+                <div class="step-description">
+                    Definir estrategia, asignar recursos, establecer puntos de escape, comunicar plan al equipo.
+                    <strong>Pregunta clave:</strong> ¿Cómo ejecutar de forma más segura?
+                </div>
+            </div>
+
+            <div class="decision-step">
+                <span class="step-number">4</span>
+                <div class="step-title">EJECUCIÓN MONITOREADA</div>
+                <div class="step-description">
+                    Implementar plan con comunicación constante. Monitorear cambios en condiciones.
+                    <strong>Pregunta clave:</strong> ¿Siguen siendo válidas las condiciones iniciales?
+                </div>
+            </div>
+
+            <div class="decision-step">
+                <span class="step-number">5</span>
+                <div class="step-title">REEVALUACIÓN CONTINUA</div>
+                <div class="step-description">
+                    Ajustar tácticas según evolución. Preparado para repliegue si es necesario.
+                    <strong>Pregunta clave:</strong> ¿Cuándo es momento de cambiar o retirarse?
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk vs Benefit Analysis -->
+        <div class="risk-benefit">
+            <h3 style="margin-bottom: 15px;">⚖️ Análisis Riesgo vs Beneficio</h3>
+            <div class="benefit-formula">
+                RIESGO ACEPTABLE = Vidas a salvar / (Probabilidad de éxito × Riesgo para rescatistas)
+            </div>
+            <div class="benefit-rules">
+                <div class="benefit-rule">
+                    VIDA EN PELIGRO<br>
+                    = RIESGO CALCULADO
+                </div>
+                <div class="benefit-rule">
+                    PROPIEDAD SOLAMENTE<br>
+                    = RIESGO MÍNIMO
+                </div>
+                <div class="benefit-rule">
+                    VÍCTIMA MUERTA<br>
+                    = NO RIESGO
+                </div>
+                <div class="benefit-rule">
+                    COLAPSO INMINENTE<br>
+                    = NO RIESGO
+                </div>
+            </div>
+            <p style="font-size: 0.9em; margin-top: 15px;">
+                <strong>Regla de Oro:</strong> No se justifica poner en riesgo la vida de bomberos para salvar propiedades o víctimas ya fallecidas.
+            </p>
+        </div>
+
+        <!-- Escenarios de evaluación -->
+        <div class="content-section">
+            <h2 class="section-title">🎭 Escenarios de Evaluación</h2>
+            
+            <div class="evaluation-scenarios">
+                <div class="scenario-card">
+                    <div class="scenario-title">🏠 CASA RESIDENCIAL - 2 AM</div>
+                    <div class="scenario-evaluation">
+                        <strong>SITUACIÓN:</strong> Familia dormida, fuego en primer piso, escalera comprometida, humo denso.<br><br>
+                        <strong>EVALUACIÓN:</strong><br>
+                        • Vidas probablemente en peligro: ALTO<br>
+                        • Tiempo disponible: LIMITADO<br>
+                        • Acceso alternativo: Escala a ventanas<br>
+                        • Riesgo estructural: MODERADO
+                    </div>
+                    <div class="scenario-decision">
+                        <strong>DECISIÓN:</strong> RESCATE AGRESIVO<br>
+                        Ataque rápido + escala simultánea
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <div class="scenario-title">🏢 EDIFICIO COMERCIAL - NOCHE</div>
+                    <div class="scenario-evaluation">
+                        <strong>SITUACIÓN:</strong> Edificio vacío, fuego avanzado, estructura de 40 años, no hay víctimas confirmadas.<br><br>
+                        <strong>EVALUACIÓN:</strong><br>
+                        • Vidas en peligro: NINGUNA<br>
+                        • Riesgo estructural: ALTO<br>
+                        • Beneficio: Solo propiedad<br>
+                        • Recursos: Limitados
+                    </div>
+                    <div class="scenario-decision">
+                        <strong>DECISIÓN:</strong> ATAQUE DEFENSIVO<br>
+                        Proteger exposiciones, no entrar
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <div class="scenario-title">🚗 ACCIDENTE CON FUEGO</div>
+                    <div class="scenario-evaluation">
+                        <strong>SITUACIÓN:</strong> Víctima atrapada consciente, fuego en motor, tanque de combustible cerca.<br><br>
+                        <strong>EVALUACIÓN:</strong><br>
+                        • Vida en peligro inmediato: SÍ<br>
+                        • Tiempo crítico: < 5 minutos<br>
+                        • Riesgo de explosión: POSIBLE<br>
+                        • Probabilidad de éxito: ALTA
+                    </div>
+                    <div class="scenario-decision">
+                        <strong>DECISIÓN:</strong> RESCATE INMEDIATO<br>
+                        Extinción + excarcelación simultánea
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <div class="scenario-title">🏭 EMERGENCIA INDUSTRIAL</div>
+                    <div class="scenario-evaluation">
+                        <strong>SITUACIÓN:</strong> Planta química, posibles materiales peligrosos, personal evacuado, fuego controlado.<br><br>
+                        <strong>EVALUACIÓN:</strong><br>
+                        • Vidas en peligro: NINGUNA<br>
+                        • Riesgo químico: DESCONOCIDO<br>
+                        • Especialización requerida: SÍ<br>
+                        • Información limitada: CRÍTICO
+                    </div>
+                    <div class="scenario-decision">
+                        <strong>DECISIÓN:</strong> ESPERAR HAZMAT<br>
+                        Perímetro seguro hasta evaluación
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Factores críticos de decisión -->
+        <div class="content-section">
+            <h2 class="section-title">⚡ Factores Críticos de Decisión</h2>
+            
+            <div class="critical-factors">
+                <div class="factor-card">
+                    <div class="factor-title">VIDA HUMANA</div>
+                    <div class="factor-description">
+                        Prioridad absoluta. Justifica riesgos calculados pero nunca riesgos suicidas.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">TIEMPO DISPONIBLE</div>
+                    <div class="factor-description">
+                        Ventana de supervivencia vs tiempo requerido para completar operación.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">PROBABILIDAD DE ÉXITO</div>
+                    <div class="factor-description">
+                        Evaluación realista de capacidades vs complejidad de la tarea.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">RECURSOS DISPONIBLES</div>
+                    <div class="factor-description">
+                        Personal, equipos, agua, tiempo. No intentar sin recursos suficientes.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">INTEGRIDAD ESTRUCTURAL</div>
+                    <div class="factor-description">
+                        Condición del edificio. Colapso inminente = evacuación inmediata.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">EVOLUCIÓN DEL INCIDENTE</div>
+                    <div class="factor-description">
+                        Tendencia: ¿mejora, se mantiene o empeora? Actuar en consecuencia.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">EXPERIENCIA DEL EQUIPO</div>
+                    <div class="factor-description">
+                        Nivel de entrenamiento y experiencia disponible para la operación.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">PLAN DE ESCAPE</div>
+                    <div class="factor-description">
+                        Siempre tener ruta de repliegue clara antes de comprometerse.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warning crítico -->
+        <div class="warning-box">
+            <div class="warning-title">⚖️ PRINCIPIO FUNDAMENTAL</div>
+            <p><strong>Nunca arriesgues la vida de bomberos para salvar propiedades.</strong></p>
+            <p>La evaluación de riesgos debe ser OBJETIVA, no emocional. Un bombero muerto no puede salvar a nadie más.</p>
+        </div>
+
+        <!-- Punto clave -->
+        <div class="key-point">
+            🎯 REGLA DE ORO: Si la evaluación inicial dice "NO", entonces es NO. No dejes que la presión o emoción nuble el juicio profesional.
+        </div>
+
+        <!-- Para recordar en campo -->
+        <div class="content-section">
+            <h2 class="section-title">🎯 Para Recordar en Campo</h2>
+            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+                <p><strong>✅ Evaluación rápida (primeros 2 minutos):</strong></p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li><strong>¿Hay vidas en peligro confirmadas?</strong> - Prioridad #1</li>
+                    <li><strong>¿Cuánto tiempo tengo?</strong> - Ventana de supervivencia</li>
+                    <li><strong>¿Puedo completar la misión?</strong> - Recursos vs complejidad</li>
+                    <li><strong>¿Cuál es mi ruta de escape?</strong> - Plan B siempre</li>
+                </ul>
+                <p><strong>🚨 Señales de STOP inmediato:</strong></p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li><strong>Colapso inminente</strong> - Sonidos, grietas, deformaciones</li>
+                    <li><strong>Flashover/Backdraft</strong> - Rollover, humo amarillo, presión</li>
+                    <li><strong>Sin víctimas confirmadas</strong> + <strong>Alto riesgo</strong> = NO entrar</li>
+                    <li><strong>Recursos insuficientes</strong> - No improvisar en emergencias</li>
+                </ul>
+                <p><strong>🔄 Reevalúa cada 3-5 minutos:</strong> Las condiciones cambian constantemente.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos y Materiales - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-blue: #3498db;
+            --primary-dark-blue: #2980b9;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --dark-gray: #2c3e50;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark-blue) 100%);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.8em;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Grid más compacto */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .module-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-card.planned {
+            border-left-color: #95a5a6;
+        }
+
+        .module-header {
+            margin-bottom: 10px;
+        }
+
+        .module-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .module-status {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .status-available {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .status-planned {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .module-title {
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+        }
+
+        .module-description {
+            color: #666;
+            line-height: 1.2;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .module-features {
+            list-style: none;
+            font-size: 0.75em;
+            color: #777;
+        }
+
+        .module-features li {
+            padding: 2px 0;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .module-features li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* Estadísticas compactas */
+        .stats {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 30px 0 20px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.7em;
+            margin-top: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .module-card {
+                padding: 12px;
+            }
+
+            .module-title {
+                font-size: 0.9em;
+            }
+
+            .module-description {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .module-card {
+                padding: 10px;
+            }
+
+            .module-icon {
+                font-size: 1.5em;
+            }
+
+            .header h1 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">Inicio</a> > 
+            <a href="../">Módulos</a> > 
+            Equipos y Materiales
+        </div>
+        <h1>🛠️ Equipos y Materiales</h1>
+        <p>Herramientas y equipos especializados de bomberos</p>
+    </header>
+
+    <div class="container">
+        <!-- Grid compacto de módulos -->
+        <div class="modules-grid">
+            <!-- Mangas, Pitones y Accesorios -->
+            <a href="mangas-pitones/index.html" class="module-card planned" onclick="showComingSoon('Mangas, Pitones y Accesorios')">
+                <div class="module-header">
+                    <span class="module-icon">🔗</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Mangas, Pitones y Accesorios</h3>
+                <p class="module-description">Tipos, mantenimiento y técnicas</p>
+                <ul class="module-features">
+                    <li>Tipos de mangas y acoples</li>
+                    <li>Pitones y boquillas</li>
+                    <li>Técnicas de despliegue</li>
+                </ul>
+            </a>
+
+            <!-- Abastecimiento -->
+            <a href="abastecimiento/index.html" class="module-card planned" onclick="showComingSoon('Abastecimiento')">
+                <div class="module-header">
+                    <span class="module-icon">🚰</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Abastecimiento</h3>
+                <p class="module-description">Fuentes de agua y sistemas</p>
+                <ul class="module-features">
+                    <li>Fuentes de agua</li>
+                    <li>Sistemas de abastecimiento</li>
+                    <li>Cálculos hidráulicos</li>
+                </ul>
+            </a>
+
+            <!-- Chorros de Agua -->
+            <a href="chorros-agua/index.html" class="module-card planned" onclick="showComingSoon('Chorros de Agua')">
+                <div class="module-header">
+                    <span class="module-icon">💧</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Chorros de Agua</h3>
+                <p class="module-description">Tipos y técnicas de aplicación</p>
+                <ul class="module-features">
+                    <li>Chorros sólidos y pulverizados</li>
+                    <li>Alcances y aplicaciones</li>
+                    <li>Técnicas de ataque</li>
+                </ul>
+            </a>
+
+            <!-- Espuma -->
+            <a href="espuma/index.html" class="module-card planned" onclick="showComingSoon('Espuma')">
+                <div class="module-header">
+                    <span class="module-icon">🧽</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Espuma</h3>
+                <p class="module-description">Generadores y aplicación</p>
+                <ul class="module-features">
+                    <li>Tipos de espuma</li>
+                    <li>Equipos generadores</li>
+                    <li>Técnicas de aplicación</li>
+                </ul>
+            </a>
+
+            <!-- Escalas -->
+            <a href="escalas/index.html" class="module-card planned" onclick="showComingSoon('Escalas')">
+                <div class="module-header">
+                    <span class="module-icon">🪜</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Escalas</h3>
+                <p class="module-description">Tipos y técnicas de posicionamiento</p>
+                <ul class="module-features">
+                    <li>Escalas extensibles y ganchos</li>
+                    <li>Técnicas de posicionamiento</li>
+                    <li>Seguridad en altura</li>
+                </ul>
+            </a>
+
+            <!-- Cuerdas, Nudos y Amarres -->
+            <a href="cuerdas-nudos/index.html" class="module-card planned" onclick="showComingSoon('Cuerdas, Nudos y Amarres')">
+                <div class="module-header">
+                    <span class="module-icon">🪢</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Cuerdas, Nudos y Amarres</h3>
+                <p class="module-description">Nudos especializados y anclajes</p>
+                <ul class="module-features">
+                    <li>Tipos de cuerdas</li>
+                    <li>Nudos especializados</li>
+                    <li>Sistemas de anclaje</li>
+                </ul>
+            </a>
+
+            <!-- Equipos de Protección Personal -->
+            <a href="epp/index.html" class="module-card planned" onclick="showComingSoon('Equipos de Protección Personal')">
+                <div class="module-header">
+                    <span class="module-icon">🦺</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Equipos Protección Personal</h3>
+                <p class="module-description">EPP estructural y forestal</p>
+                <ul class="module-features">
+                    <li>Equipos estructurales</li>
+                    <li>Equipos forestales</li>
+                    <li>Mantenimiento e inspección</li>
+                </ul>
+            </a>
+
+            <!-- Equipos de Protección Respiratoria -->
+            <a href="epra/index.html" class="module-card planned" onclick="showComingSoon('Equipos de Protección Respiratoria')">
+                <div class="module-header">
+                    <span class="module-icon">🎭</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Protección Respiratoria</h3>
+                <p class="module-description">EPRA y procedimientos de uso</p>
+                <ul class="module-features">
+                    <li>Tipos de equipos</li>
+                    <li>Procedimientos de uso</li>
+                    <li>Mantenimiento</li>
+                </ul>
+            </a>
+
+            <!-- Herramientas de Rescate -->
+            <a href="herramientas-rescate/index.html" class="module-card planned" onclick="showComingSoon('Herramientas de Rescate')">
+                <div class="module-header">
+                    <span class="module-icon">🔧</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Herramientas de Rescate</h3>
+                <p class="module-description">Hidráulicas y manuales</p>
+                <ul class="module-features">
+                    <li>Herramientas hidráulicas</li>
+                    <li>Herramientas manuales</li>
+                    <li>Equipos de corte</li>
+                </ul>
+            </a>
+
+            <!-- Equipos Eléctricos -->
+            <a href="equipos-electricos/index.html" class="module-card planned" onclick="showComingSoon('Equipos Eléctricos')">
+                <div class="module-header">
+                    <span class="module-icon">⚡</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Equipos Eléctricos</h3>
+                <p class="module-description">Generadores y motobombas</p>
+                <ul class="module-features">
+                    <li>Generadores y plantas de luz</li>
+                    <li>Motobombas</li>
+                    <li>Ventiladores</li>
+                </ul>
+            </a>
+
+            <!-- Comunicaciones -->
+            <a href="comunicaciones/index.html" class="module-card planned" onclick="showComingSoon('Comunicaciones')">
+                <div class="module-header">
+                    <span class="module-icon">📡</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Comunicaciones</h3>
+                <p class="module-description">Equipos de radio y protocolos</p>
+                <ul class="module-features">
+                    <li>Equipos de radio</li>
+                    <li>Protocolos de comunicación</li>
+                    <li>Mantenimiento básico</li>
+                </ul>
+            </a>
+
+            <!-- Vehículos y Autobombas -->
+            <a href="vehiculos-autobombas/index.html" class="module-card planned" onclick="showComingSoon('Vehículos y Autobombas')">
+                <div class="module-header">
+                    <span class="module-icon">🚛</span>
+                    <div class="module-status status-planned">Planificado</div>
+                </div>
+                <h3 class="module-title">Vehículos y Autobombas</h3>
+                <p class="module-description">Tipos y equipamiento</p>
+                <ul class="module-features">
+                    <li>Tipos de vehículos</li>
+                    <li>Equipamiento básico</li>
+                    <li>Inspección diaria</li>
+                </ul>
+            </a>
+        </div>
+
+        <!-- Estadísticas al final -->
+        <div class="stats">
+            <div>
+                <div class="stat-number">12</div>
+                <div class="stat-label">Submódulos</div>
+            </div>
+            <div>
+                <div class="stat-number">0</div>
+                <div class="stat-label">Disponibles</div>
+            </div>
+            <div>
+                <div class="stat-number">12</div>
+                <div class="stat-label">Planificados</div>
+            </div>
+            <div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Estructurado</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showComingSoon(moduleName) {
+            alert(`🚧 ${moduleName}\n\nEn desarrollo - Próximamente disponible\n\nEste módulo formará parte del sistema completo de Equipos y Materiales`);
+        }
+    </script>
+</body>
+</html>
