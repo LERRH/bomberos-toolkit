@@ -9,584 +9,10 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#e74c3c">
     <style>
-        /* Variables CSS */
-        :root {
-            --primary-red: #e74c3c;
-            --primary-dark-red: #c0392b;
-            --secondary-blue: #3498db;
-            --success-green: #27ae60;
-            --warning-orange: #f39c12;
-            --dark-gray: #2c3e50;
-            --light-gray: #ecf0f1;
-            --white: #ffffff;
-            --gradient-primary: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
-            --gradient-background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --spacing-xs: 5px;
-            --spacing-sm: 10px;
-            --spacing-md: 20px;
-            --spacing-lg: 30px;
-            --spacing-xl: 40px;
-            --border-radius-sm: 8px;
-            --border-radius-md: 15px;
-            --border-radius-lg: 20px;
-            --border-radius-xl: 25px;
-            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
-            --transition-fast: 0.2s ease;
-            --transition-normal: 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family);
-            color: var(--dark-gray);
-            background: var(--gradient-background);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-
-        /* Header */
-        .main-header {
-            background: var(--gradient-primary);
-            color: var(--white);
-            padding: var(--spacing-md) 0;
-            box-shadow: var(--shadow-lg);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-
-        .logo-section {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .main-title {
-            font-size: 2.2rem;
-            font-weight: bold;
-            margin-bottom: var(--spacing-xs);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .main-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        .main-nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: var(--spacing-sm);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: var(--spacing-lg);
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-menu a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition-normal);
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--border-radius-sm);
-        }
-
-        .nav-menu a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Búsqueda */
-        .search-section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: var(--spacing-md);
-            margin: var(--spacing-md);
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-md);
-            backdrop-filter: blur(10px);
-            transform: translateY(-10px);
-        }
-
-        .search-container {
-            display: flex;
-            max-width: 600px;
-            margin: 0 auto;
-            gap: var(--spacing-sm);
-        }
-
-        .search-input {
-            flex: 1;
-            padding: var(--spacing-md);
-            border: 2px solid #ddd;
-            border-radius: var(--border-radius-xl);
-            font-size: 1rem;
-            transition: var(--transition-normal);
-            background: var(--white);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-red);
-            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
-        }
-
-        .search-btn {
-            background: var(--primary-red);
-            color: var(--white);
-            border: none;
-            padding: var(--spacing-md) var(--spacing-lg);
-            border-radius: var(--border-radius-xl);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-            white-space: nowrap;
-        }
-
-        .search-btn:hover {
-            background: var(--primary-dark-red);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Secciones */
-        .section-title {
-            font-size: 2rem;
-            color: var(--white);
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .herramientas-rapidas {
-            padding: var(--spacing-xl) 0;
-        }
-
-        .herramientas-section {
-            margin-bottom: 30px;
-        }
-
-        .subsection-title {
-            color: var(--white);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            padding-left: 10px;
-            border-left: 4px solid var(--primary-red);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .herramientas-grid.compact {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .herramienta-card {
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
-
-        .herramienta-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .herramienta-card.external {
-            border: 2px solid var(--secondary-blue);
-            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
-        }
-
-        .herramienta-card.external:hover {
-            border-color: #2980b9;
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
-        }
-
-        .tool-icon {
-            font-size: 2em;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .tool-title {
-            font-size: 1em;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--dark-gray);
-        }
-
-        .tool-description {
-            font-size: 0.85em;
-            color: #666;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        .tool-status {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: bold;
-        }
-
-        .tool-status.ready {
-            background: var(--success-green);
-            color: white;
-        }
-
-        .tool-status.external {
-            background: var(--secondary-blue);
-            color: white;
-        }
-
-        /* Módulos - Más compactos */
-        .modulos-ensenanza {
-            padding: var(--spacing-xl) 0;
-            margin-top: var(--spacing-lg);
-        }
-
-        .modulos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: var(--spacing-lg);
-        }
-
-        .modulo-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            padding: 15px;
-            cursor: pointer;
-            transition: var(--transition-normal);
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: center;
-            position: relative;
-        }
-
-        .modulo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .module-icon {
-            font-size: 2em;
-            margin-bottom: 8px;
-            display: block;
-            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
-        }
-
-        .module-title {
-            font-size: 1em;
-            font-weight: bold;
-            color: var(--dark-gray);
-            margin-bottom: 5px;
-        }
-
-        .module-description {
-            color: #666;
-            margin-bottom: 10px;
-            line-height: 1.2;
-            font-size: 0.85em;
-        }
-
-        .module-topics {
-            display: none; /* Ocultar para hacer más compacto */
-        }
-
-        .module-status {
-            position: static;
-            display: block;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 8px;
-        }
-
-        .module-status.ready {
-            background: var(--success-green);
-            color: var(--white);
-        }
-
-        .module-status.in-development {
-            background: var(--warning-orange);
-            color: var(--white);
-        }
-
-        .module-status.planned {
-            background: #95a5a6;
-            color: var(--white);
-        }
-
-        /* Estadísticas */
-        .stats-section {
-            background: rgba(255, 255, 255, 0.95);
-            margin: var(--spacing-xl) var(--spacing-md);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-md);
-            backdrop-filter: blur(10px);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: var(--spacing-lg);
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: var(--spacing-md);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-red);
-            display: block;
-            line-height: 1;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: var(--spacing-xs);
-        }
-
-        /* Footer */
-        .main-footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: var(--white);
-            text-align: center;
-            padding: var(--spacing-xl) 0;
-            margin-top: var(--spacing-xl);
-            backdrop-filter: blur(10px);
-        }
-
-        .footer-content p {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-lg);
-            margin: var(--spacing-md) 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #ecf0f1;
-            text-decoration: none;
-            transition: var(--transition-normal);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-red);
-        }
-
-        .footer-version {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Botón flotante */
-        .floating-help {
-            position: fixed;
-            bottom: var(--spacing-lg);
-            right: var(--spacing-lg);
-            background: var(--primary-red);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-normal);
-            z-index: 1000;
-        }
-
-        .floating-help:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Loading */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 9999;
-            backdrop-filter: blur(5px);
-        }
-
-        .loading-overlay.show {
-            display: flex;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-red);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin-bottom: var(--spacing-md);
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-overlay p {
-            color: var(--white);
-            font-size: 1.1rem;
-        }
-
-        /* Responsive */
-        @media (min-width: 768px) {
-            .logo-icon {
-                width: 35px;
-                height: 35px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .main-title {
-                font-size: 1.6rem;
-            }
-            
-            .main-subtitle {
-                font-size: 0.85rem;
-            }
-            
-            .logo-icon {
-                width: 32px;
-                height: 32px;
-            }
-            
-            .logo-section {
-                gap: var(--spacing-sm);
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--primary-red);
-                flex-direction: column;
-                padding: var(--spacing-md);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                box-shadow: var(--shadow-lg);
-            }
-
-            .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .search-container {
-                flex-direction: column;
-            }
-
-            .herramientas-grid.compact {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .modulos-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .subsection-title {
-                font-size: 1.2rem;
-            }
-        }
+        :root{--primary-red:#e74c3c;--primary-dark-red:#c0392b;--secondary-blue:#3498db;--success-green:#27ae60;--warning-orange:#f39c12;--dark-gray:#2c3e50;--white:#fff;--font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;--spacing-sm:10px;--spacing-md:20px;--spacing-lg:30px;--spacing-xl:40px;--radius-sm:8px;--radius-md:15px;--radius-xl:25px;--shadow-sm:0 2px 10px rgba(0,0,0,.1);--shadow-md:0 5px 20px rgba(0,0,0,.15);--shadow-lg:0 10px 30px rgba(0,0,0,.2)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--font-family);color:var(--dark-gray);background:linear-gradient(135deg,#1e3c72 0%,#2a5298 50%,#1e3c72 100%);min-height:100vh;overflow-x:hidden}.container{max-width:1200px;margin:0 auto;padding:0 var(--spacing-md)}.main-header{background:linear-gradient(135deg,var(--primary-red) 0%,var(--primary-dark-red) 100%);color:var(--white);padding:var(--spacing-md) 0;box-shadow:var(--shadow-lg);position:sticky;top:0;z-index:100}.header-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 var(--spacing-md)}.logo-section{flex:1;display:flex;align-items:center;gap:var(--spacing-md)}.logo-icon{width:40px;height:40px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,.3))}.logo-text{display:flex;flex-direction:column}.main-title{font-size:2.2rem;font-weight:700;margin-bottom:5px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}.main-subtitle{font-size:1rem;opacity:.9;font-weight:400}.main-nav{display:flex;align-items:center}.nav-toggle{display:none;background:0 0;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:var(--spacing-sm)}.nav-menu{display:flex;list-style:none;gap:var(--spacing-lg);margin:0;padding:0}.nav-menu a{color:var(--white);text-decoration:none;font-weight:500;transition:.3s;padding:var(--spacing-sm) var(--spacing-md);border-radius:var(--radius-sm)}.nav-menu a:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}.herramientas-rapidas{padding:var(--spacing-md) 0}.subsection-title{color:var(--white);font-size:1.5rem;margin:var(--spacing-md) 0;padding:var(--spacing-md);padding-left:var(--spacing-md);border-left:5px solid var(--primary-red);text-shadow:1px 1px 2px rgba(0,0,0,.3);background:rgba(0,0,0,.2);border-radius:var(--radius-sm)}.herramientas-grid.compact{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px}.herramienta-card{padding:15px;text-align:center;border-radius:10px;background:rgba(255,255,255,.95);box-shadow:var(--shadow-sm);transition:all .3s ease;cursor:pointer;backdrop-filter:blur(10px)}.herramienta-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}.herramienta-card.external{border:2px solid var(--secondary-blue);background:linear-gradient(135deg,#fff 0%,#f8f9ff 100%)}.herramienta-card.external:hover{border-color:#2980b9;background:linear-gradient(135deg,#f8f9ff 0%,#e8f0ff 100%)}.tool-icon{font-size:2em;margin-bottom:8px;display:block}.tool-title{font-size:1em;font-weight:700;margin-bottom:5px;color:var(--dark-gray)}.tool-description{font-size:.85em;color:#666;margin-bottom:10px;line-height:1.2}.tool-status{padding:4px 8px;border-radius:12px;font-size:.7em;font-weight:700}.tool-status.ready{background:var(--success-green);color:#fff}.tool-status.external{background:var(--secondary-blue);color:#fff}.modulos-ensenanza{padding:var(--spacing-xl) 0;margin-top:var(--spacing-lg)}.modulos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;margin-top:var(--spacing-lg)}.modulo-card{background:rgba(255,255,255,.95);border-radius:10px;padding:15px;cursor:pointer;transition:.3s ease;box-shadow:var(--shadow-sm);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);text-align:center;position:relative}.modulo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}.module-icon{font-size:2em;margin-bottom:8px;display:block;filter:drop-shadow(1px 1px 2px rgba(0,0,0,.1))}.module-title{font-size:1em;font-weight:700;color:var(--dark-gray);margin-bottom:5px}.module-description{color:#666;margin-bottom:10px;line-height:1.2;font-size:.85em}.module-topics{display:none}.module-status{position:static;display:block;padding:4px 8px;border-radius:12px;font-size:.7em;font-weight:700;text-transform:uppercase;margin-top:8px}.module-status.ready{background:var(--success-green);color:var(--white)}.module-status.in-development{background:var(--warning-orange);color:var(--white)}.module-status.planned{background:#95a5a6;color:var(--white)}.stats-section{background:rgba(255,255,255,.95);margin:var(--spacing-xl) var(--spacing-md);padding:var(--spacing-lg);border-radius:var(--radius-md);box-shadow:var(--shadow-md);backdrop-filter:blur(10px)}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--spacing-lg);text-align:center}.stat-item{padding:var(--spacing-md)}.stat-number{font-size:2.5rem;font-weight:700;color:var(--primary-red);display:block;line-height:1}.stat-label{color:#666;font-size:.9rem;margin-top:var(--spacing-xs)}.main-footer{background:rgba(0,0,0,.8);color:var(--white);text-align:center;padding:var(--spacing-xl) 0;margin-top:var(--spacing-xl);backdrop-filter:blur(10px)}.footer-content p{margin-bottom:var(--spacing-sm)}.footer-links{display:flex;justify-content:center;gap:var(--spacing-lg);margin:var(--spacing-md) 0;flex-wrap:wrap}.footer-links a{color:#ecf0f1;text-decoration:none;transition:.3s ease}.footer-links a:hover{color:var(--primary-red)}.footer-version{font-size:.9rem;opacity:.7}.floating-help{position:fixed;bottom:var(--spacing-lg);right:var(--spacing-lg);background:var(--primary-red);color:var(--white);border:none;border-radius:50%;width:60px;height:60px;font-size:24px;cursor:pointer;box-shadow:var(--shadow-md);transition:.3s ease;z-index:1000}.floating-help:hover{transform:scale(1.1) rotate(15deg);box-shadow:var(--shadow-lg)}.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;justify-content:center;align-items:center;flex-direction:column;z-index:9999;backdrop-filter:blur(5px)}.loading-overlay.show{display:flex}.spinner{border:4px solid #f3f3f3;border-top:4px solid var(--primary-red);border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite;margin-bottom:var(--spacing-md)}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.loading-overlay p{color:var(--white);font-size:1.1rem}@media (min-width:768px){.logo-icon{width:35px;height:35px}}@media (max-width:767px){.main-title{font-size:1.6rem}.main-subtitle{font-size:.85rem}.logo-icon{width:32px;height:32px}.logo-section{gap:var(--spacing-sm)}.nav-toggle{display:block}.nav-menu{position:absolute;top:100%;left:0;width:100%;background:var(--primary-red);flex-direction:column;padding:var(--spacing-md);transform:translateY(-100%);opacity:0;visibility:hidden;transition:all .3s ease;box-shadow:var(--shadow-lg)}.nav-menu.active{transform:translateY(0);opacity:1;visibility:visible}.search-container{flex-direction:column}.herramientas-grid.compact,.modulos-grid{grid-template-columns:repeat(2,1fr);gap:10px}.stats-grid{grid-template-columns:repeat(2,1fr)}.subsection-title{font-size:1.2rem}}
     </style>
 </head>
 <body>
-    <!-- Header Principal -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo-section">
@@ -599,118 +25,92 @@
             <nav class="main-nav">
                 <button class="nav-toggle" id="navToggle">☰</button>
                 <ul class="nav-menu" id="navMenu">
+                    <li><a href="#enlaces">Enlaces</a></li>
                     <li><a href="#herramientas">Herramientas</a></li>
-                    <li><a href="#modulos">Módulos</a></li>
-                    <li><a href="#about">Acerca de</a></li>
+                    <li><a href="#conocimiento">Conocimiento</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Herramientas de Acceso Rápido -->
-    <section class="herramientas-rapidas" id="herramientas">
+    <section class="herramientas-rapidas" id="enlaces">
         <div class="container">
-            <h2 class="section-title">🔧 Herramientas de Acceso Rápido</h2>
-            
-            <!-- Enlaces Externos -->
-            <div class="herramientas-section">
-                <h3 class="subsection-title">Enlaces de Servicio</h3>
-                <div class="herramientas-grid compact external">
-                    <!-- Emergencias 24h -->
+            <h3 class="subsection-title">Enlaces de Servicio</h3>
+            <div class="herramientas-grid compact external">
                     <div class="herramienta-card external" onclick="openExternalTool('https://sgonorte.bomberosperu.gob.pe/24horas')">
                         <div class="tool-icon">🚨</div>
                         <h4 class="tool-title">Emergencias 24h</h4>
                         <p class="tool-description">Sistema en línea</p>
                         <div class="tool-status external">ENLACE EXTERNO</div>
                     </div>
-
-                    <!-- Unidades en Servicio -->
                     <div class="herramienta-card external" onclick="openExternalTool('https://www.bomberosperu.gob.pe/sgo/ceem/SGO_CEEM_CDVehiculos.asp')">
                         <div class="tool-icon">🚛</div>
                         <h4 class="tool-title">Unidades</h4>
                         <p class="tool-description">Vehículos en servicio</p>
                         <div class="tool-status external">ENLACE EXTERNO</div>
                     </div>
-
-                    <!-- Verificar SIS -->
                     <div class="herramienta-card external" onclick="openExternalTool('https://cel.sis.gob.pe/SisConsultaEnLinea')">
                         <div class="tool-icon">🏥</div>
                         <h4 class="tool-title">Verificar SIS</h4>
                         <p class="tool-description">Consulta afiliación</p>
                         <div class="tool-status external">ENLACE EXTERNO</div>
                     </div>
-
-                    <!-- Verificar EsSalud -->
                     <div class="herramienta-card external" onclick="openExternalTool('https://dondemeatiendo.essalud.gob.pe/#/consulta')">
                         <div class="tool-icon">⚕️</div>
                         <h4 class="tool-title">Verificar EsSalud</h4>
                         <p class="tool-description">Dónde me atienden</p>
                         <div class="tool-status external">ENLACE EXTERNO</div>
                     </div>
-
-                    <!-- Consulta Vehicular -->
                     <div class="herramienta-card external" onclick="openExternalTool('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio')">
                         <div class="tool-icon">🚗</div>
                         <h4 class="tool-title">Consulta Vehicular</h4>
                         <p class="tool-description">SUNARP consulta</p>
                         <div class="tool-status external">ENLACE EXTERNO</div>
                     </div>
-
-                    <!-- Consulta SOAT -->
                     <div class="herramienta-card external" onclick="openExternalTool('https://www.interseguro.pe/soat/consulta-soat')">
                         <div class="tool-icon">🛡️</div>
                         <h4 class="tool-title">Consulta SOAT</h4>
                         <p class="tool-description">Verificar seguro</p>
                         <div class="tool-status external">ENLACE EXTERNO</div>
                     </div>
-                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Herramientas Principales -->
-            <div class="herramientas-section">
-                <h3 class="subsection-title">Herramientas Principales</h3>
-                <div class="herramientas-grid compact">
-                    <!-- Claves Bomberos -->
+    <section class="herramientas-rapidas" id="herramientas">
+        <div class="container">
+            <h3 class="subsection-title">Herramientas</h3>
+            <div class="herramientas-grid compact">
                     <div class="herramienta-card" data-tool="claves" onclick="openTool('claves')">
                         <div class="tool-icon">📻</div>
                         <h4 class="tool-title">Claves de Comunicación</h4>
                         <p class="tool-description">Códigos de radio bomberos</p>
                         <div class="tool-status ready">DISPONIBLE</div>
                     </div>
-
-                    <!-- Timer RCP -->
                     <div class="herramienta-card" data-tool="rcp-timer" onclick="openTool('rcp-timer')">
                         <div class="tool-icon">⏱️</div>
                         <h4 class="tool-title">Timer RCP</h4>
                         <p class="tool-description">Cronómetro reanimación</p>
                         <div class="tool-status ready">DISPONIBLE</div>
                     </div>
-
-                    <!-- Escala de Glasgow -->
                     <div class="herramienta-card" data-tool="glasgow" onclick="openTool('glasgow')">
                         <div class="tool-icon">🧠</div>
                         <h4 class="tool-title">Escala Glasgow</h4>
                         <p class="tool-description">Nivel de consciencia</p>
                         <div class="tool-status ready">DISPONIBLE</div>
                     </div>
-
-                    <!-- NUEVO: Signos Vitales -->
                     <div class="herramienta-card" data-tool="signos-vitales" onclick="openTool('signos-vitales')">
                         <div class="tool-icon">🩺</div>
                         <h4 class="tool-title">Signos Vitales</h4>
                         <p class="tool-description">Tablas por grupo de edad</p>
                         <div class="tool-status ready">DISPONIBLE</div>
                     </div>
-
-                    <!-- Conversor de Unidades -->
                     <div class="herramienta-card" data-tool="conversor" onclick="openTool('conversor')">
                         <div class="tool-icon">🔄</div>
                         <h4 class="tool-title">Conversor</h4>
                         <p class="tool-description">Unidades y medidas</p>
                         <div class="tool-status ready">DISPONIBLE</div>
                     </div>
-
-                    <!-- Centros Médicos -->
                     <div class="herramienta-card" data-tool="centros-medicos" onclick="openTool('centros-medicos')">
                         <div class="tool-icon">🏥</div>
                         <h4 class="tool-title">Centros Médicos</h4>
@@ -722,120 +122,44 @@
         </div>
     </section>
 
-    <!-- Módulos de Enseñanza -->
-    <section class="modulos-ensenanza" id="modulos">
+    <section class="modulos-ensenanza" id="conocimiento">
         <div class="container">
-            <h2 class="section-title">📚 Módulos de Conocimiento</h2>
+            <h3 class="subsection-title">Conocimiento</h3>
             <div class="modulos-grid">
-                <!-- Atención Prehospitalaria -->
                 <div class="modulo-card" data-module="atencion-prehospitalaria" onclick="openModule('atencion-prehospitalaria')">
                     <div class="module-icon">🚑</div>
                     <h3 class="module-title">Atención Prehospitalaria</h3>
                     <p class="module-description">Protocolos médicos de emergencia y primeros auxilios</p>
-                    <div class="module-topics">
-                        <span class="topic-tag">Evaluación Primaria</span>
-                        <span class="topic-tag">Evaluación Secundaria</span>
-                        <span class="topic-tag">Oxigenoterapia</span>
-                        <span class="topic-tag">Quemaduras</span>
-                        <span class="topic-tag">Triaje</span>
-                        <span class="topic-tag">RCP</span>
-                    </div>
                     <div class="module-status in-development">EN DESARROLLO</div>
                 </div>
-
-                <!-- Comportamiento del Fuego -->
                 <div class="modulo-card" data-module="comportamiento-fuego" onclick="openModule('comportamiento-fuego')">
                     <div class="module-icon">🔥</div>
                     <h3 class="module-title">Comportamiento del Fuego</h3>
                     <p class="module-description">Fundamentos de la ciencia del fuego y su comportamiento</p>
-                    <div class="module-topics">
-                        <span class="topic-tag">Triángulo del Fuego</span>
-                        <span class="topic-tag">Clases de Fuego</span>
-                        <span class="topic-tag">Propagación</span>
-                        <span class="topic-tag">Métodos de Extinción</span>
-                    </div>
                     <div class="module-status in-development">EN DESARROLLO</div>
                 </div>
-
-                <!-- Equipos y Materiales -->
                 <div class="modulo-card" data-module="equipos-materiales" onclick="openModule('equipos-materiales')">
                     <div class="module-icon">🛡️</div>
                     <h3 class="module-title">Equipos y Materiales</h3>
                     <p class="module-description">EPP, herramientas y equipos de rescate</p>
-                    <div class="module-topics">
-                        <span class="topic-tag">EPP</span>
-                        <span class="topic-tag">Herramientas Básicas</span>
-                        <span class="topic-tag">Equipos de Rescate</span>
-                        <span class="topic-tag">Mantenimiento</span>
-                    </div>
                     <div class="module-status in-development">EN DESARROLLO</div>
                 </div>
-
-                <!-- Actividades de Soporte -->
                 <div class="modulo-card" data-module="actividades-soporte" onclick="openModule('actividades-soporte')">
                     <div class="module-icon">🤝</div>
                     <h3 class="module-title">Actividades de Soporte</h3>
                     <p class="module-description">Comunicaciones, logística y coordinación</p>
-                    <div class="module-topics">
-                        <span class="topic-tag">Comunicaciones</span>
-                        <span class="topic-tag">Logística</span>
-                        <span class="topic-tag">Seguridad de Escena</span>
-                        <span class="topic-tag">Coordinación</span>
-                    </div>
                     <div class="module-status in-development">EN DESARROLLO</div>
                 </div>
-
-                <!-- Combate contra Incendio -->
                 <div class="modulo-card" data-module="combate-incendio" onclick="openModule('combate-incendio')">
                     <div class="module-icon">💧</div>
                     <h3 class="module-title">Combate contra Incendio</h3>
                     <p class="module-description">Técnicas y tácticas de supresión</p>
-                    <div class="module-topics">
-                        <span class="topic-tag">Técnicas de Ataque</span>
-                        <span class="topic-tag">Uso de Agua</span>
-                        <span class="topic-tag">Ventilación</span>
-                        <span class="topic-tag">Espumas</span>
-                        <span class="topic-tag">Seguridad Estructural</span>
-                    </div>
                     <div class="module-status in-development">EN DESARROLLO</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Estadísticas -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" id="totalTools">12</div>
-                    <div class="stat-label">Herramientas</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalModules">5</div>
-                    <div class="stat-label">Módulos</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalTopics">25+</div>
-                    <div class="stat-label">Temas</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Disponible</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Búsqueda Global -->
-    <section class="search-section">
-        <div class="search-container">
-            <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Buscar procedimientos, códigos, técnicas...">
-            <button class="search-btn" id="searchBtn">Buscar</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
@@ -851,152 +175,27 @@
         </div>
     </footer>
 
-    <!-- Botón flotante de ayuda -->
     <button class="floating-help" onclick="showHelp()" title="Ayuda rápida">?</button>
 
-    <!-- Loading Spinner -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
         <p>Cargando...</p>
     </div>
 
-    <!-- Scripts -->
     <script>
-        function openTool(tool) {
-            window.location.href = 'herramientas/' + tool + '/index.html';
-        }
-
-        function openExternalTool(url) {
-            // Abrir directamente sin confirmación
-            window.open(url, '_blank');
-        }
-
-        function openModule(module) {
-            window.location.href = 'modulos/' + module + '/index.html';
-        }
-
-        function showAbout() {
-            alert('Bomberos Toolkit v1.0\nDesarrollado para bomberos profesionales');
-        }
-
-        function showContact() { 
-            alert('GitHub: lerrh.github.io/bomberos-toolkit'); 
-        }
-
-        function showContribute() { 
-            alert('¡Contribuye al proyecto en GitHub!'); 
-        }
-
-        function showHelp() { 
-            alert('Ayuda:\n• Herramientas principales: Funcionan sin internet\n• Enlaces externos: Requieren conexión\n• Módulos: Conocimiento especializado'); 
-        }
-
-        // Toggle menu móvil
-        document.getElementById('navToggle')?.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        });
-
-        // Cerrar menu al hacer click en un enlace
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navMenu').classList.remove('active');
-            });
-        });
-
-        // Smooth scroll para navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Funcionalidad de búsqueda básica
-        document.getElementById('searchBtn')?.addEventListener('click', function() {
-            const query = document.getElementById('globalSearch').value.toLowerCase();
-            if (query.trim()) {
-                // Buscar en títulos y descripciones
-                const tools = document.querySelectorAll('.tool-title, .module-title');
-                let found = false;
-                
-                tools.forEach(tool => {
-                    const card = tool.closest('.herramienta-card') || tool.closest('.modulo-card');
-                    if (tool.textContent.toLowerCase().includes(query)) {
-                        card.style.border = '3px solid #e74c3c';
-                        card.scrollIntoView({ behavior: 'smooth' });
-                        found = true;
-                    } else {
-                        card.style.border = '';
-                    }
-                });
-                
-                if (!found) {
-                    alert('No se encontraron resultados para: "' + query + '"');
-                }
-            }
-        });
-
-        // Enter para buscar
-        document.getElementById('globalSearch')?.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('searchBtn').click();
-            }
-        });
-
-        // Limpiar búsqueda al borrar
-        document.getElementById('globalSearch')?.addEventListener('input', function() {
-            if (this.value === '') {
-                document.querySelectorAll('.herramienta-card, .modulo-card').forEach(card => {
-                    card.style.border = '';
-                });
-            }
-        });
-
-        // Animaciones al hacer scroll
-        const observeElements = () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
-
-            document.querySelectorAll('.herramienta-card, .modulo-card').forEach(card => {
-                observer.observe(card);
-            });
-        };
-
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            observeElements();
-            
-            // Mensaje de bienvenida inicial
-            console.log('🚒 Bomberos Toolkit v1.0');
-            console.log('Herramientas disponibles: 12');
-            console.log('Desarrollado para bomberos profesionales');
-        });
-
-        // Service Worker para PWA (opcional)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('SW registrado con éxito:', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.log('Error al registrar SW:', error);
-                    });
-            });
-        }
+        function openTool(tool){window.location.href='herramientas/'+tool+'/index.html'}
+        function openExternalTool(url){window.open(url,'_blank')}
+        function openModule(module){window.location.href='modulos/'+module+'/index.html'}
+        function showAbout(){alert('Bomberos Toolkit v1.0\nDesarrollado para bomberos profesionales')}
+        function showContact(){alert('gmail: enrriquerh0014@gmail.com')}
+        function showContribute(){alert('WhatsApp: +51 946772995')}
+        function showHelp(){alert('Ayuda:\n• Herramientas principales: Funcionan sin internet\n• Enlaces externos: Requieren conexión\n• Módulos: Conocimiento especializado')}
+        document.getElementById('navToggle')?.addEventListener('click',function(){const menu=document.getElementById('navMenu');menu.classList.toggle('active')});
+        document.querySelectorAll('.nav-menu a').forEach(link=>{link.addEventListener('click',()=>{document.getElementById('navMenu').classList.remove('active')})});
+        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'})}})});
+        const observeElements=()=>{const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)'}})});document.querySelectorAll('.herramienta-card, .modulo-card').forEach(card=>{observer.observe(card)})};
+        document.addEventListener('DOMContentLoaded',function(){observeElements();console.log('🚒 Bomberos Toolkit v1.0');console.log('Herramientas disponibles: 12');console.log('Desarrollado para bomberos profesionales')});
+        if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').then(function(registration){console.log('SW registrado con éxito:',registration.scope)}).catch(function(error){console.log('Error al registrar SW:',error)})})}
     </script>
 </body>
 </html>
