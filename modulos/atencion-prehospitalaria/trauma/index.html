@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmovilización y Trauma - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .value-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 5px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h3, .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .step-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .step-number {
+            background: #8C0303;
+            color: #F2E4C9;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-weight: bold;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #BF3604;
+        }
+
+        table th {
+            background: #BF3604;
+            color: #F2E4C9;
+            font-weight: bold;
+        }
+
+        table td {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2, .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.75em;
+                min-width: 500px;
+            }
+
+            table th,
+            table td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Atención Prehospitalaria</a> > Inmovilización y Trauma
+        </div>
+        <h1>INMOVILIZACIÓN Y TRAUMA</h1>
+        <p>Manejo de lesiones traumáticas e inmovilización</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Valores de Referencia en Trauma</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <div class="value-number">&lt;90</div>
+                    <div>PA Sistólica Shock</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&gt;100</div>
+                    <div>FC Hipovolemia</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&lt;14</div>
+                    <div>Glasgow Crítico</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">60 min</div>
+                    <div>Hora Dorada</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&lt;8</div>
+                    <div>Glasgow Grave</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mecanismos de Trauma</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>TRAUMA CONTUSO</h3>
+                    <h4>Mecanismos:</h4>
+                    <ul>
+                        <li>Accidentes de tráfico (impacto, volcamiento)</li>
+                        <li>Caídas (altura &gt;3 metros)</li>
+                        <li>Explosiones</li>
+                        <li>Aplastamiento</li>
+                    </ul>
+                    <h4>Lesiones Comunes:</h4>
+                    <ul>
+                        <li>Hemorragia interna</li>
+                        <li>Fracturas complejas</li>
+                        <li>Lesión cerebral</li>
+                        <li>Ruptura de órganos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>TRAUMA PENETRANTE</h3>
+                    <h4>Mecanismos:</h4>
+                    <ul>
+                        <li>Arma blanca</li>
+                        <li>Proyectil balístico</li>
+                        <li>Empalamiento (no remover objeto)</li>
+                        <li>Fragmentos</li>
+                    </ul>
+                    <h4>Consideraciones:</h4>
+                    <ul>
+                        <li>Trayecto del objeto</li>
+                        <li>Órganos en riesgo</li>
+                        <li>Entrada vs salida</li>
+                        <li>Control de hemorragia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Evaluación Primaria (XABCDE)</h2>
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-number">X</div>
+                    <h4>HEMORRAGIA</h4>
+                    <p>Control de hemorragias masivas</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">A</div>
+                    <h4>VÍA AÉREA</h4>
+                    <p>+ Control cervical</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">B</div>
+                    <h4>RESPIRACIÓN</h4>
+                    <p>Ventilación + neumotórax</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">C</div>
+                    <h4>CIRCULACIÓN</h4>
+                    <p>Perfusión + shock</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">D</div>
+                    <h4>DISCAPACIDAD</h4>
+                    <p>Glasgow + pupilas</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">E</div>
+                    <h4>EXPOSICIÓN</h4>
+                    <p>Examen + temperatura</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Inmovilización Espinal</h2>
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <h4>CONTROL MANUAL</h4>
+                    <p>Estabilización cabeza y cuello</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <h4>EVALUACIÓN</h4>
+                    <p>Función neurológica, dolor</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <h4>COLLAR CERVICAL</h4>
+                    <p>Medición y colocación</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <h4>TABLA ESPINAL</h4>
+                    <p>Movilización en bloque</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">5</div>
+                    <h4>FIJACIÓN</h4>
+                    <p>Correas torácicas y pélvicas</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">6</div>
+                    <h4>INMOVILIZACIÓN CABEZA</h4>
+                    <p>Bloques laterales + cinta</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Criterios para Inmovilización Espinal</h4>
+                <ul>
+                    <li>Mecanismo significativo (caída &gt;1m, accidente alta velocidad)</li>
+                    <li>Alteración consciencia (Glasgow &lt;15, intoxicación)</li>
+                    <li>Déficit neurológico (parálisis, parestesias)</li>
+                    <li>Dolor espinal (cervical, dorsal, lumbar)</li>
+                    <li>Lesión distractora (fractura femoral, dolor severo)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Clasificación de Fracturas</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>FRACTURA CERRADA</h3>
+                    <h4>Características:</h4>
+                    <ul>
+                        <li>Piel íntegra</li>
+                        <li>Menor riesgo infección</li>
+                        <li>Dolor e impotencia funcional</li>
+                    </ul>
+                    <h4>Manejo:</h4>
+                    <ul>
+                        <li>Inmovilización articulación superior e inferior</li>
+                        <li>Férula rígida o neumática</li>
+                        <li>Elevación si posible</li>
+                        <li>Traslado</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>FRACTURA ABIERTA</h3>
+                    <h4>Características:</h4>
+                    <ul>
+                        <li>Comunicación con exterior</li>
+                        <li>Alto riesgo infección</li>
+                        <li>Puede haber hemorragia</li>
+                    </ul>
+                    <h4>Manejo Urgente:</h4>
+                    <ul>
+                        <li>Control de hemorragia</li>
+                        <li>Cobertura estéril de herida</li>
+                        <li>NO reducir fragmentos expuestos</li>
+                        <li>Inmovilizar como está</li>
+                        <li>Traslado urgente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                NUNCA intentar reducir fracturas en campo - Solo inmovilizar
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Fracturas de Alto Riesgo</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Fractura de Fémur</h4>
+                    <ul>
+                        <li>Pérdida sangre: 1-2 litros</li>
+                        <li>Riesgo shock muy alto</li>
+                        <li>Inmovilización: Férula de tracción</li>
+                        <li>Traslado urgente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fractura Pélvica</h4>
+                    <ul>
+                        <li>Hemorragia masiva retroperitoneal</li>
+                        <li>Estabilización: Faja pélvica</li>
+                        <li>NO movilizar innecesariamente</li>
+                        <li>Traslado urgente centro trauma</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fractura Costillas</h4>
+                    <ul>
+                        <li>Complicaciones: Neumotórax, hemotórax</li>
+                        <li>Tórax inestable: Ventilación paradójica</li>
+                        <li>Posición: Semisentado si tolera</li>
+                        <li>Oxígeno según necesidad</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fractura Cráneo</h4>
+                    <ul>
+                        <li>Inmovilización cervical obligatoria</li>
+                        <li>Evaluación Glasgow continua</li>
+                        <li>Control hemorragia externa</li>
+                        <li>Traslado urgente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Técnicas de Inmovilización</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Región</th>
+                            <th>Dispositivo</th>
+                            <th>Puntos Clave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cervical</strong></td>
+                            <td>Collar cervical</td>
+                            <td>No hiperextender, medición correcta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hombro/Clavícula</strong></td>
+                            <td>Cabestrillo</td>
+                            <td>Brazo en flexión 90°</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brazo/Antebrazo</strong></td>
+                            <td>Férula rígida</td>
+                            <td>Inmovilizar articulaciones adyacentes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Muñeca/Mano</strong></td>
+                            <td>Férula funcional</td>
+                            <td>Muñeca en extensión 20°</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fémur</strong></td>
+                            <td>Férula de tracción</td>
+                            <td>10% peso corporal tracción</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tibia/Peroné</strong></td>
+                            <td>Férula posterior</td>
+                            <td>Tobillo en 90°</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tobillo/Pie</strong></td>
+                            <td>Férula posterior</td>
+                            <td>Pie en posición neutra</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Control de Hemorragias</h2>
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <h4>PRESIÓN DIRECTA</h4>
+                    <p>Presión firme sobre punto sangrante</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <h4>VENDAJE COMPRESIVO</h4>
+                    <p>Mantener presión + elevación</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <h4>TORNIQUETE</h4>
+                    <p>Solo extremidades, 5-7cm proximal</p>
+                </div>
+            </steps-grid>
+
+            <div class="info-box">
+                <h4>Criterios para Torniquete</h4>
+                <ul>
+                    <li>Hemorragia masiva extremidad que amenaza vida</li>
+                    <li>Amputación traumática</li>
+                    <li>Fallo de métodos convencionales</li>
+                    <li>Múltiples heridas sangrantes</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>Aplicación de Torniquete</h4>
+                <ul>
+                    <li>Ubicación: 5-7 cm proximal a herida</li>
+                    <li>Tensión: Hasta cese pulso distal</li>
+                    <li>Tiempo: Anotar hora aplicación</li>
+                    <li>NO aflojar durante transporte</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Lesiones Especiales</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Amputación Traumática</h4>
+                    <ul>
+                        <li>Control hemorragia: presión directa, torniquete</li>
+                        <li>Preservar segmento: gasa húmeda estéril</li>
+                        <li>Conservación: bolsa sellada en hielo</li>
+                        <li>NO contacto directo hielo-piel</li>
+                        <li>Traslado urgente (&lt;6 horas)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Objeto Empalado</h4>
+                    <ul>
+                        <li>NO REMOVER nunca el objeto</li>
+                        <li>Estabilizar con gasas alrededor</li>
+                        <li>Cortar objeto si impide transporte</li>
+                        <li>Hemorragia: presión en bordes</li>
+                        <li>Evitar movimiento del objeto</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Signos de Shock Traumático</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Clase Shock</th>
+                            <th>Pérdida Sangre</th>
+                            <th>FC (lpm)</th>
+                            <th>TAS (mmHg)</th>
+                            <th>Estado Mental</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Clase I</strong></td>
+                            <td>&lt; 15% (750ml)</td>
+                            <td>&lt; 100</td>
+                            <td>Normal</td>
+                            <td>Alerta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clase II</strong></td>
+                            <td>15-30% (750-1500ml)</td>
+                            <td>100-120</td>
+                            <td>Normal/↓</td>
+                            <td>Ansioso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clase III</strong></td>
+                            <td>30-40% (1500-2000ml)</td>
+                            <td>120-140</td>
+                            <td>↓↓</td>
+                            <td>Confuso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clase IV</strong></td>
+                            <td>&gt; 40% (&gt;2000ml)</td>
+                            <td>&gt; 140</td>
+                            <td>↓↓↓</td>
+                            <td>Letárgico</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <h4>Manejo Básico Shock</h4>
+                <ul>
+                    <li>Control hemorragias (prioridad absoluta)</li>
+                    <li>Oxígeno alto flujo (15 L/min)</li>
+                    <li>Posición Trendelenburg si no TEC</li>
+                    <li>Conservar temperatura corporal</li>
+                    <li>Traslado urgente</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Trauma grave requiere traslado urgente a centro de trauma - Tiempo crítico: 60 minutos
+        </div>
+    </div>
+</body>
+</html>

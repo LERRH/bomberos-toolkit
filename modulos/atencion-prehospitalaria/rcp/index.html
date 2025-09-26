@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCP y Desfibrilación - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .value-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 5px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h3, .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .rhythm-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .rhythm-box h3 {
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .step-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .step-number {
+            background: #8C0303;
+            color: #F2E4C9;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-weight: bold;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #BF3604;
+        }
+
+        table th {
+            background: #BF3604;
+            color: #F2E4C9;
+            font-weight: bold;
+        }
+
+        table td {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2, .grid-3, .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.75em;
+                min-width: 500px;
+            }
+
+            table th,
+            table td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Atención Prehospitalaria</a> > RCP y Desfibrilación
+        </div>
+        <h1>RCP Y DESFIBRILACIÓN</h1>
+        <p>Reanimación Cardiopulmonar y uso de DEA</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Valores de Referencia</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <div class="value-number">30:2</div>
+                    <div>Compresiones:Ventilaciones</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">100-120/min</div>
+                    <div>Compresiones</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">5-6 cm</div>
+                    <div>Profundidad Adulto</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">2 min</div>
+                    <div>Ciclos RCP</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&lt;10 seg</div>
+                    <div>Interrupción máxima</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Algoritmo de Paro Cardíaco</h2>
+            <div class="grid-2">
+                <div class="rhythm-box">
+                    <h3>RITMOS DESFIBRILABLES</h3>
+                    <p><strong>FV/TV sin pulso</strong></p>
+                    <ul>
+                        <li>1. DESCARGAR inmediatamente</li>
+                        <li>2. RCP 2 minutos</li>
+                        <li>3. Oxígeno 100%</li>
+                        <li>4. Reevaluar ritmo</li>
+                        <li>5. Si persiste: DESCARGAR</li>
+                        <li>6. Continuar RCP + O2</li>
+                    </ul>
+                </div>
+
+                <div class="rhythm-box">
+                    <h3>RITMOS NO DESFIBRILABLES</h3>
+                    <p><strong>Asistolia/AESP</strong></p>
+                    <ul>
+                        <li>1. RCP inmediato</li>
+                        <li>2. Oxígeno 100%</li>
+                        <li>3. Buscar causas (H's y T's)</li>
+                        <li>4. Continuar RCP</li>
+                        <li>5. Reevaluar cada 2 min</li>
+                        <li>6. Traslado urgente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Reconocimiento de Ritmos</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>Fibrilación Ventricular (FV)</h3>
+                    <ul>
+                        <li>Ondas irregulares y caóticas</li>
+                        <li>No hay complejos QRS identificables</li>
+                        <li>Amplitud variable</li>
+                        <li><strong>Acción:</strong> Desfibrilar inmediatamente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Taquicardia Ventricular sin Pulso (TV)</h3>
+                    <ul>
+                        <li>Complejos QRS anchos (&gt;120 ms)</li>
+                        <li>Frecuencia &gt;150 lpm</li>
+                        <li>Ritmo regular o casi regular</li>
+                        <li><strong>Acción:</strong> Desfibrilar inmediatamente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Asistolia</h3>
+                    <ul>
+                        <li>Línea plana o casi plana</li>
+                        <li>Ausencia de actividad eléctrica</li>
+                        <li>Verificar conexiones y derivaciones</li>
+                        <li><strong>Acción:</strong> RCP + Epinefrina</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Actividad Eléctrica Sin Pulso (AESP)</h3>
+                    <ul>
+                        <li>Actividad eléctrica organizada</li>
+                        <li>Sin pulso palpable</li>
+                        <li>Buscar causas reversibles</li>
+                        <li><strong>Acción:</strong> RCP + tratar causa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Secuencia RCP de Alta Calidad</h2>
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <h4>COMPROBAR</h4>
+                    <p>Inconsciencia y ausencia de respiración normal</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <h4>LLAMAR</h4>
+                    <p>Activar sistema de emergencias y pedir DEA</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <h4>COMPRIMIR</h4>
+                    <p>Centro del tórax, 5-6 cm profundidad, 100-120/min</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <h4>VÍA AÉREA</h4>
+                    <p>Abrir vía aérea: maniobra frente-mentón</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">5</div>
+                    <h4>RESPIRAR</h4>
+                    <p>2 ventilaciones de 1 segundo cada una</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">6</div>
+                    <h4>CONTINUAR</h4>
+                    <p>Ciclos 30:2 hasta llegada de ayuda avanzada</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Protocolo DEA</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Pasos para usar DEA</h4>
+                    <ul>
+                        <li>1. Encender el DEA</li>
+                        <li>2. Exponer tórax del paciente</li>
+                        <li>3. Secar si está mojado</li>
+                        <li>4. Colocar parches según diagrama</li>
+                        <li>5. Conectar cables al DEA</li>
+                        <li>6. Alejar a todos durante análisis</li>
+                        <li>7. Descargar si indicado</li>
+                        <li>8. Reanudar RCP inmediatamente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Precauciones DEA</h4>
+                    <ul>
+                        <li><strong>Agua:</strong> Secar tórax completamente</li>
+                        <li><strong>Marcapasos:</strong> Parche &gt;8 cm del dispositivo</li>
+                        <li><strong>Medicamentos:</strong> Remover parches transdérmicos</li>
+                        <li><strong>Metales:</strong> Alejar objetos conductores</li>
+                        <li><strong>Vello:</strong> Afeitar si impide adherencia</li>
+                        <li><strong>Niños:</strong> Parches pediátricos &lt;8 años</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cuidados Post-Retorno de Circulación Espontánea</h2>
+            <div class="info-box">
+                <h4>Prioridades Inmediatas</h4>
+                <ul>
+                    <li><strong>Vía aérea:</strong> Mantener permeable</li>
+                    <li><strong>Respiración:</strong> O2 para SpO2 94-98%</li>
+                    <li><strong>Circulación:</strong> Monitoreo continuo</li>
+                    <li><strong>Neurología:</strong> Evaluación nivel consciencia</li>
+                    <li><strong>Posición:</strong> Lateral de seguridad si inconsciente</li>
+                    <li><strong>Traslado:</strong> Hospital con UCI urgente</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Indicadores de Calidad en RCP</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>RCP de Alta Calidad</h4>
+                    <ul>
+                        <li><strong>Frecuencia:</strong> 100-120 compresiones/min</li>
+                        <li><strong>Profundidad:</strong> 5-6 cm (adultos)</li>
+                        <li><strong>Retroceso:</strong> Completo entre compresiones</li>
+                        <li><strong>Interrupciones:</strong> &lt;10 segundos</li>
+                        <li><strong>Ventilación:</strong> Evitar hiperventilación</li>
+                        <li><strong>Rotación:</strong> Cada 2 minutos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Errores Comunes</h4>
+                    <ul>
+                        <li>Compresiones muy superficiales</li>
+                        <li>Frecuencia inadecuada</li>
+                        <li>No permitir retroceso completo</li>
+                        <li>Interrupciones prolongadas</li>
+                        <li>Hiperventilación</li>
+                        <li>Fatiga del reanimador</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            RECORDATORIO: Calidad sobre cantidad - RCP efectivo salva vidas
+        </div>
+    </div>
+</body>
+</html>

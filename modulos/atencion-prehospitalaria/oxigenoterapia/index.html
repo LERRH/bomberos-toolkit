@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxigenoterapia - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .value-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 5px;
+        }
+
+        .devices-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .device-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .device-card h3 {
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .specs {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .specs h4 {
+            color: #BF3604;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .info-box {
+            padding: 12px;
+            margin: 10px 0;
+        }
+
+        .info-box h4 {
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 3px 0;
+            font-size: 0.85em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #BF3604;
+        }
+
+        table th {
+            background: #BF3604;
+            color: #F2E4C9;
+            font-weight: bold;
+        }
+
+        table td {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .devices-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.8em;
+            }
+
+            table th,
+            table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Atención Prehospitalaria</a> > Oxigenoterapia
+        </div>
+        <h1>OXIGENOTERAPIA</h1>
+        <p>Administración de oxígeno suplementario</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Valores de Referencia</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <div class="value-number">&gt;94%</div>
+                    <div>SpO2 Adultos</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&gt;95%</div>
+                    <div>SpO2 Embarazadas</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">88-92%</div>
+                    <div>SpO2 EPOC</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">12-20</div>
+                    <div>FR Normal</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">100%</div>
+                    <div>FiO2 Intox CO</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Dispositivos de Oxigenoterapia</h2>
+            <div class="devices-grid">
+                <div class="device-card">
+                    <h3>Cánula Nasal</h3>
+                    <div class="specs">
+                        <h4>Especificaciones</h4>
+                        <p>Flujo: 1-6 L/min</p>
+                        <p>FiO2: 24-44%</p>
+                        <p>Confort: Excelente</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Indicaciones</h4>
+                        <ul>
+                            <li>Hipoxemia leve-moderada</li>
+                            <li>Pacientes estables</li>
+                            <li>Permite hablar/comer</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h4>Contraindicaciones</h4>
+                        <ul>
+                            <li>Obstrucción nasal</li>
+                            <li>Hipoxemia severa (SpO2 &lt;85%)</li>
+                            <li>Respiración bucal exclusiva</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="device-card">
+                    <h3>Mascarilla Simple</h3>
+                    <div class="specs">
+                        <h4>Especificaciones</h4>
+                        <p>Flujo: 5-10 L/min</p>
+                        <p>FiO2: 35-60%</p>
+                        <p>Mínimo: 5 L/min</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Indicaciones</h4>
+                        <ul>
+                            <li>Hipoxemia moderada</li>
+                            <li>Emergencias agudas</li>
+                            <li>Transporte</li>
+                        </ul>
+                    </div>
+                    <div class="alert-box">
+                        Nunca &lt;5 L/min (reinhalación CO2)
+                    </div>
+                </div>
+
+                <div class="device-card">
+                    <h3>Mascarilla con Reservorio</h3>
+                    <div class="specs">
+                        <h4>Especificaciones</h4>
+                        <p>Flujo: 10-15 L/min</p>
+                        <p>FiO2: 60-90%</p>
+                        <p>Reservorio: 600-1000 mL</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Indicaciones Críticas</h4>
+                        <ul>
+                            <li>Hipoxemia severa (SpO2 &lt;85%)</li>
+                            <li>Shock</li>
+                            <li>Intoxicación CO</li>
+                            <li>Trauma severo</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h4>Procedimiento</h4>
+                        <ul>
+                            <li>Inflar reservorio completo</li>
+                            <li>Flujo 10-15 L/min</li>
+                            <li>Sellar bien mascarilla</li>
+                            <li>Verificar que no colapse</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="device-card">
+                    <h3>Bolsa-Válvula-Mascarilla (BVM)</h3>
+                    <div class="specs">
+                        <h4>Especificaciones</h4>
+                        <p>Volumen: 1600 mL</p>
+                        <p>FiO2: 21-100%</p>
+                        <p>Frecuencia: 10-12/min</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Indicaciones</h4>
+                        <ul>
+                            <li>Paro respiratorio</li>
+                            <li>Ventilación inadecuada</li>
+                            <li>Pre-oxigenación</li>
+                            <li>RCP</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h4>Técnica</h4>
+                        <ul>
+                            <li>Hiperextensión cabeza</li>
+                            <li>Sellado C-E</li>
+                            <li>Comprimir suave (1 seg)</li>
+                            <li>1 ventilación/6 segundos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tabla de Flujos y FiO2</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dispositivo</th>
+                        <th>Flujo (L/min)</th>
+                        <th>FiO2 (%)</th>
+                        <th>Indicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cánula Nasal</td>
+                        <td>1-2</td>
+                        <td>24-28</td>
+                        <td>Hipoxemia leve</td>
+                    </tr>
+                    <tr>
+                        <td>Cánula Nasal</td>
+                        <td>3-4</td>
+                        <td>32-36</td>
+                        <td>Hipoxemia moderada</td>
+                    </tr>
+                    <tr>
+                        <td>Cánula Nasal</td>
+                        <td>5-6</td>
+                        <td>40-44</td>
+                        <td>Máximo cánula</td>
+                    </tr>
+                    <tr>
+                        <td>Mascarilla Simple</td>
+                        <td>5-6</td>
+                        <td>35-50</td>
+                        <td>Hipoxemia moderada</td>
+                    </tr>
+                    <tr>
+                        <td>Mascarilla Simple</td>
+                        <td>7-10</td>
+                        <td>50-60</td>
+                        <td>Hipoxemia severa</td>
+                    </tr>
+                    <tr>
+                        <td>Mascarilla Reservorio</td>
+                        <td>10-12</td>
+                        <td>60-80</td>
+                        <td>Emergencias</td>
+                    </tr>
+                    <tr>
+                        <td>Mascarilla Reservorio</td>
+                        <td>12-15</td>
+                        <td>80-95</td>
+                        <td>Críticos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                EPOC: SpO2 88-92% | Embarazo: SpO2 &gt;95% | Intox CO: O2 100% siempre
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Protocolos de Emergencia</h2>
+            <div class="devices-grid">
+                <div class="device-card">
+                    <h3>Paro Cardiorrespiratorio</h3>
+                    <ul>
+                        <li>BVM reservorio 100%</li>
+                        <li>1 ventilación/6 seg</li>
+                        <li>No interrumpir &gt;10 seg</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Intoxicación por Humo</h3>
+                    <ul>
+                        <li>O2 100% inmediato</li>
+                        <li>Reservorio 15 L/min</li>
+                        <li>Evaluar vía aérea</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Crisis Asmática</h3>
+                    <ul>
+                        <li>Posición fowler</li>
+                        <li>O2 para SpO2 &gt;94%</li>
+                        <li>Nebulizaciones</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Edema Pulmonar</h3>
+                    <ul>
+                        <li>Semisentado 45°</li>
+                        <li>O2 alto flujo</li>
+                        <li>CPAP si disponible</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Trauma Torácico</h3>
+                    <ul>
+                        <li>Evaluar neumotórax</li>
+                        <li>O2 si hipoxemia</li>
+                        <li>Evitar P+ si neumotórax</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Depresión Respiratoria</h3>
+                    <ul>
+                        <li>Identificar causa</li>
+                        <li>BVM si FR &lt;8 o &gt;30</li>
+                        <li>Considerar naloxona</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Oxigenoterapia Pediátrica</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Edad</th>
+                        <th>SpO2</th>
+                        <th>FR Normal</th>
+                        <th>Flujo Máx</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lactantes (0-2 años)</td>
+                        <td>&gt;95%</td>
+                        <td>30-50/min</td>
+                        <td>2 L/min</td>
+                    </tr>
+                    <tr>
+                        <td>Niños (2-12 años)</td>
+                        <td>&gt;95%</td>
+                        <td>20-30/min</td>
+                        <td>4 L/min</td>
+                    </tr>
+                    <tr>
+                        <td>Adolescentes (12-18 años)</td>
+                        <td>&gt;95%</td>
+                        <td>12-20/min</td>
+                        <td>Como adultos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                Signos de Hipoxemia Pediátrica: Cianosis central | Tiraje intercostal | Aleteo nasal | Irritabilidad/letargia
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Consideraciones Especiales</h2>
+            <div class="devices-grid">
+                <div class="device-card">
+                    <h3>EPOC</h3>
+                    <ul>
+                        <li>SpO2 objetivo: 88-92%</li>
+                        <li>Riesgo narcosis CO2</li>
+                        <li>Flujo controlado</li>
+                        <li>Vigilar FR y nivel consciencia</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Embarazo</h3>
+                    <ul>
+                        <li>SpO2 objetivo: &gt;95%</li>
+                        <li>Mayor demanda O2</li>
+                        <li>Posición lateral izquierda</li>
+                        <li>Evitar hipoxia fetal</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Intoxicación CO</h3>
+                    <ul>
+                        <li>O2 100% SIEMPRE</li>
+                        <li>Mascarilla reservorio 15L/min</li>
+                        <li>No guiarse por SpO2</li>
+                        <li>Mínimo 4-6 horas</li>
+                    </ul>
+                </div>
+
+                <div class="device-card">
+                    <h3>Trauma</h3>
+                    <ul>
+                        <li>SpO2 objetivo: &gt;94%</li>
+                        <li>Prevenir hipoxia tisular</li>
+                        <li>O2 alto flujo inicial</li>
+                        <li>Evaluar vía aérea</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergencias Médicas - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .value-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8C0303;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .critical-box {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .critical-box h4 {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #BF3604;
+        }
+
+        table th {
+            background: #BF3604;
+            color: #F2E4C9;
+            font-weight: bold;
+        }
+
+        table td {
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .protocol-steps {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .protocol-steps h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .step {
+            padding: 5px 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.8em;
+            }
+
+            table th,
+            table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Atención Prehospitalaria</a> > Emergencias Médicas
+        </div>
+        <h1>EMERGENCIAS MÉDICAS</h1>
+        <p>Manejo de crisis médicas agudas</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Valores Críticos</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <div class="value-number">3-5 min</div>
+                    <div>Parada cardíaca</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&lt;70 mg/dl</div>
+                    <div>Hipoglucemia</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&gt;250 mg/dl</div>
+                    <div>Hiperglucemia</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&gt;180/110</div>
+                    <div>Crisis HTA</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&gt;39°C</div>
+                    <div>Hipertermia</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&lt;35°C</div>
+                    <div>Hipotermia</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Crisis Diabéticas</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>HIPOGLUCEMIA (&lt;70 mg/dl)</h4>
+                    <ul>
+                        <li><strong>Síntomas:</strong> Sudoración, temblor, confusión</li>
+                        <li><strong>Signos:</strong> Taquicardia, palidez</li>
+                        <li><strong>Evolución:</strong> Rápida (minutos)</li>
+                    </ul>
+                    <div class="protocol-steps">
+                        <h4>TRATAMIENTO</h4>
+                        <div class="step">Consciente: Glucosa oral 15-20g</div>
+                        <div class="step">Inconsciente: Glucosa IV 25g (D50% 50ml)</div>
+                        <div class="step">Alternativo: Glucagón 1mg IM</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>HIPERGLUCEMIA (&gt;250 mg/dl)</h4>
+                    <ul>
+                        <li><strong>Síntomas:</strong> Sed, poliuria, náuseas</li>
+                        <li><strong>Signos:</strong> Deshidratación, aliento cetónico</li>
+                        <li><strong>Evolución:</strong> Lenta (horas-días)</li>
+                    </ul>
+                    <div class="protocol-steps">
+                        <h4>TRATAMIENTO</h4>
+                        <div class="step">Rehidratación: Solución salina 0.9%</div>
+                        <div class="step">Adultos: 1-2L primera hora</div>
+                        <div class="step">Insulina: Solo en hospital</div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-box">
+                SIEMPRE verificar glucemia antes de administrar glucosa
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Crisis Convulsivas</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Durante la Crisis</h4>
+                    <ul>
+                        <li>Proteger de traumatismos</li>
+                        <li>No introducir objetos en boca</li>
+                        <li>No sujetar movimientos</li>
+                        <li>Cronometrar duración</li>
+                        <li>Observar tipo de movimientos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Estatus Epiléptico (&gt;5 min)</h4>
+                    <ul>
+                        <li><strong>Tratamiento:</strong> Diazepam 5-10mg IV</li>
+                        <li><strong>Alternativo:</strong> Midazolam 5mg IM</li>
+                        <li><strong>Repetir:</strong> A los 5 min si persiste</li>
+                        <li><strong>Traslado:</strong> Urgente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Fase Post-ictal</h4>
+                <ul>
+                    <li>Posición de seguridad</li>
+                    <li>Oxígeno si hipoxemia</li>
+                    <li>Verificar glucemia</li>
+                    <li>Examinar traumatismos</li>
+                    <li>Tranquilizar al paciente</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Síndrome Coronario Agudo</h2>
+            <div class="critical-box">
+                <h4>Síntomas Clave</h4>
+                <ul>
+                    <li>Dolor torácico opresivo &gt;20 min, irradiado</li>
+                    <li>Disnea súbita de reposo</li>
+                    <li>Sudoración profusa, fría</li>
+                    <li>Náuseas/vómitos</li>
+                    <li>Síncope</li>
+                </ul>
+            </div>
+
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Manejo Inmediato</h4>
+                    <ul>
+                        <li><strong>Posición:</strong> Semisentado cómodo</li>
+                        <li><strong>Oxígeno:</strong> Si SatO2 &lt;94%</li>
+                        <li><strong>Nitroglicerina:</strong> 0.4mg sublingual</li>
+                        <li><strong>AAS:</strong> 300mg masticable</li>
+                        <li><strong>Monitoreo:</strong> ECG continuo</li>
+                        <li><strong>Acceso vascular:</strong> Vía periférica</li>
+                    </ul>
+                </div>
+
+                <div class="critical-box">
+                    <h4>Contraindicaciones Nitroglicerina</h4>
+                    <ul>
+                        <li>TAS &lt;90 mmHg</li>
+                        <li>Bradicardia &lt;50 lpm</li>
+                        <li>Viagra/Cialis últimas 24-48h</li>
+                        <li>Infarto ventrículo derecho</li>
+                        <li>Estenosis aórtica severa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Crisis Asmática Severa</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Evaluación Severidad</h4>
+                    <ul>
+                        <li><strong>Leve:</strong> Habla frases, FR normal</li>
+                        <li><strong>Moderada:</strong> Habla palabras, FR aumentada</li>
+                        <li><strong>Severa:</strong> No puede hablar, cianosis</li>
+                        <li><strong>Crítica:</strong> Silencio auscultatorio</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tratamiento</h4>
+                    <ul>
+                        <li><strong>Salbutamol:</strong> 2.5-5mg nebulizado</li>
+                        <li><strong>Ipratropio:</strong> 0.5mg + salbutamol</li>
+                        <li><strong>Repetir:</strong> Cada 20 min si necesario</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="critical-box">
+                <h4>Signos de Alarma</h4>
+                <ul>
+                    <li>Cianosis central</li>
+                    <li>Agotamiento respiratorio</li>
+                    <li>Confusión/somnolencia</li>
+                    <li>Bradicardia paradójica</li>
+                    <li>Hipotensión</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Accidente Cerebrovascular (ACV)</h2>
+            <div class="alert-box">
+                Escala FAST: Face (cara) + Arms (brazos) + Speech (habla) + Time (tiempo)
+            </div>
+
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>ACV Isquémico (80%)</h4>
+                    <ul>
+                        <li><strong>Causa:</strong> Trombo, embolia</li>
+                        <li><strong>Síntomas:</strong> Déficit focal progresivo</li>
+                        <li><strong>Tratamiento:</strong> Trombolisis &lt;4.5h</li>
+                        <li><strong>TA:</strong> No reducir agresivamente</li>
+                        <li><strong>Glucemia:</strong> Mantener 140-180</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>ACV Hemorrágico (20%)</h4>
+                    <ul>
+                        <li><strong>Causa:</strong> Ruptura vascular</li>
+                        <li><strong>Síntomas:</strong> Cefalea súbita severa</li>
+                        <li><strong>TA:</strong> Reducir si &gt;185/110</li>
+                        <li><strong>Tratamiento:</strong> Quirúrgico urgente</li>
+                        <li><strong>Contraindicado:</strong> Anticoagulantes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Anafilaxia</h2>
+            <div class="critical-box">
+                <h4>Signos de Anafilaxia</h4>
+                <ul>
+                    <li>Compromiso respiratorio</li>
+                    <li>Hipotensión/shock</li>
+                    <li>Compromiso neurológico</li>
+                    <li>Urticaria generalizada</li>
+                </ul>
+            </div>
+
+            <div class="protocol-steps">
+                <h4>PROTOCOLO ANAFILAXIA</h4>
+                <div class="step">1. Epinefrina 0.3-0.5mg IM (muslo)</div>
+                <div class="step">2. Solución salina 1-2L IV rápido</div>
+                <div class="step">3. Hidrocortisona 200mg IV + Antihistamínicos</div>
+                <div class="step">4. Broncoespasmo: Salbutamol nebulizado</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Crisis Hipertensiva</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>URGENCIA HIPERTENSIVA</h4>
+                    <ul>
+                        <li><strong>TA:</strong> &gt;180/110 sin síntomas</li>
+                        <li><strong>Órganos:</strong> Sin afectación</li>
+                        <li><strong>Tratamiento:</strong> Oral, gradual</li>
+                        <li><strong>Objetivo:</strong> 10-20% en 24h</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>EMERGENCIA HIPERTENSIVA</h4>
+                    <ul>
+                        <li><strong>TA:</strong> &gt;180/120 con síntomas</li>
+                        <li><strong>Órganos:</strong> Afectación aguda</li>
+                        <li><strong>Tratamiento:</strong> IV, controlado</li>
+                        <li><strong>Objetivo:</strong> 10-15% primera hora</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                NO Reducir TA Bruscamente - Riesgo de ACV isquémico
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Medicamentos de Emergencia</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Indicación</th>
+                        <th>Dosis Adulto</th>
+                        <th>Vía</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Epinefrina</strong></td>
+                        <td>Anafilaxia, PCR</td>
+                        <td>0.3-0.5mg</td>
+                        <td>IM/IV</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Salbutamol</strong></td>
+                        <td>Broncoespasmo</td>
+                        <td>2.5-5mg</td>
+                        <td>Nebulizado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nitroglicerina</strong></td>
+                        <td>Dolor torácico</td>
+                        <td>0.4mg</td>
+                        <td>Sublingual</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Diazepam</strong></td>
+                        <td>Crisis convulsiva</td>
+                        <td>5-10mg</td>
+                        <td>IV lento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Glucosa</strong></td>
+                        <td>Hipoglucemia</td>
+                        <td>25g (D50% 50ml)</td>
+                        <td>IV</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Naloxona</strong></td>
+                        <td>Sobredosis opioides</td>
+                        <td>0.4-2mg</td>
+                        <td>IV/IM/IN</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AAS</strong></td>
+                        <td>Síndrome coronario</td>
+                        <td>300mg</td>
+                        <td>Oral</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Prioridades de Traslado</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Condición</th>
+                        <th>Prioridad</th>
+                        <th>Tiempo</th>
+                        <th>Hospital</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PCR/Anafilaxia</strong></td>
+                        <td>P1 - Inmediata</td>
+                        <td>&lt; 8 minutos</td>
+                        <td>Más cercano</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ACV agudo</strong></td>
+                        <td>P1 - Inmediata</td>
+                        <td>&lt; 15 minutos</td>
+                        <td>Código Ictus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IAM SCEST</strong></td>
+                        <td>P1 - Inmediata</td>
+                        <td>&lt; 30 minutos</td>
+                        <td>Código Infarto</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estatus epiléptico</strong></td>
+                        <td>P2 - Urgente</td>
+                        <td>&lt; 30 minutos</td>
+                        <td>Con neurología</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Crisis diabética</strong></td>
+                        <td>P2 - Urgente</td>
+                        <td>&lt; 60 minutos</td>
+                        <td>General</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factores Ambientales - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-red: #e74c3c;
+            --primary-dark-red: #c0392b;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --dark-gray: #2c3e50;
+            --white: #ffffff;
+            --light-gray: #ecf0f1;
+            --blue: #3498db;
+            --purple: #9b59b6;
+            --yellow: #f1c40f;
+            --teal: #1abc9c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.8em;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            color: var(--primary-red);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Factores meteorológicos */
+        .weather-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .weather-card {
+            border-radius: 10px;
+            padding: 20px;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .wind { background: linear-gradient(135deg, var(--blue), #2980b9); }
+        .humidity { background: linear-gradient(135deg, var(--teal), #16a085); }
+        .temperature { background: linear-gradient(135deg, var(--warning-orange), #e67e22); }
+        .pressure { background: linear-gradient(135deg, var(--purple), #8e44ad); }
+
+        .weather-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .weather-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .weather-effects {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .weather-scale {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        /* Escalas de medición */
+        .measurement-scales {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .scale-card {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .scale-title {
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 8px;
+        }
+
+        .scale-levels {
+            font-size: 0.9em;
+        }
+
+        .scale-level {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .scale-level:last-child {
+            border-bottom: none;
+        }
+
+        /* Topografía */
+        .topography-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .topo-card {
+            background: var(--success-green);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .topo-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .topo-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .topo-description {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .topo-effects {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+        }
+
+        /* Condiciones críticas */
+        .critical-conditions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .critical-card {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #c0392b;
+        }
+
+        .critical-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .critical-indicators {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .critical-actions {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85em;
+        }
+
+        /* Índice de riesgo */
+        .risk-index {
+            background: var(--yellow);
+            color: var(--dark-gray);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .risk-formula {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .risk-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .risk-level {
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .risk-low { background: var(--success-green); color: var(--white); }
+        .risk-moderate { background: var(--warning-orange); color: var(--white); }
+        .risk-high { background: var(--primary-red); color: var(--white); }
+        .risk-extreme { background: var(--dark-gray); color: var(--white); }
+
+        /* Punto clave */
+        .key-point {
+            background: linear-gradient(135deg, var(--warning-orange), #e67e22);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: #e74c3c;
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #c0392b;
+        }
+
+        .warning-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .content-section {
+                padding: 15px;
+            }
+
+            .weather-factors,
+            .measurement-scales,
+            .topography-grid,
+            .critical-conditions {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .risk-levels {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header h1 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">Inicio</a> > 
+            <a href="../../">Módulos</a> > 
+            <a href="../index.html">Comportamiento del Fuego</a> >
+            Factores Ambientales
+        </div>
+        <h1>🌬️ Factores Ambientales</h1>
+        <p>Condiciones meteorológicas y topográficas que afectan el fuego</p>
+    </header>
+
+    <div class="container">
+        <!-- Introducción -->
+        <div class="content-section">
+            <h2 class="section-title">🌍 ¿Por qué son Críticos?</h2>
+            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+                <p><strong>Los factores ambientales pueden convertir un incendio pequeño en una catástrofe.</strong></p>
+                <p>Evaluar estas condiciones permite:</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>🎯 <strong>Predecir comportamiento</strong> del fuego</li>
+                    <li>⚡ <strong>Anticipar propagación</strong> y velocidad</li>
+                    <li>🛡️ <strong>Proteger al personal</strong> de cambios súbitos</li>
+                    <li>🚒 <strong>Planificar tácticas</strong> apropiadas</li>
+                    <li>📡 <strong>Coordinar recursos</strong> necesarios</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Factores meteorológicos principales -->
+        <div class="content-section">
+            <h2 class="section-title">🌤️ Factores Meteorológicos Principales</h2>
+            
+            <div class="weather-factors">
+                <!-- Viento -->
+                <div class="weather-card wind">
+                    <span class="weather-icon">💨</span>
+                    <div class="weather-title">VIENTO</div>
+                    <div class="weather-effects">
+                        <strong>EFECTOS:</strong><br>
+                        • Acelera propagación<br>
+                        • Cambia dirección del fuego<br>
+                        • Aumenta intensidad<br>
+                        • Transporta brasas
+                    </div>
+                    <div class="weather-scale">
+                        <strong>CRÍTICO:</strong> > 25 km/h<br>
+                        <strong>EXTREMO:</strong> > 50 km/h
+                    </div>
+                </div>
+
+                <!-- Humedad -->
+                <div class="weather-card humidity">
+                    <span class="weather-icon">💧</span>
+                    <div class="weather-title">HUMEDAD RELATIVA</div>
+                    <div class="weather-effects">
+                        <strong>EFECTOS:</strong><br>
+                        • Baja humedad = Propagación rápida<br>
+                        • Alta humedad = Combustión lenta<br>
+                        • Afecta ignición de combustibles<br>
+                        • Influye en recuperación de humedad
+                    </div>
+                    <div class="weather-scale">
+                        <strong>CRÍTICO:</strong> < 30%<br>
+                        <strong>EXTREMO:</strong> < 15%
+                    </div>
+                </div>
+
+                <!-- Temperatura -->
+                <div class="weather-card temperature">
+                    <span class="weather-icon">🌡️</span>
+                    <div class="weather-title">TEMPERATURA</div>
+                    <div class="weather-effects">
+                        <strong>EFECTOS:</strong><br>
+                        • Alta temperatura = Secado rápido<br>
+                        • Precalienta combustibles<br>
+                        • Reduce humedad del combustible<br>
+                        • Aumenta actividad del fuego
+                    </div>
+                    <div class="weather-scale">
+                        <strong>CRÍTICO:</strong> > 32°C<br>
+                        <strong>EXTREMO:</strong> > 38°C
+                    </div>
+                </div>
+
+                <!-- Presión atmosférica -->
+                <div class="weather-card pressure">
+                    <span class="weather-icon">📊</span>
+                    <div class="weather-title">PRESIÓN ATMOSFÉRICA</div>
+                    <div class="weather-effects">
+                        <strong>EFECTOS:</strong><br>
+                        • Baja presión = Vientos inestables<br>
+                        • Afecta comportamiento de humo<br>
+                        • Influye en corrientes convectivas<br>
+                        • Predice cambios meteorológicos
+                    </div>
+                    <div class="weather-scale">
+                        <strong>ATENCIÓN:</strong> Cambios rápidos<br>
+                        <strong>PELIGRO:</strong> Frentes meteorológicos
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Escalas de medición -->
+        <div class="content-section">
+            <h2 class="section-title">📏 Escalas de Medición Rápida</h2>
+            
+            <div class="measurement-scales">
+                <div class="scale-card">
+                    <div class="scale-title">Escala de Viento (Beaufort)</div>
+                    <div class="scale-levels">
+                        <div class="scale-level"><strong>0-5 km/h:</strong> Calma - Humo vertical</div>
+                        <div class="scale-level"><strong>6-19 km/h:</strong> Brisa ligera - Hojas se mueven</div>
+                        <div class="scale-level"><strong>20-38 km/h:</strong> Brisa moderada - Ramas se mueven</div>
+                        <div class="scale-level"><strong>39-61 km/h:</strong> Viento fuerte - Árboles se mecen</div>
+                        <div class="scale-level"><strong>>62 km/h:</strong> Vendaval - Ramas se rompen</div>
+                    </div>
+                </div>
+
+                <div class="scale-card">
+                    <div class="scale-title">Índice de Humedad Relativa</div>
+                    <div class="scale-levels">
+                        <div class="scale-level"><strong>>70%:</strong> Muy húmedo - Ignición difícil</div>
+                        <div class="scale-level"><strong>50-70%:</strong> Húmedo - Propagación lenta</div>
+                        <div class="scale-level"><strong>30-50%:</strong> Moderado - Condiciones normales</div>
+                        <div class="scale-level"><strong>15-30%:</strong> Seco - Propagación rápida</div>
+                        <div class="scale-level"><strong><15%:</strong> Muy seco - EXTREMO PELIGRO</div>
+                    </div>
+                </div>
+
+                <div class="scale-card">
+                    <div class="scale-title">Temperatura Ambiental</div>
+                    <div class="scale-levels">
+                        <div class="scale-level"><strong><10°C:</strong> Frío - Combustión lenta</div>
+                        <div class="scale-level"><strong>10-25°C:</strong> Templado - Condiciones normales</div>
+                        <div class="scale-level"><strong>25-32°C:</strong> Cálido - Secado acelerado</div>
+                        <div class="scale-level"><strong>32-38°C:</strong> Caliente - RIESGO ALTO</div>
+                        <div class="scale-level"><strong>>38°C:</strong> Muy caliente - RIESGO EXTREMO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topografía -->
+        <div class="content-section">
+            <h2 class="section-title">🏔️ Efectos de la Topografía</h2>
+            
+            <div class="topography-grid">
+                <div class="topo-card">
+                    <span class="topo-icon">⬆️</span>
+                    <div class="topo-title">PENDIENTES ASCENDENTES</div>
+                    <div class="topo-description">
+                        El fuego sube más rápido que en terreno plano
+                    </div>
+                    <div class="topo-effects">
+                        • Velocidad aumenta 3-5x<br>
+                        • Precalentamiento por radiación<br>
+                        • Convección acelera propagación<br>
+                        • Cada 10° de pendiente = 2x velocidad
+                    </div>
+                </div>
+
+                <div class="topo-card">
+                    <span class="topo-icon">⬇️</span>
+                    <div class="topo-title">PENDIENTES DESCENDENTES</div>
+                    <div class="topo-description">
+                        El fuego baja más lento, pero puede ser impredecible
+                    </div>
+                    <div class="topo-effects">
+                        • Velocidad reducida<br>
+                        • Puede cambiar dirección súbitamente<br>
+                        • Rodamiento de material ardiendo<br>
+                        • Peligro para personal abajo
+                    </div>
+                </div>
+
+                <div class="topo-card">
+                    <span class="topo-icon">🏞️</span>
+                    <div class="topo-title">VALLES Y CAÑONES</div>
+                    <div class="topo-description">
+                        Canalizan vientos y crean efectos chimenea
+                    </div>
+                    <div class="topo-effects">
+                        • Vientos locales intensos<br>
+                        • Efecto chimenea<br>
+                        • Cambios de dirección súbitos<br>
+                        • Escape limitado
+                    </div>
+                </div>
+
+                <div class="topo-card">
+                    <span class="topo-icon">🏔️</span>
+                    <div class="topo-title">CRESTAS Y CIMAS</div>
+                    <div class="topo-description">
+                        Expuestas a vientos fuertes y cambios súbitos
+                    </div>
+                    <div class="topo-effects">
+                        • Vientos cruzados<br>
+                        • Cambios de dirección impredecibles<br>
+                        • Propagación hacia múltiples lados<br>
+                        • Dificultad de acceso
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Condiciones críticas -->
+        <div class="content-section">
+            <h2 class="section-title">🚨 Condiciones Críticas de Alerta</h2>
+            
+            <div class="critical-conditions">
+                <div class="critical-card">
+                    <div class="critical-title">🌪️ VIENTOS ERRÁTICOS</div>
+                    <div class="critical-indicators">
+                        <strong>INDICADORES:</strong><br>
+                        • Cambios de dirección frecuentes<br>
+                        • Velocidad variable<br>
+                        • Remolinos de polvo<br>
+                        • Humo en espiral
+                    </div>
+                    <div class="critical-actions">
+                        <strong>ACCIONES:</strong><br>
+                        • Repliegue inmediato<br>
+                        • Comunicar a todas las unidades<br>
+                        • Identificar zonas seguras
+                    </div>
+                </div>
+
+                <div class="critical-card">
+                    <div class="critical-title">🔥 CONDICIONES EXTREMAS</div>
+                    <div class="critical-indicators">
+                        <strong>COMBINACIÓN LETAL:</strong><br>
+                        • Temperatura > 38°C<br>
+                        • Humedad < 15%<br>
+                        • Viento > 50 km/h<br>
+                        • Pendiente > 30°
+                    </div>
+                    <div class="critical-actions">
+                        <strong>RESPUESTA:</strong><br>
+                        • Solo ataque defensivo<br>
+                        • Proteger exposiciones<br>
+                        • Evacuar área amplia
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Índice de riesgo -->
+        <div class="risk-index">
+            <h3 style="color: var(--primary-red); margin-bottom: 15px;">📊 Índice de Riesgo Meteorológico</h3>
+            <div class="risk-formula">
+                RIESGO = (Temperatura + Viento) / Humedad
+            </div>
+            <div class="risk-levels">
+                <div class="risk-level risk-low">BAJO<br>< 5</div>
+                <div class="risk-level risk-moderate">MODERADO<br>5-15</div>
+                <div class="risk-level risk-high">ALTO<br>15-30</div>
+                <div class="risk-level risk-extreme">EXTREMO<br>> 30</div>
+            </div>
+            <p style="font-size: 0.9em; margin-top: 15px; color: var(--dark-gray);">
+                <strong>Ejemplo:</strong> 35°C + 40 km/h viento ÷ 10% humedad = 7.5 (Moderado tendiendo a Alto)
+            </p>
+        </div>
+
+        <!-- Warning crítico -->
+        <div class="warning-box">
+            <div class="warning-title">🚨 PELIGRO EXTREMO</div>
+            <p><strong>Los factores ambientales pueden cambiar en minutos.</strong></p>
+            <p>Un incendio controlado puede volverse incontrolable con un cambio de viento. <strong>Monitorear constantemente.</strong></p>
+        </div>
+
+        <!-- Punto clave -->
+        <div class="key-point">
+            🎯 REGLA DE ORO: Antes de cada operación, evalúa viento, humedad, temperatura y topografía. 
+            Si alguno está en zona crítica = MÁXIMA PRECAUCIÓN.
+        </div>
+
+        <!-- Para recordar en campo -->
+        <div class="content-section">
+            <h2 class="section-title">🎯 Para Recordar en Campo</h2>
+            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+                <p><strong>✅ Evaluación rápida cada 15 minutos:</strong></p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li><strong>Viento:</strong> ¿Hacia dónde va el humo? ¿Cambia de dirección?</li>
+                    <li><strong>Humedad:</strong> ¿Se siente seco el ambiente? ¿Hojas crujientes?</li>
+                    <li><strong>Temperatura:</strong> ¿Hace calor? ¿Sol intenso?</li>
+                    <li><strong>Topografía:</strong> ¿Subida, bajada, valle, cresta?</li>
+                </ul>
+                <p><strong>🚨 Si cualquier factor entra en zona crítica:</strong> Reevaluar tácticas inmediatamente.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

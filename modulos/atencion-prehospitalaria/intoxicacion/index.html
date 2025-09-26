@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intoxicaciones - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .emergency-bar {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .value-box {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #BF3604;
+            margin-bottom: 5px;
+        }
+
+        .toxin-card {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .toxin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #BF3604;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .toxin-header h3 {
+            font-size: 1.2em;
+        }
+
+        .expand-icon {
+            color: #BF3604;
+            font-size: 1.2em;
+        }
+
+        .toxin-content {
+            display: none;
+        }
+
+        .toxin-content.active {
+            display: block;
+        }
+
+        .symptoms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .symptom {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 8px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .protocol-steps {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .protocol-steps h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .step {
+            padding: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .dosage {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 12px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .warning {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 12px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .critical {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 12px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .antidote {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .antidote h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .checklist {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .checklist h4 {
+            color: #BF3604;
+            margin-bottom: 15px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin: 5px 0;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #8C0303;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .symptoms {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Atención Prehospitalaria</a> > Intoxicaciones
+        </div>
+        <h1>INTOXICACIONES</h1>
+        <p>Guía rápida de manejo de intoxicaciones</p>
+    </header>
+
+    <div class="emergency-bar">
+        PRIMERO: SEGURIDAD ESCENA + EPP + DESCONTAMINAR
+    </div>
+
+    <div class="container">
+        <div class="values-grid">
+            <div class="value-box">
+                <div class="value-number">35ppm</div>
+                <div>CO Síntomas</div>
+            </div>
+            <div class="value-box">
+                <div class="value-number">400ppm</div>
+                <div>CO Peligro</div>
+            </div>
+            <div class="value-box">
+                <div class="value-number">30min</div>
+                <div>Ventana vital</div>
+            </div>
+        </div>
+
+        <div class="toxin-card">
+            <div class="toxin-header" onclick="toggleToxin('co')">
+                <h3>MONÓXIDO DE CARBONO (CO)</h3>
+                <span class="expand-icon" id="icon-co">▼</span>
+            </div>
+            <div class="toxin-content" id="co">
+                <div class="critical">
+                    INVISIBLE, INODORO, LETAL
+                </div>
+                
+                <div class="symptoms">
+                    <div class="symptom">Cefalea</div>
+                    <div class="symptom">Náuseas</div>
+                    <div class="symptom">Confusión</div>
+                    <div class="symptom">Mareos</div>
+                </div>
+
+                <div class="protocol-steps">
+                    <h4>PROTOCOLO INMEDIATO:</h4>
+                    <div class="step">1. Evacuar zona inmediatamente</div>
+                    <div class="step">2. O2 al 100% - 15L/min</div>
+                    <div class="step">3. Mascarilla con reservorio</div>
+                    <div class="step">4. Monitoreo continuo</div>
+                </div>
+
+                <div class="dosage">
+                    TRATAMIENTO: O2 100% hasta asintomático
+                </div>
+
+                <div class="warning">
+                    >25% COHb = CÁMARA HIPERBÁRICA
+                </div>
+            </div>
+        </div>
+
+        <div class="toxin-card">
+            <div class="toxin-header" onclick="toggleToxin('opioids')">
+                <h3>OPIOIDES (Heroína/Fentanilo)</h3>
+                <span class="expand-icon" id="icon-opioids">▼</span>
+            </div>
+            <div class="toxin-content" id="opioids">
+                <div class="symptoms">
+                    <div class="symptom">Pupilas punto</div>
+                    <div class="symptom">Resp. lenta</div>
+                    <div class="symptom">Cianosis</div>
+                    <div class="symptom">Coma</div>
+                </div>
+
+                <div class="antidote">
+                    <h4>NALOXONA (NARCAN)</h4>
+                    <div class="dosage">0.4-2mg IV/IM/NASAL</div>
+                    <div>Repetir cada 2-3 min</div>
+                    <div>Máximo: 10mg total</div>
+                </div>
+
+                <div class="warning">
+                    Duración: 30-90 min (RE-INTOXICACIÓN posible)
+                </div>
+
+                <div class="protocol-steps">
+                    <h4>PASOS:</h4>
+                    <div class="step">1. ABC + Naloxona</div>
+                    <div class="step">2. Ventilar si FR &lt;8</div>
+                    <div class="step">3. Repetir dosis si necesario</div>
+                    <div class="step">4. Vigilar despertar agresivo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="toxin-card">
+            <div class="toxin-header" onclick="toggleToxin('cyanide')">
+                <h3>CIANURO (HCN)</h3>
+                <span class="expand-icon" id="icon-cyanide">▼</span>
+            </div>
+            <div class="toxin-content" id="cyanide">
+                <div class="critical">
+                    ACTUAR EN 30 MINUTOS O MUERTE
+                </div>
+
+                <div class="symptoms">
+                    <div class="symptom">Olor almendras</div>
+                    <div class="symptom">Cianosis</div>
+                    <div class="symptom">Convulsiones</div>
+                    <div class="symptom">Coma rápido</div>
+                </div>
+
+                <div class="antidote">
+                    <h4>HIDROXOCOBALAMINA</h4>
+                    <div class="dosage">5g IV en 15 minutos</div>
+                    <div>Color rojo en orina = efectivo</div>
+                </div>
+
+                <div class="protocol-steps">
+                    <h4>FUENTES:</h4>
+                    <div class="step">Humo incendios (plásticos)</div>
+                    <div class="step">Industria metalúrgica</div>
+                    <div class="step">Laboratorios químicos</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="toxin-card">
+            <div class="toxin-header" onclick="toggleToxin('organo')">
+                <h3>ORGANOFOSFORADOS</h3>
+                <span class="expand-icon" id="icon-organo">▼</span>
+            </div>
+            <div class="toxin-content" id="organo">
+                <div class="warning">
+                    SÍNDROME SLUDGE + FASCICULACIONES
+                </div>
+
+                <div class="symptoms">
+                    <div class="symptom">Salivación++</div>
+                    <div class="symptom">Lagrimeo++</div>
+                    <div class="symptom">Vómitos</div>
+                    <div class="symptom">Fasciculaciones</div>
+                </div>
+
+                <div class="antidote">
+                    <h4>ATROPINA</h4>
+                    <div class="dosage">2-5mg IV cada 5-10min</div>
+                    <div>Hasta sequedad mucosas</div>
+                </div>
+
+                <div class="critical">
+                    DESCONTAMINACIÓN URGENTE - LAVAR TODO
+                </div>
+
+                <div class="protocol-steps">
+                    <h4>DESCONTAMINAR:</h4>
+                    <div class="step">1. Quitar ropa contaminada</div>
+                    <div class="step">2. Lavar piel agua/jabón</div>
+                    <div class="step">3. Enjuagar ojos 15 min</div>
+                    <div class="step">4. EPP para rescatistas</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="toxin-card">
+            <div class="toxin-header" onclick="toggleToxin('burns')">
+                <h3>QUEMADURAS QUÍMICAS</h3>
+                <span class="expand-icon" id="icon-burns">▼</span>
+            </div>
+            <div class="toxin-content" id="burns">
+                <div class="critical">
+                    IRRIGAR INMEDIATAMENTE 20-30 MIN
+                </div>
+
+                <div class="protocol-steps">
+                    <h4>IRRIGACIÓN:</h4>
+                    <div class="step">Agua tibia abundante</div>
+                    <div class="step">Ojos: párpados abiertos</div>
+                    <div class="step">NO neutralizar químicamente</div>
+                    <div class="step">Controlar pH con papel</div>
+                </div>
+
+                <div class="warning">
+                    NO VÓMITO / NO CARBÓN ACTIVADO
+                </div>
+
+                <div class="symptoms">
+                    <div class="symptom">Ácidos: dolor inmediato</div>
+                    <div class="symptom">Bases: dolor tardío</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="toxin-card">
+            <div class="toxin-header" onclick="toggleToxin('alcohol')">
+                <h3>INTOXICACIÓN ETÍLICA</h3>
+                <span class="expand-icon" id="icon-alcohol">▼</span>
+            </div>
+            <div class="toxin-content" id="alcohol">
+                <div class="protocol-steps">
+                    <h4>NIVELES:</h4>
+                    <div class="step">150-300: Ataxia, vómitos</div>
+                    <div class="step">300-400: Estupor, hipotermia</div>
+                    <div class="step">&gt;400: Coma, apnea</div>
+                </div>
+
+                <div class="warning">
+                    RIESGO: Hipoglucemia + Hipotermia + Aspiración
+                </div>
+
+                <div class="antidote">
+                    <h4>TRATAMIENTO:</h4>
+                    <div>Posición lateral seguridad</div>
+                    <div>Glucemia SIEMPRE</div>
+                    <div>Tiamina 100mg antes glucosa</div>
+                    <div>Mantener temperatura</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist">
+            <h4>CHECKLIST INTOXICACIONES</h4>
+            <div class="check-item">
+                <div class="check-box"></div>
+                <div>Escena segura + EPP</div>
+            </div>
+            <div class="check-item">
+                <div class="check-box"></div>
+                <div>Identificar tóxico + cantidad</div>
+            </div>
+            <div class="check-item">
+                <div class="check-box"></div>
+                <div>Descontaminar paciente</div>
+            </div>
+            <div class="check-item">
+                <div class="check-box"></div>
+                <div>ABC + signos vitales</div>
+            </div>
+            <div class="check-item">
+                <div class="check-box"></div>
+                <div>Antídoto si disponible</div>
+            </div>
+            <div class="check-item">
+                <div class="check-box"></div>
+                <div>Llamar centro tóxico</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleToxin(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.textContent = '▼';
+            } else {
+                document.querySelectorAll('.toxin-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.expand-icon').forEach(i => i.textContent = '▼');
+                content.classList.add('active');
+                icon.textContent = '▲';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleToxin('co');
+        });
+    </script>
+</body>
+</html>

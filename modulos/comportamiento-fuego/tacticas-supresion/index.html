@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tácticas de Supresión - Bomberos Toolkit</title>
+    <style>
+        :root {
+            --primary-red: #e74c3c;
+            --primary-dark-red: #c0392b;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --dark-gray: #2c3e50;
+            --white: #ffffff;
+            --light-gray: #ecf0f1;
+            --blue: #3498db;
+            --purple: #9b59b6;
+            --yellow: #f1c40f;
+            --teal: #1abc9c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.8em;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            color: var(--primary-red);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Estrategias principales */
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .strategy-card {
+            border-radius: 10px;
+            padding: 20px;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .offensive { background: linear-gradient(135deg, var(--primary-red), var(--primary-dark-red)); }
+        .defensive { background: linear-gradient(135deg, var(--blue), #2980b9); }
+        .transitional { background: linear-gradient(135deg, var(--warning-orange), #e67e22); }
+
+        .strategy-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .strategy-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .strategy-description {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        .strategy-when {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        /* Tipos de ataque */
+        .attack-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .attack-card {
+            border-radius: 10px;
+            padding: 20px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .direct { background: linear-gradient(135deg, var(--primary-red), #c0392b); }
+        .indirect { background: linear-gradient(135deg, var(--blue), #2980b9); }
+        .combination { background: linear-gradient(135deg, var(--purple), #8e44ad); }
+
+        .attack-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .attack-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .attack-method {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        .attack-advantages {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        /* Técnicas de ventilación */
+        .ventilation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vent-card {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid var(--teal);
+        }
+
+        .vent-title {
+            font-weight: bold;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+
+        .vent-description {
+            font-size: 0.9em;
+            color: var(--dark-gray);
+        }
+
+        .vent-timing {
+            background: var(--white);
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 8px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        /* Uso de espuma */
+        .foam-applications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .foam-card {
+            background: var(--success-green);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .foam-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+
+        .foam-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .foam-technique {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .foam-ratio {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Coordinación táctica */
+        .tactical-coordination {
+            background: var(--yellow);
+            color: var(--dark-gray);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .coordination-scenario {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .scenario-title {
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 8px;
+        }
+
+        .scenario-steps {
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .scenario-step {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .scenario-step::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            background: var(--primary-red);
+            color: var(--white);
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            font-weight: bold;
+        }
+
+        .scenario1 { counter-reset: step-counter; }
+        .scenario2 { counter-reset: step-counter; }
+        .scenario3 { counter-reset: step-counter; }
+
+        /* Factores de decisión */
+        .decision-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .factor-card {
+            background: var(--purple);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .factor-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .factor-description {
+            font-size: 0.9em;
+        }
+
+        /* Errores comunes */
+        .common-errors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .error-card {
+            background: var(--warning-orange);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #e67e22;
+        }
+
+        .error-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .error-description {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .error-correction {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Punto clave */
+        .key-point {
+            background: linear-gradient(135deg, var(--warning-orange), #e67e22);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: #e74c3c;
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #c0392b;
+        }
+
+        .warning-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .content-section {
+                padding: 15px;
+            }
+
+            .strategies-grid,
+            .attack-types,
+            .ventilation-grid,
+            .foam-applications,
+            .decision-factors,
+            .common-errors {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.4em;
+            }
+
+            .strategy-icon {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">Inicio</a> > 
+            <a href="../../">Módulos</a> > 
+            <a href="../index.html">Comportamiento del Fuego</a> >
+            Tácticas de Supresión
+        </div>
+        <h1>🚒 Tácticas de Supresión</h1>
+        <p>Estrategias y técnicas de combate contra incendios</p>
+    </header>
+
+    <div class="container">
+        <!-- Introducción -->
+        <div class="content-section">
+            <h2 class="section-title">⚔️ ¿Por qué las Tácticas son Críticas?</h2>
+            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+                <p><strong>La táctica correcta salva vidas. La táctica incorrecta las cuesta.</strong></p>
+                <p>Las tácticas de supresión definen:</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>🎯 <strong>Estrategia general</strong> - Ofensiva, defensiva o transicional</li>
+                    <li>⚡ <strong>Método de ataque</strong> - Directo, indirecto o combinado</li>
+                    <li>💧 <strong>Uso eficiente del agua</strong> - Recurso limitado y crítico</li>
+                    <li>🌪️ <strong>Coordinación de ventilación</strong> - Control de humo y calor</li>
+                    <li>🛡️ <strong>Seguridad del personal</strong> - Protección de equipos</li>
+                    <li>📊 <strong>Optimización de recursos</strong> - Máximo impacto con mínimo riesgo</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Estrategias principales -->
+        <div class="content-section">
+            <h2 class="section-title">🎖️ Estrategias Principales de Combate</h2>
+            
+            <div class="strategies-grid">
+                <!-- Ofensiva -->
+                <div class="strategy-card offensive">
+                    <span class="strategy-icon">⚔️</span>
+                    <div class="strategy-title">ESTRATEGIA OFENSIVA</div>
+                    <div class="strategy-description">
+                        <strong>OBJETIVO:</strong> Ataque directo al asiento del fuego<br>
+                        <strong>TÁCTICA:</strong> Entrada interior para extinguir<br>
+                        <strong>RECURSOS:</strong> Líneas de ataque, ventilación coordinada<br>
+                        <strong>PERSONAL:</strong> Entrada con EPRA completo
+                    </div>
+                    <div class="strategy-when">
+                        <strong>CUÁNDO USAR:</strong><br>
+                        • Vidas en peligro confirmadas<br>
+                        • Estructura íntegra<br>
+                        • Recursos suficientes<br>
+                        • Condiciones controlables
+                    </div>
+                </div>
+
+                <!-- Defensiva -->
+                <div class="strategy-card defensive">
+                    <span class="strategy-icon">🛡️</span>
+                    <div class="strategy-title">ESTRATEGIA DEFENSIVA</div>
+                    <div class="strategy-description">
+                        <strong>OBJETIVO:</strong> Proteger exposiciones<br>
+                        <strong>TÁCTICA:</strong> Ataque exterior únicamente<br>
+                        <strong>RECURSOS:</strong> Líneas maestras, torres<br>
+                        <strong>PERSONAL:</strong> Fuera del edificio comprometido
+                    </div>
+                    <div class="strategy-when">
+                        <strong>CUÁNDO USAR:</strong><br>
+                        • No hay vidas en peligro<br>
+                        • Estructura comprometida<br>
+                        • Fuego muy avanzado<br>
+                        • Recursos limitados
+                    </div>
+                </div>
+
+                <!-- Transicional -->
+                <div class="strategy-card transitional">
+                    <span class="strategy-icon">🔄</span>
+                    <div class="strategy-title">ESTRATEGIA TRANSICIONAL</div>
+                    <div class="strategy-description">
+                        <strong>OBJETIVO:</strong> Suprimir antes de entrar<br>
+                        <strong>TÁCTICA:</strong> Ataque exterior → entrada<br>
+                        <strong>RECURSOS:</strong> Líneas exteriores + interiores<br>
+                        <strong>PERSONAL:</strong> Coordinación sincronizada
+                    </div>
+                    <div class="strategy-when">
+                        <strong>CUÁNDO USAR:</strong><br>
+                        • Vidas posibles en peligro<br>
+                        • Fuego avanzado pero controlable<br>
+                        • Reduce riesgo antes de entrada<br>
+                        • Estrategia moderna preferida
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipos de ataque -->
+        <div class="content-section">
+            <h2 class="section-title">🎯 Tipos de Ataque</h2>
+            
+            <div class="attack-types">
+                <!-- Ataque Directo -->
+                <div class="attack-card direct">
+                    <span class="attack-icon">➡️</span>
+                    <div class="attack-title">ATAQUE DIRECTO</div>
+                    <div class="attack-method">
+                        <strong>MÉTODO:</strong><br>
+                        • Agua directa a la base del fuego<br>
+                        • Chorro sólido o neblina fina<br>
+                        • Máximo enfriamiento<br>
+                        • Extinción por absorción de calor
+                    </div>
+                    <div class="attack-advantages">
+                        <strong>VENTAJAS:</strong> Rápido, eficiente, menos agua<br>
+                        <strong>DESVENTAJAS:</strong> Requiere acceso directo
+                    </div>
+                </div>
+
+                <!-- Ataque Indirecto -->
+                <div class="attack-card indirect">
+                    <span class="attack-icon">🌊</span>
+                    <div class="attack-title">ATAQUE INDIRECTO</div>
+                    <div class="attack-method">
+                        <strong>MÉTODO:</strong><br>
+                        • Neblina de agua al espacio<br>
+                        • Conversión a vapor<br>
+                        • Desplazamiento de oxígeno<br>
+                        • Extinción por sofocación
+                    </div>
+                    <div class="attack-advantages">
+                        <strong>VENTAJAS:</strong> Seguro, no requiere acceso<br>
+                        <strong>DESVENTAJAS:</strong> Más lento, más agua
+                    </div>
+                </div>
+
+                <!-- Ataque Combinado -->
+                <div class="attack-card combination">
+                    <span class="attack-icon">🔄</span>
+                    <div class="attack-title">ATAQUE COMBINADO</div>
+                    <div class="attack-method">
+                        <strong>MÉTODO:</strong><br>
+                        • Alterna directo e indirecto<br>
+                        • Adapta según condiciones<br>
+                        • Múltiples líneas coordinadas<br>
+                        • Flexibilidad táctica
+                    </div>
+                    <div class="attack-advantages">
+                        <strong>VENTAJAS:</strong> Versátil, adaptable<br>
+                        <strong>DESVENTAJAS:</strong> Requiere coordinación
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Técnicas de ventilación -->
+        <div class="content-section">
+            <h2 class="section-title">🌪️ Técnicas de Ventilación</h2>
+            
+            <div class="ventilation-grid">
+                <div class="vent-card">
+                    <div class="vent-title">VENTILACIÓN HORIZONTAL</div>
+                    <div class="vent-description">
+                        Abrir ventanas, puertas en el mismo nivel. Permite escape lateral de humo y calor.
+                    </div>
+                    <div class="vent-timing">
+                        TIMING: Coordinar con ataque para evitar propagación
+                    </div>
+                </div>
+
+                <div class="vent-card">
+                    <div class="vent-title">VENTILACIÓN VERTICAL</div>
+                    <div class="vent-description">
+                        Abrir techo, tragaluces. Aprovecha tendencia natural del humo a subir.
+                    </div>
+                    <div class="vent-timing">
+                        TIMING: Antes o simultáneo con entrada interior
+                    </div>
+                </div>
+
+                <div class="vent-card">
+                    <div class="vent-title">PRESIÓN POSITIVA</div>
+                    <div class="vent-description">
+                        Ventiladores empujan aire limpio, fuerzan salida de humo por abertura opuesta.
+                    </div>
+                    <div class="vent-timing">
+                        TIMING: Después de controlar fuego principal
+                    </div>
+                </div>
+
+                <div class="vent-card">
+                    <div class="vent-title">PRESIÓN NEGATIVA</div>
+                    <div class="vent-description">
+                        Ventiladores extraen humo directamente. Usado en espacios confinados.
+                    </div>
+                    <div class="vent-timing">
+                        TIMING: Para limpieza final de espacios
+                    </div>
+                </div>
+
+                <div class="vent-card">
+                    <div class="vent-title">VENTILACIÓN HIDRÁULICA</div>
+                    <div class="vent-description">
+                        Neblina de agua arrastra humo por efecto Venturi. Técnica complementaria.
+                    </div>
+                    <div class="vent-timing">
+                        TIMING: Durante ataque directo con neblina
+                    </div>
+                </div>
+
+                <div class="vent-card">
+                    <div class="vent-title">ANTI-VENTILACIÓN</div>
+                    <div class="vent-description">
+                        Cerrar aberturas para controlar aire. Previene crecimiento del fuego.
+                    </div>
+                    <div class="vent-timing">
+                        TIMING: Cuando ventilación alimenta el fuego
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Uso de espuma -->
+        <div class="content-section">
+            <h2 class="section-title">🧽 Aplicación de Espuma</h2>
+            
+            <div class="foam-applications">
+                <div class="foam-card">
+                    <span class="foam-icon">⛽</span>
+                    <div class="foam-title">LÍQUIDOS INFLAMABLES</div>
+                    <div class="foam-technique">
+                        <strong>TÉCNICA:</strong><br>
+                        • Aplicación suave indirecta<br>
+                        • Cubrir toda la superficie<br>
+                        • Evitar agitación del líquido<br>
+                        • Mantener capa de espuma
+                    </div>
+                    <div class="foam-ratio">
+                        AFFF 3% o 6% según combustible
+                    </div>
+                </div>
+
+                <div class="foam-card">
+                    <span class="foam-icon">🏠</span>
+                    <div class="foam-title">INCENDIOS ESTRUCTURALES</div>
+                    <div class="foam-technique">
+                        <strong>TÉCNICA:</strong><br>
+                        • Penetración mejorada<br>
+                        • Reduce tensión superficial<br>
+                        • Mayor adhesión a superficies<br>
+                        • Enfriamiento prolongado
+                    </div>
+                    <div class="foam-ratio">
+                        Clase A 0.1% a 1% concentración
+                    </div>
+                </div>
+
+                <div class="foam-card">
+                    <span class="foam-icon">🌡️</span>
+                    <div class="foam-title">SUPRESIÓN DE VAPORES</div>
+                    <div class="foam-technique">
+                        <strong>TÉCNICA:</strong><br>
+                        • Capa supresora de vapores<br>
+                        • Previene reignición<br>
+                        • Controla evaporación<br>
+                        • Protección prolongada
+                    </div>
+                    <div class="foam-ratio">
+                        AR-AFFF para alcoholes y polares
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coordinación táctica -->
+        <div class="tactical-coordination">
+            <h3 style="color: var(--primary-red); margin-bottom: 15px;">⚔️ Coordinación Táctica por Escenarios</h3>
+            
+            <div class="coordination-scenario scenario1">
+                <div class="scenario-title">🏠 INCENDIO RESIDENCIAL - ESTRATEGIA OFENSIVA</div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">Evaluación inicial - vidas en peligro confirmadas</div>
+                    <div class="scenario-step">Línea de ataque 1¾" por entrada principal</div>
+                    <div class="scenario-step">Ventilación vertical coordinada (techo)</div>
+                    <div class="scenario-step">Búsqueda primaria simultánea</div>
+                    <div class="scenario-step">Línea de respaldo 2½" por entrada secundaria</div>
+                    <div class="scenario-step">Ataque directo al asiento del fuego</div>
+                    <div class="scenario-step">Ventilación horizontal para evacuación humo</div>
+                </div>
+            </div>
+
+            <div class="coordination-scenario scenario2">
+                <div class="scenario-title">🏢 EDIFICIO COMERCIAL - ESTRATEGIA DEFENSIVA</div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">Evaluación - estructura comprometida, no hay víctimas</div>
+                    <div class="scenario-step">Perímetro de seguridad establecido</div>
+                    <div class="scenario-step">Líneas maestras 2½" desde exterior</div>
+                    <div class="scenario-step">Protección de exposiciones prioritaria</div>
+                    <div class="scenario-step">Torres de agua si disponibles</div>
+                    <div class="scenario-step">Control de propagación a edificios adyacentes</div>
+                    <div class="scenario-step">Monitoreo continuo de integridad estructural</div>
+                </div>
+            </div>
+
+            <div class="coordination-scenario scenario3">
+                <div class="scenario-title">🏭 INCENDIO INDUSTRIAL - ESTRATEGIA TRANSICIONAL</div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">Evaluación de materiales peligrosos</div>
+                    <div class="scenario-step">Ataque inicial desde exterior con espuma</div>
+                    <div class="scenario-step">Supresión de vapores y control de derrames</div>
+                    <div class="scenario-step">Evaluación de condiciones para entrada</div>
+                    <div class="scenario-step">Transición a ataque interior si es seguro</div>
+                    <div class="scenario-step">Coordinación con equipos HAZMAT</div>
+                    <div class="scenario-step">Monitoreo de atmósfera continuo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Factores de decisión táctica -->
+        <div class="content-section">
+            <h2 class="section-title">⚖️ Factores de Decisión Táctica</h2>
+            
+            <div class="decision-factors">
+                <div class="factor-card">
+                    <div class="factor-title">VIDA EN PELIGRO</div>
+                    <div class="factor-description">
+                        Prioridad absoluta. Determina nivel de riesgo aceptable y urgencia de acciones.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">INTEGRIDAD ESTRUCTURAL</div>
+                    <div class="factor-description">
+                        Condición del edificio define si es posible entrada interior segura.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">EXTENSIÓN DEL FUEGO</div>
+                    <div class="factor-description">
+                        Porcentaje comprometido determina estrategia ofensiva vs defensiva.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">RECURSOS DISPONIBLES</div>
+                    <div class="factor-description">
+                        Personal, agua, equipos. No iniciar lo que no puedes completar.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">TIEMPO TRANSCURRIDO</div>
+                    <div class="factor-description">
+                        Tiempo desde inicio influye en supervivencia y estabilidad estructural.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">ACCESIBILIDAD</div>
+                    <div class="factor-description">
+                        Rutas de entrada, escape y posicionamiento de equipos.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">CONDICIONES AMBIENTALES</div>
+                    <div class="factor-description">
+                        Viento, clima, visibilidad afectan tácticas y seguridad.
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <div class="factor-title">EXPOSICIONES</div>
+                    <div class="factor-description">
+                        Estructuras adyacentes en riesgo pueden cambiar prioridades.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Errores comunes -->
+        <div class="content-section">
+            <h2 class="section-title">❌ Errores Tácticos Comunes</h2>
+            
+            <div class="common-errors">
+                <div class="error-card">
+                    <div class="error-title">🚪 VENTILACIÓN PREMATURA</div>
+                    <div class="error-description">
+                        Abrir ventilación antes de tener líneas en posición. Alimenta el fuego y aumenta su intensidad.
+                    </div>
+                    <div class="error-correction">
+                        CORRECCIÓN: Coordinar ventilación con ataque. Líneas listas antes de ventilar.
+                    </div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">💧 FLUJO EXCESIVO</div>
+                    <div class="error-description">
+                        Usar más agua de la necesaria. Causa daño innecesario y desperdicia recurso limitado.
+                    </div>
+                    <div class="error-correction">
+                        CORRECCIÓN: Usar flujo mínimo efectivo. Aumentar gradualmente según necesidad.
+                    </div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">🎯 FALTA DE COORDINACIÓN</div>
+                    <div class="error-description">
+                        Múltiples líneas trabajando sin coordinación. Interfieren entre sí y reducen efectividad.
+                    </div>
+                    <div class="error-correction">
+                        CORRECCIÓN: Comando unificado. Comunicación constante entre equipos.
+                    </div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">⚔️ PERSISTIR EN TÁCTICA FALLIDA</div>
+                    <div class="error-description">
+                        Continuar con estrategia que no funciona por orgullo o inercia. Desperdicia tiempo crítico.
+                    </div>
+                    <div class="error-correction">
+                        CORRECCIÓN: Evaluación continua. Cambiar tácticas según resultados observados.
+                    </div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">🏃 ENTRADA SIN PREPARACIÓN</div>
+                    <div class="error-description">
+                        Entrar sin líneas de respaldo, escape planificado o ventilación coordinada.
+                    </div>
+                    <div class="error-correction">
+                        CORRECCIÓN: Preparación completa antes de comprometerse. Plan B siempre.
+                    </div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">🎯 IGNORAR EL OBJETIVO</div>
+                    <div class="error-description">
+                        Atacar síntomas en lugar del asiento del fuego. Combate prolongado e ineficiente.
+                    </div>
+                    <div class="error-correction">
+                        CORRECCIÓN: Localizar y atacar el asiento principal del fuego primero.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warning crítico -->
+        <div class="warning-box">
+            <div class="warning-title">⚔️ PRINCIPIO TÁCTICO FUNDAMENTAL</div>
+            <p><strong>La táctica debe adaptarse a la situación, no forzar la situación a la táctica.</strong></p>
+            <p>Cada incendio es único. Lo que funcionó antes puede no funcionar ahora. Evalúa, adapta, ejecuta.</p>
+        </div>
+
+        <!-- Punto clave -->
+        <div class="key-point">
+            🎯 REGLA DE ORO: Coordina SIEMPRE ataque, ventilación y búsqueda. Son tres elementos de una sola operación.
+        </div>
+
+        <!-- Para recordar en campo -->
+        <div class="content-section">
+            <h2 class="section-title">🎯 Para Recordar en Campo</h2>
+            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+                <p><strong>✅ Antes de elegir táctica:</strong></p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li><strong>¿Hay vidas en peligro?</strong> - Determina nivel de agresividad</li>
+                    <li><strong>¿Cuánto está comprometido?</strong> - < 50% = Ofensiva, > 75% = Defensiva</li>
+                    <li><strong>¿Tengo recursos suficientes?</strong> - Personal, agua, equipos</li>
+                    <li><strong>¿Puedo completar la misión?</strong> - Evaluación realista</li>
+                </ul>
+                <p><strong>🚨 Durante la operación:</strong></p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li><strong>Comunicación cada 3 minutos</strong> - Estado y progreso</li>
+                    <li><strong>Coordinación de ventilación</strong> - Nunca ventilar sin líneas</li>
+                    <li><strong>Monitorear efectividad</strong> - ¿Está funcionando?</li>
+                    <li><strong>Preparar repliegue</strong> - Plan B siempre listo</li>
+                </ul>
+                <p><strong>🔄 Si la táctica no funciona:</strong> Cambiar inmediatamente. No persistir por orgullo.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

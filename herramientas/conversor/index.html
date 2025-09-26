@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .quick-nav {
+            background: #0D0D0D;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+
+        .quick-nav a {
+            color: #F2E4C9;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid #8C0303;
+            transition: all 0.2s;
+            white-space: nowrap;
+            font-size: 0.9em;
+        }
+
+        .quick-nav a:hover {
+            background: #8C0303;
+        }
+
+        .converter-section {
+            background: #0D0D0D;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            color: #F2E4C9;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8C0303;
+        }
+
+        .converter-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            color: #F2E4C9;
+            font-size: 0.9em;
+        }
+
+        .input-group input {
+            padding: 10px;
+            border: 2px solid #8C0303;
+            background: #F2E4C9;
+            color: #0D0D0D;
+            font-size: 1em;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #BF3604;
+        }
+
+        .result {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .converter-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">← Inicio</a> > Conversor
+        </div>
+        <h1>CONVERSOR DE UNIDADES</h1>
+    </header>
+
+    <div class="quick-nav">
+        <a href="#presion">Presión</a>
+        <a href="#distancia">Distancia</a>
+        <a href="#area">Área</a>
+        <a href="#volumen">Volumen</a>
+        <a href="#peso">Peso</a>
+        <a href="#fuerza">Fuerza</a>
+        <a href="#temperatura">Temperatura</a>
+        <a href="#caudal">Caudal</a>
+        <a href="#oxigeno">Oxígeno</a>
+    </div>
+
+    <div class="container">
+        <!-- PRESIÓN -->
+        <div class="converter-section" id="presion">
+            <h2 class="section-title">PRESIÓN</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>PSI</label>
+                    <input type="number" id="psi" oninput="convertPresion('psi')">
+                </div>
+                <div class="input-group">
+                    <label>Bar</label>
+                    <input type="number" id="bar" oninput="convertPresion('bar')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>kPa</label>
+                    <input type="number" id="kpa" oninput="convertPresion('kpa')">
+                </div>
+                <div class="input-group">
+                    <label>mH2O</label>
+                    <input type="number" id="mh2o" oninput="convertPresion('mh2o')">
+                </div>
+            </div>
+        </div>
+
+        <!-- DISTANCIA -->
+        <div class="converter-section" id="distancia">
+            <h2 class="section-title">DISTANCIA</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Metros</label>
+                    <input type="number" id="metros" oninput="convertDistancia('metros')">
+                </div>
+                <div class="input-group">
+                    <label>Pies</label>
+                    <input type="number" id="pies" oninput="convertDistancia('pies')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Pulgadas</label>
+                    <input type="number" id="pulgadas" oninput="convertDistancia('pulgadas')">
+                </div>
+                <div class="input-group">
+                    <label>Centímetros</label>
+                    <input type="number" id="cm" oninput="convertDistancia('cm')">
+                </div>
+            </div>
+        </div>
+
+        <!-- ÁREA -->
+        <div class="converter-section" id="area">
+            <h2 class="section-title">ÁREA</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>m²</label>
+                    <input type="number" id="m2" oninput="convertArea('m2')">
+                </div>
+                <div class="input-group">
+                    <label>ft²</label>
+                    <input type="number" id="ft2" oninput="convertArea('ft2')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Hectáreas</label>
+                    <input type="number" id="hectareas" oninput="convertArea('hectareas')">
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUMEN -->
+        <div class="converter-section" id="volumen">
+            <h2 class="section-title">VOLUMEN</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Litros</label>
+                    <input type="number" id="litros" oninput="convertVolumen('litros')">
+                </div>
+                <div class="input-group">
+                    <label>Galones</label>
+                    <input type="number" id="galones" oninput="convertVolumen('galones')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>m³</label>
+                    <input type="number" id="m3" oninput="convertVolumen('m3')">
+                </div>
+            </div>
+        </div>
+
+        <!-- PESO -->
+        <div class="converter-section" id="peso">
+            <h2 class="section-title">PESO</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Kilogramos</label>
+                    <input type="number" id="kg" oninput="convertPeso('kg')">
+                </div>
+                <div class="input-group">
+                    <label>Libras</label>
+                    <input type="number" id="lb" oninput="convertPeso('lb')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Gramos</label>
+                    <input type="number" id="gramos" oninput="convertPeso('gramos')">
+                </div>
+            </div>
+        </div>
+
+        <!-- FUERZA -->
+        <div class="converter-section" id="fuerza">
+            <h2 class="section-title">FUERZA</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Newton (N)</label>
+                    <input type="number" id="newton" oninput="convertFuerza('newton')">
+                </div>
+                <div class="input-group">
+                    <label>kgf</label>
+                    <input type="number" id="kgf" oninput="convertFuerza('kgf')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>lbf</label>
+                    <input type="number" id="lbf" oninput="convertFuerza('lbf')">
+                </div>
+            </div>
+        </div>
+
+        <!-- TEMPERATURA -->
+        <div class="converter-section" id="temperatura">
+            <h2 class="section-title">TEMPERATURA</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Celsius (°C)</label>
+                    <input type="number" id="celsius" oninput="convertTemp('celsius')">
+                </div>
+                <div class="input-group">
+                    <label>Fahrenheit (°F)</label>
+                    <input type="number" id="fahrenheit" oninput="convertTemp('fahrenheit')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Kelvin (K)</label>
+                    <input type="number" id="kelvin" oninput="convertTemp('kelvin')">
+                </div>
+            </div>
+        </div>
+
+        <!-- CAUDAL -->
+        <div class="converter-section" id="caudal">
+            <h2 class="section-title">CAUDAL</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>LPM (L/min)</label>
+                    <input type="number" id="lpm" oninput="convertCaudal('lpm')">
+                </div>
+                <div class="input-group">
+                    <label>GPM (gal/min)</label>
+                    <input type="number" id="gpm" oninput="convertCaudal('gpm')">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>L/s</label>
+                    <input type="number" id="ls" oninput="convertCaudal('ls')">
+                </div>
+                <div class="input-group">
+                    <label>m³/s</label>
+                    <input type="number" id="m3s" oninput="convertCaudal('m3s')">
+                </div>
+            </div>
+        </div>
+
+        <!-- CALCULADOR DE OXÍGENO -->
+        <div class="converter-section" id="oxigeno">
+            <h2 class="section-title">CALCULADOR DE OXÍGENO</h2>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Presión del cilindro (PSI)</label>
+                    <input type="number" id="oxPsi" value="2000">
+                </div>
+                <div class="input-group">
+                    <label>Factor del cilindro</label>
+                    <input type="number" id="oxFactor" value="0.28">
+                </div>
+            </div>
+            <div class="converter-row">
+                <div class="input-group">
+                    <label>Flujo (LPM)</label>
+                    <input type="number" id="oxFlujo" value="15">
+                </div>
+                <div class="input-group">
+                    <label>Duración (minutos)</label>
+                    <input type="number" id="oxDuracion" readonly style="background: #8C0303; color: #F2E4C9; font-weight: bold;">
+                </div>
+            </div>
+            <button onclick="calcularOxigeno()" style="width: 100%; padding: 12px; background: #BF3604; color: #F2E4C9; border: none; cursor: pointer; font-weight: bold; font-size: 1em;">CALCULAR</button>
+        </div>
+    </div>
+
+    <script>
+        function convertPresion(from) {
+            const psi = document.getElementById('psi');
+            const bar = document.getElementById('bar');
+            const kpa = document.getElementById('kpa');
+            const mh2o = document.getElementById('mh2o');
+            
+            let psiValue = 0;
+            
+            if (from === 'psi') psiValue = parseFloat(psi.value) || 0;
+            else if (from === 'bar') psiValue = (parseFloat(bar.value) || 0) * 14.5038;
+            else if (from === 'kpa') psiValue = (parseFloat(kpa.value) || 0) * 0.145038;
+            else if (from === 'mh2o') psiValue = (parseFloat(mh2o.value) || 0) * 1.42233;
+            
+            if (from !== 'psi') psi.value = psiValue.toFixed(2);
+            if (from !== 'bar') bar.value = (psiValue * 0.0689476).toFixed(2);
+            if (from !== 'kpa') kpa.value = (psiValue * 6.89476).toFixed(2);
+            if (from !== 'mh2o') mh2o.value = (psiValue * 0.703069).toFixed(2);
+        }
+
+        function convertDistancia(from) {
+            const metros = document.getElementById('metros');
+            const pies = document.getElementById('pies');
+            const pulgadas = document.getElementById('pulgadas');
+            const cm = document.getElementById('cm');
+            
+            let metrosValue = 0;
+            
+            if (from === 'metros') metrosValue = parseFloat(metros.value) || 0;
+            else if (from === 'pies') metrosValue = (parseFloat(pies.value) || 0) * 0.3048;
+            else if (from === 'pulgadas') metrosValue = (parseFloat(pulgadas.value) || 0) * 0.0254;
+            else if (from === 'cm') metrosValue = (parseFloat(cm.value) || 0) * 0.01;
+            
+            if (from !== 'metros') metros.value = metrosValue.toFixed(2);
+            if (from !== 'pies') pies.value = (metrosValue * 3.28084).toFixed(2);
+            if (from !== 'pulgadas') pulgadas.value = (metrosValue * 39.3701).toFixed(2);
+            if (from !== 'cm') cm.value = (metrosValue * 100).toFixed(2);
+        }
+
+        function convertArea(from) {
+            const m2 = document.getElementById('m2');
+            const ft2 = document.getElementById('ft2');
+            const hectareas = document.getElementById('hectareas');
+            
+            let m2Value = 0;
+            
+            if (from === 'm2') m2Value = parseFloat(m2.value) || 0;
+            else if (from === 'ft2') m2Value = (parseFloat(ft2.value) || 0) * 0.092903;
+            else if (from === 'hectareas') m2Value = (parseFloat(hectareas.value) || 0) * 10000;
+            
+            if (from !== 'm2') m2.value = m2Value.toFixed(2);
+            if (from !== 'ft2') ft2.value = (m2Value * 10.7639).toFixed(2);
+            if (from !== 'hectareas') hectareas.value = (m2Value * 0.0001).toFixed(4);
+        }
+
+        function convertVolumen(from) {
+            const litros = document.getElementById('litros');
+            const galones = document.getElementById('galones');
+            const m3 = document.getElementById('m3');
+            
+            let litrosValue = 0;
+            
+            if (from === 'litros') litrosValue = parseFloat(litros.value) || 0;
+            else if (from === 'galones') litrosValue = (parseFloat(galones.value) || 0) * 3.78541;
+            else if (from === 'm3') litrosValue = (parseFloat(m3.value) || 0) * 1000;
+            
+            if (from !== 'litros') litros.value = litrosValue.toFixed(2);
+            if (from !== 'galones') galones.value = (litrosValue * 0.264172).toFixed(2);
+            if (from !== 'm3') m3.value = (litrosValue * 0.001).toFixed(3);
+        }
+
+        function convertPeso(from) {
+            const kg = document.getElementById('kg');
+            const lb = document.getElementById('lb');
+            const gramos = document.getElementById('gramos');
+            
+            let kgValue = 0;
+            
+            if (from === 'kg') kgValue = parseFloat(kg.value) || 0;
+            else if (from === 'lb') kgValue = (parseFloat(lb.value) || 0) * 0.453592;
+            else if (from === 'gramos') kgValue = (parseFloat(gramos.value) || 0) * 0.001;
+            
+            if (from !== 'kg') kg.value = kgValue.toFixed(2);
+            if (from !== 'lb') lb.value = (kgValue * 2.20462).toFixed(2);
+            if (from !== 'gramos') gramos.value = (kgValue * 1000).toFixed(0);
+        }
+
+        function convertFuerza(from) {
+            const newton = document.getElementById('newton');
+            const kgf = document.getElementById('kgf');
+            const lbf = document.getElementById('lbf');
+            
+            let newtonValue = 0;
+            
+            if (from === 'newton') newtonValue = parseFloat(newton.value) || 0;
+            else if (from === 'kgf') newtonValue = (parseFloat(kgf.value) || 0) * 9.80665;
+            else if (from === 'lbf') newtonValue = (parseFloat(lbf.value) || 0) * 4.44822;
+            
+            if (from !== 'newton') newton.value = newtonValue.toFixed(2);
+            if (from !== 'kgf') kgf.value = (newtonValue * 0.101972).toFixed(2);
+            if (from !== 'lbf') lbf.value = (newtonValue * 0.224809).toFixed(2);
+        }
+
+        function convertTemp(from) {
+            const celsius = document.getElementById('celsius');
+            const fahrenheit = document.getElementById('fahrenheit');
+            const kelvin = document.getElementById('kelvin');
+            
+            let celsiusValue = 0;
+            
+            if (from === 'celsius') celsiusValue = parseFloat(celsius.value) || 0;
+            else if (from === 'fahrenheit') celsiusValue = ((parseFloat(fahrenheit.value) || 0) - 32) * 5/9;
+            else if (from === 'kelvin') celsiusValue = (parseFloat(kelvin.value) || 0) - 273.15;
+            
+            if (from !== 'celsius') celsius.value = celsiusValue.toFixed(1);
+            if (from !== 'fahrenheit') fahrenheit.value = ((celsiusValue * 9/5) + 32).toFixed(1);
+            if (from !== 'kelvin') kelvin.value = (celsiusValue + 273.15).toFixed(1);
+        }
+
+        function convertCaudal(from) {
+            const lpm = document.getElementById('lpm');
+            const gpm = document.getElementById('gpm');
+            const ls = document.getElementById('ls');
+            const m3s = document.getElementById('m3s');
+            
+            let lpmValue = 0;
+            
+            if (from === 'lpm') lpmValue = parseFloat(lpm.value) || 0;
+            else if (from === 'gpm') lpmValue = (parseFloat(gpm.value) || 0) * 3.78541;
+            else if (from === 'ls') lpmValue = (parseFloat(ls.value) || 0) * 60;
+            else if (from === 'm3s') lpmValue = (parseFloat(m3s.value) || 0) * 60000;
+            
+            if (from !== 'lpm') lpm.value = lpmValue.toFixed(2);
+            if (from !== 'gpm') gpm.value = (lpmValue * 0.264172).toFixed(2);
+            if (from !== 'ls') ls.value = (lpmValue / 60).toFixed(2);
+            if (from !== 'm3s') m3s.value = (lpmValue / 60000).toFixed(5);
+        }
+
+        function calcularOxigeno() {
+            const presion = parseFloat(document.getElementById('oxPsi').value) || 0;
+            const factor = parseFloat(document.getElementById('oxFactor').value) || 0;
+            const flujo = parseFloat(document.getElementById('oxFlujo').value) || 0;
+            
+            if (flujo > 0) {
+                const duracion = (presion * factor) / flujo;
+                document.getElementById('oxDuracion').value = duracion.toFixed(1);
+            }
+        }
+    </script>
+</body>
+</html>

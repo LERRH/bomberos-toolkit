@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos y Materiales - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .module-card {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            border-left: 4px solid #95a5a6;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            background: #1a1a1a;
+        }
+
+        .module-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .module-desc {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .status {
+            background: #95a5a6;
+            color: #F2E4C9;
+            padding: 4px 10px;
+            font-size: 0.7em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .module-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">← Inicio</a> > <a href="../">Módulos</a> > Equipos y Materiales
+        </div>
+        <h1>EQUIPOS Y MATERIALES</h1>
+        <p>Herramientas y equipos especializados</p>
+    </header>
+
+    <div class="container">
+        <div class="modules-grid">
+            <div class="module-card" onclick="showComingSoon('Mangas, Pitones y Accesorios')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Mangas y Pitones</h3>
+                <p class="module-desc">Tipos y técnicas</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Abastecimiento')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Abastecimiento</h3>
+                <p class="module-desc">Fuentes de agua</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Chorros de Agua')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Chorros de Agua</h3>
+                <p class="module-desc">Tipos y aplicación</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Espuma')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Espuma</h3>
+                <p class="module-desc">Generadores</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Escalas')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Escalas</h3>
+                <p class="module-desc">Posicionamiento</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Cuerdas, Nudos y Amarres')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Cuerdas y Nudos</h3>
+                <p class="module-desc">Nudos especializados</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('EPP')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">EPP</h3>
+                <p class="module-desc">Equipo protección</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Protección Respiratoria')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Protección Respiratoria</h3>
+                <p class="module-desc">EPRA</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Herramientas de Rescate')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Herramientas Rescate</h3>
+                <p class="module-desc">Hidráulicas y manuales</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Equipos Eléctricos')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Equipos Eléctricos</h3>
+                <p class="module-desc">Generadores y motobombas</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Comunicaciones')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Comunicaciones</h3>
+                <p class="module-desc">Radios y protocolos</p>
+            </div>
+
+            <div class="module-card" onclick="showComingSoon('Vehículos y Autobombas')">
+                <div class="status">PLANIFICADO</div>
+                <h3 class="module-title">Vehículos</h3>
+                <p class="module-desc">Autobombas</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showComingSoon(moduleName) {
+            alert('EN DESARROLLO\n\n' + moduleName + '\n\nPróximamente disponible');
+        }
+    </script>
+</body>
+</html>

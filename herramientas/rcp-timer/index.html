@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer RCP - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .phase-box {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .phase-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .timer {
+            font-size: 4em;
+            font-weight: bold;
+            font-family: monospace;
+            margin: 20px 0;
+        }
+
+        .count {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .info {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 18px;
+            border: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            color: #F2E4C9;
+        }
+
+        .btn-start {
+            background: #BF3604;
+            font-size: 1.3em;
+            padding: 22px;
+        }
+
+        .btn-pause {
+            background: #F27405;
+        }
+
+        .btn-next {
+            background: #8C0303;
+        }
+
+        .btn-reset {
+            background: #0D0D0D;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .guide {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .timer {
+                font-size: 3em;
+            }
+
+            .phase-title {
+                font-size: 1.6em;
+            }
+
+            .count {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../index.html">← Inicio</a> > Timer RCP
+        </div>
+        <h1>TIMER RCP</h1>
+    </header>
+
+    <div class="container">
+        <div class="phase-box">
+            <div class="phase-title" id="phase">PRESIONA INICIAR</div>
+            <div class="timer" id="timer">00:00</div>
+            <div class="count" id="count" style="display: none;">0 / 30</div>
+        </div>
+
+        <div class="info">
+            <span>Ciclo: <span id="cycle">0</span> / 5</span>
+            <span>Total: <span id="total">00:00</span></span>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-start" id="startBtn" onclick="start()">INICIAR</button>
+            <button class="btn btn-pause" id="pauseBtn" onclick="pause()" disabled>PAUSAR</button>
+            <button class="btn btn-next" id="nextBtn" onclick="next()" disabled>SIGUIENTE</button>
+            <button class="btn btn-reset" onclick="reset()">REINICIAR</button>
+        </div>
+
+        <div class="guide">
+            <strong>30 compresiones + 2 ventilaciones = 1 ciclo</strong><br>
+            Evaluar cada 5 ciclos (2 minutos)
+        </div>
+    </div>
+
+    <script>
+        let running = false;
+        let paused = false;
+        let phase = 'stopped'; // 'compressions', 'ventilations'
+        let phaseTime = 0;
+        let totalTime = 0;
+        let cycles = 0;
+        let compressions = 0;
+        let interval = null;
+        let compInterval = null;
+
+        const COMP_TIME = 18;
+        const VENT_TIME = 4;
+
+        function format(secs) {
+            const m = Math.floor(secs / 60);
+            const s = secs % 60;
+            return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        }
+
+        function update() {
+            document.getElementById('timer').textContent = format(phaseTime);
+            document.getElementById('cycle').textContent = cycles;
+            document.getElementById('total').textContent = format(totalTime);
+            
+            if (phase === 'compressions') {
+                document.getElementById('count').textContent = `${compressions} / 30`;
+                document.getElementById('count').style.display = 'block';
+            } else {
+                document.getElementById('count').style.display = 'none';
+            }
+        }
+
+        function beep(freq = 800) {
+            try {
+                const ctx = new AudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.1);
+            } catch(e) {}
+        }
+
+        function startCompressions() {
+            compressions = 0;
+            compInterval = setInterval(() => {
+                if (compressions < 30 && phase === 'compressions') {
+                    compressions++;
+                    beep(600);
+                    update();
+                    if (compressions >= 30) {
+                        clearInterval(compInterval);
+                        beep(1000);
+                    }
+                }
+            }, 600);
+        }
+
+        function stopCompressions() {
+            if (compInterval) {
+                clearInterval(compInterval);
+                compInterval = null;
+            }
+        }
+
+        function start() {
+            if (!running) {
+                running = true;
+                paused = false;
+                phase = 'compressions';
+                phaseTime = COMP_TIME;
+                
+                document.getElementById('phase').textContent = 'COMPRESIONES';
+                startCompressions();
+                
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('pauseBtn').disabled = false;
+                document.getElementById('nextBtn').disabled = false;
+                
+                beep(800);
+                interval = setInterval(tick, 1000);
+            } else if (paused) {
+                paused = false;
+                
+                if (phase === 'compressions') {
+                    document.getElementById('phase').textContent = 'COMPRESIONES';
+                    startCompressions();
+                } else {
+                    document.getElementById('phase').textContent = 'VENTILACIONES';
+                }
+                
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('pauseBtn').disabled = false;
+                
+                interval = setInterval(tick, 1000);
+                beep(800);
+            }
+        }
+
+        function pause() {
+            if (running && !paused) {
+                paused = true;
+                clearInterval(interval);
+                stopCompressions();
+                
+                document.getElementById('phase').textContent = 'PAUSADO';
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('pauseBtn').disabled = true;
+                
+                beep(400);
+            }
+        }
+
+        function reset() {
+            running = false;
+            paused = false;
+            phase = 'stopped';
+            phaseTime = 0;
+            totalTime = 0;
+            cycles = 0;
+            compressions = 0;
+            
+            clearInterval(interval);
+            stopCompressions();
+            
+            document.getElementById('phase').textContent = 'PRESIONA INICIAR';
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('pauseBtn').disabled = true;
+            document.getElementById('nextBtn').disabled = true;
+            
+            update();
+            beep(400);
+        }
+
+        function next() {
+            if (!running || paused) return;
+            
+            if (phase === 'compressions') {
+                stopCompressions();
+                phase = 'ventilations';
+                phaseTime = VENT_TIME;
+                
+                document.getElementById('phase').textContent = 'VENTILACIONES';
+                beep(1200);
+                
+            } else if (phase === 'ventilations') {
+                cycles++;
+                
+                if (cycles >= 5) {
+                    pause();
+                    document.getElementById('phase').textContent = 'EVALUAR PULSO';
+                    beep(1500);
+                    cycles = 0;
+                } else {
+                    phase = 'compressions';
+                    phaseTime = COMP_TIME;
+                    
+                    document.getElementById('phase').textContent = 'COMPRESIONES';
+                    startCompressions();
+                    beep(800);
+                }
+            }
+            
+            update();
+        }
+
+        function tick() {
+            if (paused) return;
+            
+            phaseTime--;
+            totalTime++;
+            
+            if (phaseTime <= 0) {
+                next();
+                return;
+            }
+            
+            update();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                e.preventDefault();
+                if (!running || paused) start();
+                else pause();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                next();
+            } else if (e.key === 'Escape') {
+                reset();
+            }
+        });
+
+        update();
+    </script>
+</body>
+</html>

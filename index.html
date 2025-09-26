@@ -3,199 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bomberos Toolkit - Herramientas para Bomberos</title>
-    <meta name="description" content="Herramientas y conocimiento para bomberos profesionales">
+    <title>Bomberos Toolkit</title>
+    <meta name="description" content="Herramientas profesionales para bomberos">
     <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#e74c3c">
+    <meta name="theme-color" content="#8C0303">
     <style>
-        :root{--primary-red:#e74c3c;--primary-dark-red:#c0392b;--secondary-blue:#3498db;--success-green:#27ae60;--warning-orange:#f39c12;--dark-gray:#2c3e50;--white:#fff;--font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;--spacing-sm:10px;--spacing-md:20px;--spacing-lg:30px;--spacing-xl:40px;--radius-sm:8px;--radius-md:15px;--radius-xl:25px;--shadow-sm:0 2px 10px rgba(0,0,0,.1);--shadow-md:0 5px 20px rgba(0,0,0,.15);--shadow-lg:0 10px 30px rgba(0,0,0,.2)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--font-family);color:var(--dark-gray);background:linear-gradient(135deg,#1e3c72 0%,#2a5298 50%,#1e3c72 100%);min-height:100vh;overflow-x:hidden}.container{max-width:1200px;margin:0 auto;padding:0 var(--spacing-md)}.main-header{background:linear-gradient(135deg,var(--primary-red) 0%,var(--primary-dark-red) 100%);color:var(--white);padding:var(--spacing-md) 0;box-shadow:var(--shadow-lg);position:sticky;top:0;z-index:100}.header-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 var(--spacing-md)}.logo-section{flex:1;display:flex;align-items:center;gap:var(--spacing-md)}.logo-icon{width:40px;height:40px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,.3))}.logo-text{display:flex;flex-direction:column}.main-title{font-size:2.2rem;font-weight:700;margin-bottom:5px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}.main-subtitle{font-size:1rem;opacity:.9;font-weight:400}.main-nav{display:flex;align-items:center}.nav-toggle{display:none;background:0 0;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:var(--spacing-sm)}.nav-menu{display:flex;list-style:none;gap:var(--spacing-lg);margin:0;padding:0}.nav-menu a{color:var(--white);text-decoration:none;font-weight:500;transition:.3s;padding:var(--spacing-sm) var(--spacing-md);border-radius:var(--radius-sm)}.nav-menu a:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}.herramientas-rapidas{padding:var(--spacing-md) 0}.subsection-title{color:var(--white);font-size:1.5rem;margin:var(--spacing-md) 0;padding:var(--spacing-md);padding-left:var(--spacing-md);border-left:5px solid var(--primary-red);text-shadow:1px 1px 2px rgba(0,0,0,.3);background:rgba(0,0,0,.2);border-radius:var(--radius-sm)}.herramientas-grid.compact{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px}.herramienta-card{padding:15px;text-align:center;border-radius:10px;background:rgba(255,255,255,.95);box-shadow:var(--shadow-sm);transition:all .3s ease;cursor:pointer;backdrop-filter:blur(10px)}.herramienta-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}.herramienta-card.external{border:2px solid var(--secondary-blue);background:linear-gradient(135deg,#fff 0%,#f8f9ff 100%)}.herramienta-card.external:hover{border-color:#2980b9;background:linear-gradient(135deg,#f8f9ff 0%,#e8f0ff 100%)}.tool-icon{font-size:2em;margin-bottom:8px;display:block}.tool-title{font-size:1em;font-weight:700;margin-bottom:5px;color:var(--dark-gray)}.tool-description{font-size:.85em;color:#666;margin-bottom:10px;line-height:1.2}.tool-status{padding:4px 8px;border-radius:12px;font-size:.7em;font-weight:700}.tool-status.ready{background:var(--success-green);color:#fff}.tool-status.external{background:var(--secondary-blue);color:#fff}.modulos-ensenanza{padding:var(--spacing-xl) 0;margin-top:var(--spacing-lg)}.modulos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;margin-top:var(--spacing-lg)}.modulo-card{background:rgba(255,255,255,.95);border-radius:10px;padding:15px;cursor:pointer;transition:.3s ease;box-shadow:var(--shadow-sm);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);text-align:center;position:relative}.modulo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}.module-icon{font-size:2em;margin-bottom:8px;display:block;filter:drop-shadow(1px 1px 2px rgba(0,0,0,.1))}.module-title{font-size:1em;font-weight:700;color:var(--dark-gray);margin-bottom:5px}.module-description{color:#666;margin-bottom:10px;line-height:1.2;font-size:.85em}.module-topics{display:none}.module-status{position:static;display:block;padding:4px 8px;border-radius:12px;font-size:.7em;font-weight:700;text-transform:uppercase;margin-top:8px}.module-status.ready{background:var(--success-green);color:var(--white)}.module-status.in-development{background:var(--warning-orange);color:var(--white)}.module-status.planned{background:#95a5a6;color:var(--white)}.stats-section{background:rgba(255,255,255,.95);margin:var(--spacing-xl) var(--spacing-md);padding:var(--spacing-lg);border-radius:var(--radius-md);box-shadow:var(--shadow-md);backdrop-filter:blur(10px)}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--spacing-lg);text-align:center}.stat-item{padding:var(--spacing-md)}.stat-number{font-size:2.5rem;font-weight:700;color:var(--primary-red);display:block;line-height:1}.stat-label{color:#666;font-size:.9rem;margin-top:var(--spacing-xs)}.main-footer{background:rgba(0,0,0,.8);color:var(--white);text-align:center;padding:var(--spacing-xl) 0;margin-top:var(--spacing-xl);backdrop-filter:blur(10px)}.footer-content p{margin-bottom:var(--spacing-sm)}.footer-links{display:flex;justify-content:center;gap:var(--spacing-lg);margin:var(--spacing-md) 0;flex-wrap:wrap}.footer-links a{color:#ecf0f1;text-decoration:none;transition:.3s ease}.footer-links a:hover{color:var(--primary-red)}.footer-version{font-size:.9rem;opacity:.7}.floating-help{position:fixed;bottom:var(--spacing-lg);right:var(--spacing-lg);background:var(--primary-red);color:var(--white);border:none;border-radius:50%;width:60px;height:60px;font-size:24px;cursor:pointer;box-shadow:var(--shadow-md);transition:.3s ease;z-index:1000}.floating-help:hover{transform:scale(1.1) rotate(15deg);box-shadow:var(--shadow-lg)}.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;justify-content:center;align-items:center;flex-direction:column;z-index:9999;backdrop-filter:blur(5px)}.loading-overlay.show{display:flex}.spinner{border:4px solid #f3f3f3;border-top:4px solid var(--primary-red);border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite;margin-bottom:var(--spacing-md)}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.loading-overlay p{color:var(--white);font-size:1.1rem}@media (min-width:768px){.logo-icon{width:35px;height:35px}}@media (max-width:767px){.main-title{font-size:1.6rem}.main-subtitle{font-size:.85rem}.logo-icon{width:32px;height:32px}.logo-section{gap:var(--spacing-sm)}.nav-toggle{display:block}.nav-menu{position:absolute;top:100%;left:0;width:100%;background:var(--primary-red);flex-direction:column;padding:var(--spacing-md);transform:translateY(-100%);opacity:0;visibility:hidden;transition:all .3s ease;box-shadow:var(--shadow-lg)}.nav-menu.active{transform:translateY(0);opacity:1;visibility:visible}.search-container{flex-direction:column}.herramientas-grid.compact,.modulos-grid{grid-template-columns:repeat(2,1fr);gap:10px}.stats-grid{grid-template-columns:repeat(2,1fr)}.subsection-title{font-size:1.2rem}}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0D0D0D;
+            color: #F2E4C9;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .header-text h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .header-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-left: 5px solid #8C0303;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: #0D0D0D;
+            border: 2px solid #8C0303;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #F2E4C9;
+        }
+
+        .card:hover {
+            background: #8C0303;
+            border-color: #BF3604;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 8px;
+            background: #BF3604;
+            color: #F2E4C9;
+        }
+
+        .badge.external {
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .footer {
+            background: #8C0303;
+            color: #F2E4C9;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-container">
-            <div class="logo-section">
-                <img src="assets/icons/logo.svg" alt="Bomberos Logo" class="logo-icon">
-                <div class="logo-text">
-                    <h1 class="main-title">Bomberos Toolkit</h1>
-                    <p class="main-subtitle">Herramientas profesionales para bomberos</p>
-                </div>
+    <header class="header">
+        <div class="header-content">
+            <img src="assets/icons/logo.svg" alt="Logo" class="logo">
+            <div class="header-text">
+                <h1>BOMBEROS TOOLKIT</h1>
+                <p>Herramientas profesionales</p>
             </div>
-            <nav class="main-nav">
-                <button class="nav-toggle" id="navToggle">☰</button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#enlaces">Enlaces</a></li>
-                    <li><a href="#herramientas">Herramientas</a></li>
-                    <li><a href="#conocimiento">Conocimiento</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <section class="herramientas-rapidas" id="enlaces">
-        <div class="container">
-            <h3 class="subsection-title">Enlaces de Servicio</h3>
-            <div class="herramientas-grid compact external">
-                    <div class="herramienta-card external" onclick="openExternalTool('https://sgonorte.bomberosperu.gob.pe/24horas')">
-                        <div class="tool-icon">🚨</div>
-                        <h4 class="tool-title">Emergencias 24h</h4>
-                        <p class="tool-description">Sistema en línea</p>
-                        <div class="tool-status external">ENLACE EXTERNO</div>
-                    </div>
-                    <div class="herramienta-card external" onclick="openExternalTool('https://www.bomberosperu.gob.pe/sgo/ceem/SGO_CEEM_CDVehiculos.asp')">
-                        <div class="tool-icon">🚛</div>
-                        <h4 class="tool-title">Unidades</h4>
-                        <p class="tool-description">Vehículos en servicio</p>
-                        <div class="tool-status external">ENLACE EXTERNO</div>
-                    </div>
-                    <div class="herramienta-card external" onclick="openExternalTool('https://cel.sis.gob.pe/SisConsultaEnLinea')">
-                        <div class="tool-icon">🏥</div>
-                        <h4 class="tool-title">Verificar SIS</h4>
-                        <p class="tool-description">Consulta afiliación</p>
-                        <div class="tool-status external">ENLACE EXTERNO</div>
-                    </div>
-                    <div class="herramienta-card external" onclick="openExternalTool('https://dondemeatiendo.essalud.gob.pe/#/consulta')">
-                        <div class="tool-icon">⚕️</div>
-                        <h4 class="tool-title">Verificar EsSalud</h4>
-                        <p class="tool-description">Dónde me atienden</p>
-                        <div class="tool-status external">ENLACE EXTERNO</div>
-                    </div>
-                    <div class="herramienta-card external" onclick="openExternalTool('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio')">
-                        <div class="tool-icon">🚗</div>
-                        <h4 class="tool-title">Consulta Vehicular</h4>
-                        <p class="tool-description">SUNARP consulta</p>
-                        <div class="tool-status external">ENLACE EXTERNO</div>
-                    </div>
-                    <div class="herramienta-card external" onclick="openExternalTool('https://www.interseguro.pe/soat/consulta-soat')">
-                        <div class="tool-icon">🛡️</div>
-                        <h4 class="tool-title">Consulta SOAT</h4>
-                        <p class="tool-description">Verificar seguro</p>
-                        <div class="tool-status external">ENLACE EXTERNO</div>
-                    </div>
+    <main class="container">
+        <section class="section">
+            <h2 class="section-title">ENLACES DE SERVICIO</h2>
+            <div class="grid">
+                <div class="card" onclick="window.open('https://sgonorte.bomberosperu.gob.pe/24horas','_blank')">
+                    <h3>Emergencias 24h</h3>
+                    <p>Sistema en línea</p>
+                    <span class="badge external">ENLACE EXTERNO</span>
+                </div>
+                <div class="card" onclick="window.open('https://www.bomberosperu.gob.pe/sgo/ceem/SGO_CEEM_CDVehiculos.asp','_blank')">
+                    <h3>Unidades</h3>
+                    <p>Vehículos en servicio</p>
+                    <span class="badge external">ENLACE EXTERNO</span>
+                </div>
+                <div class="card" onclick="window.open('https://cel.sis.gob.pe/SisConsultaEnLinea','_blank')">
+                    <h3>Verificar SIS</h3>
+                    <p>Consulta afiliación</p>
+                    <span class="badge external">ENLACE EXTERNO</span>
+                </div>
+                <div class="card" onclick="window.open('https://dondemeatiendo.essalud.gob.pe/#/consulta','_blank')">
+                    <h3>Verificar EsSalud</h3>
+                    <p>Dónde me atienden</p>
+                    <span class="badge external">ENLACE EXTERNO</span>
+                </div>
+                <div class="card" onclick="window.open('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio','_blank')">
+                    <h3>Consulta Vehicular</h3>
+                    <p>SUNARP</p>
+                    <span class="badge external">ENLACE EXTERNO</span>
+                </div>
+                <div class="card" onclick="window.open('https://www.interseguro.pe/soat/consulta-soat','_blank')">
+                    <h3>Consulta SOAT</h3>
+                    <p>Verificar seguro</p>
+                    <span class="badge external">ENLACE EXTERNO</span>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="herramientas-rapidas" id="herramientas">
-        <div class="container">
-            <h3 class="subsection-title">Herramientas</h3>
-            <div class="herramientas-grid compact">
-                    <div class="herramienta-card" data-tool="claves" onclick="openTool('claves')">
-                        <div class="tool-icon">📻</div>
-                        <h4 class="tool-title">Claves de Comunicación</h4>
-                        <p class="tool-description">Códigos de radio bomberos</p>
-                        <div class="tool-status ready">DISPONIBLE</div>
-                    </div>
-                    <div class="herramienta-card" data-tool="rcp-timer" onclick="openTool('rcp-timer')">
-                        <div class="tool-icon">⏱️</div>
-                        <h4 class="tool-title">Timer RCP</h4>
-                        <p class="tool-description">Cronómetro reanimación</p>
-                        <div class="tool-status ready">DISPONIBLE</div>
-                    </div>
-                    <div class="herramienta-card" data-tool="glasgow" onclick="openTool('glasgow')">
-                        <div class="tool-icon">🧠</div>
-                        <h4 class="tool-title">Escala Glasgow</h4>
-                        <p class="tool-description">Nivel de consciencia</p>
-                        <div class="tool-status ready">DISPONIBLE</div>
-                    </div>
-                    <div class="herramienta-card" data-tool="signos-vitales" onclick="openTool('signos-vitales')">
-                        <div class="tool-icon">🩺</div>
-                        <h4 class="tool-title">Signos Vitales</h4>
-                        <p class="tool-description">Tablas por grupo de edad</p>
-                        <div class="tool-status ready">DISPONIBLE</div>
-                    </div>
-                    <div class="herramienta-card" data-tool="conversor" onclick="openTool('conversor')">
-                        <div class="tool-icon">🔄</div>
-                        <h4 class="tool-title">Conversor</h4>
-                        <p class="tool-description">Unidades y medidas</p>
-                        <div class="tool-status ready">DISPONIBLE</div>
-                    </div>
-                    <div class="herramienta-card" data-tool="centros-medicos" onclick="openTool('centros-medicos')">
-                        <div class="tool-icon">🏥</div>
-                        <h4 class="tool-title">Centros Médicos</h4>
-                        <p class="tool-description">Hospitales Lima</p>
-                        <div class="tool-status ready">DISPONIBLE</div>
-                    </div>
+        <section class="section">
+            <h2 class="section-title">HERRAMIENTAS</h2>
+            <div class="grid">
+                <div class="card" onclick="location.href='herramientas/claves/index.html'">
+                    <h3>Claves de Comunicación</h3>
+                    <p>Códigos de radio</p>
+                    <span class="badge">DISPONIBLE</span>
+                </div>
+                <div class="card" onclick="location.href='herramientas/rcp-timer/index.html'">
+                    <h3>Timer RCP</h3>
+                    <p>Cronómetro reanimación</p>
+                    <span class="badge">DISPONIBLE</span>
+                </div>
+                <div class="card" onclick="location.href='herramientas/glasgow/index.html'">
+                    <h3>Escala Glasgow</h3>
+                    <p>Nivel de consciencia</p>
+                    <span class="badge">DISPONIBLE</span>
+                </div>
+                <div class="card" onclick="location.href='herramientas/signos-vitales/index.html'">
+                    <h3>Signos Vitales</h3>
+                    <p>Tablas por edad</p>
+                    <span class="badge">DISPONIBLE</span>
+                </div>
+                <div class="card" onclick="location.href='herramientas/conversor/index.html'">
+                    <h3>Conversor</h3>
+                    <p>Unidades y medidas</p>
+                    <span class="badge">DISPONIBLE</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="modulos-ensenanza" id="conocimiento">
-        <div class="container">
-            <h3 class="subsection-title">Conocimiento</h3>
-            <div class="modulos-grid">
-                <div class="modulo-card" data-module="atencion-prehospitalaria" onclick="openModule('atencion-prehospitalaria')">
-                    <div class="module-icon">🚑</div>
-                    <h3 class="module-title">Atención Prehospitalaria</h3>
-                    <p class="module-description">Protocolos médicos de emergencia y primeros auxilios</p>
-                    <div class="module-status in-development">EN DESARROLLO</div>
+        <section class="section">
+            <h2 class="section-title">MÓDULOS</h2>
+            <div class="grid">
+                <div class="card" onclick="location.href='modulos/atencion-prehospitalaria/index.html'">
+                    <h3>Atención Prehospitalaria</h3>
+                    <p>Protocolos médicos</p>
+                    <span class="badge">EN DESARROLLO</span>
                 </div>
-                <div class="modulo-card" data-module="comportamiento-fuego" onclick="openModule('comportamiento-fuego')">
-                    <div class="module-icon">🔥</div>
-                    <h3 class="module-title">Comportamiento del Fuego</h3>
-                    <p class="module-description">Fundamentos de la ciencia del fuego y su comportamiento</p>
-                    <div class="module-status in-development">EN DESARROLLO</div>
+                <div class="card" onclick="location.href='modulos/comportamiento-fuego/index.html'">
+                    <h3>Comportamiento del Fuego</h3>
+                    <p>Ciencia del fuego</p>
+                    <span class="badge">EN DESARROLLO</span>
                 </div>
-                <div class="modulo-card" data-module="equipos-materiales" onclick="openModule('equipos-materiales')">
-                    <div class="module-icon">🛡️</div>
-                    <h3 class="module-title">Equipos y Materiales</h3>
-                    <p class="module-description">EPP, herramientas y equipos de rescate</p>
-                    <div class="module-status in-development">EN DESARROLLO</div>
+                <div class="card" onclick="location.href='modulos/equipos-materiales/index.html'">
+                    <h3>Equipos y Materiales</h3>
+                    <p>EPP y herramientas</p>
+                    <span class="badge">EN DESARROLLO</span>
                 </div>
-                <div class="modulo-card" data-module="actividades-soporte" onclick="openModule('actividades-soporte')">
-                    <div class="module-icon">🤝</div>
-                    <h3 class="module-title">Actividades de Soporte</h3>
-                    <p class="module-description">Comunicaciones, logística y coordinación</p>
-                    <div class="module-status in-development">EN DESARROLLO</div>
+                <div class="card" onclick="location.href='modulos/actividades-soporte/index.html'">
+                    <h3>Actividades de Soporte</h3>
+                    <p>Comunicaciones y logística</p>
+                    <span class="badge">EN DESARROLLO</span>
                 </div>
-                <div class="modulo-card" data-module="combate-incendio" onclick="openModule('combate-incendio')">
-                    <div class="module-icon">💧</div>
-                    <h3 class="module-title">Combate contra Incendio</h3>
-                    <p class="module-description">Técnicas y tácticas de supresión</p>
-                    <div class="module-status in-development">EN DESARROLLO</div>
+                <div class="card" onclick="location.href='modulos/combate-incendio/index.html'">
+                    <h3>Combate contra Incendio</h3>
+                    <p>Técnicas y tácticas</p>
+                    <span class="badge">EN DESARROLLO</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <p><strong>Bomberos Toolkit</strong></p>
-                <p>Desarrollado por bomberos, para bomberos</p>
-                <div class="footer-links">
-                    <a href="#" onclick="showAbout()">Acerca de</a>
-                    <a href="#" onclick="showContact()">Contacto</a>
-                    <a href="#" onclick="showContribute()">Contribuir</a>
-                </div>
-                <p class="footer-version">Versión 1.0 | Actualizado: Diciembre 2024</p>
-            </div>
-        </div>
+    <footer class="footer">
+        <p><strong>BOMBEROS TOOLKIT</strong></p>
+        <p>Desarrollado por bomberos, para bomberos</p>
+        <p>Versión 1.0 | 2024</p>
     </footer>
-
-    <button class="floating-help" onclick="showHelp()" title="Ayuda rápida">?</button>
-
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-        <p>Cargando...</p>
-    </div>
-
-    <script>
-        function openTool(tool){window.location.href='herramientas/'+tool+'/index.html'}
-        function openExternalTool(url){window.open(url,'_blank')}
-        function openModule(module){window.location.href='modulos/'+module+'/index.html'}
-        function showAbout(){alert('Bomberos Toolkit v1.0\nDesarrollado para bomberos profesionales')}
-        function showContact(){alert('gmail: enrriquerh0014@gmail.com')}
-        function showContribute(){alert('WhatsApp: +51 946772995')}
-        function showHelp(){alert('Ayuda:\n• Herramientas principales: Funcionan sin internet\n• Enlaces externos: Requieren conexión\n• Módulos: Conocimiento especializado')}
-        document.getElementById('navToggle')?.addEventListener('click',function(){const menu=document.getElementById('navMenu');menu.classList.toggle('active')});
-        document.querySelectorAll('.nav-menu a').forEach(link=>{link.addEventListener('click',()=>{document.getElementById('navMenu').classList.remove('active')})});
-        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'})}})});
-        const observeElements=()=>{const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)'}})});document.querySelectorAll('.herramienta-card, .modulo-card').forEach(card=>{observer.observe(card)})};
-        document.addEventListener('DOMContentLoaded',function(){observeElements();console.log('🚒 Bomberos Toolkit v1.0');console.log('Herramientas disponibles: 12');console.log('Desarrollado para bomberos profesionales')});
-        if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').then(function(registration){console.log('SW registrado con éxito:',registration.scope)}).catch(function(error){console.log('Error al registrar SW:',error)})})}
-    </script>
 </body>
 </html>

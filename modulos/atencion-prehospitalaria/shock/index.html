@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de Shock - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .value-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 5px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h3, .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #BF3604;
+        }
+
+        table th {
+            background: #BF3604;
+            color: #F2E4C9;
+            font-weight: bold;
+        }
+
+        table td {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.75em;
+                min-width: 500px;
+            }
+
+            table th,
+            table td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Atención Prehospitalaria</a> > Manejo de Shock
+        </div>
+        <h1>MANEJO DE SHOCK</h1>
+        <p>Reconocimiento y tratamiento del estado de shock</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Signos de Alarma</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <div class="value-number">&lt;90</div>
+                    <div>PA Sistólica (mmHg)</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&gt;100</div>
+                    <div>FC (lpm)</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&gt;2</div>
+                    <div>Llenado capilar (seg)</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">&lt;30</div>
+                    <div>Diuresis (mL/h)</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">Alterado</div>
+                    <div>Estado mental</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Shock</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h3>Shock Hipovolémico</h3>
+                    <h4>Causas:</h4>
+                    <ul>
+                        <li>Hemorragia externa masiva</li>
+                        <li>Hemorragia interna</li>
+                        <li>Deshidratación severa</li>
+                        <li>Quemaduras extensas (&gt;20%)</li>
+                    </ul>
+                    <h4>Signos:</h4>
+                    <ul>
+                        <li>Piel fría, pálida, diaforética</li>
+                        <li>Taquicardia, hipotensión</li>
+                        <li>Llenado capilar &gt;3 seg</li>
+                        <li>Oliguria/anuria</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Shock Cardiogénico</h3>
+                    <h4>Causas:</h4>
+                    <ul>
+                        <li>Infarto agudo del miocardio</li>
+                        <li>Insuficiencia cardíaca aguda</li>
+                        <li>Arritmias severas</li>
+                        <li>Miocarditis aguda</li>
+                    </ul>
+                    <h4>Signos:</h4>
+                    <ul>
+                        <li>Disnea y ortopnea</li>
+                        <li>Edema pulmonar</li>
+                        <li>Ingurgitación yugular</li>
+                        <li>Crepitantes pulmonares</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Shock Distributivo</h3>
+                    <h4>Causas:</h4>
+                    <ul>
+                        <li>Séptico: Infección sistémica</li>
+                        <li>Anafiláctico: Reacción alérgica</li>
+                        <li>Neurogénico: Lesión medular</li>
+                        <li>Intoxicación</li>
+                    </ul>
+                    <h4>Signos:</h4>
+                    <ul>
+                        <li>Piel caliente, enrojecida</li>
+                        <li>Taquicardia, hipotensión</li>
+                        <li>Fiebre (séptico)</li>
+                        <li>Urticaria (anafiláctico)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Shock Obstructivo</h3>
+                    <h4>Causas:</h4>
+                    <ul>
+                        <li>Neumotórax a tensión</li>
+                        <li>Taponamiento cardíaco</li>
+                        <li>Embolia pulmonar masiva</li>
+                        <li>Hemotórax masivo</li>
+                    </ul>
+                    <h4>Signos:</h4>
+                    <ul>
+                        <li>Ingurgitación yugular</li>
+                        <li>Ausencia de murmullo (neumotórax)</li>
+                        <li>Pulso paradójico (taponamiento)</li>
+                        <li>Cianosis central</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Clasificación por Severidad</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Clase</th>
+                            <th>Pérdida Volemia</th>
+                            <th>FC (lpm)</th>
+                            <th>PA</th>
+                            <th>Llenado Capilar</th>
+                            <th>Estado Mental</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>I - LEVE</strong></td>
+                            <td>15% (&lt;750 mL)</td>
+                            <td>&lt;100</td>
+                            <td>Normal</td>
+                            <td>Normal</td>
+                            <td>Alerta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>II - MODERADO</strong></td>
+                            <td>15-30% (750-1500 mL)</td>
+                            <td>100-120</td>
+                            <td>Normal/Disminuida</td>
+                            <td>Retrasado</td>
+                            <td>Ansioso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>III - SEVERO</strong></td>
+                            <td>30-40% (1500-2000 mL)</td>
+                            <td>120-140</td>
+                            <td>Disminuida</td>
+                            <td>&gt;2 segundos</td>
+                            <td>Confuso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IV - CRÍTICO</strong></td>
+                            <td>&gt;40% (&gt;2000 mL)</td>
+                            <td>&gt;140</td>
+                            <td>Muy baja</td>
+                            <td>Ausente</td>
+                            <td>Letárgico</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Protocolo de Evaluación (ABCDE)</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>A - Vía Aérea</h4>
+                    <ul>
+                        <li>Permeabilidad</li>
+                        <li>Control cervical si trauma</li>
+                        <li>Oxigenación</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h4>B - Respiración</h4>
+                    <ul>
+                        <li>Frecuencia respiratoria</li>
+                        <li>Calidad de ventilación</li>
+                        <li>Saturación de oxígeno</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h4>C - Circulación</h4>
+                    <ul>
+                        <li>Pulso central y periférico</li>
+                        <li>Presión arterial</li>
+                        <li>Llenado capilar</li>
+                        <li>Control de hemorragias</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h4>D - Discapacidad</h4>
+                    <ul>
+                        <li>Escala de Glasgow</li>
+                        <li>Respuesta pupilar</li>
+                        <li>Déficit neurológico</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h4>E - Exposición</h4>
+                    <ul>
+                        <li>Examen completo</li>
+                        <li>Temperatura</li>
+                        <li>Signos de trauma</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Manejo Prehospitalario</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Medidas Generales</h4>
+                    <ul>
+                        <li>ABC + Control hemorragias</li>
+                        <li>Oxígeno alto flujo (15 L/min)</li>
+                        <li>Posición según tipo de shock</li>
+                        <li>Monitoreo continuo signos vitales</li>
+                        <li>Conservar temperatura corporal</li>
+                        <li>Traslado urgente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Posicionamiento</h4>
+                    <ul>
+                        <li><strong>Hipovolémico:</strong> Trendelenburg 15°</li>
+                        <li><strong>Cardiogénico:</strong> Fowler 45°</li>
+                        <li><strong>Neurogénico:</strong> Supino</li>
+                        <li><strong>Trauma:</strong> Según lesiones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tratamiento Específico por Tipo</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Shock Hipovolémico</h4>
+                    <ul>
+                        <li>Control hemorragias: presión directa, torniquete</li>
+                        <li>Oxígeno 100%</li>
+                        <li>Posición Trendelenburg 15°</li>
+                        <li>Conservar calor</li>
+                        <li>Traslado urgente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Shock Cardiogénico</h4>
+                    <ul>
+                        <li>Posición Fowler 45°</li>
+                        <li>Oxígeno alto flujo</li>
+                        <li>No sobrecarga de volumen</li>
+                        <li>Evitar Trendelenburg</li>
+                        <li>Traslado urgente UCI</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Shock Distributivo</h4>
+                    <ul>
+                        <li><strong>Anafiláctico:</strong> No administrar medicamentos (trasladar)</li>
+                        <li><strong>Séptico:</strong> Oxígeno + traslado urgente</li>
+                        <li><strong>Neurogénico:</strong> Supino + O2</li>
+                        <li>Control temperatura</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Shock Obstructivo</h4>
+                    <ul>
+                        <li><strong>Neumotórax:</strong> Requiere descompresión médica</li>
+                        <li><strong>Taponamiento:</strong> Traslado urgente</li>
+                        <li>Oxígeno 100%</li>
+                        <li>Evitar ventilación positiva</li>
+                        <li>Traslado inmediato</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Signos de Shock Temprano</h2>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Cardiovascular:</strong> Taquicardia, presión de pulso disminuida</li>
+                    <li><strong>Respiratorio:</strong> Taquipnea compensatoria</li>
+                    <li><strong>Neurológico:</strong> Ansiedad, inquietud, confusión</li>
+                    <li><strong>Renal:</strong> Oliguria (&lt;0.5 mL/kg/h)</li>
+                    <li><strong>Cutáneo:</strong> Piel fría, pálida, diaforética</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            El shock es una emergencia que requiere actuación inmediata y traslado urgente
+        </div>
+    </div>
+</body>
+</html>
