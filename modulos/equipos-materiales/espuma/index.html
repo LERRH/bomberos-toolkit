@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espuma - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .type-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .type-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .type-spec {
+            background: #0D0D0D;
+            color: #BF3604;
+            padding: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .type-desc {
+            font-size: 0.85em;
+        }
+
+        .danger-card {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 15px;
+        }
+
+        .danger-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .danger-desc {
+            font-size: 0.85em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .method-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .method-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Equipos y Materiales</a> > Espuma
+        </div>
+        <h1>ESPUMA CONTRA INCENDIOS</h1>
+        <p>Tipos, concentraciones y aplicación</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Cómo Funciona la Espuma</h2>
+            <div class="info-box">
+                <h4>Principio de Extinción</h4>
+                <ul>
+                    <li><strong>Sofocación:</strong> Cubre combustible, impide contacto con oxígeno</li>
+                    <li><strong>Enfriamiento:</strong> Contenido de agua absorbe calor</li>
+                    <li><strong>Supresión vapores:</strong> Sella superficie, evita reignición</li>
+                    <li><strong>Separación:</strong> Manta entre combustible y llama</li>
+                </ul>
+            </div>
+            <div class="info-box" style="margin-top: 15px;">
+                <h4>Componentes de la Espuma</h4>
+                <p><strong>Agua + Concentrado + Aire = ESPUMA</strong></p>
+                <ul>
+                    <li><strong>Agua:</strong> 94-99% (base de mezcla)</li>
+                    <li><strong>Concentrado:</strong> 1-6% (surfactante)</li>
+                    <li><strong>Aire:</strong> Variable (expansión)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Espuma por Composición</h2>
+            <div class="grid-3">
+                <div class="type-card">
+                    <div class="type-title">AFFF (Film Forming)</div>
+                    <div class="type-spec">Concentración: 3% o 6%</div>
+                    <div class="type-desc">
+                        <strong>Características:</strong><br>
+                        • Forma película acuosa<br>
+                        • Rápida extinción<br>
+                        • Resiste reignición<br>
+                        • Fluye sobre combustible<br><br>
+                        <strong>Uso:</strong> Hidrocarburos Clase B
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">AR-AFFF (Alcohol Resistant)</div>
+                    <div class="type-spec">Concentración: 3% o 6%</div>
+                    <div class="type-desc">
+                        <strong>Características:</strong><br>
+                        • Resistente a alcoholes<br>
+                        • Forma película protectora<br>
+                        • No se rompe con solventes<br>
+                        • Multipropósito<br><br>
+                        <strong>Uso:</strong> Solventes polares (alcoholes)
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">Clase A</div>
+                    <div class="type-spec">Concentración: 0.1% - 1%</div>
+                    <div class="type-desc">
+                        <strong>Características:</strong><br>
+                        • Reduce tensión superficial<br>
+                        • Penetra materiales<br>
+                        • Mejora capacidad agua<br>
+                        • Económica<br><br>
+                        <strong>Uso:</strong> Estructuras, forestales
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA: AFFF para hidrocarburos. AR-AFFF para alcoholes/solventes. Clase A para estructuras/forestales
+        </alert-box>
+
+        <div class="section">
+            <h2>Concentraciones Comunes</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>0.1% - 0.5%</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Clase A</li>
+                        <li><strong>Uso:</strong> Forestales</li>
+                        <li><strong>Ventaja:</strong> Económico</li>
+                        <li><strong>Mezcla:</strong> 1L en 1000L agua</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>1%</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Clase A</li>
+                        <li><strong>Uso:</strong> Estructuras</li>
+                        <li><strong>Ventaja:</strong> Penetración</li>
+                        <li><strong>Mezcla:</strong> 10L en 1000L agua</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>3%</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> AFFF/AR-AFFF</li>
+                        <li><strong>Uso:</strong> Clase B general</li>
+                        <li><strong>Ventaja:</strong> Estándar</li>
+                        <li><strong>Mezcla:</strong> 30L en 1000L agua</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>6%</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> AFFF/AR-AFFF</li>
+                        <li><strong>Uso:</strong> Clase B intenso</li>
+                        <li><strong>Ventaja:</strong> Máxima potencia</li>
+                        <li><strong>Mezcla:</strong> 60L en 1000L agua</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Sistemas de Proporcionamiento</h2>
+            <div class="grid-3">
+                <div class="method-card">
+                    <div class="method-title">Eductor (Venturi)</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Succión por diferencia presión</li>
+                        <li>• Portátil, fácil uso</li>
+                        <li>• Requiere 7 bar mínimo</li>
+                        <li>• Mezcla automática</li>
+                        <li>• Rango fijo (3% o 6%)</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">Sistema Bomba</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Instalado en autobomba</li>
+                        <li>• Proporción ajustable</li>
+                        <li>• Mayor precisión</li>
+                        <li>• Cualquier presión</li>
+                        <li>• Más complejo</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">Batch Mixing (Mezcla)</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Mezcla en tanque directo</li>
+                        <li>• Pre-mezclado</li>
+                        <li>• Simple pero limitado</li>
+                        <li>• Solo para Clase A</li>
+                        <li>• Emergencias sin equipo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Expansión</h2>
+            <div class="grid-3">
+                <div class="type-card">
+                    <div class="type-title">BAJA EXPANSIÓN</div>
+                    <div class="type-spec">Ratio: 1:20 (20:1)</div>
+                    <div class="type-desc">
+                        <strong>Características:</strong><br>
+                        • Densa y pesada<br>
+                        • Buena cobertura<br>
+                        • Resiste viento/calor<br>
+                        • Drena lento<br><br>
+                        <strong>Uso:</strong> Derrames, tanques, exteriores
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">MEDIA EXPANSIÓN</div>
+                    <div class="type-spec">Ratio: 1:200 (20-200:1)</div>
+                    <div class="type-desc">
+                        <strong>Características:</strong><br>
+                        • Volumen moderado<br>
+                        • Balance cobertura/duración<br>
+                        • Versatilidad<br>
+                        • Uso general<br><br>
+                        <strong>Uso:</strong> Sótanos, bodegas, interiores
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">ALTA EXPANSIÓN</div>
+                    <div class="type-spec">Ratio: 1:1000 (200-1000:1)</div>
+                    <div class="type-desc">
+                        <strong>Características:</strong><br>
+                        • Volumen enorme<br>
+                        • Ligera, llena espacios<br>
+                        • Drena rápido<br>
+                        • Frágil<br><br>
+                        <strong>Uso:</strong> Inundar grandes áreas, minas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            CRÍTICO: Baja expansión para EXTERIORES y derrames. Alta expansión para INUNDAR espacios cerrados grandes
+        </alert-box>
+
+        <div class="section">
+            <h2>Generadores de Espuma</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>Pitón de Espuma</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Baja expansión</li>
+                        <li><strong>Alcance:</strong> 10-20m</li>
+                        <li><strong>Uso:</strong> Ataque directo</li>
+                        <li><strong>Portabilidad:</strong> Alta</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Lanza Monitora</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Baja expansión</li>
+                        <li><strong>Caudal:</strong> 1500-4000 L/min</li>
+                        <li><strong>Uso:</strong> Tanques, grandes áreas</li>
+                        <li><strong>Montaje:</strong> Fijo/vehículo</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Eductor Aspirante</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Media expansión</li>
+                        <li><strong>Ratio:</strong> 50-100:1</li>
+                        <li><strong>Uso:</strong> Inundación moderada</li>
+                        <li><strong>Requiere:</strong> 7 bar mínimo</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Generador Alta Expansión</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Alta expansión</li>
+                        <li><strong>Ratio:</strong> 500-1000:1</li>
+                        <li><strong>Uso:</strong> Grandes volúmenes</li>
+                        <li><strong>Ventilador:</strong> Integrado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Técnicas de Aplicación</h2>
+            <div class="grid-2">
+                <div class="method-card">
+                    <div class="method-title">Método Rodante (Roll-on)</div>
+                    <p><strong>Para derrames en suelo:</strong></p>
+                    <ul>
+                        <li>1. Apuntar a superficie cercana al fuego</li>
+                        <li>2. Dejar que espuma "ruede" sobre líquido</li>
+                        <li>3. NO aplicar directamente sobre líquido</li>
+                        <li>4. Espuma avanza cubriendo gradualmente</li>
+                        <li>5. Evita romper manta de espuma</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">Método Lluvia (Rain-down)</div>
+                    <p><strong>Para tanques verticales:</strong></p>
+                    <ul>
+                        <li>1. Aplicar espuma ARRIBA del borde</li>
+                        <li>2. Espuma cae como lluvia suave</li>
+                        <li>3. Se acumula sobre superficie</li>
+                        <li>4. Forma manta protectora</li>
+                        <li>5. Menos turbulencia, mejor cobertura</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Aplicación por Tipo de Incendio</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Derrame en Suelo</h4>
+                    <ul>
+                        <li><strong>Espuma:</strong> AFFF 3% baja expansión</li>
+                        <li><strong>Técnica:</strong> Roll-on desde borde</li>
+                        <li><strong>Cobertura:</strong> Mínimo 10cm espesor</li>
+                        <li><strong>Tiempo:</strong> Mantener 15+ minutos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tanque Vertical</h4>
+                    <ul>
+                        <li><strong>Espuma:</strong> AFFF 6% baja expansión</li>
+                        <li><strong>Técnica:</strong> Rain-down o subsuperficie</li>
+                        <li><strong>Caudal:</strong> Calcular según área</li>
+                        <li><strong>Monitor:</strong> Preferible a manual</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Incendio Forestal/Estructura</h4>
+                    <ul>
+                        <li><strong>Espuma:</strong> Clase A 0.5-1%</li>
+                        <li><strong>Técnica:</strong> Aplicación directa</li>
+                        <li><strong>Ventaja:</strong> Mayor penetración</li>
+                        <li><strong>Ahorro:</strong> Menos agua necesaria</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            NUNCA apliques espuma directo sobre líquido en llamas. Usa método roll-on o rain-down para evitar salpicaduras
+        </alert-box>
+
+        <div class="section">
+            <h2>Cálculo de Cantidad Necesaria</h2>
+            <div class="info-box">
+                <h4>Fórmula Básica</h4>
+                <p><strong>Litros Concentrado = (Área m² × Tasa aplicación L/min/m² × Tiempo min × %) ÷ (100 - %)</strong></p>
+            </div>
+            <div class="grid-2" style="margin-top: 15px;">
+                <div class="info-box">
+                    <h4>Ejemplo: Derrame 100m²</h4>
+                    <ul>
+                        <li><strong>Área:</strong> 100 m²</li>
+                        <li><strong>Tasa:</strong> 6.5 L/min/m² (estándar)</li>
+                        <li><strong>Tiempo:</strong> 10 minutos</li>
+                        <li><strong>AFFF:</strong> 3%</li>
+                        <li><strong>Cálculo:</strong> (100 × 6.5 × 10 × 3) ÷ 97</li>
+                        <li><strong>Resultado:</strong> ≈ 201 litros concentrado</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Regla Rápida Simplificada</h4>
+                    <ul>
+                        <li><strong>Derrame pequeño (<50m²):</strong> 100L AFFF 3%</li>
+                        <li><strong>Derrame medio (50-100m²):</strong> 200L AFFF 3%</li>
+                        <li><strong>Derrame grande (>100m²):</strong> 400L+ AFFF 3%</li>
+                        <li><strong>Siempre llevar:</strong> 50% extra reserva</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Compatibilidad de Espumas</h2>
+            <div class="grid-2">
+                <div class="danger-card">
+                    <div class="danger-title">NO Mezclar</div>
+                    <div class="danger-desc">
+                        <strong>Incompatibles:</strong><br>
+                        • AFFF con espuma proteínica<br>
+                        • Diferentes marcas mismo tipo<br>
+                        • Concentraciones distintas<br>
+                        • Espumas vencidas con nuevas<br><br>
+                        <strong>Resultado:</strong> Pérdida efectividad o reacción química adversa
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Sí Compatible</div>
+                    <div class="danger-desc">
+                        <strong>Pueden mezclarse:</strong><br>
+                        • AR-AFFF con AFFF (mismo %)<br>
+                        • Clase A entre mismas marcas<br>
+                        • Misma espuma, diferentes lotes<br><br>
+                        <strong>Siempre verificar:</strong> Ficha técnica del fabricante antes de mezclar
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Problemas Comunes</h2>
+            <div class="grid-3">
+                <div class="danger-card">
+                    <div class="danger-title">Espuma No Forma</div>
+                    <div class="danger-desc">
+                        <strong>Causas:</strong><br>
+                        • Concentración incorrecta<br>
+                        • Presión insuficiente<br>
+                        • Eductor mal ajustado<br>
+                        • Concentrado vencido<br><br>
+                        <strong>Verificar:</strong> % mezcla, presión >7 bar, válvulas abiertas
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Manta se Rompe</div>
+                    <div class="danger-desc">
+                        <strong>Causas:</strong><br>
+                        • Viento fuerte<br>
+                        • Calor excesivo<br>
+                        • Espuma inadecuada<br>
+                        • Contaminación<br><br>
+                        <strong>Solución:</strong> Reaplicar continuo, usar mayor concentración
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Drena Rápido</div>
+                    <div class="danger-desc">
+                        <strong>Causas:</strong><br>
+                        • Baja calidad espuma<br>
+                        • Temperatura alta<br>
+                        • Espuma muy vieja<br>
+                        • Contaminantes<br><br>
+                        <strong>Solución:</strong> Aplicación continua, concentrado fresco
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Seguridad en Uso de Espuma</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Precauciones Operacionales</h4>
+                    <ul>
+                        <li><strong>NO caminar sobre espuma:</strong> Puede ocultar líquido caliente</li>
+                        <li><strong>Protección completa:</strong> PPE siempre, concentrado es corrosivo</li>
+                        <li><strong>Ventilación:</strong> Espuma desplaza oxígeno en espacios cerrados</li>
+                        <li><strong>No en líneas eléctricas:</strong> Espuma conduce electricidad</li>
+                        <li><strong>Control runoff:</strong> Espuma puede contaminar agua</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Almacenamiento Concentrado</h4>
+                    <ul>
+                        <li><strong>Temperatura:</strong> 0-50°C ideal</li>
+                        <li><strong>No congelar:</strong> Rompe estructura química</li>
+                        <li><strong>Proteger luz:</strong> Envases opacos</li>
+                        <li><strong>Rotación:</strong> Primero que entra, primero sale</li>
+                        <li><strong>Vida útil:</strong> 10-25 años según tipo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            PELIGRO: Espuma sobre líquidos calientes puede causar boilover. Aplicar suavemente para evitar salpicaduras
+        </alert-box>
+
+        <div class="section">
+            <h2>Mantenimiento Equipo de Espuma</h2>
+            <div class="info-box">
+                <h4>Después de Cada Uso</h4>
+                <ul>
+                    <li><strong>Enjuague completo:</strong> 10-15 minutos con agua limpia</li>
+                    <li><strong>Eductor:</strong> Desmontar y limpiar interno</li>
+                    <li><strong>Mangueras:</strong> Purgar toda espuma residual</li>
+                    <li><strong>Pitones:</strong> Limpiar boquillas y filtros</li>
+                    <li><strong>Sistema bomba:</strong> Ciclo limpieza según fabricante</li>
+                    <li><strong>Secado:</strong> Dejar secar completamente antes guardar</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>Checklist Mental Espuma:</strong></p>
+                <ul>
+                    <li><strong>Hidrocarburos:</strong> AFFF 3% o 6% baja expansión</li>
+                    <li><strong>Alcoholes/solventes:</strong> AR-AFFF 3% o 6%</li>
+                    <li><strong>Estructuras/forestal:</strong> Clase A 0.5-1%</li>
+                    <li><strong>Derrames suelo:</strong> Método roll-on desde borde</li>
+                    <li><strong>Tanques:</strong> Método rain-down desde arriba</li>
+                    <li><strong>Eductor:</strong> Mínimo 7 bar para funcionar</li>
+                    <li><strong>Cobertura:</strong> Mínimo 10cm espesor, mantener 15+ min</li>
+                    <li><strong>NO mezclar:</strong> Diferentes tipos de espuma</li>
+                    <li><strong>Seguridad:</strong> PPE completo, espuma es corrosiva</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            La espuma correcta salva vidas en incendios Clase B. La incorrecta puede hacer que el incendio empeore
+        </div>
+    </div>
+</body>
+</html>

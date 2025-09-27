@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuerdas y Nudos - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .type-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .type-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .type-spec {
+            background: #0D0D0D;
+            color: #BF3604;
+            padding: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .type-desc {
+            font-size: 0.85em;
+        }
+
+        .danger-card {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 15px;
+        }
+
+        .danger-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .danger-desc {
+            font-size: 0.85em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .knot-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .knot-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .knot-use {
+            background: #0D0D0D;
+            color: #BF3604;
+            padding: 6px;
+            margin: 8px 0;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Equipos y Materiales</a> > Cuerdas y Nudos
+        </div>
+        <h1>CUERDAS Y NUDOS</h1>
+        <p>Tipos, nudos esenciales y técnicas de amarre</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Tipos de Cuerdas</h2>
+            <div class="grid-3">
+                <div class="type-card">
+                    <div class="type-title">CUERDA VIDA</div>
+                    <div class="type-spec">Diámetro: 12.5-13mm</div>
+                    <div class="type-desc">
+                        <strong>Material:</strong> Nylon/Kernmantle<br>
+                        <strong>Carga:</strong> 4000+ kg ruptura<br>
+                        <strong>Uso:</strong> Rescate, soporte vida<br>
+                        <strong>Color:</strong> Blanco/amarillo<br>
+                        <strong>Elongación:</strong> Baja (<10%)<br><br>
+                        <strong>NUNCA:</strong> Uso utilitario
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">CUERDA UTILITARIA</div>
+                    <div class="type-spec">Diámetro: 9-11mm</div>
+                    <div class="type-desc">
+                        <strong>Material:</strong> Polipropileno/Nylon<br>
+                        <strong>Carga:</strong> 2000-3000 kg<br>
+                        <strong>Uso:</strong> Izar equipo, amarres<br>
+                        <strong>Color:</strong> Variable (NO blanco)<br>
+                        <strong>Aplicación:</strong> General<br><br>
+                        <strong>NO:</strong> Soporte de personas
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">CUERDA ESTÁTICA</div>
+                    <div class="type-spec">Diámetro: 11-13mm</div>
+                    <div class="type-desc">
+                        <strong>Material:</strong> Kernmantle estático<br>
+                        <strong>Carga:</strong> 3500+ kg<br>
+                        <strong>Uso:</strong> Rappel, rescate técnico<br>
+                        <strong>Elongación:</strong> Muy baja (<5%)<br>
+                        <strong>Ventaja:</strong> Precisión altura<br><br>
+                        <strong>Ideal:</strong> Sistemas de polea
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            CRÍTICO: Cuerda VIDA (blanca) = SOLO rescate de personas. Cuerda UTILITARIA = SOLO equipos. NUNCA mezclar usos
+        </div>
+
+        <div class="section">
+            <h2>Construcción de Cuerdas</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Kernmantle (Alma-Camisa)</h4>
+                    <ul>
+                        <li><strong>Núcleo (Kern):</strong> Fibras paralelas, soportan carga</li>
+                        <li><strong>Camisa (Mantle):</strong> Trenzado protector externo</li>
+                        <li><strong>Ventaja:</strong> Mayor resistencia, menos desgaste</li>
+                        <li><strong>Tipos:</strong> Estática (rescate) o dinámica (escalada)</li>
+                        <li><strong>Uso bomberos:</strong> Preferida para rescate</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Trenzada (Laid/Twisted)</h4>
+                    <ul>
+                        <li><strong>Construcción:</strong> 3 hebras torcidas</li>
+                        <li><strong>Ventaja:</strong> Económica, versátil</li>
+                        <li><strong>Desventaja:</strong> Menos resistente, más desgaste</li>
+                        <li><strong>Uso:</strong> Utilitaria, no crítica</li>
+                        <li><strong>Inspección:</strong> Destrenzar para ver interior</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Capacidades de Carga</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>Carga Ruptura</h4>
+                    <ul>
+                        <li><strong>Concepto:</strong> Fuerza máxima antes romper</li>
+                        <li><strong>Vida 13mm:</strong> 4000-4500 kg</li>
+                        <li><strong>Utilitaria 9mm:</strong> 2000-2500 kg</li>
+                        <li><strong>Nunca usar:</strong> Cerca del límite</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Carga Trabajo</h4>
+                    <ul>
+                        <li><strong>Concepto:</strong> Carga segura operacional</li>
+                        <li><strong>Cálculo:</strong> Ruptura ÷ 10 (factor 10:1)</li>
+                        <li><strong>Vida 4500kg:</strong> 450 kg trabajo</li>
+                        <li><strong>Margen:</strong> Siempre conservador</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Pérdida por Nudos</h4>
+                    <ul>
+                        <li><strong>Nudo simple:</strong> -40% resistencia</li>
+                        <li><strong>As de guía:</strong> -30% resistencia</li>
+                        <li><strong>Ocho doble:</strong> -20% resistencia</li>
+                        <li><strong>Sin nudo:</strong> 100% resistencia</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Efectos Ambientales</h4>
+                    <ul>
+                        <li><strong>Mojada:</strong> -10% resistencia</li>
+                        <li><strong>Congelada:</strong> -15% resistencia</li>
+                        <li><strong>UV/envejecida:</strong> -30% o más</li>
+                        <li><strong>Química:</strong> Variable, puede ser total</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Factor seguridad 10:1 es OBLIGATORIO. Cuerda 4000kg ruptura = Máximo 400kg uso seguro (incluye nudos)
+        </div>
+
+        <div class="section">
+            <h2>Nudos Esenciales - Anclaje</h2>
+            <div class="grid-3">
+                <div class="knot-card">
+                    <div class="knot-title">AS DE GUÍA (Bowline)</div>
+                    <div class="knot-use">USO: Lazo fijo que no corre</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Forma lazo que no se aprieta</li>
+                        <li>• Fácil deshacer bajo carga</li>
+                        <li>• Pérdida 30% resistencia</li>
+                        <li>• Requiere nudo seguridad</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Rescate, arnés improvisado, anclar objetos</p>
+                </div>
+
+                <div class="knot-card">
+                    <div class="knot-title">OCHO DOBLE (Figure Eight)</div>
+                    <div class="knot-use">USO: Lazo más seguro</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Lazo muy seguro, no se deshace</li>
+                        <li>• Fácil inspección visual</li>
+                        <li>• Pérdida 20% resistencia</li>
+                        <li>• Difícil deshacer bajo carga</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Anclajes críticos, rescate técnico</p>
+                </div>
+
+                <div class="knot-card">
+                    <div class="knot-title">BALLESTRINQUE (Clove Hitch)</div>
+                    <div class="knot-use">USO: Amarre rápido ajustable</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Rápido de hacer</li>
+                        <li>• Ajustable bajo carga</li>
+                        <li>• Puede aflojarse si no tensionado</li>
+                        <li>• Requiere carga constante</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Anclar escalas, postes, amarres temporales</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Nudos Esenciales - Unión</h2>
+            <div class="grid-3">
+                <div class="knot-card">
+                    <div class="knot-title">VUELTA DE ESCOTA (Sheet Bend)</div>
+                    <div class="knot-use">USO: Unir cuerdas diferentes diámetros</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Une cuerdas distintas</li>
+                        <li>• Más gruesa forma lazo</li>
+                        <li>• Fácil y rápido</li>
+                        <li>• No para cargas críticas</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Extensión cuerdas, utilitario</p>
+                </div>
+
+                <div class="knot-card">
+                    <div class="knot-title">PESCADOR DOBLE (Double Fisherman)</div>
+                    <div class="knot-use">USO: Unir cuerdas mismo diámetro</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Muy seguro</li>
+                        <li>• Para cuerdas vida</li>
+                        <li>• Difícil deshacer</li>
+                        <li>• Alta resistencia</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Sistemas rescate, anillos permanentes</p>
+                </div>
+
+                <div class="knot-card">
+                    <div class="knot-title">OCHO SEGUIDOR (Follow-Through)</div>
+                    <div class="knot-use">USO: Unión máxima seguridad</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Más seguro para unión</li>
+                        <li>• Inspección visual fácil</li>
+                        <li>• Pérdida resistencia baja</li>
+                        <li>• Algo lento de hacer</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Sistemas críticos, rescate técnico</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Nudos Esenciales - Especiales</h2>
+            <div class="grid-3">
+                <div class="knot-card">
+                    <div class="knot-title">PRUSIK</div>
+                    <div class="knot-use">USO: Nudo autoblocante</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Se aprieta bajo carga</li>
+                        <li>• Desliza sin carga</li>
+                        <li>• Requiere cuerda más delgada</li>
+                        <li>• Fricción ajustable (2-4 vueltas)</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Ascenso, seguro, sistemas polea</p>
+                </div>
+
+                <div class="knot-card">
+                    <div class="knot-title">MARIPOSA (Butterfly)</div>
+                    <div class="knot-use">USO: Lazo medio de cuerda</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Lazo en medio sin cortar</li>
+                        <li>• Carga en 3 direcciones</li>
+                        <li>• No debilita cuerda mucho</li>
+                        <li>• Versátil</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Anclajes múltiples, aislar sección dañada</p>
+                </div>
+
+                <div class="knot-card">
+                    <div class="knot-title">MUNTER HITCH (UIAA)</div>
+                    <div class="knot-use">USO: Descenso controlado</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Fricción variable</li>
+                        <li>• Solo requiere mosquetón</li>
+                        <li>• Bidireccional</li>
+                        <li>• Tuerce la cuerda</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Aplicación:</strong><br>Rappel emergencia, asegurar persona</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            TODOS los nudos reducen resistencia 20-40%. Siempre calcular con carga reducida, no con cuerda nueva
+        </alert-box>
+
+        <div class="section">
+            <h2>Sistemas de Anclaje</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Anclaje Simple</h4>
+                    <ul>
+                        <li><strong>Concepto:</strong> 1 punto de anclaje sólido</li>
+                        <li><strong>Requisito:</strong> Capaz soportar 2× carga esperada</li>
+                        <li><strong>Estructura:</strong> Columna, viga, árbol >30cm</li>
+                        <li><strong>Nudo:</strong> As de guía o ballestrinque</li>
+                        <li><strong>Inspección:</strong> Verificar solidez antes cargar</li>
+                        <li><strong>Limitación:</strong> Un punto de falla</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Anclaje Múltiple (Redundante)</h4>
+                    <ul>
+                        <li><strong>Concepto:</strong> 2+ puntos anclaje independientes</li>
+                        <li><strong>Ventaja:</strong> Si uno falla, otros sostienen</li>
+                        <li><strong>Distribución:</strong> Carga equitativa entre puntos</li>
+                        <li><strong>Configuración:</strong> Ocho o mariposa en lazos</li>
+                        <li><strong>Ángulo:</strong> <60° entre anclajes (óptimo <30°)</li>
+                        <li><strong>Uso:</strong> Rescates críticos, cargas pesadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Sistemas de Polea (Ventaja Mecánica)</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Sistema 2:1 (Simple)</h4>
+                    <ul>
+                        <li><strong>Ventaja:</strong> 2× fuerza aplicada</li>
+                        <li><strong>Setup:</strong> 1 polea móvil en carga</li>
+                        <li><strong>Uso:</strong> Izar equipos medianos</li>
+                        <li><strong>Eficiencia:</strong> ~70% (fricción)</li>
+                        <li><strong>Rapidez:</strong> Alta</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Sistema 3:1 (Z-Rig)</h4>
+                    <ul>
+                        <li><strong>Ventaja:</strong> 3× fuerza aplicada</li>
+                        <li><strong>Setup:</strong> 2 poleas en Z</li>
+                        <li><strong>Uso:</strong> Rescate vehículos, personas</li>
+                        <li><strong>Eficiencia:</strong> ~50% (más fricción)</li>
+                        <li><strong>Complejidad:</strong> Media</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Sistema 4:1 y 5:1</h4>
+                    <ul>
+                        <li><strong>Ventaja:</strong> 4-5× fuerza</li>
+                        <li><strong>Setup:</strong> Combinación poleas</li>
+                        <li><strong>Uso:</strong> Cargas muy pesadas</li>
+                        <li><strong>Desventaja:</strong> Lento, complejo</li>
+                        <li><strong>Aplicación:</strong> Rescate técnico</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Inspección de Cuerdas</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Antes de Cada Uso</h4>
+                    <ul>
+                        <li><strong>Visual:</strong> Recorrer toda la longitud</li>
+                        <li><strong>Táctil:</strong> Sentir con manos, buscar irregularidades</li>
+                        <li><strong>Buscar:</strong> Cortes, quemaduras, abrasión, desgaste</li>
+                        <li><strong>Camisa:</strong> Debe estar íntegra, sin deshilachado</li>
+                        <li><strong>Diámetro:</strong> Uniforme en toda longitud</li>
+                        <li><strong>Rigidez:</strong> Partes duras/rígidas = daño interno</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Señales de Retiro Inmediato</h4>
+                    <ul>
+                        <li><strong>Cortes profundos:</strong> >10% diámetro</li>
+                        <li><strong>Quemaduras:</strong> Camisa derretida/marrón</li>
+                        <li><strong>Químicos:</strong> Contacto ácidos/bases</li>
+                        <li><strong>Núcleo visible:</strong> Camisa rota mostrando alma</li>
+                        <li><strong>Rigidez anormal:</strong> Secciones duras</li>
+                        <li><strong>Decoloración severa:</strong> Especialmente UV</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            CRITERIO: Ante la DUDA, RETIRA la cuerda. Una vida no vale el costo de una cuerda nueva
+        </alert-box>
+
+        <div class="section">
+            <h2>Vida Útil de Cuerdas</h2>
+            <div class="grid-4">
+                <div class="danger-card">
+                    <div class="danger-title">Uso Frecuente</div>
+                    <div class="danger-desc">
+                        <strong>Semanal intenso:</strong><br>
+                        1-2 años máximo<br><br>
+                        <strong>Inspección:</strong><br>
+                        Cada uso + mensual detallada
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Uso Moderado</div>
+                    <div class="danger-desc">
+                        <strong>Mensual regular:</strong><br>
+                        3-5 años máximo<br><br>
+                        <strong>Inspección:</strong><br>
+                        Cada uso + trimestral
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Uso Ocasional</div>
+                    <div class="danger-desc">
+                        <strong>Poco uso:</strong><br>
+                        5-7 años máximo<br><br>
+                        <strong>Inspección:</strong><br>
+                        Antes uso + semestral
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Sin Uso (Almacén)</div>
+                    <div class="danger-desc">
+                        <strong>Nunca usada:</strong><br>
+                        10 años desde fabricación<br><br>
+                        <strong>Inspección:</strong><br>
+                        Anual visual
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cuidado y Mantenimiento</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Limpieza Correcta</h4>
+                    <ul>
+                        <li><strong>Lavado:</strong> Agua tibia (30°C), jabón suave</li>
+                        <li><strong>Método:</strong> A mano, sin máquina</li>
+                        <li><strong>Enjuague:</strong> Abundante agua limpia</li>
+                        <li><strong>Secado:</strong> Aire, sombra, extendida</li>
+                        <li><strong>NUNCA:</strong> Secadora, calor directo, sol prolongado</li>
+                        <li><strong>Frecuencia:</strong> Cuando esté sucia o después químicos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Almacenamiento</h4>
+                    <ul>
+                        <li><strong>Forma:</strong> Bolsa de cuerda o madeja floja</li>
+                        <li><strong>Lugar:</strong> Seco, fresco, oscuro</li>
+                        <li><strong>Evitar:</strong> Luz UV, calor, humedad, químicos</li>
+                        <li><strong>Separar:</strong> Vida de utilitaria (color/marcaje)</li>
+                        <li><strong>Registro:</strong> Fecha compra, uso, inspecciones</li>
+                        <li><strong>Rotación:</strong> Primera entra, primera sale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Amarres de Equipo</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Izar Herramientas</h4>
+                    <ul>
+                        <li><strong>Nudo:</strong> Ballestrinque o as de guía</li>
+                        <li><strong>Backup:</strong> Nudo seguridad siempre</li>
+                        <li><strong>Posición:</strong> Balance centro gravedad</li>
+                        <li><strong>Comunicar:</strong> Antes de izar/bajar</li>
+                        <li><strong>Control:</strong> Descenso lento</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Asegurar Escalas</h4>
+                    <ul>
+                        <li><strong>Punto:</strong> Peldaño superior</li>
+                        <li><strong>Nudo:</strong> Ballestrinque ajustable</li>
+                        <li><strong>Anclar a:</strong> Estructura sólida</li>
+                        <li><strong>Ángulo:</strong> Prevenir movimiento lateral</li>
+                        <li><strong>Tensión:</strong> Firme pero no excesiva</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Amarrar Mangas</h4>
+                    <ul>
+                        <li><strong>Aplicación:</strong> Asegurar en altura</li>
+                        <li><strong>Nudo:</strong> Ballestrinque en barandal</li>
+                        <li><strong>Intervalo:</strong> Cada 3-4 metros</li>
+                        <li><strong>Evitar:</strong> Torsión de manga</li>
+                        <li><strong>Liberar:</strong> Rápido cuando necesario</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Seguridad con Cuerdas</h2>
+            <div class="grid-2">
+                <div class="danger-card">
+                    <div class="danger-title">Errores Fatales</div>
+                    <div class="danger-desc">
+                        <strong>NUNCA hacer:</strong><br>
+                        • Usar cuerda dañada "una vez más"<br>
+                        • Mezclar vida con utilitaria<br>
+                        • Nudo incorrecto para aplicación<br>
+                        • Sobrecargar más del trabajo<br>
+                        • Anclaje no verificado<br>
+                        • Sistema sin backup<br><br>
+                        <strong>Consecuencia:</strong> Falla = Muerte
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Reglas de Oro</div>
+                    <div class="danger-desc">
+                        <strong>SIEMPRE hacer:</strong><br>
+                        • Inspeccionar antes de usar<br>
+                        • Factor seguridad 10:1 mínimo<br>
+                        • Nudo seguridad en críticos<br>
+                        • Redundancia en rescate<br>
+                        • Comunicación clara equipo<br>
+                        • Registrar uso y daños<br><br>
+                        <strong>Principio:</strong> Sobre-ingeniería salva vidas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Técnicas de Rescate Básicas</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Descenso Controlado</h4>
+                    <ul>
+                        <li><strong>Sistema:</strong> Ocho descendedor o Munter</li>
+                        <li><strong>Backup:</strong> Prusik autoblocante debajo</li>
+                        <li><strong>Anclaje:</strong> Múltiple, verificado</li>
+                        <li><strong>Velocidad:</strong> Lenta, controlada (1m/seg)</li>
+                        <li><strong>Comunicación:</strong> Constante con víctima</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Izado Simple</h4>
+                    <ul>
+                        <li><strong>Sistema:</strong> 3:1 Z-rig mínimo</li>
+                        <li><strong>Prusik:</strong> Como seguro de progreso</li>
+                        <li><strong>Personal:</strong> 2-3 personas tirando</li>
+                        <li><strong>Coordinación:</strong> Comandos claros</li>
+                        <li><strong>Pausas:</strong> Verificar sistema cada 2m</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tensado Línea</h4>
+                    <ul>
+                        <li><strong>Propósito:</strong> Cruzar víctima horizontal</li>
+                        <li><strong>Anclajes:</strong> Ambos lados ultra sólidos</li>
+                        <li><strong>Tensión:</strong> Sistema polea 3:1</li>
+                        <li><strong>Ángulo:</strong> Mínimo pandeo posible</li>
+                        <li><strong>Seguridad:</strong> Línea backup paralela</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mosquetones y Accesorios</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>Mosquetón Seguridad</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Con seguro (rosca/automático)</li>
+                        <li><strong>Carga eje mayor:</strong> 20-25 kN</li>
+                        <li><strong>Carga abierto:</strong> 7-10 kN</li>
+                        <li><strong>Uso:</strong> Puntos críticos vida</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Mosquetón Simple</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Sin seguro</li>
+                        <li><strong>Carga:</strong> 18-22 kN cerrado</li>
+                        <li><strong>Ventaja:</strong> Rápido clip</li>
+                        <li><strong>Uso:</strong> Utilitario, no vida</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Poleas</h4>
+                    <ul>
+                        <li><strong>Eficiencia:</strong> 90-95% buena polea</li>
+                        <li><strong>Carga:</strong> Verificar límite</li>
+                        <li><strong>Rodamiento:</strong> Preferir sobre buje</li>
+                        <li><strong>Mantenimiento:</strong> Lubricar regular</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Descendedores</h4>
+                    <ul>
+                        <li><strong>Ocho:</strong> Simple, versátil</li>
+                        <li><strong>ATC/Grigri:</strong> Más control</li>
+                        <li><strong>Munter:</strong> Backup, solo mosquetón</li>
+                        <li><strong>Inspección:</strong> Desgaste ranuras</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            MOSQUETONES: Carga transversal = 30% capacidad eje mayor. SIEMPRE cargar en eje correcto
+        </alert-box>
+
+        <div class="section">
+            <h2>Registro y Trazabilidad</h2>
+            <div class="info-box">
+                <h4>Información a Registrar por Cuerda</h4>
+                <ul>
+                    <li><strong>ID único:</strong> Número o código identificación</li>
+                    <li><strong>Fecha fabricación:</strong> En etiqueta fabricante</li>
+                    <li><strong>Fecha puesta en servicio:</strong> Primera vez usada</li>
+                    <li><strong>Tipo y especificaciones:</strong> Vida/utilitaria, diámetro, resistencia</li>
+                    <li><strong>Historial uso:</strong> Fechas, tipo de operación, carga estimada</li>
+                    <li><strong>Inspecciones:</strong> Fechas, resultado, inspector</li>
+                    <li><strong>Incidentes:</strong> Caídas, sobrecargas, contacto químico</li>
+                    <li><strong>Fecha retiro:</strong> Cuando se saca de servicio y motivo</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Marcaje de Cuerdas</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Cuerda de Vida</h4>
+                    <ul>
+                        <li><strong>Color:</strong> Blanco o amarillo claro</li>
+                        <li><strong>Etiqueta:</strong> "CUERDA VIDA - SOLO RESCATE"</li>
+                        <li><strong>Marcas longitud:</strong> Cada 5-10m</li>
+                        <li><strong>Centro:</strong> Marca distintiva a mitad</li>
+                        <li><strong>Extremos:</strong> Sellar para evitar deshilachado</li>
+                        <li><strong>ID visible:</strong> En ambos extremos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Cuerda Utilitaria</h4>
+                    <ul>
+                        <li><strong>Color:</strong> Cualquiera EXCEPTO blanco</li>
+                        <li><strong>Etiqueta:</strong> "UTILITARIA - NO PERSONAS"</li>
+                        <li><strong>Diferenciación:</strong> Clara de cuerdas vida</li>
+                        <li><strong>Marcas:</strong> Menos crítico que vida</li>
+                        <li><strong>Almacenamiento:</strong> Área separada</li>
+                        <li><strong>Uso:</strong> Solo equipo, nunca soporte humano</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Términos Esenciales</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Partes de Cuerda</h4>
+                    <ul>
+                        <li><strong>Chicote:</strong> Extremo libre</li>
+                        <li><strong>Firme:</strong> Extremo fijo/anclado</li>
+                        <li><strong>Seno:</strong> Curva entre extremos</li>
+                        <li><strong>Gaza:</strong> Lazo o anillo</li>
+                        <li><strong>Vuelta:</strong> 360° alrededor objeto</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Operaciones</h4>
+                    <ul>
+                        <li><strong>Adujar:</strong> Enrollar/guardar cuerda</li>
+                        <li><strong>Tesar:</strong> Tensar/estirar</li>
+                        <li><strong>Arriar:</strong> Soltar/aflojar</li>
+                        <li><strong>Amarrar:</strong> Asegurar con nudo</li>
+                        <li><strong>Abozar:</strong> Atar temporalmente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Sistemas</h4>
+                    <ul>
+                        <li><strong>Aparejo:</strong> Sistema poleas</li>
+                        <li><strong>Anclaje:</strong> Punto fijo</li>
+                        <li><strong>Backup:</strong> Sistema seguridad</li>
+                        <li><strong>Prusik:</strong> Nudo autoblocante</li>
+                        <li><strong>Redundancia:</strong> Sistema doble</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>Checklist Mental Cuerdas:</strong></p>
+                <ul>
+                    <li><strong>Color blanco/amarillo:</strong> SOLO rescate de personas</li>
+                    <li><strong>Otros colores:</strong> SOLO equipo, nunca personas</li>
+                    <li><strong>Factor seguridad:</strong> 10:1 obligatorio (carga trabajo = ruptura ÷ 10)</li>
+                    <li><strong>Pérdida por nudos:</strong> 20-40% menos resistencia</li>
+                    <li><strong>Inspección:</strong> Visual + táctil toda la longitud antes usar</li>
+                    <li><strong>Retiro inmediato:</strong> Cortes >10%, quemaduras, químicos, núcleo visible</li>
+                    <li><strong>Anclajes críticos:</strong> Siempre redundantes (2+ puntos)</li>
+                    <li><strong>Nudos rescate:</strong> As de guía u ocho doble con seguridad</li>
+                    <li><strong>Sistemas polea:</strong> 3:1 Z-rig para rescate estándar</li>
+                    <li><strong>Mosquetones vida:</strong> CON seguro, cargar en eje mayor</li>
+                    <li><strong>Duda sobre cuerda:</strong> RETÍRALA, no arriesgues</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Una cuerda en buen estado + nudo correcto + anclaje sólido = Rescate exitoso. Falla UNO = Muerte
+        </div>
+    </div>
+</body>
+</html>

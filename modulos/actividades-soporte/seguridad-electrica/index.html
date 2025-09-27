@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad Eléctrica - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Arial, sans-serif; background: #F2E4C9; color: #0D0D0D;}
+        .header {background: #8C0303; color: #F2E4C9; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .breadcrumb {font-size: 0.9em; margin-bottom: 10px;}
+        .breadcrumb a {color: #F2E4C9; text-decoration: none; opacity: 0.8;}
+        .breadcrumb a:hover {opacity: 1;}
+        .header h1 {font-size: 1.8em; margin-bottom: 5px;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+        .section {background: #0D0D0D; color: #F2E4C9; padding: 20px; margin-bottom: 15px;}
+        .section h2 {color: #BF3604; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid #BF3604; padding-bottom: 10px;}
+        .grid-2 {display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;}
+        .grid-3 {display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+        .info-box {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .info-box h4 {color: #8C0303; margin-bottom: 10px;}
+        .info-box ul {list-style: none; padding: 0;}
+        .info-box li {padding: 4px 0; font-size: 0.9em;}
+        .alert-box {background: #BF3604; color: #F2E4C9; padding: 15px; margin: 15px 0; text-align: center; font-weight: bold;}
+        .danger-box {background: #8C0303; color: #F2E4C9; padding: 15px;}
+        .danger-box h4 {margin-bottom: 10px; color: #F2E4C9;}
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {grid-template-columns: 1fr;}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Actividades Soporte</a> > Seguridad Eléctrica
+        </div>
+        <h1>SEGURIDAD ELÉCTRICA</h1>
+        <p>Riesgos eléctricos y procedimientos seguros</p>
+    </header>
+
+    <div class="container">
+        <div class="alert-box">
+            REGLA DE ORO: Asumir TODO energizado hasta verificar. Distancia segura. Solo personal capacitado
+        </div>
+
+        <div class="section">
+            <h2>Peligros de la Electricidad</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Electrocución</h4>
+                    <ul>
+                        <li><strong>50mA:</strong> Parálisis muscular</li>
+                        <li><strong>100mA:</strong> Fibrilación cardiaca</li>
+                        <li><strong>200mA+:</strong> Paro cardiaco</li>
+                        <li>Muerte en segundos</li>
+                        <li>NO se ve ni huele</li>
+                        <li>Contacto directo/indirecto</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Arco Eléctrico</h4>
+                    <ul>
+                        <li><strong>Temperatura:</strong> 20,000°C</li>
+                        <li>Quemaduras severas</li>
+                        <li>Explosión de aire</li>
+                        <li>Proyección de metal fundido</li>
+                        <li>Daño auditivo</li>
+                        <li>Sin contacto directo</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Incendio</h4>
+                    <ul>
+                        <li>Cortocircuito ignición</li>
+                        <li>Sobrecarga cables</li>
+                        <li>Chispas encienden gases</li>
+                        <li>Instalaciones defectuosas</li>
+                        <li>Agua conduce electricidad</li>
+                        <li>Fuego Clase C</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Voltajes y Distancias de Seguridad</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Clasificación por Voltaje</h4>
+                    <ul>
+                        <li><strong>Bajo (hasta 1000V):</strong> Residencial 110-220V</li>
+                        <li><strong>Medio (1kV-35kV):</strong> Industrial, distribución</li>
+                        <li><strong>Alto (35kV-230kV):</strong> Líneas transmisión</li>
+                        <li><strong>Extra Alto (230kV+):</strong> Torres alta tensión</li>
+                        <li>Mayor voltaje = Mayor peligro</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Distancias Mínimas</h4>
+                    <ul>
+                        <li><strong>Hasta 1kV:</strong> 3 metros</li>
+                        <li><strong>1-15kV:</strong> 5 metros</li>
+                        <li><strong>15-35kV:</strong> 8 metros</li>
+                        <li><strong>35-110kV:</strong> 10 metros</li>
+                        <li><strong>110-230kV:</strong> 15 metros</li>
+                        <li><strong>230kV+:</strong> 20 metros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Electricidad puede SALTAR en arco. Mantener distancia aunque no toque el cable
+        </div>
+
+        <div class="section">
+            <h2>Identificación de Peligros</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Líneas Aéreas</h4>
+                    <ul>
+                        <li>Torres de alta tensión</li>
+                        <li>Cables en postes</li>
+                        <li>Líneas sobre edificios</li>
+                        <li>Cables caídos en suelo</li>
+                        <li>Acometidas a casas</li>
+                        <li>Asumir energizadas</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Equipos Eléctricos</h4>
+                    <ul>
+                        <li>Transformadores en postes</li>
+                        <li>Cajas de distribución</li>
+                        <li>Medidores eléctricos</li>
+                        <li>Paneles/breakers</li>
+                        <li>Electrodomésticos conectados</li>
+                        <li>Equipos industriales</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Señales de Peligro</h4>
+                    <ul>
+                        <li>Chisporroteo/arcos visibles</li>
+                        <li>Olor a quemado eléctrico</li>
+                        <li>Humo de equipos</li>
+                        <li>Cables derretidos</li>
+                        <li>Agua cerca de eléctricos</li>
+                        <li>Sensación hormigueo (piso)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cables Caídos</h2>
+            <div class="danger-box">
+                <h4>Protocolo Cable en Suelo</h4>
+                <ul>
+                    <li><strong>1. ASUMIR ENERGIZADO:</strong> Aunque no chisporrotee</li>
+                    <li><strong>2. ESTABLECER PERÍMETRO:</strong> Distancia según voltaje (mínimo 10m)</li>
+                    <li><strong>3. EVITAR CONTACTO:</strong> Directo e indirecto</li>
+                    <li><strong>4. NO MOVER CABLE:</strong> Aunque parezca seguro</li>
+                    <li><strong>5. LLAMAR COMPAÑÍA ELÉCTRICA:</strong> Ellos desenergízan</li>
+                    <li><strong>6. VERIFICAR DESENERGIZADO:</strong> Con personal eléctrico</li>
+                    <li><strong>7. MANTENER PERSONAS ALEJADAS:</strong> Hasta confirmar seguro</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Zona de Gradiente de Potencial</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Qué es</h4>
+                    <ul>
+                        <li>Cable energizado en suelo</li>
+                        <li>Electricidad se dispersa en tierra</li>
+                        <li>Diferencia voltaje entre pies</li>
+                        <li>Corriente sube por una pierna, baja por otra</li>
+                        <li>Mortal sin tocar cable</li>
+                        <li>Radio 10-15 metros cable</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Escape Seguro</h4>
+                    <ul>
+                        <li><strong>Pasos arrastre:</strong> Pies juntos siempre</li>
+                        <li><strong>NO dar pasos normales:</strong> Crea diferencia</li>
+                        <li><strong>Saltos un pie:</strong> Alternativa</li>
+                        <li><strong>Alejarse mínimo 15m:</strong> Del cable</li>
+                        <li><strong>Si caída:</strong> Arrastrarse boca abajo</li>
+                        <li>NO regresar por nadie</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Si alguien toca cable energizado: NO TOCAR. Electricidad pasa a ti. Esperar compañía eléctrica
+        </alert-box>
+
+        <div class="section">
+            <h2>Corte de Energía</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>En Edificios</h4>
+                    <ul>
+                        <li><strong>Ubicar panel principal</strong></li>
+                        <li>Generalmente entrada/sótano</li>
+                        <li>Breaker principal OFF</li>
+                        <li>Si mojado: NO tocar</li>
+                        <li>Usar palo seco/aislado</li>
+                        <li>Verificar luces OFF</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Acometida/Medidor</h4>
+                    <ul>
+                        <li><strong>NO cortar personal bomberos</strong></li>
+                        <li>Solo compañía eléctrica</li>
+                        <li>Lado poste SIEMPRE energizado</li>
+                        <li>Requiere equipo especial</li>
+                        <li>Llamar y esperar</li>
+                        <li>NO intentar si emergencia vital</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Verificación</h4>
+                    <ul>
+                        <li>Probar interruptores (OFF)</li>
+                        <li>Luces no encienden</li>
+                        <li>Equipos no funcionan</li>
+                        <li>Detector voltaje si disponible</li>
+                        <li>Aún así: Asumir energizado</li>
+                        <li>Doble verificación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Agua y Electricidad</h2>
+            <div class="danger-box">
+                <h4>Peligro Mortal</h4>
+                <ul>
+                    <li><strong>Agua conduce electricidad:</strong> Especialmente con minerales</li>
+                    <li><strong>Agua pura:</strong> Aislante (pero nunca pura en incendios)</li>
+                    <li><strong>Agua con humo/ceniza:</strong> Muy conductiva</li>
+                    <li><strong>Chorro agua:</strong> Puede conducir a bombero</li>
+                    <li><strong>Agua en piso:</strong> Zona electrificada</li>
+                    <li><strong>NO aplicar agua:</strong> Hasta verificar sin energía</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Extinción de Incendios Eléctricos</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Si Energizado</h4>
+                    <ul>
+                        <li><strong>Agente:</strong> CO2, PQS, Clase C</li>
+                        <li><strong>NO usar agua/espuma:</strong> Conduce</li>
+                        <li><strong>Distancia:</strong> Mayor seguridad</li>
+                        <li><strong>Desenergizar primero:</strong> Si posible</li>
+                        <li><strong>Protección:</strong> Equipos dieléctricos</li>
+                        <li>Si duda: NO atacar, esperar corte</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Si Desenergizado</h4>
+                    <ul>
+                        <li><strong>Verificar:</strong> Confirmar OFF</li>
+                        <li><strong>Agua:</strong> Permitida tras verificar</li>
+                        <li><strong>Cuidado:</strong> Puede reenergizarse</li>
+                        <li><strong>Bloquear panel:</strong> Evitar encendido</li>
+                        <li><strong>Monitorear:</strong> Por si reactiva</li>
+                        <li>Precaución siempre</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Vehículos y Electricidad</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Vehículo Toca Cable</h4>
+                    <ul>
+                        <li><strong>Ocupante:</strong> Quedarse dentro</li>
+                        <li><strong>NO tocar metal:</strong> Interior</li>
+                        <li><strong>Si fuego:</strong> Saltar sin tocar</li>
+                        <li><strong>Salto:</strong> Pies juntos, caer lejos</li>
+                        <li><strong>NO descender normal:</strong> Crea circuito</li>
+                        <li>Esperar compañía eléctrica</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Autobomba Cerca Cables</h4>
+                    <ul>
+                        <li>Escalera aérea: Riesgo alto</li>
+                        <li>Verificar altura cables</li>
+                        <li>Distancia seguridad siempre</li>
+                        <li>NO elevar cerca líneas</li>
+                        <li>Comunicar con operador</li>
+                        <li>Vigía observa cables</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Vehículos Eléctricos</h4>
+                    <ul>
+                        <li>Alto voltaje (200-800V)</li>
+                        <li>Cables NARANJA = Peligro</li>
+                        <li>NO cortar cables naranja</li>
+                        <li>Batería puede energizar tras fuego</li>
+                        <li>Ver módulo específico EV</li>
+                        <li>Precaución extrema</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Equipos de Protección</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Guantes Dieléctricos</h4>
+                    <ul>
+                        <li><strong>Clase 00:</strong> 500V</li>
+                        <li><strong>Clase 0:</strong> 1000V</li>
+                        <li><strong>Clase 1:</strong> 7500V</li>
+                        <li><strong>Clase 2:</strong> 17000V</li>
+                        <li>Inspeccionar antes uso</li>
+                        <li>Sin roturas/perforaciones</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Calzado Dieléctrico</h4>
+                    <ul>
+                        <li>Suela aislante</li>
+                        <li>Sin clavos metálicos</li>
+                        <li>Secos y limpios</li>
+                        <li>Verificar integridad</li>
+                        <li>NO garantía absoluta</li>
+                        <li>Complemento, no solución</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Herramientas Aisladas</h4>
+                    <ul>
+                        <li>Mangos no conductores</li>
+                        <li>Certificadas para voltaje</li>
+                        <li>Pértigas/varas aislantes</li>
+                        <li>Verificar estado</li>
+                        <li>Secar antes usar</li>
+                        <li>Solo personal capacitado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Primeros Auxilios Electrocución</h2>
+            <div class="grid-2">
+                <div class="danger-box">
+                    <h4>Si Persona Energizada</h4>
+                    <ul>
+                        <li><strong>1. NO TOCAR directamente</strong></li>
+                        <li><strong>2. Cortar energía fuente</strong></li>
+                        <li><strong>3. Si imposible:</strong> Usar palo seco/aislado</li>
+                        <li><strong>4. Separar víctima de fuente</strong></li>
+                        <li><strong>5. Verificar respiración/pulso</strong></li>
+                        <li><strong>6. RCP si necesario</strong></li>
+                        <li><strong>7. Activar emergencia médica</strong></li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Lesiones Eléctricas</h4>
+                    <ul>
+                        <li><strong>Paro cardiaco:</strong> RCP inmediato</li>
+                        <li><strong>Quemaduras:</strong> Entrada y salida corriente</li>
+                        <li><strong>Daño interno:</strong> Puede no verse</li>
+                        <li><strong>Fracturas:</strong> Por contracción muscular</li>
+                        <li><strong>Toda víctima:</strong> Hospital aunque "bien"</li>
+                        <li>Complicaciones horas después</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Víctima de electrocución: SIEMPRE al hospital. Daño interno puede aparecer horas después
+        </alert-box>
+
+        <div class="section">
+            <h2>Paneles Solares</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Peligros</h4>
+                    <ul>
+                        <li><strong>Generan siempre:</strong> Si hay luz</li>
+                        <li><strong>NO se pueden apagar:</strong> Con interruptor</li>
+                        <li><strong>Voltaje alto:</strong> 200-600V DC</li>
+                        <li><strong>DC más peligroso:</strong> Que AC</li>
+                        <li><strong>Cables en techo:</strong> Riesgo corte</li>
+                        <li>Múltiples paneles = Mayor voltaje</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Procedimiento</h4>
+                    <ul>
+                        <li>Identificar presencia paneles</li>
+                        <li>Cubrir paneles (si seguro)</li>
+                        <li>Cortar en inversor</li>
+                        <li>Distancia cables techo</li>
+                        <li>NO cortar cables techo</li>
+                        <li>Considerar en estrategia ventilación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Coordinación con Compañía Eléctrica</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Información a Proveer</h4>
+                    <ul>
+                        <li>Ubicación exacta</li>
+                        <li>Tipo emergencia</li>
+                        <li>Cables caídos (cantidad)</li>
+                        <li>Personas en peligro</li>
+                        <li>Necesidad urgente corte</li>
+                        <li>Punto de contacto</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tiempo de Respuesta</h4>
+                    <ul>
+                        <li><strong>Urbano:</strong> 15-45 minutos</li>
+                        <li><strong>Rural:</strong> 45-120 minutos</li>
+                        <li><strong>Emergencia:</strong> Priorizar</li>
+                        <li><strong>Madrugada:</strong> Más demora</li>
+                        <li>Planear operación considerando</li>
+                        <li>NO asumir llegada rápida</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Al Llegar Personal</h4>
+                    <ul>
+                        <li>Briefing situación</li>
+                        <li>Indicar peligros identificados</li>
+                        <li>Coordinar corte energía</li>
+                        <li>Esperar confirmación OFF</li>
+                        <li>Verificar con detector</li>
+                        <li>Documentar autorización</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Errores Fatales a Evitar</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>NO Hacer NUNCA</h4>
+                    <ul>
+                        <li>❌ Asumir cable muerto</li>
+                        <li>❌ Tocar víctima energizada</li>
+                        <li>❌ Aplicar agua sin verificar</li>
+                        <li>❌ Mover cable con herramienta metal</li>
+                        <li>❌ Acercarse sin distancia seguridad</li>
+                        <li>❌ Trabajar en panel mojado</li>
+                        <li>❌ Cortar acometida sin autorización</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>SÍ Hacer SIEMPRE</h4>
+                    <ul>
+                        <li>✓ Asumir TODO energizado</li>
+                        <li>✓ Mantener distancia seguridad</li>
+                        <li>✓ Llamar compañía eléctrica</li>
+                        <li>✓ Verificar antes actuar</li>
+                        <li>✓ Usar EPP dieléctrico</li>
+                        <li>✓ Establecer perímetro</li>
+                        <li>✓ Esperar confirmación OFF</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            RECORDAR: Electricidad MATA. No se ve, no huele, no perdona. Distancia y verificación salvan vidas
+        </div>
+    </div>
+</body>
+</html>

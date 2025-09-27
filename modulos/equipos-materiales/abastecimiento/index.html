@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abastecimiento - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .source-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .source-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .source-capacity {
+            background: #0D0D0D;
+            color: #BF3604;
+            padding: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .source-desc {
+            font-size: 0.85em;
+        }
+
+        .danger-card {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 15px;
+        }
+
+        .danger-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .danger-desc {
+            font-size: 0.85em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .method-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .method-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Equipos y Materiales</a> > Abastecimiento
+        </div>
+        <h1>ABASTECIMIENTO</h1>
+        <p>Fuentes de agua y sistemas de suministro</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Fuentes de Agua</h2>
+            <div class="grid-4">
+                <div class="source-card">
+                    <div class="source-title">HIDRANTES</div>
+                    <div class="source-capacity">ILIMITADO</div>
+                    <div class="source-desc">
+                        <strong>Ventaja:</strong> Suministro continuo<br>
+                        <strong>Presión:</strong> 3-7 bar típico<br>
+                        <strong>Rapidez:</strong> Inmediata<br>
+                        <strong>Limitación:</strong> Ubicación fija
+                    </div>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-title">TANQUE AUTOBOMBA</div>
+                    <div class="source-capacity">1000-4000 L</div>
+                    <div class="source-desc">
+                        <strong>Ventaja:</strong> Disponible inmediato<br>
+                        <strong>Duración:</strong> 2-8 minutos<br>
+                        <strong>Rapidez:</strong> Ataque inicial<br>
+                        <strong>Limitación:</strong> Capacidad
+                    </div>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-title">FUENTES NATURALES</div>
+                    <div class="source-capacity">VARIABLE</div>
+                    <div class="source-desc">
+                        <strong>Tipos:</strong> Ríos, lagos, pozos<br>
+                        <strong>Ventaja:</strong> Gran volumen<br>
+                        <strong>Rapidez:</strong> Media<br>
+                        <strong>Limitación:</strong> Acceso, calidad
+                    </div>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-title">CISTERNA/PISCINAS</div>
+                    <div class="source-capacity">VARIABLE</div>
+                    <div class="source-desc">
+                        <strong>Ventaja:</strong> Agua limpia<br>
+                        <strong>Volumen:</strong> Medio-Alto<br>
+                        <strong>Rapidez:</strong> Rápida<br>
+                        <strong>Limitación:</strong> Acceso limitado
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA ORO: Los primeros 5 minutos son críticos. Usa tanque autobomba mientras estableces suministro continuo
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Hidrantes</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Hidrante de Columna</h4>
+                    <ul>
+                        <li><strong>Ubicación:</strong> Exterior, vía pública</li>
+                        <li><strong>Salidas:</strong> 2-4 bocas</li>
+                        <li><strong>Diámetro:</strong> 63mm o 100mm</li>
+                        <li><strong>Ventaja:</strong> Alto caudal</li>
+                        <li><strong>Desventaja:</strong> Puede congelarse</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Hidrante de Pared</h4>
+                    <ul>
+                        <li><strong>Ubicación:</strong> Interior edificios</li>
+                        <li><strong>Salidas:</strong> 1-2 bocas</li>
+                        <li><strong>Diámetro:</strong> 38mm o 63mm</li>
+                        <li><strong>Ventaja:</strong> Protegido</li>
+                        <li><strong>Desventaja:</strong> Menor caudal</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Hidrante Seco</h4>
+                    <ul>
+                        <li><strong>Ubicación:</strong> Zonas de heladas</li>
+                        <li><strong>Característica:</strong> Válvula subterránea</li>
+                        <li><strong>Ventaja:</strong> No congela</li>
+                        <li><strong>Uso:</strong> Abrir para flujo</li>
+                        <li><strong>Cierre:</strong> Drena automático</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Conexión a Hidrante</h2>
+            <div class="grid-2">
+                <div class="method-card">
+                    <div class="method-title">PROCEDIMIENTO</div>
+                    <p><strong>Paso a paso:</strong></p>
+                    <ul>
+                        <li>1. Verificar que válvula esté cerrada</li>
+                        <li>2. Quitar tapa protectora del hidrante</li>
+                        <li>3. Limpiar rosca de suciedad/residuos</li>
+                        <li>4. Conectar manga de suministro</li>
+                        <li>5. Apretar con llave inglesa</li>
+                        <li>6. Tender manga hacia autobomba</li>
+                        <li>7. Abrir válvula LENTAMENTE</li>
+                        <li>8. Purgar aire antes de bombear</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">VERIFICACIONES</div>
+                    <p><strong>Comprobar:</strong></p>
+                    <ul>
+                        <li>✓ Presión disponible (manómetro)</li>
+                        <li>✓ Caudal suficiente (apertura test)</li>
+                        <li>✓ Sin fugas en conexión</li>
+                        <li>✓ Manga sin torsiones</li>
+                        <li>✓ Válvula totalmente abierta</li>
+                        <li>✓ Señalizar área de trabajo</li>
+                        <li>✓ Comunicar con operador bomba</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Métodos de Abastecimiento</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Ataque Directo</h4>
+                    <ul>
+                        <li><strong>Concepto:</strong> Hidrante → Autobomba → Ataque</li>
+                        <li><strong>Uso:</strong> Presión hidrante suficiente</li>
+                        <li><strong>Ventaja:</strong> Simple y rápido</li>
+                        <li><strong>Requisito:</strong> >4 bar en hidrante</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Relay (Relevo)</h4>
+                    <ul>
+                        <li><strong>Concepto:</strong> Hidrante → Bomba 1 → Bomba 2 → Ataque</li>
+                        <li><strong>Uso:</strong> Distancias largas >300m</li>
+                        <li><strong>Ventaja:</strong> Extiende alcance</li>
+                        <li><strong>Coordinación:</strong> Crítica entre bombas</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Abastecimiento Portátil</h4>
+                    <ul>
+                        <li><strong>Concepto:</strong> Autotanques → Bomba nodriza</li>
+                        <li><strong>Uso:</strong> Sin hidrantes disponibles</li>
+                        <li><strong>Ventaja:</strong> Flexibilidad total</li>
+                        <li><strong>Limitación:</strong> Muchos vehículos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            CRÍTICO: Nunca dependas de UNA sola fuente. Siempre ten plan B de abastecimiento
+        </alert-box>
+
+        <div class="section">
+            <h2>Succión desde Fuentes Estáticas</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Requisitos para Succión</h4>
+                    <ul>
+                        <li><strong>Profundidad máxima:</strong> 6-7 metros</li>
+                        <li><strong>Manga rígida:</strong> No colapsa con vacío</li>
+                        <li><strong>Válvula pie:</strong> Evita retorno</li>
+                        <li><strong>Colador:</strong> Evita sólidos en bomba</li>
+                        <li><strong>Cebado:</strong> Eliminar aire del sistema</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Procedimiento Succión</h4>
+                    <ul>
+                        <li>1. Posicionar autobomba cerca (<6m altura)</li>
+                        <li>2. Conectar manga rígida de succión</li>
+                        <li>3. Sumergir colador completamente</li>
+                        <li>4. Cerrar todas válvulas de descarga</li>
+                        <li>5. Activar bomba de vacío/cebado</li>
+                        <li>6. Cuando fluya agua, abrir descarga</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cálculo de Necesidades</h2>
+            <div class="info-box">
+                <h4>Estimación Rápida de Caudal Necesario</h4>
+                <ul>
+                    <li><strong>Incendio pequeño (1 habitación):</strong> 400 L/min</li>
+                    <li><strong>Incendio medio (casa completa):</strong> 800-1200 L/min</li>
+                    <li><strong>Incendio grande (edificio):</strong> 1500-3000 L/min</li>
+                    <li><strong>Incendio industrial:</strong> >4000 L/min</li>
+                </ul>
+            </div>
+            <div class="info-box" style="margin-top: 15px;">
+                <h4>Duración Tanque Autobomba</h4>
+                <ul>
+                    <li><strong>Tanque 2000L a 400 L/min:</strong> 5 minutos</li>
+                    <li><strong>Tanque 2000L a 800 L/min:</strong> 2.5 minutos</li>
+                    <li><strong>Tanque 4000L a 400 L/min:</strong> 10 minutos</li>
+                    <li><strong>CONCLUSIÓN:</strong> Establecer suministro en <3 min</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Distribución de Agua</h2>
+            <div class="grid-3">
+                <div class="method-card">
+                    <div class="method-title">Sistema en Serie</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Única línea de suministro</li>
+                        <li>• Simple y rápido</li>
+                        <li>• Una falla afecta todo</li>
+                        <li>• Menor confiabilidad</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">Sistema en Paralelo</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Múltiples líneas</li>
+                        <li>• Redundancia de suministro</li>
+                        <li>• Falla de una no detiene</li>
+                        <li>• Mayor confiabilidad</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">Sistema Combinado</div>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>• Mix serie + paralelo</li>
+                        <li>• Flexibilidad máxima</li>
+                        <li>• Adaptable a necesidad</li>
+                        <li>• Más complejo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Problemas Comunes y Soluciones</h2>
+            <div class="grid-2">
+                <div class="danger-card">
+                    <div class="danger-title">Baja Presión Hidrante</div>
+                    <div class="danger-desc">
+                        <strong>Causas:</strong><br>
+                        • Hora pico consumo agua<br>
+                        • Válvulas parcialmente abiertas<br>
+                        • Tubería red obstruida<br><br>
+                        <strong>Solución:</strong><br>
+                        → Usar bomba en serie para impulsar<br>
+                        → Buscar hidrante alternativo<br>
+                        → Relay con múltiples bombas
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">Pérdida de Succión</div>
+                    <div class="danger-desc">
+                        <strong>Causas:</strong><br>
+                        • Manga succión no hermética<br>
+                        • Colador obstruido<br>
+                        • Nivel agua bajó<br><br>
+                        <strong>Solución:</strong><br>
+                        → Verificar/reemplazar empaques<br>
+                        → Limpiar colador<br>
+                        → Reposicionar manga más profundo
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Prioridades Operacionales</h2>
+            <div class="info-box">
+                <h4>Orden de Establecimiento</h4>
+                <ul>
+                    <li><strong>1. ATAQUE INICIAL:</strong> Usar tanque autobomba (primeros 2-5 min)</li>
+                    <li><strong>2. CONEXIÓN RÁPIDA:</strong> Hidrante más cercano (antes min 3)</li>
+                    <li><strong>3. SUMINISTRO CONTINUO:</strong> Confirmar flujo constante</li>
+                    <li><strong>4. FUENTE ALTERNA:</strong> Preparar backup (siempre)</li>
+                    <li><strong>5. RELAY SI NECESARIO:</strong> Para distancias >300m</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            ESTRATEGIA: Ataca con tanque + Establece suministro + Prepara backup = Nunca te quedes sin agua
+        </div>
+
+        <div class="section">
+            <h2>Coordinación de Suministro</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Roles Clave</h4>
+                    <ul>
+                        <li><strong>Oficial de Agua:</strong> Coordina todo suministro</li>
+                        <li><strong>Operador Bomba:</strong> Mantiene presión constante</li>
+                        <li><strong>Equipo Hidrante:</strong> Conexión y vigilancia</li>
+                        <li><strong>Conductor Relay:</strong> Coordina presiones</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Comunicación Crítica</h4>
+                    <ul>
+                        <li>• Presión disponible en hidrante</li>
+                        <li>• Caudal siendo usado</li>
+                        <li>• Nivel tanque autobomba</li>
+                        <li>• Cambios en demanda</li>
+                        <li>• Problemas en líneas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>Checklist Mental Abastecimiento:</strong></p>
+                <ul>
+                    <li><strong>ANTES de llegar:</strong> Identificar hidrantes en ruta</li>
+                    <li><strong>Al llegar:</strong> Ataque inmediato con tanque</li>
+                    <li><strong>Primeros 2 min:</strong> Establecer conexión hidrante</li>
+                    <li><strong>Minuto 3:</strong> Suministro continuo confirmado</li>
+                    <li><strong>Siempre:</strong> Tener plan B de abastecimiento</li>
+                    <li><strong>Relay:</strong> Solo si distancia >300m o presión baja</li>
+                    <li><strong>Comunicar:</strong> Cambios de presión/caudal constantemente</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Sin agua = Sin extinción. El abastecimiento es TAN importante como el ataque directo
+        </div>
+    </div>
+</body>
+</html>

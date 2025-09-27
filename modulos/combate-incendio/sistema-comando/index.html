@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Comando de Incidentes - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Arial, sans-serif; background: #F2E4C9; color: #0D0D0D;}
+        .header {background: #8C0303; color: #F2E4C9; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .breadcrumb {font-size: 0.9em; margin-bottom: 10px;}
+        .breadcrumb a {color: #F2E4C9; text-decoration: none; opacity: 0.8;}
+        .breadcrumb a:hover {opacity: 1;}
+        .header h1 {font-size: 1.8em; margin-bottom: 5px;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+        .section {background: #0D0D0D; color: #F2E4C9; padding: 20px; margin-bottom: 15px;}
+        .section h2 {color: #BF3604; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid #BF3604; padding-bottom: 10px;}
+        .grid-2 {display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;}
+        .grid-3 {display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+        .grid-4 {display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;}
+        .grid-5 {display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;}
+        .info-box {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .info-box h4 {color: #8C0303; margin-bottom: 10px;}
+        .info-box ul {list-style: none; padding: 0;}
+        .info-box li {padding: 4px 0; font-size: 0.9em;}
+        .role-card {background: #F2E4C9; color: #0D0D0D; padding: 15px; text-align: center;}
+        .role-title {font-weight: bold; color: #8C0303; margin-bottom: 10px; font-size: 1.1em;}
+        .role-desc {font-size: 0.9em;}
+        .alert-box {background: #BF3604; color: #F2E4C9; padding: 15px; margin: 15px 0; text-align: center; font-weight: bold;}
+        .command-box {background: #8C0303; color: #F2E4C9; padding: 15px;}
+        .command-box h4 {margin-bottom: 10px;}
+        table {width: 100%; border-collapse: collapse; margin: 15px 0;}
+        table th, table td {padding: 10px; text-align: left; border-bottom: 1px solid #BF3604;}
+        table th {background: #BF3604; color: #F2E4C9; font-weight: bold;}
+        table td {background: #F2E4C9; color: #0D0D0D; font-size: 0.9em;}
+        .org-chart {background: #F2E4C9; color: #0D0D0D; padding: 20px; text-align: center;}
+        .chart-level {margin: 15px 0; padding: 10px; background: #0D0D0D; color: #F2E4C9;}
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4, .grid-5 {grid-template-columns: 1fr;}
+            table {font-size: 0.8em;}
+            table th, table td {padding: 8px 5px;}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Combate contra Incendio</a> > Sistema de Comando
+        </div>
+        <h1>SISTEMA DE COMANDO DE INCIDENTES</h1>
+        <p>SCI - Organización y gestión de emergencias</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Principios Fundamentales del SCI</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Cadena de Mando</h4>
+                    <ul>
+                        <li>Un solo jefe por subordinado</li>
+                        <li>Línea de autoridad clara</li>
+                        <li>Reporte directo al superior</li>
+                        <li>No saltarse niveles</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Unidad de Mando</h4>
+                    <ul>
+                        <li>Una sola persona al mando</li>
+                        <li>Decisiones centralizadas</li>
+                        <li>Evita confusión</li>
+                        <li>Claridad en órdenes</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tramo de Control</h4>
+                    <ul>
+                        <li>Máximo 3-7 subordinados</li>
+                        <li>Ideal: 5 subordinados</li>
+                        <li>Control efectivo</li>
+                        <li>Supervisión adecuada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Estructura Organizacional</h2>
+            <div class="org-chart">
+                <div class="chart-level" style="background: #8C0303;">COMANDANTE DE INCIDENTE</div>
+                <div class="chart-level" style="background: #BF3604;">STAFF: Seguridad | Información | Enlace</div>
+                <div class="chart-level">SECCIONES: Operaciones | Planificación | Logística | Administración</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Comandante de Incidente (CI)</h2>
+            <div class="command-box">
+                <h4>Responsabilidades Principales</h4>
+                <ul>
+                    <li>Evaluar situación y establecer objetivos</li>
+                    <li>Desarrollar estrategia general del incidente</li>
+                    <li>Establecer organización apropiada</li>
+                    <li>Asignar recursos según prioridades</li>
+                    <li>Coordinar actividades de todas las secciones</li>
+                    <li>Autorizar información pública</li>
+                    <li>Mantener seguridad del personal</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Staff de Comando</h2>
+            <div class="grid-3">
+                <div class="role-card">
+                    <div class="role-title">OFICIAL DE SEGURIDAD</div>
+                    <div class="role-desc">
+                        <strong>Función:</strong><br>
+                        • Monitorear condiciones peligrosas<br>
+                        • Evaluar riesgos del personal<br>
+                        • Puede detener operaciones inseguras<br>
+                        • Desarrollar plan de seguridad<br>
+                        • Investiga accidentes
+                    </div>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">OFICIAL DE INFORMACIÓN</div>
+                    <div class="role-desc">
+                        <strong>Función:</strong><br>
+                        • Punto de contacto con medios<br>
+                        • Prepara comunicados de prensa<br>
+                        • Coordina visitas al incidente<br>
+                        • Información a familiares<br>
+                        • Manejo de redes sociales
+                    </div>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">OFICIAL DE ENLACE</div>
+                    <div class="role-desc">
+                        <strong>Función:</strong><br>
+                        • Coordina con otras agencias<br>
+                        • Punto de contacto externo<br>
+                        • Facilita cooperación<br>
+                        • Mantiene comunicación<br>
+                        • Resuelve conflictos interagencias
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Secciones Principales</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>OPERACIONES</h4>
+                    <ul>
+                        <li><strong>Jefe:</strong> Dirige tácticas</li>
+                        <li>Manejo de recursos tácticos</li>
+                        <li>Ejecución del plan de acción</li>
+                        <li>División por áreas geográficas</li>
+                        <li>Grupos por funciones</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>PLANIFICACIÓN</h4>
+                    <ul>
+                        <li><strong>Jefe:</strong> Desarrolla planes</li>
+                        <li>Situación del incidente</li>
+                        <li>Recursos disponibles</li>
+                        <li>Documentación</li>
+                        <li>Desmobilización</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>LOGÍSTICA</h4>
+                    <ul>
+                        <li><strong>Jefe:</strong> Provee recursos</li>
+                        <li>Comunicaciones</li>
+                        <li>Suministros y equipo</li>
+                        <li>Alimentación</li>
+                        <li>Instalaciones y transporte</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>ADMINISTRACIÓN</h4>
+                    <ul>
+                        <li><strong>Jefe:</strong> Maneja finanzas</li>
+                        <li>Control de costos</li>
+                        <li>Contrataciones</li>
+                        <li>Compensaciones</li>
+                        <li>Análisis de costos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Niveles de Incidentes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nivel</th>
+                        <th>Descripción</th>
+                        <th>Recursos</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nivel 1</strong></td>
+                        <td>Incidente simple</td>
+                        <td>1-2 unidades, CI único</td>
+                        <td>Incendio vehicular, amago</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nivel 2</strong></td>
+                        <td>Incidente moderado</td>
+                        <td>3-5 unidades, staff básico</td>
+                        <td>Incendio residencial, rescate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nivel 3</strong></td>
+                        <td>Incidente complejo</td>
+                        <td>6-10 unidades, 4 secciones</td>
+                        <td>Incendio comercial, HAZMAT</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nivel 4</strong></td>
+                        <td>Incidente mayor</td>
+                        <td>10-20 unidades, comando unificado</td>
+                        <td>Incendio industrial, desastre</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nivel 5</strong></td>
+                        <td>Catástrofe</td>
+                        <td>20+ unidades, múltiples agencias</td>
+                        <td>Terremoto, explosión masiva</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Organización Táctica</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Divisiones (Geográficas)</h4>
+                    <ul>
+                        <li><strong>División A:</strong> Lado A (fachada)</li>
+                        <li><strong>División B:</strong> Lado B (lateral izquierdo)</li>
+                        <li><strong>División C:</strong> Lado C (posterior)</li>
+                        <li><strong>División D:</strong> Lado D (lateral derecho)</li>
+                        <li><strong>Por pisos:</strong> División 1, 2, 3...</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Grupos (Funcionales)</h4>
+                    <ul>
+                        <li><strong>Grupo Ataque:</strong> Supresión directa</li>
+                        <li><strong>Grupo Ventilación:</strong> Control humo</li>
+                        <li><strong>Grupo Búsqueda:</strong> Rescate víctimas</li>
+                        <li><strong>Grupo Salvamento:</strong> Protección bienes</li>
+                        <li><strong>Grupo Exposiciones:</strong> Protección edificios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Plan de Acción del Incidente (PAI)</h2>
+            <div class="info-box">
+                <h4>Componentes del PAI</h4>
+                <ul>
+                    <li><strong>1. Objetivos:</strong> Qué se quiere lograr</li>
+                    <li><strong>2. Estrategias:</strong> Cómo se logrará (ofensiva/defensiva)</li>
+                    <li><strong>3. Tácticas:</strong> Acciones específicas por sección</li>
+                    <li><strong>4. Recursos:</strong> Personal y equipo asignado</li>
+                    <li><strong>5. Organización:</strong> Estructura de comando</li>
+                    <li><strong>6. Comunicaciones:</strong> Frecuencias y protocolos</li>
+                    <li><strong>7. Seguridad:</strong> Medidas de protección</li>
+                    <li><strong>8. Período operacional:</strong> Duración del plan</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Transferencia de Comando</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Cuándo Transferir</h4>
+                    <ul>
+                        <li>Oficial superior llega</li>
+                        <li>CI actual agotado</li>
+                        <li>Cambio de período operacional</li>
+                        <li>Incidente controlado</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Proceso de Transferencia</h4>
+                    <ul>
+                        <li>Briefing completo situación</li>
+                        <li>Objetivos y estrategias actuales</li>
+                        <li>Recursos desplegados</li>
+                        <li>Anuncio por radio</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Información a Transferir</h4>
+                    <ul>
+                        <li>Situación actual del incidente</li>
+                        <li>Plan de acción vigente</li>
+                        <li>Organización establecida</li>
+                        <li>Recursos y asignaciones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Comunicaciones en el SCI</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Uso</th>
+                        <th>Protocolo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Comando a Operaciones</strong></td>
+                        <td>Órdenes tácticas</td>
+                        <td>"Comando a División A..."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Operaciones a Comando</strong></td>
+                        <td>Reportes de progreso</td>
+                        <td>"División A a Comando, progreso..."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emergencia</strong></td>
+                        <td>Situaciones críticas</td>
+                        <td>"¡EMERGENCIA! ¡EMERGENCIA! Bombero caído..."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PAR (Reporte Acción Personal)</strong></td>
+                        <td>Estado de equipos</td>
+                        <td>"División A, PAR: 4 bomberos, aire OK"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Evacuación</strong></td>
+                        <td>Orden de salida</td>
+                        <td>"Comando: EVACUACIÓN GENERAL, confirmen salida"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="alert-box">
+            La palabra "EMERGENCIA" tiene prioridad ABSOLUTA en todas las comunicaciones. Todo el personal debe hacer silencio
+        </div>
+
+        <div class="section">
+            <h2>Instalaciones del SCI</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>Puesto de Comando (PC)</h4>
+                    <ul>
+                        <li>Ubicación estratégica</li>
+                        <li>Vista del incidente</li>
+                        <li>Zona segura</li>
+                        <li>Identificación visible</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Base</h4>
+                    <ul>
+                        <li>Recursos no asignados</li>
+                        <li>Suministros y equipos</li>
+                        <li>Alimentación</li>
+                        <li>Área de descanso</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Campamento</h4>
+                    <ul>
+                        <li>Incidentes prolongados</li>
+                        <li>Alojamiento temporal</li>
+                        <li>Servicios básicos</li>
+                        <li>Seguridad personal</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Área de Espera</h4>
+                    <ul>
+                        <li>Recursos en espera</li>
+                        <li>Listos para despliegue</li>
+                        <li>Cerca del incidente</li>
+                        <li>Comunicación con PC</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Terminación del Incidente</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Desmobilización</h4>
+                    <ul>
+                        <li>Plan de desmobilización</li>
+                        <li>Liberación ordenada de recursos</li>
+                        <li>Retorno de equipos</li>
+                        <li>Documentación completa</li>
+                        <li>Debriefing del personal</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Documentación Final</h4>
+                    <ul>
+                        <li>Informe del incidente</li>
+                        <li>Recursos utilizados</li>
+                        <li>Costos totales</li>
+                        <li>Lecciones aprendidas</li>
+                        <li>Recomendaciones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA DE ORO: Expandir el SCI según crece el incidente. Mantener tramo de control 3-7. Un comandante sobrecargado = operación ineficiente
+        </div>
+    </div>
+</body>
+</html>

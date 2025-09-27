@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLP, GNV y BLEVE - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Arial, sans-serif; background: #F2E4C9; color: #0D0D0D;}
+        .header {background: #8C0303; color: #F2E4C9; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .breadcrumb {font-size: 0.9em; margin-bottom: 10px;}
+        .breadcrumb a {color: #F2E4C9; text-decoration: none; opacity: 0.8;}
+        .breadcrumb a:hover {opacity: 1;}
+        .header h1 {font-size: 1.8em; margin-bottom: 5px;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+        .section {background: #0D0D0D; color: #F2E4C9; padding: 20px; margin-bottom: 15px;}
+        .section h2 {color: #BF3604; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid #BF3604; padding-bottom: 10px;}
+        .grid-2 {display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;}
+        .grid-3 {display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+        .info-box {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .info-box h4 {color: #8C0303; margin-bottom: 10px;}
+        .info-box ul {list-style: none; padding: 0;}
+        .info-box li {padding: 4px 0; font-size: 0.9em;}
+        .gas-card {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .gas-title {font-weight: bold; color: #8C0303; margin-bottom: 10px; font-size: 1.1em;}
+        .gas-data {background: #0D0D0D; color: #F2E4C9; padding: 10px; margin: 8px 0; font-size: 0.85em;}
+        .alert-box {background: #BF3604; color: #F2E4C9; padding: 15px; margin: 15px 0; text-align: center; font-weight: bold;}
+        .danger-box {background: #8C0303; color: #F2E4C9; padding: 15px; margin: 15px 0;}
+        .danger-box h4 {margin-bottom: 10px;}
+        table {width: 100%; border-collapse: collapse; margin: 15px 0;}
+        table th, table td {padding: 10px; text-align: left; border-bottom: 1px solid #BF3604;}
+        table th {background: #BF3604; color: #F2E4C9; font-weight: bold;}
+        table td {background: #F2E4C9; color: #0D0D0D; font-size: 0.9em;}
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {grid-template-columns: 1fr;}
+            table {font-size: 0.8em;}
+            table th, table td {padding: 8px 5px;}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Combate contra Incendio</a> > GLP, GNV y BLEVE
+        </div>
+        <h1>GLP, GNV Y FENÓMENO BLEVE</h1>
+        <p>Gases licuados, comprimidos y explosiones</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Comparación GLP vs GNV</h2>
+            <div class="grid-2">
+                <div class="gas-card">
+                    <div class="gas-title">GLP (Gas Licuado de Petróleo)</div>
+                    <div class="gas-data">
+                        <strong>Composición:</strong> Propano/Butano<br>
+                        <strong>Estado:</strong> Líquido a presión moderada<br>
+                        <strong>Presión:</strong> 8-15 bar<br>
+                        <strong>Densidad:</strong> Más pesado que el aire<br>
+                        <strong>Comportamiento:</strong> Se acumula en partes bajas
+                    </div>
+                </div>
+
+                <div class="gas-card">
+                    <div class="gas-title">GNV (Gas Natural Vehicular)</div>
+                    <div class="gas-data">
+                        <strong>Composición:</strong> Metano (CH₄) 95%<br>
+                        <strong>Estado:</strong> Gas comprimido<br>
+                        <strong>Presión:</strong> 200-250 bar<br>
+                        <strong>Densidad:</strong> Más liviano que el aire<br>
+                        <strong>Comportamiento:</strong> Sube y se dispersa
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Propiedades Técnicas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Propiedad</th>
+                        <th>GLP (Propano)</th>
+                        <th>GNV (Metano)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Punto de ebullición</strong></td>
+                        <td>-42°C (propano)</td>
+                        <td>-161°C</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Límite inferior explosión</strong></td>
+                        <td>2.1% (propano)</td>
+                        <td>5.0%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Límite superior explosión</strong></td>
+                        <td>9.5% (propano)</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Temperatura autoignición</strong></td>
+                        <td>450-500°C</td>
+                        <td>537°C</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Densidad relativa</strong></td>
+                        <td>1.5-2.0 (más pesado)</td>
+                        <td>0.55 (más liviano)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Color de llama</strong></td>
+                        <td>Amarilla/Naranja</td>
+                        <td>Azul</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Odorante agregado</strong></td>
+                        <td>Etil mercaptano</td>
+                        <td>Etil mercaptano</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Contenedores</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Balones GLP Domésticos</h4>
+                    <ul>
+                        <li><strong>10 kg:</strong> Uso doméstico</li>
+                        <li><strong>15 kg:</strong> Uso doméstico/comercial</li>
+                        <li><strong>45 kg:</strong> Comercial/industrial</li>
+                        <li><strong>Presión:</strong> 8-12 bar</li>
+                        <li><strong>Material:</strong> Acero al carbono</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tanques GLP Estacionarios</h4>
+                    <ul>
+                        <li><strong>120 kg - 1000 kg:</strong> Uso comercial</li>
+                        <li><strong>Ubicación:</strong> Exterior, ventilado</li>
+                        <li><strong>Válvula alivio:</strong> 17-21 bar</li>
+                        <li><strong>Distancia seguridad:</strong> 3-10 m</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Cilindros GNV Vehicular</h4>
+                    <ul>
+                        <li><strong>Tipo I:</strong> Acero (200 bar)</li>
+                        <li><strong>Tipo IV:</strong> Composite (250 bar)</li>
+                        <li><strong>Válvula alta presión:</strong> PRD 260 bar</li>
+                        <li><strong>Ubicación:</strong> Cajuela/techo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>BLEVE - Explosión de Vapor en Expansión</h2>
+            <div class="danger-box">
+                <h4>¿Qué es BLEVE?</h4>
+                <p><strong>Boiling Liquid Expanding Vapor Explosion</strong></p>
+                <p>Ruptura catastrófica de un contenedor presurizado de líquido sobrecalentado, causando una explosión masiva con proyección de fragmentos y bola de fuego.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Secuencia del BLEVE</h4>
+                    <ul>
+                        <li><strong>1. Exposición al fuego:</strong> Calentamiento del tanque</li>
+                        <li><strong>2. Debilitamiento:</strong> Zona sin líquido se calienta</li>
+                        <li><strong>3. Pérdida resistencia:</strong> Metal pierde 50% resistencia a 400°C</li>
+                        <li><strong>4. Ruptura:</strong> Falla catastrófica del contenedor</li>
+                        <li><strong>5. Vaporización:</strong> Líquido se convierte en gas instantáneamente</li>
+                        <li><strong>6. Explosión:</strong> Onda expansiva + bola de fuego + metralla</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Indicadores de BLEVE Inminente</h4>
+                    <ul>
+                        <li><strong>Sonido agudo:</strong> Válvula alivio activa constantemente</li>
+                        <li><strong>Decoloración:</strong> Tanque cambia de color (negro/azul)</li>
+                        <li><strong>Vibración:</strong> Tanque vibra o se mueve</li>
+                        <li><strong>Llama impingente:</strong> Fuego directo sobre tanque</li>
+                        <li><strong>Aumento presión:</strong> Manómetro en zona roja</li>
+                        <li><strong>Deformación visible:</strong> Tanque se hincha o abomba</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            PELIGRO EXTREMO: Si hay indicadores de BLEVE inminente - EVACUAR INMEDIATAMENTE mínimo 800 metros
+        </div>
+
+        <div class="section">
+            <h2>Zonas de Riesgo BLEVE</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zona</th>
+                        <th>Distancia</th>
+                        <th>Efecto</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Zona Mortal</strong></td>
+                        <td>0-100 m</td>
+                        <td>Muerte segura - Metralla + Onda + Calor</td>
+                        <td>NO ACERCARSE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zona Peligrosa</strong></td>
+                        <td>100-300 m</td>
+                        <td>Quemaduras graves + Lesiones por onda</td>
+                        <td>EVACUAR</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zona Riesgo</strong></td>
+                        <td>300-800 m</td>
+                        <td>Quemaduras leves + Daños por proyectiles</td>
+                        <td>PROTECCIÓN</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zona Segura</strong></td>
+                        <td>&gt;800 m</td>
+                        <td>Mínimo riesgo</td>
+                        <td>ZONA COMANDO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Tácticas de Intervención</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Fuego en Balón/Cilindro GLP</h4>
+                    <ul>
+                        <li><strong>1. Evaluar:</strong> ¿Es posible cerrar válvula?</li>
+                        <li><strong>2. Si SÍ:</strong> Cerrar válvula con protección</li>
+                        <li><strong>3. Enfriar:</strong> Agua en chorro sobre contenedor</li>
+                        <li><strong>4. NO apagar:</strong> Si no puedes cerrar válvula</li>
+                        <li><strong>5. Evacuar:</strong> Si hay signos de BLEVE</li>
+                        <li><strong>6. Distancia:</strong> Mínimo 30m durante enfriamiento</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fuego en Tanque GNV Vehicular</h4>
+                    <ul>
+                        <li><strong>1. NO apagar llama:</strong> PRD funcionando es seguro</li>
+                        <li><strong>2. Enfriar cilindro:</strong> Agua abundante</li>
+                        <li><strong>3. Proteger exposiciones:</strong> Vehículos cercanos</li>
+                        <li><strong>4. Monitorear:</strong> Signos de BLEVE</li>
+                        <li><strong>5. Distancia segura:</strong> 50m mínimo</li>
+                        <li><strong>6. Dejar quemar:</strong> Hasta consumir gas</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fuga SIN Fuego</h4>
+                    <ul>
+                        <li><strong>1. Eliminar fuentes ignición:</strong> 15m radio</li>
+                        <li><strong>2. Ventilar área:</strong> Natural o forzada</li>
+                        <li><strong>3. GLP:</strong> Ventilar zonas bajas (sótanos)</li>
+                        <li><strong>4. GNV:</strong> Ventilar techos y altura</li>
+                        <li><strong>5. NO usar agua:</strong> Solo para dispersar GNV</li>
+                        <li><strong>6. Cerrar válvulas:</strong> Si es seguro</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tanque Estacionario en Fuego</h4>
+                    <ul>
+                        <li><strong>1. Estrategia DEFENSIVA:</strong> No acercarse</li>
+                        <li><strong>2. Evacuar:</strong> 300m mínimo</li>
+                        <li><strong>3. Enfriar desde distancia:</strong> Torres, monitores</li>
+                        <li><strong>4. Proteger exposiciones:</strong> Prioridad</li>
+                        <li><strong>5. NUNCA entrar:</strong> Zona de riesgo BLEVE</li>
+                        <li><strong>6. Comando alejado:</strong> 800m+</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA DE ORO: Si hay fuego impactando un tanque de GLP por más de 10 minutos - EVACUAR. BLEVE es inminente
+        </div>
+
+        <div class="section">
+            <h2>Equipamiento Mínimo Requerido</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>EPP Obligatorio</h4>
+                    <ul>
+                        <li>Traje estructural completo</li>
+                        <li>EPRA con mínimo 50% aire</li>
+                        <li>Guantes largos tipo mosquetero</li>
+                        <li>Botas dieléctricas</li>
+                        <li>Casco con protector facial</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Equipos Necesarios</h4>
+                    <ul>
+                        <li>Líneas de 2½" para enfriamiento</li>
+                        <li>Monitor o torre si disponible</li>
+                        <li>Detector de gases combustibles</li>
+                        <li>Herramientas antichispa</li>
+                        <li>Conos de seguridad 300m</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Recursos Adicionales</h4>
+                    <ul>
+                        <li>Unidad HAZMAT si disponible</li>
+                        <li>Empresa distribuidora de gas</li>
+                        <li>Ambulancia en standby</li>
+                        <li>Policía para evacuación</li>
+                        <li>Comunicación con central</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Casos Históricos de BLEVE</h2>
+            <div class="grid-2">
+                <div class="danger-box">
+                    <h4>México 1984 - San Juan Ixhuatepec</h4>
+                    <p><strong>Resultado:</strong> 500+ muertos, 7,000 heridos</p>
+                    <ul>
+                        <li>Planta de almacenamiento GLP</li>
+                        <li>Múltiples BLEVE en cadena</li>
+                        <li>Bola de fuego 300m diámetro</li>
+                        <li>Destrucción en 1 km radio</li>
+                        <li>Lección: Evacuación temprana vital</li>
+                    </ul>
+                </div>
+
+                <div class="danger-box">
+                    <h4>España 1978 - Camping Los Alfaques</h4>
+                    <p><strong>Resultado:</strong> 217 muertos</p>
+                    <ul>
+                        <li>Camión cisterna GLP sobrellenado</li>
+                        <li>BLEVE sin fuego previo</li>
+                        <li>Bola de fuego sobre camping</li>
+                        <li>Explosión instantánea</li>
+                        <li>Lección: BLEVE puede ocurrir sin fuego</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Decisión Táctica Rápida</h2>
+            <div class="info-box">
+                <h4>Evaluación 30 Segundos</h4>
+                <ul>
+                    <li><strong>¿Fuego impacta el tanque?</strong> → SI = Riesgo BLEVE alto</li>
+                    <li><strong>¿Hay decoloración/sonidos?</strong> → SI = BLEVE inminente, EVACUAR</li>
+                    <li><strong>¿Puedo enfriar eficazmente?</strong> → NO = Estrategia defensiva</li>
+                    <li><strong>¿Es GLP o GNV?</strong> → GLP más peligroso (mayor presión líquido)</li>
+                    <li><strong>¿Cuánto tiempo lleva el fuego?</strong> → >10 min = Peligro crítico</li>
+                    <li><strong>¿Hay víctimas en zona?</strong> → Evaluar riesgo vs beneficio</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            Si tienes duda sobre BLEVE: EVACÚA. Ninguna propiedad vale la vida de un bombero
+        </div>
+    </div>
+</body>
+</html>

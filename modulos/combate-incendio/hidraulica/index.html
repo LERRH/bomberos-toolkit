@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidráulica y Suministro - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Arial, sans-serif; background: #F2E4C9; color: #0D0D0D;}
+        .header {background: #8C0303; color: #F2E4C9; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .breadcrumb {font-size: 0.9em; margin-bottom: 10px;}
+        .breadcrumb a {color: #F2E4C9; text-decoration: none; opacity: 0.8;}
+        .breadcrumb a:hover {opacity: 1;}
+        .header h1 {font-size: 1.8em; margin-bottom: 5px;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+        .section {background: #0D0D0D; color: #F2E4C9; padding: 20px; margin-bottom: 15px;}
+        .section h2 {color: #BF3604; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid #BF3604; padding-bottom: 10px;}
+        .grid-2 {display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;}
+        .grid-3 {display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+        .grid-4 {display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;}
+        .info-box {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .info-box h4 {color: #8C0303; margin-bottom: 10px;}
+        .info-box ul {list-style: none; padding: 0;}
+        .info-box li {padding: 4px 0; font-size: 0.9em;}
+        .alert-box {background: #BF3604; color: #F2E4C9; padding: 15px; margin: 15px 0; text-align: center; font-weight: bold;}
+        .formula-box {background: #8C0303; color: #F2E4C9; padding: 15px; text-align: center; font-size: 1.2em; font-weight: bold; margin: 10px 0;}
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {grid-template-columns: 1fr;}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Combate contra Incendio</a> > Hidráulica
+        </div>
+        <h1>HIDRÁULICA Y SUMINISTRO DE AGUA</h1>
+        <p>Cálculos, presiones y operación de sistemas de agua</p>
+    </header>
+
+    <div class="container">
+        <div class="alert-box">
+            REGLA: Presión correcta = Extinción efectiva. Calcular antes de operar
+        </div>
+
+        <div class="section">
+            <h2>Conceptos Básicos</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Presión</h4>
+                    <ul>
+                        <li><strong>PSI:</strong> Libras por pulgada cuadrada</li>
+                        <li><strong>Bar:</strong> 1 bar = 14.5 PSI</li>
+                        <li><strong>kPa:</strong> Kilopascal</li>
+                        <li>100 PSI = 7 bar = 700 kPa</li>
+                        <li>Presión normal trabajo: 100 PSI</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Caudal</h4>
+                    <ul>
+                        <li><strong>GPM:</strong> Galones por minuto</li>
+                        <li><strong>LPM:</strong> Litros por minuto</li>
+                        <li>1 GPM = 3.785 LPM</li>
+                        <li>100 GPM = 378 LPM</li>
+                        <li>Línea ataque: 95-125 GPM</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fricción</h4>
+                    <ul>
+                        <li>Resistencia al flujo</li>
+                        <li>Pérdida de presión en manguera</li>
+                        <li>Aumenta con distancia</li>
+                        <li>Aumenta con caudal</li>
+                        <li>Menor con diámetro mayor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Presión Hidrostática (Altura)</h2>
+            <div class="info-box">
+                <h4>Ganancia/Pérdida por Elevación</h4>
+                <div class="formula-box">
+                    0.433 PSI por cada pie de altura (subir = perder)
+                </div>
+                <div class="formula-box">
+                    1 PSI por cada 2.3 pies de altura
+                </div>
+                <div class="formula-box">
+                    0.1 bar por cada metro de altura
+                </div>
+                <ul style="margin-top: 15px;">
+                    <li><strong>Ejemplo 1:</strong> Subir 50 pies = Perder 21.5 PSI</li>
+                    <li><strong>Ejemplo 2:</strong> Bajar 50 pies = Ganar 21.5 PSI</li>
+                    <li><strong>Ejemplo 3:</strong> Subir 10 metros = Perder 1 bar (14.5 PSI)</li>
+                    <li><strong>Regla rápida:</strong> Cada piso (3m) = Perder 0.3 bar o 4.3 PSI</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Pérdida por Fricción en Mangueras</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Manguera 1.5" (38mm)</h4>
+                    <ul>
+                        <li><strong>100 GPM:</strong> 15 PSI por 100 pies</li>
+                        <li><strong>125 GPM:</strong> 24 PSI por 100 pies</li>
+                        <li><strong>150 GPM:</strong> 35 PSI por 100 pies</li>
+                        <li>Uso: Línea ataque interior</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Manguera 2.5" (64mm)</h4>
+                    <ul>
+                        <li><strong>200 GPM:</strong> 8 PSI por 100 pies</li>
+                        <li><strong>250 GPM:</strong> 13 PSI por 100 pies</li>
+                        <li><strong>300 GPM:</strong> 18 PSI por 100 pies</li>
+                        <li>Uso: Suministro y ataque pesado</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Manguera 3" (76mm)</h4>
+                    <ul>
+                        <li><strong>300 GPM:</strong> 8 PSI por 100 pies</li>
+                        <li><strong>400 GPM:</strong> 14 PSI por 100 pies</li>
+                        <li><strong>500 GPM:</strong> 22 PSI por 100 pies</li>
+                        <li>Uso: Suministro principal</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Manguera 4" (100mm) o 5" (125mm)</h4>
+                    <ul>
+                        <li><strong>500 GPM:</strong> 3 PSI por 100 pies</li>
+                        <li><strong>750 GPM:</strong> 6 PSI por 100 pies</li>
+                        <li><strong>1000 GPM:</strong> 10 PSI por 100 pies</li>
+                        <li>Uso: Línea de suministro LDH</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Fórmulas de Cálculo</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Presión en Pitón (PP)</h4>
+                    <div class="formula-box" style="font-size: 1em;">
+                        PP = Presión Bomba - Fricción - Elevación + Dispositivos
+                    </div>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Presión bomba:</strong> Lo que marca manómetro</li>
+                        <li><strong>Fricción:</strong> Pérdida en manguera</li>
+                        <li><strong>Elevación:</strong> Subir (-) Bajar (+)</li>
+                        <li><strong>Dispositivos:</strong> Pérdida en válvulas, codos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Presión de Bomba Necesaria (PB)</h4>
+                    <div class="formula-box" style="font-size: 1em;">
+                        PB = PP + Fricción + Elevación + Dispositivos
+                    </div>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>PP:</strong> Presión deseada en pitón (100 PSI)</li>
+                        <li><strong>Fricción:</strong> Según longitud y caudal</li>
+                        <li><strong>Elevación:</strong> 0.433 PSI por pie</li>
+                        <li><strong>Dispositivos:</strong> 10-25 PSI típico</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Caudal Necesario (Regla NFA)</h4>
+                    <div class="formula-box" style="font-size: 1em;">
+                        GPM = Largo x Ancho (pies) / 3
+                    </div>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Ejemplo:</strong> Casa 40x30 pies</li>
+                        <li>40 x 30 = 1200 / 3 = 400 GPM</li>
+                        <li>Para edificios: Por piso</li>
+                        <li><strong>Regla simple:</strong> 1 GPM por pie cuadrado</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Alcance Chorro (AC)</h4>
+                    <div class="formula-box" style="font-size: 1em;">
+                        AC (pies) = √(Presión PSI) x 2.5
+                    </div>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Ejemplo:</strong> 100 PSI</li>
+                        <li>√100 = 10 x 2.5 = 25 pies alcance</li>
+                        <li><strong>Neblina:</strong> Menos alcance</li>
+                        <li><strong>Chorro:</strong> Máximo alcance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejemplo Práctico de Cálculo</h2>
+            <div class="info-box">
+                <h4>Escenario: Incendio 3er piso (30 pies altura)</h4>
+                <ul>
+                    <li><strong>Datos:</strong></li>
+                    <li>• Línea 1.5" de 200 pies (2 tramos de 100)</li>
+                    <li>• Caudal deseado: 125 GPM</li>
+                    <li>• Altura: 30 pies (3 pisos)</li>
+                    <li>• Presión pitón deseada: 100 PSI</li>
+                </ul>
+                <ul style="margin-top: 15px;">
+                    <li><strong>Cálculo:</strong></li>
+                    <li>1. Presión pitón = 100 PSI</li>
+                    <li>2. Fricción 125 GPM en 1.5" = 24 PSI x 2 tramos = 48 PSI</li>
+                    <li>3. Elevación 30 pies = 30 x 0.433 = 13 PSI (perdidos)</li>
+                    <li>4. Dispositivos (válvulas, codos) = 10 PSI</li>
+                </ul>
+                <div class="formula-box" style="margin-top: 15px;">
+                    PB = 100 + 48 + 13 + 10 = 171 PSI en bomba
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Pitones (Boquillas)</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Chorro Sólido</h4>
+                    <ul>
+                        <li><strong>Presión:</strong> 50 PSI</li>
+                        <li><strong>Alcance:</strong> 50-80 pies</li>
+                        <li><strong>Patrón:</strong> Chorro compacto</li>
+                        <li><strong>Uso:</strong> Penetración profunda</li>
+                        <li>Poco control calor</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Neblina Fija</h4>
+                    <ul>
+                        <li><strong>Presión:</strong> 100 PSI</li>
+                        <li><strong>Alcance:</strong> 30-50 pies</li>
+                        <li><strong>Patrón:</strong> Cono 30°-60°-90°</li>
+                        <li><strong>Uso:</strong> Absorción calor</li>
+                        <li>Mejor control temperatura</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Neblina Automática</h4>
+                    <ul>
+                        <li><strong>Presión:</strong> 75-100 PSI</li>
+                        <li><strong>Alcance:</strong> 35-60 pies</li>
+                        <li><strong>Patrón:</strong> Ajustable</li>
+                        <li><strong>Uso:</strong> Versátil</li>
+                        <li>Compensa presión automático</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            PRESIÓN ÓPTIMA: Muy alta = Desperdicia agua. Muy baja = Inefectivo
+        </div>
+
+        <div class="section">
+            <h2>Operación de Bomba</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Pasos para Bombear</h4>
+                    <ul>
+                        <li>1. Posicionar autobomba cerca fuente</li>
+                        <li>2. Conectar succión o hidrante</li>
+                        <li>3. Purgar aire del sistema</li>
+                        <li>4. Activar bomba (PTO o bomba independiente)</li>
+                        <li>5. Abrir válvula descarga progresivo</li>
+                        <li>6. Ajustar presión según cálculo</li>
+                        <li>7. Monitorear manómetros constantemente</li>
+                        <li>8. Verificar temperatura motor</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Controles Importantes</h4>
+                    <ul>
+                        <li><strong>Manómetro succión:</strong> No más -10 PSI</li>
+                        <li><strong>Manómetro descarga:</strong> Según cálculo</li>
+                        <li><strong>Tacómetro:</strong> RPM bomba</li>
+                        <li><strong>Temperatura:</strong> No sobrecalentar</li>
+                        <li><strong>Tanque:</strong> Nivel de agua</li>
+                        <li><strong>Válvulas:</strong> Apertura progresiva</li>
+                        <li><strong>Alivio:</strong> Activa si sobrepresión</li>
+                        <li><strong>Cebado:</strong> Sistema lleno sin aire</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Fuentes de Agua</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>Hidrante</h4>
+                    <ul>
+                        <li><strong>Presión:</strong> 20-100 PSI típico</li>
+                        <li><strong>Caudal:</strong> 500-1500 GPM</li>
+                        <li><strong>Ventaja:</strong> Presión y caudal alto</li>
+                        <li><strong>Desventaja:</strong> Ubicación fija</li>
+                        <li>Verificar operatividad</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tanque Autobomba</h4>
+                    <ul>
+                        <li><strong>Capacidad:</strong> 500-3000 litros</li>
+                        <li><strong>Autonomía:</strong> 5-10 minutos</li>
+                        <li><strong>Ventaja:</strong> Inmediato</li>
+                        <li><strong>Desventaja:</strong> Limitado</li>
+                        <li>Ataque inicial solamente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Cisterna</h4>
+                    <ul>
+                        <li><strong>Capacidad:</strong> 5000-15000 litros</li>
+                        <li><strong>Autonomía:</strong> Mayor duración</li>
+                        <li><strong>Ventaja:</strong> Gran volumen</li>
+                        <li><strong>Desventaja:</strong> Solo transporte</li>
+                        <li>Relay o shuttle</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fuente Natural</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Río, lago, piscina</li>
+                        <li><strong>Caudal:</strong> Variable</li>
+                        <li><strong>Ventaja:</strong> Ilimitado</li>
+                        <li><strong>Desventaja:</strong> Requiere succión</li>
+                        <li>Verificar profundidad mínima</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Operación por Succión</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Succión Dura (Hard Suction)</h4>
+                    <ul>
+                        <li><strong>Manguera:</strong> Rígida, no colapsa</li>
+                        <li><strong>Longitud:</strong> Máximo 20 pies (6m)</li>
+                        <li><strong>Altura:</strong> Máximo 25 pies (7.5m) teórico</li>
+                        <li><strong>Real:</strong> 15-20 pies (4.5-6m) práctico</li>
+                        <li><strong>Canastilla:</strong> Filtro en extremo</li>
+                        <li><strong>Cebado:</strong> Eliminar aire del sistema</li>
+                        <li>Nivel agua mínimo: 18 pulgadas</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Procedimiento Cebado</h4>
+                    <ul>
+                        <li>1. Conectar manguera succión</li>
+                        <li>2. Sumergir canastilla completamente</li>
+                        <li>3. Cerrar todas válvulas descarga</li>
+                        <li>4. Activar cebador (primer)</li>
+                        <li>5. Esperar vacío: -10 a -15 PSI succión</li>
+                        <li>6. Agua llega bomba: Manómetro sube</li>
+                        <li>7. Desactivar cebador</li>
+                        <li>8. Abrir descarga lentamente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Relay de Bombas</h2>
+            <div class="info-box">
+                <h4>Sistema de Relevos (Hidrante lejano)</h4>
+                <ul>
+                    <li><strong>Concepto:</strong> Bomba 1 alimenta bomba 2, bomba 2 a bomba 3...</li>
+                    <li><strong>Distancia:</strong> Cada 300-500m según manguera</li>
+                    <li><strong>Presión bomba relay:</strong> 150-185 PSI máximo en manguera</li>
+                    <li><strong>Cálculo simple:</strong> PB = Fricción tramo + Presión próxima bomba</li>
+                    <li><strong>Ventaja:</strong> Supera distancias largas</li>
+                    <li><strong>Desventaja:</strong> Múltiples unidades necesarias</li>
+                    <li><strong>Coordinación:</strong> Radio entre operadores crítico</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Sistema de Espuma</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Proporción</h4>
+                    <ul>
+                        <li><strong>1%:</strong> Clase A (vegetación)</li>
+                        <li><strong>3%:</strong> Clase B (hidrocarburos)</li>
+                        <li><strong>6%:</strong> Clase B (polares)</li>
+                        <li><strong>AFFF:</strong> Forma película acuosa</li>
+                        <li><strong>AR-AFFF:</strong> Resistente alcohol</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Método de Mezcla</h4>
+                    <ul>
+                        <li><strong>Eductor:</strong> Venturi succiona espuma</li>
+                        <li><strong>Around the pump:</strong> En línea succión</li>
+                        <li><strong>Sistema balanceado:</strong> Presión automática</li>
+                        <li><strong>Direct injection:</strong> Inyección bomba</li>
+                        <li>Verificar % correcto</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Aplicación</h4>
+                    <ul>
+                        <li><strong>Expansión baja:</strong> 20:1 líquidos</li>
+                        <li><strong>Expansión media:</strong> 20-200:1</li>
+                        <li><strong>Expansión alta:</strong> 200-1000:1 sótanos</li>
+                        <li><strong>Técnica:</strong> Suave sobre superficie</li>
+                        <li>NO romper manta espuma</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            ESPUMA: Verificar compatibilidad con combustible. NO mezclar tipos de espuma
+        </div>
+
+        <div class="section">
+            <h2>Problemas Comunes y Soluciones</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Problema: Baja Presión</h4>
+                    <ul>
+                        <li><strong>Causa 1:</strong> Aire en sistema → Cebar de nuevo</li>
+                        <li><strong>Causa 2:</strong> Manguera obstruida → Revisar línea</li>
+                        <li><strong>Causa 3:</strong> Fuga en succión → Sellar conexiones</li>
+                        <li><strong>Causa 4:</strong> RPM muy bajas → Acelerar bomba</li>
+                        <li><strong>Causa 5:</strong> Válvula mal abierta → Verificar</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Problema: Sobrepresión</h4>
+                    <ul>
+                        <li><strong>Causa 1:</strong> Línea cerrada repentino → Válvula alivio</li>
+                        <li><strong>Causa 2:</strong> RPM muy altas → Reducir acelerador</li>
+                        <li><strong>Causa 3:</strong> Cálculo incorrecto → Recalcular</li>
+                        <li><strong>Causa 4:</strong> Sin carga → Abrir descarga prueba</li>
+                        <li><strong>Solución:</strong> Ajustar inmediato, riesgo manguera</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Problema: Cavitación</h4>
+                    <ul>
+                        <li><strong>Síntoma:</strong> Ruido vibrante, presión errática</li>
+                        <li><strong>Causa:</strong> Bomba succiona más rápido que entrada</li>
+                        <li><strong>Solución 1:</strong> Reducir caudal descarga</li>
+                        <li><strong>Solución 2:</strong> Aumentar presión succión</li>
+                        <li><strong>Daño:</strong> Destruye impulsores si continúa</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Problema: Golpe de Ariete</h4>
+                    <ul>
+                        <li><strong>Causa:</strong> Cierre brusco de válvula</li>
+                        <li><strong>Efecto:</strong> Onda de presión, rompe manguera</li>
+                        <li><strong>Prevención:</strong> Cerrar lentamente siempre</li>
+                        <li><strong>Solución:</strong> Válvula alivio debe activar</li>
+                        <li><strong>Grave:</strong> Puede lesionar bomberos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mantenimiento de Equipos</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Bomba</h4>
+                    <ul>
+                        <li>Prueba semanal 20 minutos</li>
+                        <li>Revisar fugas aceite/agua</li>
+                        <li>Lubricar válvulas</li>
+                        <li>Test anual certificado</li>
+                        <li>Verificar cebador funcional</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Mangueras</h4>
+                    <ul>
+                        <li>Secar después de uso</li>
+                        <li>Prueba hidrostática anual</li>
+                        <li>Revisar acoples desgaste</li>
+                        <li>Rotar para evitar dobleces</li>
+                        <li>Desechar si daño visible</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Pitones</h4>
+                    <ul>
+                        <li>Limpiar después de uso</li>
+                        <li>Lubricar partes móviles</li>
+                        <li>Verificar patrón correcto</li>
+                        <li>Cambiar empaques gastados</li>
+                        <li>Test flujo periódico</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Reglas de Seguridad</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>En la Bomba</h4>
+                    <ul>
+                        <li>NUNCA dejar bomba sola operando</li>
+                        <li>Monitorear manómetros constantemente</li>
+                        <li>Ajustar presión progresivamente</li>
+                        <li>Comunicación con pitón siempre</li>
+                        <li>Verificar temperatura motor</li>
+                        <li>Tener ruta de escape clara</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Con Mangueras</h4>
+                    <ul>
+                        <li>NO pasar sobre mangueras cargadas</li>
+                        <li>Proteger de bordes filosos</li>
+                        <li>NO arrastrar innecesariamente</li>
+                        <li>Asegurar acoples bien apretados</li>
+                        <li>Alertar antes de cargar/descargar</li>
+                        <li>2 personas mínimo para 2.5"+</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Conversiones Rápidas</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Presión</h4>
+                    <ul>
+                        <li>1 bar = 14.5 PSI</li>
+                        <li>1 PSI = 0.069 bar</li>
+                        <li>100 PSI = 6.9 bar</li>
+                        <li>1 bar = 100 kPa</li>
+                        <li>1 PSI = 6.9 kPa</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Caudal</h4>
+                    <ul>
+                        <li>1 GPM = 3.785 LPM</li>
+                        <li>1 LPM = 0.264 GPM</li>
+                        <li>100 GPM = 378 LPM</li>
+                        <li>1 m³/h = 4.4 GPM</li>
+                        <li>1 GPM = 0.227 m³/h</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Volumen</h4>
+                    <ul>
+                        <li>1 galón = 3.785 litros</li>
+                        <li>1 litro = 0.264 galones</li>
+                        <li>1000 litros = 264 galones</li>
+                        <li>100 galones = 378 litros</li>
+                        <li>1 m³ = 264 galones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            RECORDAR: Calcular primero, bombear después. Verificar constantemente. Comunicación es clave
+        </div>
+    </div>
+</body>
+</html>

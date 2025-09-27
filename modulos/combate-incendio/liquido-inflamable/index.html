@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Líquidos Inflamables - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Arial, sans-serif; background: #F2E4C9; color: #0D0D0D;}
+        .header {background: #8C0303; color: #F2E4C9; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .breadcrumb {font-size: 0.9em; margin-bottom: 10px;}
+        .breadcrumb a {color: #F2E4C9; text-decoration: none; opacity: 0.8;}
+        .breadcrumb a:hover {opacity: 1;}
+        .header h1 {font-size: 1.8em; margin-bottom: 5px;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+        .section {background: #0D0D0D; color: #F2E4C9; padding: 20px; margin-bottom: 15px;}
+        .section h2 {color: #BF3604; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid #BF3604; padding-bottom: 10px;}
+        .grid-2 {display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;}
+        .grid-3 {display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+        .info-box {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .info-box h4 {color: #8C0303; margin-bottom: 10px;}
+        .info-box ul {list-style: none; padding: 0;}
+        .info-box li {padding: 4px 0; font-size: 0.9em;}
+        .liquid-card {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .liquid-title {font-weight: bold; color: #8C0303; margin-bottom: 10px; font-size: 1.1em;}
+        .liquid-data {background: #0D0D0D; color: #F2E4C9; padding: 10px; margin: 8px 0; font-size: 0.85em;}
+        .alert-box {background: #BF3604; color: #F2E4C9; padding: 15px; margin: 15px 0; text-align: center; font-weight: bold;}
+        .foam-card {background: #BF3604; color: #F2E4C9; padding: 15px; text-align: center;}
+        .foam-title {font-weight: bold; margin-bottom: 10px; font-size: 1.1em;}
+        .foam-use {background: rgba(242, 228, 201, 0.2); padding: 8px; font-size: 0.85em; margin-top: 8px;}
+        table {width: 100%; border-collapse: collapse; margin: 15px 0;}
+        table th, table td {padding: 10px; text-align: left; border-bottom: 1px solid #BF3604;}
+        table th {background: #BF3604; color: #F2E4C9; font-weight: bold;}
+        table td {background: #F2E4C9; color: #0D0D0D; font-size: 0.9em;}
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {grid-template-columns: 1fr;}
+            table {font-size: 0.8em;}
+            table th, table td {padding: 8px 5px;}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Combate contra Incendio</a> > Líquidos Inflamables
+        </div>
+        <h1>LÍQUIDOS INFLAMABLES</h1>
+        <p>Clase B - Combustibles líquidos y espuma</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Clasificación por Punto de Inflamación</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Clase</th>
+                        <th>Punto Inflamación</th>
+                        <th>Ejemplos</th>
+                        <th>Riesgo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Clase IA</strong></td>
+                        <td>&lt;22°C y PE &lt;38°C</td>
+                        <td>Gasolina, acetona, éter</td>
+                        <td>EXTREMO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clase IB</strong></td>
+                        <td>&lt;22°C y PE ≥38°C</td>
+                        <td>Alcohol, tolueno</td>
+                        <td>ALTO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clase IC</strong></td>
+                        <td>22-37°C</td>
+                        <td>Kerosene, diesel ligero</td>
+                        <td>MODERADO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clase II</strong></td>
+                        <td>37-60°C</td>
+                        <td>Diesel, aceites</td>
+                        <td>BAJO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clase IIIA</strong></td>
+                        <td>60-93°C</td>
+                        <td>Aceites pesados</td>
+                        <td>MUY BAJO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clase IIIB</strong></td>
+                        <td>&gt;93°C</td>
+                        <td>Aceites lubricantes</td>
+                        <td>MÍNIMO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Líquidos Comunes</h2>
+            <div class="grid-3">
+                <div class="liquid-card">
+                    <div class="liquid-title">GASOLINA</div>
+                    <div class="liquid-data">
+                        <strong>PI:</strong> -43°C<br>
+                        <strong>PE:</strong> 38-204°C<br>
+                        <strong>LEL:</strong> 1.4%<br>
+                        <strong>UEL:</strong> 7.6%
+                    </div>
+                </div>
+
+                <div class="liquid-card">
+                    <div class="liquid-title">DIESEL</div>
+                    <div class="liquid-data">
+                        <strong>PI:</strong> 52-96°C<br>
+                        <strong>PE:</strong> 150-380°C<br>
+                        <strong>LEL:</strong> 0.6%<br>
+                        <strong>UEL:</strong> 7.5%
+                    </div>
+                </div>
+
+                <div class="liquid-card">
+                    <div class="liquid-title">ALCOHOL (ETANOL)</div>
+                    <div class="liquid-data">
+                        <strong>PI:</strong> 13°C<br>
+                        <strong>PE:</strong> 78°C<br>
+                        <strong>LEL:</strong> 3.3%<br>
+                        <strong>UEL:</strong> 19%
+                    </div>
+                </div>
+
+                <div class="liquid-card">
+                    <div class="liquid-title">ACETONA</div>
+                    <div class="liquid-data">
+                        <strong>PI:</strong> -20°C<br>
+                        <strong>PE:</strong> 56°C<br>
+                        <strong>LEL:</strong> 2.5%<br>
+                        <strong>UEL:</strong> 13%
+                    </div>
+                </div>
+
+                <div class="liquid-card">
+                    <div class="liquid-title">KEROSENE</div>
+                    <div class="liquid-data">
+                        <strong>PI:</strong> 38-72°C<br>
+                        <strong>PE:</strong> 150-300°C<br>
+                        <strong>LEL:</strong> 0.7%<br>
+                        <strong>UEL:</strong> 5%
+                    </div>
+                </div>
+
+                <div class="liquid-card">
+                    <div class="liquid-title">ACEITE MOTOR</div>
+                    <div class="liquid-data">
+                        <strong>PI:</strong> 200-315°C<br>
+                        <strong>PE:</strong> &gt;300°C<br>
+                        <strong>LEL:</strong> 1%<br>
+                        <strong>UEL:</strong> 6%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            PI = Punto Inflamación | PE = Punto Ebullición | LEL = Límite Inferior Explosivo | UEL = Límite Superior Explosivo
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Espuma</h2>
+            <div class="grid-3">
+                <div class="foam-card">
+                    <div class="foam-title">AFFF (3% o 6%)</div>
+                    <div class="foam-use">
+                        <strong>USO:</strong><br>
+                        Hidrocarburos<br>
+                        Gasolina, diesel<br>
+                        Rápida supresión
+                    </div>
+                </div>
+
+                <div class="foam-card">
+                    <div class="foam-title">AR-AFFF</div>
+                    <div class="foam-use">
+                        <strong>USO:</strong><br>
+                        Solventes polares<br>
+                        Alcoholes<br>
+                        Resistente alcohol
+                    </div>
+                </div>
+
+                <div class="foam-card">
+                    <div class="foam-title">CLASE A (0.5-1%)</div>
+                    <div class="foam-use">
+                        <strong>USO:</strong><br>
+                        Combustibles sólidos<br>
+                        Penetración mejorada<br>
+                        Incendios forestales
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Técnicas de Aplicación</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Método Directo</h4>
+                    <ul>
+                        <li>Aplicar directamente sobre líquido</li>
+                        <li>Para derrames pequeños</li>
+                        <li>Puede agitar el combustible</li>
+                        <li>Riesgo de salpicadura</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Método Indirecto (Roll-On)</h4>
+                    <ul>
+                        <li>Espuma rebota en superficie sólida</li>
+                        <li>Se desliza sobre el líquido</li>
+                        <li>Menos agitación</li>
+                        <li>Más seguro para grandes derrames</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Método Rain-Down</h4>
+                    <ul>
+                        <li>Espuma cae como lluvia desde arriba</li>
+                        <li>Cobertura uniforme</li>
+                        <li>Para tanques abiertos</li>
+                        <li>Requiere altura adecuada</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Método Bank-Down</h4>
+                    <ul>
+                        <li>Espuma contra pared o dique</li>
+                        <li>Se extiende naturalmente</li>
+                        <li>Para derrames en diques</li>
+                        <li>Menos turbulencia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cálculo de Concentración</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo Espuma</th>
+                        <th>Concentración</th>
+                        <th>Ejemplo Cálculo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AFFF 3%</strong></td>
+                        <td>3 litros por cada 100L agua</td>
+                        <td>1000L agua = 30L espumante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AFFF 6%</strong></td>
+                        <td>6 litros por cada 100L agua</td>
+                        <td>1000L agua = 60L espumante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clase A 0.5%</strong></td>
+                        <td>0.5 litros por cada 100L agua</td>
+                        <td>1000L agua = 5L espumante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clase A 1%</strong></td>
+                        <td>1 litro por cada 100L agua</td>
+                        <td>1000L agua = 10L espumante</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Errores Comunes</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Errores de Aplicación</h4>
+                    <ul>
+                        <li>Aplicar espuma con mucha presión</li>
+                        <li>Romper la capa de espuma existente</li>
+                        <li>Usar concentración incorrecta</li>
+                        <li>No cubrir toda la superficie</li>
+                        <li>Dejar zonas sin cobertura</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Errores Tácticos</h4>
+                    <ul>
+                        <li>Usar agua sola en Clase B</li>
+                        <li>No controlar derrames primero</li>
+                        <li>Atacar contra el viento</li>
+                        <li>No preparar líneas de respaldo</li>
+                        <li>Ignorar vapores inflamables</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            NUNCA usar agua sola en líquidos Clase B - Esparce el fuego. SIEMPRE usar espuma o agentes químicos
+        </div>
+
+        <div class="section">
+            <h2>Seguridad en Líquidos Inflamables</h2>
+            <div class="info-box">
+                <h4>Evaluación Previa</h4>
+                <ul>
+                    <li><strong>Identificar el líquido:</strong> Placas, etiquetas, documentos</li>
+                    <li><strong>Punto de inflamación:</strong> ¿Puede encenderse a temp ambiente?</li>
+                    <li><strong>Cantidad derramada:</strong> Estimar volumen</li>
+                    <li><strong>Fuentes de ignición:</strong> Eliminar chispas, llamas</li>
+                    <li><strong>Vías de escape:</strong> Siempre planificadas</li>
+                    <li><strong>Dirección del viento:</strong> Ataque desde barlovento</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA DE ORO: Identificar el líquido ANTES de atacar. Usar espuma apropiada. Cubrir TODA la superficie
+        </div>
+    </div>
+</body>
+</html>

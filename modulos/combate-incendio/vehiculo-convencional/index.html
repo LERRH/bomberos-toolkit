@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incendios Vehiculares - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Arial, sans-serif; background: #F2E4C9; color: #0D0D0D;}
+        .header {background: #8C0303; color: #F2E4C9; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .breadcrumb {font-size: 0.9em; margin-bottom: 10px;}
+        .breadcrumb a {color: #F2E4C9; text-decoration: none; opacity: 0.8;}
+        .breadcrumb a:hover {opacity: 1;}
+        .header h1 {font-size: 1.8em; margin-bottom: 5px;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+        .section {background: #0D0D0D; color: #F2E4C9; padding: 20px; margin-bottom: 15px;}
+        .section h2 {color: #BF3604; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid #BF3604; padding-bottom: 10px;}
+        .grid-2 {display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;}
+        .grid-3 {display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+        .grid-4 {display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;}
+        .info-box {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .info-box h4 {color: #8C0303; margin-bottom: 10px;}
+        .info-box ul {list-style: none; padding: 0;}
+        .info-box li {padding: 4px 0; font-size: 0.9em;}
+        .alert-box {background: #BF3604; color: #F2E4C9; padding: 15px; margin: 15px 0; text-align: center; font-weight: bold;}
+        .phase-card {background: #F2E4C9; color: #0D0D0D; padding: 15px; text-align: center;}
+        .phase-title {font-weight: bold; color: #8C0303; margin-bottom: 10px; font-size: 1.1em;}
+        .danger-badge {display: inline-block; padding: 5px 15px; margin: 10px 0; background: #8C0303; color: #F2E4C9; font-weight: bold;}
+        table {width: 100%; border-collapse: collapse; margin: 15px 0;}
+        table th, table td {padding: 10px; text-align: left; border-bottom: 1px solid #BF3604;}
+        table th {background: #BF3604; color: #F2E4C9; font-weight: bold;}
+        table td {background: #F2E4C9; color: #0D0D0D; font-size: 0.9em;}
+        .warning-box {background: #8C0303; color: #F2E4C9; padding: 15px; margin: 10px 0;}
+        .warning-box h4 {margin-bottom: 10px; color: #F2E4C9;}
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {grid-template-columns: 1fr;}
+            table {font-size: 0.8em;}
+            table th, table td {padding: 8px 5px;}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Combate contra Incendio</a> > Vehículos Convencionales
+        </div>
+        <h1>INCENDIOS EN VEHÍCULOS CONVENCIONALES</h1>
+        <p>Técnicas de extinción y seguridad en incendios vehiculares</p>
+    </header>
+
+    <div class="container">
+        <div class="alert-box">
+            DISTANCIA SEGURA: 15 metros mínimo durante evaluación. NUNCA posicionarse frente/atrás del vehículo
+        </div>
+
+        <div class="section">
+            <h2>Evaluación Inicial (Tamaño del Problema)</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Información Crítica</h4>
+                    <ul>
+                        <li><strong>Tipo de vehículo:</strong> Auto, camión, moto, bus</li>
+                        <li><strong>Combustible:</strong> Gasolina, diésel, GNV, híbrido, eléctrico</li>
+                        <li><strong>Ubicación fuego:</strong> Motor, habitáculo, maletero</li>
+                        <li><strong>Ocupantes:</strong> Personas atrapadas, cantidad</li>
+                        <li><strong>Exposiciones:</strong> Otros vehículos, estructuras</li>
+                        <li><strong>Carga:</strong> Materiales transportados</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Indicadores de Peligro</h4>
+                    <ul>
+                        <li><strong>Amortiguadores presurizados:</strong> Riesgo explosión</li>
+                        <li><strong>Tanque combustible:</strong> BLEVE posible</li>
+                        <li><strong>Baterías:</strong> Explosión hidrógeno (12V), electrocución (HV)</li>
+                        <li><strong>Neumáticos:</strong> Explosión por presión</li>
+                        <li><strong>Airbags sin activar:</strong> Despliegue inesperado</li>
+                        <li><strong>GNV/GLP:</strong> Alto riesgo explosión</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Riesgos del Entorno</h4>
+                    <ul>
+                        <li><strong>Tráfico vehicular:</strong> Acordonar zona</li>
+                        <li><strong>Líquidos derramados:</strong> Riesgo ignición</li>
+                        <li><strong>Inclinación/inestabilidad:</strong> Volcamiento</li>
+                        <li><strong>Viento:</strong> Propagación a exposiciones</li>
+                        <li><strong>Túneles/garajes:</strong> Acumulación gases</li>
+                        <li><strong>Líneas eléctricas:</strong> Riesgo electrocución</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Fases del Incendio Vehicular</h2>
+            <div class="grid-4">
+                <div class="phase-card">
+                    <div class="phase-title">FASE INICIAL</div>
+                    <div class="danger-badge">0-5 MINUTOS</div>
+                    <div style="margin-top: 15px; text-align: left;">
+                        <strong>Características:</strong><br>
+                        • Fuego localizado<br>
+                        • Motor o habitáculo<br>
+                        • Temperatura moderada<br>
+                        • Sin daño estructural<br>
+                        • Control relativamente fácil<br><br>
+                        <strong>Acción:</strong> Extinción rápida posible
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-title">FASE DE DESARROLLO</div>
+                    <div class="danger-badge">5-10 MINUTOS</div>
+                    <div style="margin-top: 15px; text-align: left;">
+                        <strong>Características:</strong><br>
+                        • Fuego se propaga<br>
+                        • Habitáculo involucrado<br>
+                        • Humo negro denso<br>
+                        • Vidrios se rompen<br>
+                        • Componentes se derriten<br><br>
+                        <strong>Acción:</strong> Ataque agresivo necesario
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-title">FASE COMPLETA</div>
+                    <div class="danger-badge">10-20 MINUTOS</div>
+                    <div style="margin-top: 15px; text-align: left;">
+                        <strong>Características:</strong><br>
+                        • Vehículo totalmente involucrado<br>
+                        • Llamas intensas<br>
+                        • Riesgo explosión tanque<br>
+                        • Colapso estructural<br>
+                        • Pérdida total<br><br>
+                        <strong>Acción:</strong> Enfriamiento, proteger exposiciones
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-title">FASE FINAL</div>
+                    <div class="danger-badge">20+ MINUTOS</div>
+                    <div style="margin-top: 15px; text-align: left;">
+                        <strong>Características:</strong><br>
+                        • Estructura colapsada<br>
+                        • Fuego disminuye<br>
+                        • Puntos calientes<br>
+                        • Metal al rojo<br>
+                        • Combustible agotado<br><br>
+                        <strong>Acción:</strong> Revisión, enfriamiento final
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ubicación del Fuego y Tácticas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ubicación</th>
+                        <th>Causas Comunes</th>
+                        <th>Peligros Específicos</th>
+                        <th>Táctica de Extinción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Motor/Capó</strong></td>
+                        <td>Fuga combustible, eléctrico, recalentamiento</td>
+                        <td>Batería, fluidos inflamables, tubos presión</td>
+                        <td>Abrir capó lentamente, agua neblina, no chorro directo batería</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Habitáculo</strong></td>
+                        <td>Cigarrillo, eléctrico, materiales inflamables</td>
+                        <td>Airbags, ocupantes, humo tóxico</td>
+                        <td>Romper ventana lado contrario viento, agua directa interior</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maletero</strong></td>
+                        <td>Eléctrico, carga combustible</td>
+                        <td>Tanque combustible cercano, GNV si tiene</td>
+                        <td>Abrir con precaución, buscar extensión a tanque</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bajos del vehículo</strong></td>
+                        <td>Catalizador caliente, fuga combustible, escape</td>
+                        <td>Tanque combustible, sistema frenos</td>
+                        <td>Agua desde distancia, enfriar tanque primero</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neumáticos</strong></td>
+                        <td>Frenos recalentados, chispas, líquidos inflamables</td>
+                        <td>Explosión neumático, propagación</td>
+                        <td>Agua abundante, distancia segura hasta enfriar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="alert-box">
+            ORDEN DE PRIORIDADES: 1° VIDA (rescate), 2° CONTENER (evitar propagación), 3° EXTINGUIR (controlar fuego)
+        </div>
+
+        <div class="section">
+            <h2>Posicionamiento y Seguridad</h2>
+            <div class="grid-2">
+                <div class="warning-box">
+                    <h4>NUNCA Posicionarse Aquí</h4>
+                    <ul>
+                        <li><strong>Frente del vehículo:</strong> Amortiguadores pueden proyectarse</li>
+                        <li><strong>Atrás del vehículo:</strong> Tanque combustible en riesgo</li>
+                        <li><strong>Lado con tanque GNV/GLP:</strong> Explosión direccional</li>
+                        <li><strong>Bajo el vehículo:</strong> Líquidos calientes caen</li>
+                        <li><strong>Entre vehículos cercanos:</strong> Atrapamiento</li>
+                        <li><strong>Dirección del viento:</strong> Humo y calor</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>Posición SEGURA</h4>
+                    <ul>
+                        <li><strong>45° lateral del vehículo:</strong> Esquina delantera/trasera</li>
+                        <li><strong>15 metros mínimo:</strong> Durante evaluación inicial</li>
+                        <li><strong>Contra el viento:</strong> Evitar humo</li>
+                        <li><strong>Con escape identificado:</strong> Siempre tener salida</li>
+                        <li><strong>Usar vehículo como escudo:</strong> Bomba entre personal y fuego</li>
+                        <li><strong>Segunda línea respaldo:</strong> Personal de apoyo listo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Técnicas de Extinción</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Agua (Agente Principal)</h4>
+                    <ul>
+                        <li><strong>Caudal:</strong> 380 lpm mínimo</li>
+                        <li><strong>Patrón:</strong> Neblina 30-60° para enfriamiento</li>
+                        <li><strong>Aplicación:</strong> Barrido amplio, no concentrar</li>
+                        <li><strong>Prioridad:</strong> Enfriar tanque combustible primero</li>
+                        <li><strong>Cantidad:</strong> 500-2000 litros típico</li>
+                        <li><strong>Ventaja:</strong> Enfría y extingue simultáneo</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Espuma Clase B</h4>
+                    <ul>
+                        <li><strong>Proporción:</strong> 3% o 6% según tipo</li>
+                        <li><strong>Uso:</strong> Derrames combustible, tanque roto</li>
+                        <li><strong>Aplicación:</strong> Cubrir superficie líquido</li>
+                        <li><strong>Objetivo:</strong> Suprimir vapores inflamables</li>
+                        <li><strong>Complemento:</strong> Usar con agua para enfriamiento</li>
+                        <li><strong>Precaución:</strong> No en fuegos eléctricos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Polvo Químico Seco (PQS)</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> ABC multipropósito</li>
+                        <li><strong>Uso:</strong> Fuegos iniciales pequeños</li>
+                        <li><strong>Aplicación:</strong> Barrido base de llamas</li>
+                        <li><strong>Ventaja:</strong> Extinción rápida</li>
+                        <li><strong>Limitación:</strong> No enfría, puede reignitar</li>
+                        <li><strong>Seguimiento:</strong> Siempre aplicar agua después</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Procedimiento de Ataque Paso a Paso</h2>
+            <div class="info-box">
+                <h4>Secuencia de Operaciones</h4>
+                <ol style="list-style: decimal; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>EVALUACIÓN:</strong> Tamaño del problema desde distancia segura (15m)</li>
+                    <li><strong>ESTABLECER PERÍMETRO:</strong> Acordonar 30m radio, desviar tráfico</li>
+                    <li><strong>IDENTIFICAR RIESGOS:</strong> GNV, eléctrico, híbrido, carga peligrosa</li>
+                    <li><strong>POSICIONAR AUTOBOMBA:</strong> 15m mínimo, 45° lateral, contra viento</li>
+                    <li><strong>LÍNEA LISTA:</strong> 380 lpm, neblina 30°, presión adecuada</li>
+                    <li><strong>RESCATE SI NECESARIO:</strong> Víctimas primero, coordinar con línea</li>
+                    <li><strong>ENFRIAR TANQUE:</strong> Aplicar agua a tanque combustible primero</li>
+                    <li><strong>ATACAR FUEGO:</strong> Desde posición 45°, barrido neblina</li>
+                    <li><strong>ABRIR ACCESOS:</strong> Capó/puertas cuando seguro, con protección agua</li>
+                    <li><strong>EXTINCIÓN COMPLETA:</strong> Interior, motor, bajos, neumáticos</li>
+                    <li><strong>REVISAR PUNTOS CALIENTES:</strong> Cámara térmica o tacto con guante</li>
+                    <li><strong>CONTROL DERRAMES:</strong> Espuma en líquidos, arena, diques</li>
+                    <li><strong>VIGILANCIA:</strong> Observar 15 minutos, riesgo reignición</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Vehículos con Combustibles Alternativos</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>GNV / GLP (Gas Comprimido)</h4>
+                    <ul>
+                        <li><strong>Identificación:</strong> Sticker "GNV/GLP", tanque cilíndrico</li>
+                        <li><strong>Ubicación tanque:</strong> Maletero o techo (taxis/buses)</li>
+                        <li><strong>PELIGRO:</strong> BLEVE - Explosión Vapor en Expansión</li>
+                        <li><strong>Indicadores BLEVE:</strong> Tanque silba, válvula libera, llama impacta tanque</li>
+                        <li><strong>Táctica:</strong> Enfriar tanque desde 30m, NUNCA frente válvula alivio</li>
+                        <li><strong>Fuga gas:</strong> NO extinguir sin cortar suministro, explosión mayor</li>
+                        <li><strong>Válvula cierre:</strong> Generalmente en maletero, cerrar si accesible</li>
+                        <li><strong>Si BLEVE inminente:</strong> EVACUAR 100m radio inmediatamente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Híbridos y Eléctricos (HEV/EV)</h4>
+                    <ul>
+                        <li><strong>Identificación:</strong> Logo híbrido/eléctrico, sin tubo escape, silencioso</li>
+                        <li><strong>Voltaje:</strong> 200-800V sistema alto voltaje (cables naranja)</li>
+                        <li><strong>Batería:</strong> Li-ion bajo asientos/piso, gran capacidad</li>
+                        <li><strong>PELIGRO:</strong> Electrocución, reignición espontánea, gases tóxicos</li>
+                        <li><strong>Táctica:</strong> Agua abundante (mínimo 10,000 litros para batería)</li>
+                        <li><strong>Desconexión:</strong> Buscar desconector alto voltaje (generalmente baúl)</li>
+                        <li><strong>Reignición:</strong> Puede ocurrir horas/días después, sumergir batería</li>
+                        <li><strong>NO CORTAR:</strong> Cables naranja = alto voltaje, electrocución mortal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            VEHÍCULO ELÉCTRICO EN LLAMAS: Usar SOLO AGUA abundante. Mínimo 10,000 litros. Puede reignitar 72 horas después
+        </div>
+
+        <div class="section">
+            <h2>Señales de Peligro Inminente</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Señal</th>
+                        <th>Significado</th>
+                        <th>Acción Inmediata</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tanque silba/sisea</strong></td>
+                        <td>Válvula alivio liberando, presión crítica</td>
+                        <td>EVACUAR 50m, enfriar desde distancia extrema</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Llama directa sobre tanque</strong></td>
+                        <td>Calentamiento del tanque, BLEVE posible</td>
+                        <td>Enfriar tanque urgente o evacuar si no posible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tanque GNV cambia color</strong></td>
+                        <td>Debilitamiento estructura por calor</td>
+                        <td>EVACUAR 100m inmediato, BLEVE inminente</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amortiguadores al rojo</strong></td>
+                        <td>Aumento presión interna, explosión inminente</td>
+                        <td>Distancia 30m, NO posicionarse frente/atrás</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Baterías borboteando</strong></td>
+                        <td>Generación hidrógeno, riesgo explosión</td>
+                        <td>Ventilar, evitar chispas, agua neblina suave</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chisporroteo eléctrico</strong></td>
+                        <td>Cortocircuitos, riesgo electrocución</td>
+                        <td>No tocar vehículo, desconectar batería si posible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neumático deformándose</strong></td>
+                        <td>Aumento presión por calor, explosión cercana</td>
+                        <td>Distancia 15m, enfriar con agua abundante</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Rescate de Ocupantes</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Evaluación Rápida</h4>
+                    <ul>
+                        <li><strong>Visual:</strong> Ocupantes visibles, cantidad</li>
+                        <li><strong>Auditivo:</strong> Gritos, llamados de auxilio</li>
+                        <li><strong>Puertas:</strong> Trabadas, deformadas, operables</li>
+                        <li><strong>Ventanas:</strong> Cerradas, abiertas, rotas</li>
+                        <li><strong>Cinturones:</strong> Víctima atrapada por cinturón</li>
+                        <li><strong>Airbags:</strong> Activados o pendientes</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Técnicas de Acceso</h4>
+                    <ul>
+                        <li><strong>Puertas:</strong> Intentar abrir normalmente primero</li>
+                        <li><strong>Ventanas:</strong> Romper lado contrario viento, esquina inferior</li>
+                        <li><strong>Protección:</strong> Línea de agua lista durante acceso</li>
+                        <li><strong>Herramientas:</strong> Cortador vidrio, barreta, extractor hidráulico</li>
+                        <li><strong>Airbags:</strong> Evitar zona despliegue 45cm</li>
+                        <li><strong>Rapidez:</strong> Máximo 2 minutos para extracción</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Priorización</h4>
+                    <ul>
+                        <li><strong>Prioridad 1:</strong> Conscientes, pueden moverse</li>
+                        <li><strong>Prioridad 2:</strong> Conscientes, atrapados</li>
+                        <li><strong>Prioridad 3:</strong> Inconscientes, respirando</li>
+                        <li><strong>Prioridad 4:</strong> Sin signos vitales</li>
+                        <li><strong>Regla:</strong> Salvar el mayor número posible</li>
+                        <li><strong>Límite:</strong> No comprometer seguridad rescatistas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Vehículos Especiales</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>Buses/Microbuses</h4>
+                    <ul>
+                        <li>Múltiples ocupantes</li>
+                        <li>Tanques grandes (200-400L)</li>
+                        <li>GNV en techo común</li>
+                        <li>Salidas emergencia traseras</li>
+                        <li>Carga combustible alta (asientos)</li>
+                        <li>Prioridad: evacuación masiva</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Camiones/Tráileres</h4>
+                    <ul>
+                        <li>Tanques diésel 300-1000L</li>
+                        <li>Neumáticos dobles (explosión)</li>
+                        <li>Verificar carga transportada</li>
+                        <li>HAZMAT posible</li>
+                        <li>Grandes volúmenes agua</li>
+                        <li>Proteger cabina operador</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Motocicletas</h4>
+                    <ul>
+                        <li>Tanque pequeño (10-20L)</li>
+                        <li>Extinción rápida</li>
+                        <li>Batería 12V cerca motor</li>
+                        <li>Amortiguadores presurizados</li>
+                        <li>Posible víctima bajo moto</li>
+                        <li>Estabilizar antes de mover</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Maquinaria Pesada</h4>
+                    <ul>
+                        <li>Grandes tanques diésel</li>
+                        <li>Sistemas hidráulicos (aceite)</li>
+                        <li>Neumáticos gigantes (alta presión)</li>
+                        <li>Desconectar baterías múltiples</li>
+                        <li>Cabina elevada (escalera)</li>
+                        <li>Enfriamiento prolongado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Control de Derrames</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Combustible Líquido</h4>
+                    <ul>
+                        <li><strong>Identificar fuente:</strong> Tanque, líneas, motor</li>
+                        <li><strong>Contener:</strong> Diques con tierra, arena, absorbentes</li>
+                        <li><strong>Evitar alcantarillas:</strong> Tapar con arena, lonas</li>
+                        <li><strong>Espuma Clase B:</strong> Cubrir para suprimir vapores</li>
+                        <li><strong>Eliminar ignición:</strong> Apagar motores cercanos, no fumar</li>
+                        <li><strong>Absorber:</strong> Paños absorbentes, aserrín, arena</li>
+                        <li><strong>Recuperar:</strong> Contenedores para disposición</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Fluidos del Vehículo</h4>
+                    <ul>
+                        <li><strong>Aceite motor:</strong> Contener, absorbentes</li>
+                        <li><strong>Refrigerante:</strong> Tóxico, evitar contacto</li>
+                        <li><strong>Líquido frenos:</strong> Corrosivo e inflamable</li>
+                        <li><strong>Batería (ácido):</strong> Neutralizar con bicarbonato</li>
+                        <li><strong>Dirección hidráulica:</strong> Inflamable, contener</li>
+                        <li><strong>Aire acondicionado:</strong> Gases refrigerantes, ventilar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Equipamiento y Herramientas</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>EPP Específico</h4>
+                    <ul>
+                        <li><strong>Traje estructural completo</strong></li>
+                        <li><strong>SCBA (ERA):</strong> Humos muy tóxicos</li>
+                        <li><strong>Guantes:</strong> Resistentes químicos/térmicos</li>
+                        <li><strong>Casco con visera</strong></li>
+                        <li><strong>Botas dieléctricas:</strong> Para híbridos/eléctricos</li>
+                        <li><strong>Linterna manos libres</strong></li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Herramientas Extinción</h4>
+                    <ul>
+                        <li><strong>Línea 38mm con pitón:</strong> Principal</li>
+                        <li><strong>Extintores PQS 20lb:</strong> Ataque inicial</li>
+                        <li><strong>Lanza espuma:</strong> Derrames Clase B</li>
+                        <li><strong>Cámara térmica:</strong> Puntos calientes</li>
+                        <li><strong>Monitor/cañón:</strong> Vehículos grandes</li>
+                        <li><strong>Absorbentes/arena:</strong> Control derrames</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Herramientas Rescate</h4>
+                    <ul>
+                        <li><strong>Extractor hidráulico:</strong> Puertas</li>
+                        <li><strong>Cortador hidráulico:</strong> Columnas</li>
+                        <li><strong>Barreta/hacha:</strong> Forzamiento</li>
+                        <li><strong>Cortador de cinturón</strong></li>
+                        <li><strong>Punzón rompe vidrios</strong></li>
+                        <li><strong>Calzas/estabilizadores</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Humos Tóxicos de Vehículos</h2>
+            <div class="warning-box">
+                <h4>Sustancias Presentes en el Humo</h4>
+                <div class="grid-2" style="margin-top: 15px;">
+                    <ul>
+                        <li><strong>Monóxido de carbono (CO):</strong> Asfixiante, letal</li>
+                        <li><strong>Cianuro de hidrógeno (HCN):</strong> De plásticos, letal rápido</li>
+                        <li><strong>Isocianatos:</strong> De espumas de asiento, cancerígeno</li>
+                        <li><strong>Benceno:</strong> De gasolina, cancerígeno</li>
+                        <li><strong>Formaldehído:</strong> De adhesivos, irritante</li>
+                        <li><strong>Dioxinas/Furanos:</strong> De PVC, altamente tóxico</li>
+                    </ul>
+                    <ul>
+                        <li><strong>Ácido clorhídrico:</strong> De PVC, corrosivo</li>
+                        <li><strong>Acroleína:</strong> De fibras, irritante extremo</li>
+                        <li><strong>Plomo:</strong> De baterías viejas, neurotóxico</li>
+                        <li><strong>PCB:</strong> De transformadores viejos, persistente</li>
+                        <li><strong>Metales pesados:</strong> Vapor de componentes</li>
+                        <li><strong>NUNCA trabajar sin SCBA</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            CRÍTICO: Humo de vehículos es 10 veces MÁS TÓXICO que humo estructural. SCBA OBLIGATORIO siempre
+        </div>
+
+        <div class="section">
+            <h2>Incendios en Situaciones Especiales</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Túneles/Garajes Subterráneos</h4>
+                    <ul>
+                        <li><strong>Peligro:</strong> Acumulación CO, falta oxígeno</li>
+                        <li><strong>Ventilación:</strong> Activar extractores, ventilar antes entrar</li>
+                        <li><strong>Calor:</strong> Se acumula en techo, extremo</li>
+                        <li><strong>Visibilidad:</strong> Nula por humo</li>
+                        <li><strong>Escape:</strong> Identificar salidas antes de entrar</li>
+                        <li><strong>Propagación:</strong> Múltiples vehículos rápido</li>
+                        <li><strong>Táctica:</strong> Ataque desde entrada, línea respaldo</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Accidentes de Tránsito</h4>
+                    <ul>
+                        <li><strong>Seguridad vial:</strong> Conos, señalización, desvío</li>
+                        <li><strong>Combustible derramado:</strong> Ignición por motor caliente</li>
+                        <li><strong>Víctimas atrapadas:</strong> Rescate vs extinción simultáneo</li>
+                        <li><strong>Múltiples vehículos:</strong> Priorizar rescate</li>
+                        <li><strong>Desconexión batería:</strong> Evitar chispas adicionales</li>
+                        <li><strong>Estabilización:</strong> Calzar antes de trabajar</li>
+                        <li><strong>Coordinación:</strong> Policía, ambulancia, tránsito</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Cerca de Estructuras</h4>
+                    <ul>
+                        <li><strong>Radiación térmica:</strong> Puede romper vidrios 10m</li>
+                        <li><strong>Protección:</strong> Mojar fachadas expuestas</li>
+                        <li><strong>Propagación:</strong> Viento puede llevar pavesas</li>
+                        <li><strong>Distancia segura:</strong> Mover vehículo si posible</li>
+                        <li><strong>Múltiples líneas:</strong> Una al vehículo, otra a exposición</li>
+                        <li><strong>Evacuación:</strong> Edificios cercanos si necesario</li>
+                        <li><strong>Posicionamiento:</strong> No entre vehículo y edificio</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Vehículos Volcados</h4>
+                    <ul>
+                        <li><strong>Estabilización:</strong> Obligatoria antes de trabajar</li>
+                        <li><strong>Combustible:</strong> Derrame por gravedad</li>
+                        <li><strong>Ocupantes:</strong> Posición invertida, compresión</li>
+                        <li><strong>Airbags:</strong> Pueden activarse al mover</li>
+                        <li><strong>Acceso:</strong> Por arriba si de costado</li>
+                        <li><strong>Herramientas:</strong> Calzas, cribbing, tensores</li>
+                        <li><strong>Precaución:</strong> No desestabilizar durante extinción</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section">
+            <h2>Revisión Post-Extinción</h2>
+            <div class="info-box">
+                <h4>Checklist de Verificación</h4>
+                <div class="grid-2" style="margin-top: 15px;">
+                    <ul>
+                        <li>✓ Fuego completamente extinguido</li>
+                        <li>✓ Capó abierto y motor enfriado</li>
+                        <li>✓ Habitáculo revisado completamente</li>
+                        <li>✓ Maletero abierto y verificado</li>
+                        <li>✓ Bajos del vehículo enfriados</li>
+                        <li>✓ Tanque combustible frío al tacto</li>
+                        <li>✓ Neumáticos enfriados</li>
+                        <li>✓ Cámara térmica: sin puntos calientes</li>
+                    </ul>
+                    <ul>
+                        <li>✓ Batería desconectada o removida</li>
+                        <li>✓ Derrames contenidos</li>
+                        <li>✓ Área acordonada hasta grúa</li>
+                        <li>✓ Propietario/autoridad notificada</li>
+                        <li>✓ Investigación causa iniciada</li>
+                        <li>✓ Documentación fotográfica</li>
+                        <li>✓ Informe incidente completado</li>
+                        <li>✓ Vigilancia 15 minutos post</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Causas Comunes de Incendios Vehiculares</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Causa</th>
+                        <th>Porcentaje Aprox.</th>
+                        <th>Prevención</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Eléctrico/Cortocircuito</strong></td>
+                        <td>35-40%</td>
+                        <td>Mantenimiento cables, no modificaciones caseras</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fuga combustible</strong></td>
+                        <td>20-25%</td>
+                        <td>Revisión líneas, cambio mangueras viejas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recalentamiento motor</strong></td>
+                        <td>15-20%</td>
+                        <td>Mantenimiento sistema enfriamiento, no ignorar temperatura</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Falla mecánica</strong></td>
+                        <td>10-15%</td>
+                        <td>Mantenimiento preventivo regular</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intencional (incendio provocado)</strong></td>
+                        <td>5-10%</td>
+                        <td>Seguridad, estacionamiento iluminado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cigarrillo/negligencia</strong></td>
+                        <td>3-5%</td>
+                        <td>No fumar en vehículo, no dejar materiales inflamables</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accidente de tránsito</strong></td>
+                        <td>2-3%</td>
+                        <td>Conducción segura, mantenimiento frenos</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Coordinación y Comunicaciones</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Con Comando</h4>
+                    <ul>
+                        <li><strong>Tamaño inicial:</strong> Tipo vehículo, ubicación fuego</li>
+                        <li><strong>Recursos necesarios:</strong> Personal, agua, espuma</li>
+                        <li><strong>Riesgos identificados:</strong> GNV, híbrido, HAZMAT</li>
+                        <li><strong>Víctimas:</strong> Cantidad, estado, rescate en curso</li>
+                        <li><strong>Progreso:</strong> Cada 5 minutos o cambios</li>
+                        <li><strong>Control declarado:</strong> Fuego extinguido, seguro</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Con Otras Agencias</h4>
+                    <ul>
+                        <li><strong>Policía:</strong> Control tráfico, investigación</li>
+                        <li><strong>Ambulancia:</strong> Víctimas, evaluación médica</li>
+                        <li><strong>Tránsito:</strong> Desvíos, señalización</li>
+                        <li><strong>HAZMAT:</strong> Si carga peligrosa identificada</li>
+                        <li><strong>Grúa:</strong> Remoción vehículo, despejar vía</li>
+                        <li><strong>Ambiental:</strong> Derrames significativos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Dentro del Equipo</h4>
+                    <ul>
+                        <li><strong>Posiciones asignadas:</strong> Pitón, respaldo, rescate</li>
+                        <li><strong>Señales manuales:</strong> Si radio falla</li>
+                        <li><strong>Palabra clave peligro:</strong> "EVACUAR" todos salen</li>
+                        <li><strong>Confirmación órdenes:</strong> Repetir para verificar</li>
+                        <li><strong>Estado personal:</strong> Aire, fatiga, lesiones</li>
+                        <li><strong>Cambio condiciones:</strong> Alertar inmediato</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Errores Comunes a Evitar</h2>
+            <div class="warning-box">
+                <h4>Errores Fatales en Incendios Vehiculares</h4>
+                <div class="grid-2" style="margin-top: 15px;">
+                    <ul>
+                        <li><strong>❌ Posicionarse frente/atrás del vehículo</strong><br>
+                        → Riesgo proyección amortiguadores/explosión tanque</li>
+                        
+                        <li><strong>❌ No identificar tipo de combustible</strong><br>
+                        → GNV/eléctrico requieren tácticas específicas</li>
+                        
+                        <li><strong>❌ Abrir capó sin línea lista</strong><br>
+                        → Entrada oxígeno puede acelerar fuego</li>
+                        
+                        <li><strong>❌ No usar SCBA</strong><br>
+                        → Humos extremadamente tóxicos, efecto acumulativo</li>
+                        
+                        <li><strong>❌ Trabajar sin segunda línea</strong><br>
+                        → Sin respaldo si situación empeora</li>
+                    </ul>
+                    <ul>
+                        <li><strong>❌ Ignorar derrames de combustible</strong><br>
+                        → Fuego secundario, propagación rápida</li>
+                        
+                        <li><strong>❌ No enfriar tanque primero</strong><br>
+                        → BLEVE puede ocurrir en minutos</li>
+                        
+                        <li><strong>❌ Subestimar vehículos eléctricos</strong><br>
+                        → Reignición hasta 72 horas después</li>
+                        
+                        <li><strong>❌ Declarar controlado muy pronto</strong><br>
+                        → Reignición común en espacios ocultos</li>
+                        
+                        <li><strong>❌ No usar cámara térmica</strong><br>
+                        → Puntos calientes no visibles causan reignición</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA DE ORO: Cada vehículo es potencialmente PELIGROSO. Nunca subestimar. Siempre usar máxima precaución
+        </div>
+
+        <div class="section">
+            <h2>Descontaminación Post-Incidente</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Personal</h4>
+                    <ul>
+                        <li><strong>Guantes:</strong> Lavar sin retirar, luego retirar y lavar</li>
+                        <li><strong>Traje:</strong> Lavar exterior con agua y jabón en escena</li>
+                        <li><strong>SCBA:</strong> Limpiar máscara, revisar cilindro</li>
+                        <li><strong>Botas:</strong> Lavar suelas completamente</li>
+                        <li><strong>Piel expuesta:</strong> Lavar con agua y jabón</li>
+                        <li><strong>Ducha:</strong> Obligatoria al regresar a estación</li>
+                        <li><strong>Ropa interior:</strong> Cambiar, no reutilizar</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Equipos</h4>
+                    <ul>
+                        <li><strong>Mangueras:</strong> Lavar antes de enrollar</li>
+                        <li><strong>Herramientas:</strong> Limpiar residuos, desinfectar</li>
+                        <li><strong>Autobomba:</strong> Lavar compartimentos abiertos</li>
+                        <li><strong>Equipos hidráulicos:</strong> Limpiar fluidos</li>
+                        <li><strong>Radios/equipos:</strong> Desinfectar superficies</li>
+                        <li><strong>Disposición:</strong> Materiales contaminados en contenedor</li>
+                        <li><strong>Documentar:</strong> Exposición en reporte médico</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            SALUD: Toxinas se absorben por piel, inhalación e ingestión. Descontaminación NO es opcional, es OBLIGATORIA
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangas y Pitones - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .type-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .type-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .type-spec {
+            background: #0D0D0D;
+            color: #BF3604;
+            padding: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .type-desc {
+            font-size: 0.85em;
+        }
+
+        .danger-card {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 15px;
+        }
+
+        .danger-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .danger-desc {
+            font-size: 0.85em;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .tech-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .tech-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Equipos y Materiales</a> > Mangas y Pitones
+        </div>
+        <h1>MANGAS Y PITONES</h1>
+        <p>Líneas de ataque y equipos de aplicación</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Tipos de Mangas</h2>
+            <div class="grid-3">
+                <div class="type-card">
+                    <div class="type-title">MANGA DE ATAQUE</div>
+                    <div class="type-spec">38mm (1½") - 63mm (2½")</div>
+                    <div class="type-desc">
+                        <strong>Uso:</strong> Combate directo<br>
+                        <strong>Presión:</strong> Alta<br>
+                        <strong>Manejabilidad:</strong> Buena<br>
+                        <strong>Peso:</strong> Ligera-Media
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">MANGA DE SUMINISTRO</div>
+                    <div class="type-spec">63mm (2½") - 127mm (5")</div>
+                    <div class="type-desc">
+                        <strong>Uso:</strong> Transporte de agua<br>
+                        <strong>Presión:</strong> Baja-Media<br>
+                        <strong>Volumen:</strong> Alto<br>
+                        <strong>Distancia:</strong> Larga
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">MANGA FORESTAL</div>
+                    <div class="type-spec">25mm (1") - 38mm (1½")</div>
+                    <div class="type-desc">
+                        <strong>Uso:</strong> Terreno irregular<br>
+                        <strong>Peso:</strong> Muy ligera<br>
+                        <strong>Longitud:</strong> 15-30m<br>
+                        <strong>Material:</strong> Resistente
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Diámetros y Capacidades</h2>
+            <div class="grid-4">
+                <div class="info-box">
+                    <h4>25mm (1")</h4>
+                    <ul>
+                        <li><strong>Caudal:</strong> 95-190 L/min</li>
+                        <li><strong>Uso:</strong> Forestal</li>
+                        <li><strong>Personal:</strong> 1</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>38mm (1½")</h4>
+                    <ul>
+                        <li><strong>Caudal:</strong> 190-380 L/min</li>
+                        <li><strong>Uso:</strong> Ataque rápido</li>
+                        <li><strong>Personal:</strong> 1-2</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>63mm (2½")</h4>
+                    <ul>
+                        <li><strong>Caudal:</strong> 380-950 L/min</li>
+                        <li><strong>Uso:</strong> Ataque pesado</li>
+                        <li><strong>Personal:</strong> 2-3</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>100-127mm (4-5")</h4>
+                    <ul>
+                        <li><strong>Caudal:</strong> >1500 L/min</li>
+                        <li><strong>Uso:</strong> Suministro</li>
+                        <li><strong>Personal:</strong> 3-4</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA: A mayor diámetro = MAYOR caudal pero MENOR maniobrabilidad. Elige según tipo de incendio
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Pitones</h2>
+            <div class="grid-3">
+                <div class="type-card">
+                    <div class="type-title">CHORRO DIRECTO</div>
+                    <div class="type-spec">Alcance: 15-30m</div>
+                    <div class="type-desc">
+                        <strong>Ventajas:</strong><br>
+                        • Máximo alcance<br>
+                        • Penetración profunda<br>
+                        • Menos dispersión<br><br>
+                        <strong>Uso:</strong> Exteriores, distancia
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">NIEBLA / FOG</div>
+                    <div class="type-spec">Ángulo: 30°-100°</div>
+                    <div class="type-desc">
+                        <strong>Ventajas:</strong><br>
+                        • Máxima absorción calor<br>
+                        • Protección personal<br>
+                        • Control temperatura<br><br>
+                        <strong>Uso:</strong> Interiores, vapor
+                    </div>
+                </div>
+
+                <div class="type-card">
+                    <div class="type-title">COMBINADO</div>
+                    <div class="type-spec">Ajustable</div>
+                    <div class="type-desc">
+                        <strong>Ventajas:</strong><br>
+                        • Versatilidad total<br>
+                        • Cambio rápido<br>
+                        • Un solo equipo<br><br>
+                        <strong>Uso:</strong> Multipropósito
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Accesorios Esenciales</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Llaves y Adaptadores</h4>
+                    <ul>
+                        <li><strong>Llave inglesa:</strong> Apriete rápido conexiones</li>
+                        <li><strong>Llave de manga:</strong> Ajuste específico</li>
+                        <li><strong>Reducciones:</strong> Cambio de diámetro</li>
+                        <li><strong>Aumentos:</strong> Ampliar diámetro</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Distribución</h4>
+                    <ul>
+                        <li><strong>Bifurcación:</strong> 1 entrada → 2 salidas</li>
+                        <li><strong>Derivación:</strong> 1 entrada → 3 salidas</li>
+                        <li><strong>Siamesa:</strong> 2 entradas → 1 salida</li>
+                        <li><strong>Tapones:</strong> Cerrar salidas no usadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Pérdidas de Presión</h2>
+            <div class="info-box">
+                <h4>Factores Clave</h4>
+                <ul>
+                    <li><strong>Longitud de manga:</strong> +15m = +1 bar pérdida aprox</li>
+                    <li><strong>Diámetro:</strong> Menor diámetro = MAYOR pérdida</li>
+                    <li><strong>Caudal:</strong> Mayor caudal = MAYOR pérdida</li>
+                    <li><strong>Accesorios:</strong> Cada conexión suma resistencia</li>
+                    <li><strong>Elevación:</strong> +10m altura = +1 bar necesario</li>
+                </ul>
+            </div>
+            <div class="alert-box" style="margin-top: 15px;">
+                CÁLCULO RÁPIDO: Presión bomba = Presión pitón + Pérdidas manga + Pérdidas altura
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Técnicas de Manejo</h2>
+            <div class="grid-2">
+                <div class="tech-card">
+                    <div class="tech-title">POSICIÓN BÁSICA</div>
+                    <p><strong>1 persona (38mm):</strong></p>
+                    <ul>
+                        <li>• Pies separados, pie adelantado</li>
+                        <li>• Mano dominante en pitón</li>
+                        <li>• Mano libre sujeta manga cerca</li>
+                        <li>• Cuerpo ligeramente inclinado atrás</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-title">EQUIPO (63mm)</div>
+                    <p><strong>2-3 personas:</strong></p>
+                    <ul>
+                        <li>• Pitón: 1 persona adelante</li>
+                        <li>• Soporte: 1 persona atrás cerca</li>
+                        <li>• Ancla: 1 persona más atrás</li>
+                        <li>• Comunicación constante</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tendido de Mangas</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Tendido Simple</h4>
+                    <ul>
+                        <li>• Desde bomba hacia incendio</li>
+                        <li>• Línea directa, sin obstáculos</li>
+                        <li>• Acople primero, agua después</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tendido en Herradura</h4>
+                    <ul>
+                        <li>• Para escaleras o pisos altos</li>
+                        <li>• Doble largo disponible</li>
+                        <li>• Sube y baja desde bomba</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tendido Escalonado</h4>
+                    <ul>
+                        <li>• Cambios de nivel graduales</li>
+                        <li>• Evita dobleces agudos</li>
+                        <li>• Reduce pérdida presión</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Reglas de Seguridad</h2>
+            <div class="grid-2">
+                <div class="danger-card">
+                    <div class="danger-title">ANTES de Cargar</div>
+                    <div class="danger-desc">
+                        ✓ Inspeccionar manga por cortes/daños<br>
+                        ✓ Verificar acoples sin defectos<br>
+                        ✓ Asegurar conexiones apretadas<br>
+                        ✓ Eliminar torsiones/dobleces<br>
+                        ✓ Personal en posición segura
+                    </div>
+                </div>
+
+                <div class="danger-card">
+                    <div class="danger-title">DURANTE Operación</div>
+                    <div class="danger-desc">
+                        ✓ NO pasar por encima de mangas cargadas<br>
+                        ✓ NO soltar pitón sin cerrar primero<br>
+                        ✓ Anticipar retroceso al abrir<br>
+                        ✓ Comunicar cambios de presión<br>
+                        ✓ Vigilar acoples constantemente
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            PELIGRO: Una manga de 63mm a 7 bar puede soltar 950 L/min. Un acople defectuoso puede explotar como proyectil
+        </div>
+
+        <div class="section">
+            <h2>Mantenimiento</h2>
+            <div class="info-box">
+                <h4>Después de Cada Uso</h4>
+                <ul>
+                    <li><strong>Lavar:</strong> Agua limpia, quitar residuos y químicos</li>
+                    <li><strong>Secar:</strong> Completamente antes de guardar (previene moho)</li>
+                    <li><strong>Inspeccionar:</strong> Buscar cortes, desgaste, daños térmicos</li>
+                    <li><strong>Acoples:</strong> Limpiar roscas, verificar empaques</li>
+                    <li><strong>Almacenar:</strong> Enrollada o doblada sin presión</li>
+                </ul>
+            </div>
+            <div class="info-box" style="margin-top: 15px;">
+                <h4>Señales de Reemplazo</h4>
+                <ul>
+                    <li>• Cortes o abrasiones profundas en lona</li>
+                    <li>• Acoples flojos o roscas desgastadas</li>
+                    <li>• Fugas persistentes en pruebas</li>
+                    <li>• Daños térmicos evidentes (derretido)</li>
+                    <li>• Rigidez o pérdida de flexibilidad</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>Selección correcta salva vidas:</strong></p>
+                <ul>
+                    <li><strong>Incendio pequeño/rápido:</strong> 38mm (1½") con 1 persona</li>
+                    <li><strong>Incendio estructural:</strong> 63mm (2½") con 2-3 personas</li>
+                    <li><strong>Chorro directo:</strong> Para alcance y penetración</li>
+                    <li><strong>Niebla:</strong> Para protección y absorción calor</li>
+                    <li><strong>Siempre:</strong> Verificar acoples ANTES de cargar</li>
+                    <li><strong>Nunca:</strong> Soltar manga cargada sin cerrar pitón</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            La manga correcta en el momento correcto puede marcar la diferencia entre controlar o perder el incendio
+        </div>
+    </div>
+</body>
+</html>

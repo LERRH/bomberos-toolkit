@@ -63,9 +63,8 @@
             padding: 20px;
             text-align: center;
             text-decoration: none;
-            border-left: 4px solid #95a5a6;
+            border-left: 4px solid #BF3604;
             transition: all 0.2s;
-            cursor: pointer;
         }
 
         .module-card:hover {
@@ -84,7 +83,7 @@
         }
 
         .status {
-            background: #95a5a6;
+            background: #BF3604;
             color: #F2E4C9;
             padding: 4px 10px;
             font-size: 0.7em;
@@ -116,84 +115,42 @@
 
     <div class="container">
         <div class="modules-grid">
-            <div class="module-card" onclick="showComingSoon('Mangas, Pitones y Accesorios')">
-                <div class="status">PLANIFICADO</div>
+            <a href="mangas-pitones/index.html" class="module-card">
+                <div class="status">DISPONIBLE</div>
                 <h3 class="module-title">Mangas y Pitones</h3>
                 <p class="module-desc">Tipos y técnicas</p>
-            </div>
+            </a>
 
-            <div class="module-card" onclick="showComingSoon('Abastecimiento')">
-                <div class="status">PLANIFICADO</div>
+            <a href="abastecimiento/index.html" class="module-card">
+                <div class="status">DISPONIBLE</div>
                 <h3 class="module-title">Abastecimiento</h3>
                 <p class="module-desc">Fuentes de agua</p>
-            </div>
+            </a>
 
-            <div class="module-card" onclick="showComingSoon('Chorros de Agua')">
-                <div class="status">PLANIFICADO</div>
+            <a href="chorros-agua/index.html" class="module-card">
+                <div class="status">DISPONIBLE</div>
                 <h3 class="module-title">Chorros de Agua</h3>
                 <p class="module-desc">Tipos y aplicación</p>
-            </div>
+            </a>
 
-            <div class="module-card" onclick="showComingSoon('Espuma')">
-                <div class="status">PLANIFICADO</div>
+            <a href="espuma/index.html" class="module-card">
+                <div class="status">DISPONIBLE</div>
                 <h3 class="module-title">Espuma</h3>
                 <p class="module-desc">Generadores</p>
-            </div>
+            </a>
 
-            <div class="module-card" onclick="showComingSoon('Escalas')">
-                <div class="status">PLANIFICADO</div>
+            <a href="escalas/index.html" class="module-card">
+                <div class="status">DISPONIBLE</div>
                 <h3 class="module-title">Escalas</h3>
                 <p class="module-desc">Posicionamiento</p>
-            </div>
+            </a>
 
-            <div class="module-card" onclick="showComingSoon('Cuerdas, Nudos y Amarres')">
-                <div class="status">PLANIFICADO</div>
+            <a href="cuerdas-nudos/index.html" class="module-card">
+                <div class="status">DISPONIBLE</div>
                 <h3 class="module-title">Cuerdas y Nudos</h3>
                 <p class="module-desc">Nudos especializados</p>
-            </div>
-
-            <div class="module-card" onclick="showComingSoon('EPP')">
-                <div class="status">PLANIFICADO</div>
-                <h3 class="module-title">EPP</h3>
-                <p class="module-desc">Equipo protección</p>
-            </div>
-
-            <div class="module-card" onclick="showComingSoon('Protección Respiratoria')">
-                <div class="status">PLANIFICADO</div>
-                <h3 class="module-title">Protección Respiratoria</h3>
-                <p class="module-desc">EPRA</p>
-            </div>
-
-            <div class="module-card" onclick="showComingSoon('Herramientas de Rescate')">
-                <div class="status">PLANIFICADO</div>
-                <h3 class="module-title">Herramientas Rescate</h3>
-                <p class="module-desc">Hidráulicas y manuales</p>
-            </div>
-
-            <div class="module-card" onclick="showComingSoon('Equipos Eléctricos')">
-                <div class="status">PLANIFICADO</div>
-                <h3 class="module-title">Equipos Eléctricos</h3>
-                <p class="module-desc">Generadores y motobombas</p>
-            </div>
-
-            <div class="module-card" onclick="showComingSoon('Comunicaciones')">
-                <div class="status">PLANIFICADO</div>
-                <h3 class="module-title">Comunicaciones</h3>
-                <p class="module-desc">Radios y protocolos</p>
-            </div>
-
-            <div class="module-card" onclick="showComingSoon('Vehículos y Autobombas')">
-                <div class="status">PLANIFICADO</div>
-                <h3 class="module-title">Vehículos</h3>
-                <p class="module-desc">Autobombas</p>
-            </div>
+            </a>
         </div>
     </div>
-
-    <script>
-        function showComingSoon(moduleName) {
-            alert('EN DESARROLLO\n\n' + moduleName + '\n\nPróximamente disponible');
-        }
-    </script>
 </body>
 </html>

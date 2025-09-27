@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventilación - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Arial, sans-serif; background: #F2E4C9; color: #0D0D0D;}
+        .header {background: #8C0303; color: #F2E4C9; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .breadcrumb {font-size: 0.9em; margin-bottom: 10px;}
+        .breadcrumb a {color: #F2E4C9; text-decoration: none; opacity: 0.8;}
+        .breadcrumb a:hover {opacity: 1;}
+        .header h1 {font-size: 1.8em; margin-bottom: 5px;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+        .section {background: #0D0D0D; color: #F2E4C9; padding: 20px; margin-bottom: 15px;}
+        .section h2 {color: #BF3604; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid #BF3604; padding-bottom: 10px;}
+        .grid-2 {display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;}
+        .grid-3 {display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;}
+        .info-box {background: #F2E4C9; color: #0D0D0D; padding: 15px;}
+        .info-box h4 {color: #8C0303; margin-bottom: 10px;}
+        .info-box ul {list-style: none; padding: 0;}
+        .info-box li {padding: 4px 0; font-size: 0.9em;}
+        .alert-box {background: #BF3604; color: #F2E4C9; padding: 15px; margin: 15px 0; text-align: center; font-weight: bold;}
+        .danger-box {background: #8C0303; color: #F2E4C9; padding: 15px;}
+        .danger-box h4 {margin-bottom: 10px; color: #F2E4C9;}
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {grid-template-columns: 1fr;}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Actividades Soporte</a> > Ventilación
+        </div>
+        <h1>VENTILACIÓN</h1>
+        <p>Remoción de humo, calor y gases</p>
+    </header>
+
+    <div class="container">
+        <div class="alert-box">
+            REGLA: COORDINAR con ataque. Línea de agua LISTA antes de ventilar. Comunicación constante
+        </div>
+
+        <div class="section">
+            <h2>Objetivos de la Ventilación</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Mejorar Visibilidad</h4>
+                    <ul>
+                        <li>Remover humo denso</li>
+                        <li>Facilitar búsqueda</li>
+                        <li>Localizar asiento fuego</li>
+                        <li>Identificar víctimas</li>
+                        <li>Evaluar condiciones</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Reducir Temperatura</h4>
+                    <ul>
+                        <li>Liberar gases calientes</li>
+                        <li>Proteger estructura</li>
+                        <li>Condiciones seguras personal</li>
+                        <li>Evitar flashover</li>
+                        <li>Reducir daños</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Salvar Vidas</h4>
+                    <ul>
+                        <li>Aire fresco a víctimas</li>
+                        <li>Reducir inhalación tóxicos</li>
+                        <li>Facilitar escape</li>
+                        <li>Proteger bomberos</li>
+                        <li>Tiempo extra para rescate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tipos de Ventilación</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Vertical (Techo)</h4>
+                    <ul>
+                        <li><strong>Principio:</strong> Calor/humo sube natural</li>
+                        <li><strong>Apertura:</strong> Techo sobre el fuego</li>
+                        <li><strong>Ventaja:</strong> Más efectiva</li>
+                        <li><strong>Uso:</strong> Un solo nivel</li>
+                        <li>Libera presión rápido</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Horizontal (Lateral)</h4>
+                    <ul>
+                        <li><strong>Principio:</strong> Flujo cruzado</li>
+                        <li><strong>Apertura:</strong> Ventanas, puertas</li>
+                        <li><strong>Ventaja:</strong> Rápida, accesible</li>
+                        <li><strong>Uso:</strong> Edificios altura</li>
+                        <li>Control entrada/salida</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Presión Positiva (VPP)</h4>
+                    <ul>
+                        <li><strong>Principio:</strong> Ventilador empuja</li>
+                        <li><strong>Método:</strong> Forzar aire fresco</li>
+                        <li><strong>Ventaja:</strong> Muy efectiva</li>
+                        <li><strong>Uso:</strong> Fuego controlado</li>
+                        <li>Requiere salida adecuada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ventilación Vertical (Techo)</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Cuándo Usar</h4>
+                    <ul>
+                        <li>Fuego en un solo nivel</li>
+                        <li>Techo accesible y seguro</li>
+                        <li>Estructura estable</li>
+                        <li>Humo/calor acumulado arriba</li>
+                        <li>Coordinado con ataque interior</li>
+                        <li>Mejorar condiciones rescate</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Procedimiento</h4>
+                    <ul>
+                        <li>1. Inspeccionar techo seguridad</li>
+                        <li>2. Localizar asiento fuego</li>
+                        <li>3. Cortar SOBRE el fuego</li>
+                        <li>4. Tamaño: 1m x 1m mínimo</li>
+                        <li>5. Coordinar con equipo ataque</li>
+                        <li>6. Abrir cuando línea lista</li>
+                        <li>7. Retirarse ruta segura</li>
+                    </ul>
+                </div>
+
+                <div class="danger-box">
+                    <h4>Peligros Techo</h4>
+                    <ul>
+                        <li>❌ Colapso inminente</li>
+                        <li>❌ Techo metal (cede rápido)</li>
+                        <li>❌ Vigas quemadas</li>
+                        <li>❌ Skylights ocultos</li>
+                        <li>❌ Paneles solares</li>
+                        <li>❌ Líneas eléctricas</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Herramientas</h4>
+                    <ul>
+                        <li>Motosierra (madera)</li>
+                        <li>Sierra circular (techo compuesto)</li>
+                        <li>Hacha (emergencia)</li>
+                        <li>Pica (remover material)</li>
+                        <li>Cuerda vida (seguridad)</li>
+                        <li>Escalera acceso</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ventilación Horizontal</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Método Correcto</h4>
+                    <ul>
+                        <li><strong>1. Abrir SALIDA primero:</strong> Lado opuesto fuego</li>
+                        <li><strong>2. Luego abrir ENTRADA:</strong> Lado del fuego</li>
+                        <li><strong>3. Crear flujo:</strong> Aire entra, humo sale</li>
+                        <li><strong>4. Control:</strong> Tamaño aperturas</li>
+                        <li><strong>5. Posición:</strong> Lateral a ventana</li>
+                        <li>NUNCA frente a apertura</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ventana por Ventana</h4>
+                    <ul>
+                        <li>Empezar cerca del fuego</li>
+                        <li>Progresivo hacia salida</li>
+                        <li>Control dirección humo</li>
+                        <li>Coordinar con búsqueda</li>
+                        <li>No crear corrientes cruzadas</li>
+                        <li>Evitar propagar fuego</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ventilación por Presión Positiva (VPP)</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Configuración</h4>
+                    <ul>
+                        <li><strong>Ventilador:</strong> 1-2m de entrada</li>
+                        <li><strong>Ángulo:</strong> Cono hacia puerta</li>
+                        <li><strong>Altura:</strong> Centro de apertura</li>
+                        <li><strong>Salida:</strong> 2-3 veces área entrada</li>
+                        <li>Sellaar otras aperturas</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Cuándo Usar</h4>
+                    <ul>
+                        <li>Fuego CONTROLADO o extinguido</li>
+                        <li>Nunca en fuego activo sin agua</li>
+                        <li>Limpieza post-incendio</li>
+                        <li>Estructura estable</li>
+                        <li>Personal fuera del edificio</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ventajas</h4>
+                    <ul>
+                        <li>Rápida y efectiva</li>
+                        <li>Presión positiva protege</li>
+                        <li>Controla ruta humo</li>
+                        <li>Mejora visibilidad rápido</li>
+                        <li>Menos personal necesario</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            VPP: NUNCA usar con fuego activo sin control. Puede acelerar fuego y propagarlo
+        </div>
+
+        <div class="section">
+            <h2>Ventilación Natural</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Principio</h4>
+                    <ul>
+                        <li>Diferencia de temperatura</li>
+                        <li>Calor sube, frío baja</li>
+                        <li>Apertura alta: salida</li>
+                        <li>Apertura baja: entrada</li>
+                        <li>Efecto chimenea natural</li>
+                        <li>Sin equipos mecánicos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Limitaciones</h4>
+                    <ul>
+                        <li>Más lenta que mecánica</li>
+                        <li>Depende del viento</li>
+                        <li>Requiere diferencia térmica</li>
+                        <li>Menos control dirección</li>
+                        <li>Clima puede revertir flujo</li>
+                        <li>Uso: Incendios pequeños</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Coordinación con Ataque</h2>
+            <div class="danger-box">
+                <h4>Secuencia Crítica</h4>
+                <ul>
+                    <li><strong>1. PLANEAR:</strong> Decidir tipo ventilación</li>
+                    <li><strong>2. POSICIONAR:</strong> Equipo ventilación listo</li>
+                    <li><strong>3. LÍNEA AGUA:</strong> Lista en posición</li>
+                    <li><strong>4. COMUNICAR:</strong> "Listos para ventilar"</li>
+                    <li><strong>5. CONFIRMAR:</strong> Ataque confirma "Adelante"</li>
+                    <li><strong>6. VENTILAR:</strong> Abrir según plan</li>
+                    <li><strong>7. OBSERVAR:</strong> Reacción del fuego</li>
+                    <li><strong>8. AJUSTAR:</strong> Según condiciones</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            NUNCA ventilar antes que línea de agua esté lista. Puede causar flashover o backdraft
+        </div>
+
+        <div class="section">
+            <h2>Indicadores para Ventilar</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Condiciones Favorables</h4>
+                    <ul>
+                        <li>✓ Humo denso acumulado</li>
+                        <li>✓ Temperatura alta pero controlable</li>
+                        <li>✓ Fuego localizado identificado</li>
+                        <li>✓ Línea agua en posición</li>
+                        <li>✓ Personal de búsqueda listo</li>
+                        <li>✓ Estructura estable</li>
+                        <li>✓ Ruta escape clara</li>
+                    </ul>
+                </div>
+
+                <div class="danger-box">
+                    <h4>NO Ventilar Si</h4>
+                    <ul>
+                        <li>❌ Indicadores backdraft (humo presurizado)</li>
+                        <li>❌ Rollover en techo (pre-flashover)</li>
+                        <li>❌ Estructura inestable</li>
+                        <li>❌ Sin línea agua lista</li>
+                        <li>❌ Fuego origen desconocido</li>
+                        <li>❌ Explosivos/químicos presentes</li>
+                        <li>❌ Personal aún evacuando</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Errores Comunes</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Error: Ventilar Muy Pronto</h4>
+                    <ul>
+                        <li><strong>Resultado:</strong> Acelera fuego</li>
+                        <li><strong>Causa:</strong> Oxígeno fresco</li>
+                        <li><strong>Prevención:</strong> Esperar línea agua</li>
+                        <li>Coordinación es crítica</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Error: Apertura Insuficiente</h4>
+                    <ul>
+                        <li><strong>Resultado:</strong> Ventilación inefectiva</li>
+                        <li><strong>Causa:</strong> Apertura muy pequeña</li>
+                        <li><strong>Prevención:</strong> Tamaño adecuado</li>
+                        <li>Mínimo 1m x 1m</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Error: Dirección Incorrecta</h4>
+                    <ul>
+                        <li><strong>Resultado:</strong> Humo a víctimas/personal</li>
+                        <li><strong>Causa:</strong> No considerar viento</li>
+                        <li><strong>Prevención:</strong> Planear flujo</li>
+                        <li>Evaluar condiciones primero</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Equipos de Ventilación</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>Ventiladores Eléctricos</h4>
+                    <ul>
+                        <li>Potencia: 1-2 HP</li>
+                        <li>Flujo: 8,000-15,000 CFM</li>
+                        <li>Silenciosos</li>
+                        <li>Requieren energía</li>
+                        <li>Uso interior seguro</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ventiladores a Gasolina</h4>
+                    <ul>
+                        <li>Potencia: 2-5 HP</li>
+                        <li>Flujo: 15,000-25,000 CFM</li>
+                        <li>Portátiles autónomos</li>
+                        <li>Ruidosos</li>
+                        <li>Gases escape = Exterior</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ventiladores Hidráulicos</h4>
+                    <ul>
+                        <li>Conexión autobomba</li>
+                        <li>Gran potencia</li>
+                        <li>Sin motor propio</li>
+                        <li>Menos comunes</li>
+                        <li>Versátiles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ventilación en Situaciones Especiales</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Edificios de Altura</h4>
+                    <ul>
+                        <li>Usar escaleras presurizadas</li>
+                        <li>Control piso por piso</li>
+                        <li>Ventanas del piso afectado</li>
+                        <li>NO abrir pisos superiores</li>
+                        <li>Sistema HVAC si operativo</li>
+                        <li>Coordinar con múltiples equipos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Sótanos</h4>
+                    <ul>
+                        <li>Ventilación muy limitada</li>
+                        <li>Usar ventilador en escalera</li>
+                        <li>Abrir ventanas sótano</li>
+                        <li>Cortar piso para apertura</li>
+                        <li>Gases pesados se acumulan</li>
+                        <li>Extrema precaución</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Comercios Grandes</h4>
+                    <ul>
+                        <li>Aperturas en techo críticas</li>
+                        <li>Múltiples puntos ventilación</li>
+                        <li>Usar sistema HVAC</li>
+                        <li>Cortinas humo si existen</li>
+                        <li>Gran volumen = Más tiempo</li>
+                        <li>Varios ventiladores necesarios</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Vehículos</h4>
+                    <ul>
+                        <li>Abrir puertas/ventanas</li>
+                        <li>Capó/maletero si seguro</li>
+                        <li>NO forzar si presión interior</li>
+                        <li>Posición lateral siempre</li>
+                        <li>Ventilador pequeño efectivo</li>
+                        <li>Rápido por tamaño reducido</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Seguridad Personal</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h4>En Techo</h4>
+                    <ul>
+                        <li>Línea vida siempre</li>
+                        <li>Probar resistencia antes pisar</li>
+                        <li>Trabajar desde escalera</li>
+                        <li>Ruta escape identificada</li>
+                        <li>Compañero en suelo</li>
+                        <li>Retirarse si colapso inminente</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>En Ventanas</h4>
+                    <ul>
+                        <li>Posición lateral SIEMPRE</li>
+                        <li>Protección facial</li>
+                        <li>Anticipar backdraft</li>
+                        <li>No apoyarse en marco</li>
+                        <li>Alejarse tras abrir</li>
+                        <li>Observar reacción fuego</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Con Ventiladores</h4>
+                    <ul>
+                        <li>Estabilizar equipo</li>
+                        <li>Cables seguros</li>
+                        <li>Lejos de agua</li>
+                        <li>Protección auditiva</li>
+                        <li>Monitorear constantemente</li>
+                        <li>Apagar si condiciones cambian</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            RECORDAR: Ventilación = Herramienta poderosa. Mal usada = Acelera fuego. Bien usada = Salva vidas
+        </div>
+    </div>
+</body>
+</html>
