@@ -4,21 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fases del Incendio - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
     <style>
-        :root {
-            --primary-red: #e74c3c;
-            --primary-dark-red: #c0392b;
-            --success-green: #27ae60;
-            --warning-orange: #f39c12;
-            --dark-gray: #2c3e50;
-            --white: #ffffff;
-            --light-gray: #ecf0f1;
-            --blue: #3498db;
-            --purple: #9b59b6;
-            --yellow: #f1c40f;
-            --danger-red: #c0392b;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -26,312 +13,205 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-            color: var(--dark-gray);
-            line-height: 1.6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
-            color: var(--white);
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .breadcrumb {
-            font-size: 0.8em;
-            margin-bottom: 8px;
-            opacity: 0.9;
+            font-size: 0.9em;
+            margin-bottom: 10px;
         }
 
         .breadcrumb a {
-            color: var(--white);
+            color: #F2E4C9;
             text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
         }
 
         .header h1 {
-            font-size: 1.6em;
+            font-size: 1.8em;
             margin-bottom: 5px;
         }
 
-        .header p {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .content-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            color: var(--primary-red);
-            font-size: 1.3em;
-            font-weight: bold;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        /* Timeline de fases */
-        .timeline {
-            position: relative;
-            margin: 30px 0;
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--primary-red);
-            transform: translateX(-50%);
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
-        .phase-item {
-            position: relative;
-            margin: 30px 0;
-            width: 100%;
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
-        .phase-item:nth-child(odd) .phase-content {
-            margin-left: 0;
-            margin-right: 50%;
-            padding-right: 30px;
-            text-align: right;
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
         }
 
-        .phase-item:nth-child(even) .phase-content {
-            margin-left: 50%;
-            margin-right: 0;
-            padding-left: 30px;
-            text-align: left;
+        .phase-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
         }
 
-        .phase-marker {
-            position: absolute;
-            left: 50%;
-            top: 20px;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-red);
+        .phase-number {
+            background: #8C0303;
+            color: #F2E4C9;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            transform: translateX(-50%);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2em;
-            color: var(--white);
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .phase-content {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--primary-red);
-        }
-
-        .phase-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: var(--primary-red);
             margin-bottom: 10px;
         }
 
-        .phase-characteristics {
-            background: var(--light-gray);
-            padding: 12px;
-            border-radius: 8px;
-            margin: 10px 0;
-        }
-
-        .phase-char-title {
+        .phase-title {
             font-weight: bold;
-            margin-bottom: 5px;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
-        /* Fases específicas con colores */
-        .iniciacion { border-left-color: var(--success-green); }
-        .iniciacion .phase-marker { background: var(--success-green); }
-
-        .crecimiento { border-left-color: var(--warning-orange); }
-        .crecimiento .phase-marker { background: var(--warning-orange); }
-
-        .desarrollo { border-left-color: var(--primary-red); }
-        .desarrollo .phase-marker { background: var(--primary-red); }
-
-        .decaimiento { border-left-color: var(--blue); }
-        .decaimiento .phase-marker { background: var(--blue); }
-
-        /* Fenómenos especiales */
-        .special-phenomena {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .phenomenon-card {
-            border-radius: 10px;
-            padding: 20px;
-            color: var(--white);
-            text-align: center;
-            position: relative;
-        }
-
-        .flashover { background: linear-gradient(135deg, var(--danger-red), #8b0000); }
-        .backdraft { background: linear-gradient(135deg, var(--purple), #6a0d83); }
-        .rollover { background: linear-gradient(135deg, var(--warning-orange), #d35400); }
-
-        .phenomenon-icon {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .phenomenon-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .phenomenon-description {
-            background: rgba(255, 255, 255, 0.2);
+        .phase-chars {
+            background: #0D0D0D;
+            color: #F2E4C9;
             padding: 12px;
-            border-radius: 8px;
             margin: 10px 0;
             font-size: 0.9em;
         }
 
-        .phenomenon-warning {
-            background: rgba(255, 255, 255, 0.3);
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.85em;
+        .phase-strategy {
+            font-size: 0.9em;
+            margin-top: 8px;
         }
 
-        /* Gráfico de temperatura */
-        .temperature-graph {
-            background: var(--light-gray);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .graph-visual {
-            font-size: 2em;
-            margin: 15px 0;
-            color: var(--primary-red);
-        }
-
-        /* Estrategias por fase */
-        .strategies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .strategy-card {
-            background: var(--success-green);
-            color: var(--white);
+        .phenomenon-card {
+            background: #8C0303;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
             text-align: center;
         }
 
-        .strategy-phase {
+        .phenomenon-title {
             font-weight: bold;
             font-size: 1.1em;
             margin-bottom: 10px;
+        }
+
+        .phenomenon-desc {
+            background: rgba(242, 228, 201, 0.2);
+            padding: 10px;
+            margin: 8px 0;
+            font-size: 0.9em;
+        }
+
+        .strategy-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .strategy-title {
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.05em;
         }
 
         .strategy-actions {
             font-size: 0.9em;
-            line-height: 1.4;
         }
 
-        /* Punto clave */
-        .key-point {
-            background: linear-gradient(135deg, var(--warning-orange), #e67e22);
-            color: var(--white);
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
             font-weight: bold;
         }
 
-        /* Warning box */
-        .warning-box {
-            background: #e74c3c;
-            color: var(--white);
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
             padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 5px solid #c0392b;
         }
 
-        .warning-title {
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 8px;
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
         }
 
-        /* Responsive */
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .temp-visual {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .temp-visual h3 {
+            color: #8C0303;
+            margin-bottom: 15px;
+        }
+
+        .graph-line {
+            font-size: 2em;
+            color: #BF3604;
+            margin: 15px 0;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .content-section {
-                padding: 15px;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .phase-item .phase-content {
-                margin-left: 50px;
-                margin-right: 0;
-                padding-left: 20px;
-                padding-right: 0;
-                text-align: left;
-            }
-
-            .phase-marker {
-                left: 20px;
-            }
-
-            .special-phenomena,
-            .strategies-grid {
+            .grid-2, .grid-3, .grid-4 {
                 grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .header h1 {
-                font-size: 1.4em;
             }
         }
     </style>
@@ -339,147 +219,130 @@
 <body>
     <header class="header">
         <div class="breadcrumb">
-            <a href="../../../index.html">Inicio</a> > 
-            <a href="../../">Módulos</a> > 
-            <a href="../index.html">Comportamiento del Fuego</a> >
-            Fases del Incendio
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Comportamiento del Fuego</a> > Fases del Incendio
         </div>
-        <h1>📈 Fases del Incendio</h1>
+        <h1>FASES DEL INCENDIO</h1>
         <p>Evolución temporal y fenómenos críticos</p>
     </header>
 
     <div class="container">
-        <!-- Introducción -->
-        <div class="content-section">
-            <h2 class="section-title">🔥 ¿Por qué Conocer las Fases?</h2>
-            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+        <div class="section">
+            <h2>Por Qué Conocer las Fases</h2>
+            <div class="info-box">
                 <p><strong>Cada fase del incendio requiere tácticas diferentes.</strong></p>
-                <p>Conocer la fase permite:</p>
-                <ul style="margin: 10px 0 10px 20px;">
-                    <li>🎯 <strong>Elegir la táctica correcta</strong> de ataque</li>
-                    <li>⚡ <strong>Predecir fenómenos peligrosos</strong> como flashover</li>
-                    <li>🛡️ <strong>Proteger al personal</strong> y víctimas</li>
-                    <li>💧 <strong>Optimizar uso del agua</strong> y recursos</li>
+                <p><strong>Conocer la fase permite:</strong></p>
+                <ul>
+                    <li>Elegir la táctica correcta de ataque</li>
+                    <li>Predecir fenómenos peligrosos como flashover</li>
+                    <li>Proteger al personal y víctimas</li>
+                    <li>Optimizar uso del agua y recursos</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Timeline de las 4 fases -->
-        <div class="content-section">
-            <h2 class="section-title">⏱️ Las 4 Fases del Incendio</h2>
-            
-            <div class="timeline">
-                <!-- Fase 1: Iniciación -->
-                <div class="phase-item">
-                    <div class="phase-marker">1</div>
-                    <div class="phase-content iniciacion">
-                        <div class="phase-title">🌱 INICIACIÓN (Incipiente)</div>
-                        <div class="phase-characteristics">
-                            <div class="phase-char-title">Características:</div>
-                            • Temperatura ambiente<br>
-                            • Llamas pequeñas y localizadas<br>
-                            • Poco humo, claro o blanco<br>
-                            • Oxígeno abundante (21%)
-                        </div>
-                        <p><strong>Duración:</strong> Minutos a horas (depende del combustible)</p>
-                        <p><strong>Mejor momento para extinción fácil</strong></p>
+        <div class="section">
+            <h2>Las 4 Fases del Incendio</h2>
+            <div class="grid-4">
+                <div class="phase-card">
+                    <span class="phase-number">1</span>
+                    <div class="phase-title">INICIACIÓN (Incipiente)</div>
+                    <div class="phase-chars">
+                        <strong>Características:</strong><br>
+                        • Temperatura ambiente<br>
+                        • Llamas pequeñas y localizadas<br>
+                        • Poco humo, claro o blanco<br>
+                        • Oxígeno abundante (21%)
+                    </div>
+                    <div class="phase-strategy">
+                        <strong>Duración:</strong> Minutos a horas<br>
+                        <strong>Mejor momento para extinción fácil</strong>
                     </div>
                 </div>
 
-                <!-- Fase 2: Crecimiento -->
-                <div class="phase-item">
-                    <div class="phase-marker">2</div>
-                    <div class="phase-content crecimiento">
-                        <div class="phase-title">📈 CRECIMIENTO</div>
-                        <div class="phase-characteristics">
-                            <div class="phase-char-title">Características:</div>
-                            • Temperatura aumenta rápidamente<br>
-                            • Llamas se expanden<br>
-                            • Humo más denso y oscuro<br>
-                            • Oxígeno disminuye (16-21%)
-                        </div>
-                        <p><strong>PELIGRO:</strong> Posible transición a flashover</p>
-                        <p><strong>Ataque agresivo antes del flashover</strong></p>
+                <div class="phase-card">
+                    <span class="phase-number">2</span>
+                    <div class="phase-title">CRECIMIENTO</div>
+                    <div class="phase-chars">
+                        <strong>Características:</strong><br>
+                        • Temperatura aumenta rápidamente<br>
+                        • Llamas se expanden<br>
+                        • Humo más denso y oscuro<br>
+                        • Oxígeno disminuye (16-21%)
+                    </div>
+                    <div class="phase-strategy">
+                        <strong>PELIGRO:</strong> Posible transición a flashover<br>
+                        <strong>Ataque agresivo antes del flashover</strong>
                     </div>
                 </div>
 
-                <!-- Fase 3: Desarrollo Completo -->
-                <div class="phase-item">
-                    <div class="phase-marker">3</div>
-                    <div class="phase-content desarrollo">
-                        <div class="phase-title">🔥 DESARROLLO COMPLETO</div>
-                        <div class="phase-characteristics">
-                            <div class="phase-char-title">Características:</div>
-                            • Temperatura máxima (800-1200°C)<br>
-                            • Todo el combustible arde<br>
-                            • Humo negro y denso<br>
-                            • Oxígeno limitado (12-16%)
-                        </div>
-                        <p><strong>MÁXIMO PELIGRO:</strong> Flashover, backdraft, colapso</p>
-                        <p><strong>Ataque defensivo y protección de exposiciones</strong></p>
+                <div class="phase-card">
+                    <span class="phase-number">3</span>
+                    <div class="phase-title">DESARROLLO COMPLETO</div>
+                    <div class="phase-chars">
+                        <strong>Características:</strong><br>
+                        • Temperatura máxima (800-1200°C)<br>
+                        • Todo el combustible arde<br>
+                        • Humo negro y denso<br>
+                        • Oxígeno limitado (12-16%)
+                    </div>
+                    <div class="phase-strategy">
+                        <strong>MÁXIMO PELIGRO:</strong> Flashover, backdraft, colapso<br>
+                        <strong>Ataque defensivo y proteger exposiciones</strong>
                     </div>
                 </div>
 
-                <!-- Fase 4: Decaimiento -->
-                <div class="phase-item">
-                    <div class="phase-marker">4</div>
-                    <div class="phase-content decaimiento">
-                        <div class="phase-title">📉 DECAIMIENTO</div>
-                        <div class="phase-characteristics">
-                            <div class="phase-char-title">Características:</div>
-                            • Temperatura disminuye<br>
-                            • Combustible se agota<br>
-                            • Menos llamas visibles<br>
-                            • Oxígeno muy limitado (&lt;12%)
-                        </div>
-                        <p><strong>PELIGRO:</strong> Posible backdraft al ventilar</p>
-                        <p><strong>Ventilación cuidadosa y revisión de puntos calientes</strong></p>
+                <div class="phase-card">
+                    <span class="phase-number">4</span>
+                    <div class="phase-title">DECAIMIENTO</div>
+                    <div class="phase-chars">
+                        <strong>Características:</strong><br>
+                        • Temperatura disminuye<br>
+                        • Combustible se agota<br>
+                        • Menos llamas visibles<br>
+                        • Oxígeno muy limitado (<12%)
+                    </div>
+                    <div class="phase-strategy">
+                        <strong>PELIGRO:</strong> Posible backdraft al ventilar<br>
+                        <strong>Ventilación cuidadosa y revisar puntos calientes</strong>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Gráfico visual de temperatura -->
-        <div class="temperature-graph">
-            <h3 style="color: var(--primary-red); margin-bottom: 15px;">🌡️ Curva de Temperatura vs Tiempo</h3>
-            <div class="graph-visual">
-                📈 ⬆️ 🔥 ⬇️
+        <div class="section">
+            <div class="temp-visual">
+                <h3>Curva de Temperatura vs Tiempo</h3>
+                <div class="graph-line">📈 ⬆ 🔥 ⬇</div>
+                <p><strong>Iniciación → Crecimiento → Desarrollo → Decaimiento</strong></p>
+                <p style="font-size: 0.9em; margin-top: 10px;">
+                    La ventilación inadecuada puede reiniciar el ciclo o causar fenómenos peligrosos
+                </p>
             </div>
-            <p><strong>Iniciación → Crecimiento → Desarrollo → Decaimiento</strong></p>
-            <p style="font-size: 0.9em; margin-top: 10px; color: var(--dark-gray);">
-                La ventilación inadecuada puede reiniciar el ciclo o causar fenómenos peligrosos
-            </p>
         </div>
 
-        <!-- Fenómenos especiales -->
-        <div class="content-section">
-            <h2 class="section-title">⚠️ Fenómenos Peligrosos</h2>
-            
-            <div class="special-phenomena">
-                <!-- Flashover -->
-                <div class="phenomenon-card flashover">
-                    <span class="phenomenon-icon">💥</span>
+        <div class="section">
+            <h2>Fenómenos Peligrosos</h2>
+            <div class="grid-3">
+                <div class="phenomenon-card">
                     <div class="phenomenon-title">FLASHOVER</div>
-                    <div class="phenomenon-description">
+                    <div class="phenomenon-desc">
                         <strong>Ignición súbita simultánea</strong> de todos los materiales combustibles en un espacio cerrado
                     </div>
-                    <div class="phenomenon-warning">
-                        🚨 CONDICIONES:<br>
+                    <div class="phenomenon-desc">
+                        <strong>CONDICIONES:</strong><br>
                         • Temperatura de techo > 600°C<br>
                         • Gases calientes acumulados<br>
                         • Radiación intensa
                     </div>
                 </div>
 
-                <!-- Backdraft -->
-                <div class="phenomenon-card backdraft">
-                    <span class="phenomenon-icon">💨</span>
+                <div class="phenomenon-card">
                     <div class="phenomenon-title">BACKDRAFT</div>
-                    <div class="phenomenon-description">
-                        <strong>Explosión por entrada súbita</strong> de oxígeno en un espacio con combustión limitada
+                    <div class="phenomenon-desc">
+                        <strong>Explosión por entrada súbita</strong> de oxígeno en espacio con combustión limitada
                     </div>
-                    <div class="phenomenon-warning">
-                        🚨 SEÑALES:<br>
+                    <div class="phenomenon-desc">
+                        <strong>SEÑALES:</strong><br>
                         • Humo que sale por grietas<br>
                         • Humo amarillento<br>
                         • Ventanas manchadas<br>
@@ -487,15 +350,13 @@
                     </div>
                 </div>
 
-                <!-- Rollover -->
-                <div class="phenomenon-card rollover">
-                    <span class="phenomenon-icon">🌊</span>
+                <div class="phenomenon-card">
                     <div class="phenomenon-title">ROLLOVER</div>
-                    <div class="phenomenon-description">
+                    <div class="phenomenon-desc">
                         <strong>Llamas en el techo</strong> por ignición de gases no quemados acumulados
                     </div>
-                    <div class="phenomenon-warning">
-                        🚨 PRECURSOR:<br>
+                    <div class="phenomenon-desc">
+                        <strong>PRECURSOR:</strong><br>
                         • Antesala del flashover<br>
                         • Gases calientes visibles<br>
                         • Ondas de calor en el techo
@@ -504,20 +365,15 @@
             </div>
         </div>
 
-        <!-- Warning crítico -->
-        <div class="warning-box">
-            <div class="warning-title">🚨 PELIGRO MORTAL</div>
-            <p><strong>El flashover puede ocurrir en 3-5 minutos</strong> desde el inicio del incendio en espacios pequeños.</p>
-            <p>Temperatura del flashover: <strong>600°C</strong> - Supervivencia humana: <strong>0%</strong></p>
+        <div class="alert-box">
+            PELIGRO MORTAL: El flashover puede ocurrir en 3-5 minutos desde el inicio del incendio en espacios pequeños. Temperatura del flashover: 600°C - Supervivencia humana: 0%
         </div>
 
-        <!-- Estrategias por fase -->
-        <div class="content-section">
-            <h2 class="section-title">🚒 Estrategias por Fase</h2>
-            
-            <div class="strategies-grid">
-                <div class="strategy-card" style="background: var(--success-green);">
-                    <div class="strategy-phase">INICIACIÓN</div>
+        <div class="section">
+            <h2>Estrategias por Fase</h2>
+            <div class="grid-4">
+                <div class="strategy-card">
+                    <div class="strategy-title">INICIACIÓN</div>
                     <div class="strategy-actions">
                         • Ataque directo agresivo<br>
                         • Extintor portátil puede ser suficiente<br>
@@ -526,8 +382,8 @@
                     </div>
                 </div>
 
-                <div class="strategy-card" style="background: var(--warning-orange);">
-                    <div class="strategy-phase">CRECIMIENTO</div>
+                <div class="strategy-card">
+                    <div class="strategy-title">CRECIMIENTO</div>
                     <div class="strategy-actions">
                         • Ataque combinado directo/indirecto<br>
                         • Ventilación coordinada<br>
@@ -536,8 +392,8 @@
                     </div>
                 </div>
 
-                <div class="strategy-card" style="background: var(--primary-red);">
-                    <div class="strategy-phase">DESARROLLO</div>
+                <div class="strategy-card">
+                    <div class="strategy-title">DESARROLLO</div>
                     <div class="strategy-actions">
                         • Ataque defensivo<br>
                         • Proteger exposiciones<br>
@@ -546,8 +402,8 @@
                     </div>
                 </div>
 
-                <div class="strategy-card" style="background: var(--blue);">
-                    <div class="strategy-phase">DECAIMIENTO</div>
+                <div class="strategy-card">
+                    <div class="strategy-title">DECAIMIENTO</div>
                     <div class="strategy-actions">
                         • Ventilación cuidadosa<br>
                         • Prevenir backdraft<br>
@@ -558,24 +414,47 @@
             </div>
         </div>
 
-        <!-- Punto clave -->
-        <div class="key-point">
-            🎯 REGLA DE ORO: Identifica la fase ANTES de elegir táctica. Una táctica incorrecta puede ser MORTAL.
+        <div class="section">
+            <h2>Tiempos Críticos</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Tiempo de Flashover:</h4>
+                    <ul>
+                        <li><strong>Habitación pequeña:</strong> 3-5 minutos</li>
+                        <li><strong>Habitación mediana:</strong> 5-10 minutos</li>
+                        <li><strong>Espacio grande:</strong> 10-20 minutos</li>
+                        <li><strong>Con ventilación:</strong> Tiempo reducido 50%</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Supervivencia en Flashover:</h4>
+                    <ul>
+                        <li><strong>Sin EPP:</strong> 0% supervivencia</li>
+                        <li><strong>Con EPP:</strong> Quemaduras graves en segundos</li>
+                        <li><strong>Mejor opción:</strong> SALIR ANTES del flashover</li>
+                        <li><strong>Señal de escape:</strong> Rollover en el techo</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <!-- Para recordar en campo -->
-        <div class="content-section">
-            <h2 class="section-title">🎯 Para Recordar en Campo</h2>
-            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
-                <p><strong>✅ Indicadores rápidos de fase:</strong></p>
-                <ul style="margin: 10px 0 10px 20px;">
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>Indicadores rápidos de fase:</strong></p>
+                <ul>
                     <li><strong>Humo blanco/claro</strong> = Iniciación → Ataque agresivo</li>
                     <li><strong>Humo gris oscuro</strong> = Crecimiento → Cuidado con flashover</li>
                     <li><strong>Humo negro denso</strong> = Desarrollo → Ataque defensivo</li>
                     <li><strong>Humo amarillento por grietas</strong> = Decaimiento → Cuidado con backdraft</li>
                 </ul>
-                <p><strong>🚨 Si ves rollover en el techo:</strong> SALIR INMEDIATAMENTE - Flashover inminente.</p>
+                <p style="margin-top: 10px;"><strong>Si ves rollover en el techo:</strong> SALIR INMEDIATAMENTE - Flashover inminente.</p>
             </div>
+        </div>
+
+        <div class="alert-box">
+            REGLA DE ORO: Identifica la fase ANTES de elegir táctica. Una táctica incorrecta puede ser MORTAL
         </div>
     </div>
 </body>

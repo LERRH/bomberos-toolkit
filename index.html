@@ -17,8 +17,8 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #0D0D0D;
-            color: #F2E4C9;
+            background: #F2E4C9;
+            color: #0D0D0D;
             line-height: 1.6;
         }
 
@@ -43,80 +43,75 @@
         }
 
         .header-text h1 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 600;
         }
 
         .header-text p {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             opacity: 0.9;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
 
         .section {
-            margin-bottom: 30px;
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 15px;
+            margin-bottom: 15px;
         }
 
         .section-title {
-            background: #BF3604;
-            color: #F2E4C9;
-            padding: 12px 20px;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+            color: #BF3604;
+            font-size: 1.1em;
             font-weight: 600;
-            border-left: 5px solid #8C0303;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 8px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+        .list-container {
+            list-style: none;
+            padding: 0;
         }
 
-        .card {
-            background: #0D0D0D;
-            border: 2px solid #8C0303;
-            padding: 20px;
-            text-align: center;
+        .list-item {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 12px 15px;
+            margin-bottom: 8px;
             cursor: pointer;
             transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-item:hover {
+            background: #BF3604;
             color: #F2E4C9;
         }
 
-        .card:hover {
-            background: #8C0303;
-            border-color: #BF3604;
-        }
-
-        .card h3 {
-            font-size: 1rem;
+        .item-title {
             font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .card p {
-            font-size: 0.85rem;
-            opacity: 0.8;
+            font-size: 0.9rem;
         }
 
         .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            font-size: 0.7rem;
+            padding: 3px 8px;
+            font-size: 0.65rem;
             font-weight: 600;
-            margin-top: 8px;
-            background: #BF3604;
+            background: #8C0303;
             color: #F2E4C9;
         }
 
         .badge.external {
-            background: #F2E4C9;
-            color: #0D0D0D;
+            background: #0D0D0D;
+            color: #F2E4C9;
         }
 
         .footer {
@@ -137,9 +132,8 @@
                 font-size: 1.4rem;
             }
             
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+            .list-item {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -157,101 +151,75 @@
 
     <main class="container">
         <section class="section">
-            <h2 class="section-title">ENLACES DE SERVICIO</h2>
-            <div class="grid">
-                <div class="card" onclick="window.open('https://sgonorte.bomberosperu.gob.pe/24horas','_blank')">
-                    <h3>Emergencias 24h</h3>
-                    <p>Sistema en línea</p>
-                    <span class="badge external">ENLACE EXTERNO</span>
-                </div>
-                <div class="card" onclick="window.open('https://www.bomberosperu.gob.pe/sgo/ceem/SGO_CEEM_CDVehiculos.asp','_blank')">
-                    <h3>Unidades</h3>
-                    <p>Vehículos en servicio</p>
-                    <span class="badge external">ENLACE EXTERNO</span>
-                </div>
-                <div class="card" onclick="window.open('https://cel.sis.gob.pe/SisConsultaEnLinea','_blank')">
-                    <h3>Verificar SIS</h3>
-                    <p>Consulta afiliación</p>
-                    <span class="badge external">ENLACE EXTERNO</span>
-                </div>
-                <div class="card" onclick="window.open('https://dondemeatiendo.essalud.gob.pe/#/consulta','_blank')">
-                    <h3>Verificar EsSalud</h3>
-                    <p>Dónde me atienden</p>
-                    <span class="badge external">ENLACE EXTERNO</span>
-                </div>
-                <div class="card" onclick="window.open('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio','_blank')">
-                    <h3>Consulta Vehicular</h3>
-                    <p>SUNARP</p>
-                    <span class="badge external">ENLACE EXTERNO</span>
-                </div>
-                <div class="card" onclick="window.open('https://www.interseguro.pe/soat/consulta-soat','_blank')">
-                    <h3>Consulta SOAT</h3>
-                    <p>Verificar seguro</p>
-                    <span class="badge external">ENLACE EXTERNO</span>
-                </div>
-            </div>
+            <h2 class="section-title">SERVICIOS</h2>
+            <ul class="list-container">
+                <li class="list-item" onclick="window.open('https://sgonorte.bomberosperu.gob.pe/24horas','_blank')">
+                    <span class="item-title">Emergencias 24h</span>
+                    <span class="badge external">EXTERNO</span>
+                </li>
+                <li class="list-item" onclick="window.open('https://www.bomberosperu.gob.pe/sgo/ceem/SGO_CEEM_CDVehiculos.asp','_blank')">
+                    <span class="item-title">Unidades en Servicio</span>
+                    <span class="badge external">EXTERNO</span>
+                </li>
+                <li class="list-item" onclick="window.open('https://cel.sis.gob.pe/SisConsultaEnLinea','_blank')">
+                    <span class="item-title">SIS</span>
+                    <span class="badge external">EXTERNO</span>
+                </li>
+                <li class="list-item" onclick="window.open('https://dondemeatiendo.essalud.gob.pe/#/consulta','_blank')">
+                    <span class="item-title">EsSalud</span>
+                    <span class="badge external">EXTERNO</span>
+                </li>
+                <li class="list-item" onclick="window.open('https://www.interseguro.pe/soat/consulta-soat','_blank')">
+                    <span class="item-title">SOAT</span>
+                    <span class="badge external">EXTERNO</span>
+                </li>
+                <li class="list-item" onclick="window.open('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio','_blank')">
+                    <span class="item-title">Consulta Vehicular</span>
+                    <span class="badge external">EXTERNO</span>
+                </li>
+            </ul>
         </section>
 
         <section class="section">
             <h2 class="section-title">HERRAMIENTAS</h2>
-            <div class="grid">
-                <div class="card" onclick="location.href='herramientas/claves/index.html'">
-                    <h3>Claves de Comunicación</h3>
-                    <p>Códigos de radio</p>
-                    <span class="badge">DISPONIBLE</span>
-                </div>
-                <div class="card" onclick="location.href='herramientas/rcp-timer/index.html'">
-                    <h3>Timer RCP</h3>
-                    <p>Cronómetro reanimación</p>
-                    <span class="badge">DISPONIBLE</span>
-                </div>
-                <div class="card" onclick="location.href='herramientas/glasgow/index.html'">
-                    <h3>Escala Glasgow</h3>
-                    <p>Nivel de consciencia</p>
-                    <span class="badge">DISPONIBLE</span>
-                </div>
-                <div class="card" onclick="location.href='herramientas/signos-vitales/index.html'">
-                    <h3>Signos Vitales</h3>
-                    <p>Tablas por edad</p>
-                    <span class="badge">DISPONIBLE</span>
-                </div>
-                <div class="card" onclick="location.href='herramientas/conversor/index.html'">
-                    <h3>Conversor</h3>
-                    <p>Unidades y medidas</p>
-                    <span class="badge">DISPONIBLE</span>
-                </div>
-            </div>
+            <ul class="list-container">
+                <li class="list-item" onclick="location.href='herramientas/claves/index.html'">
+                    <span class="item-title">Claves</span>
+                </li>
+                <li class="list-item" onclick="location.href='herramientas/rcp-timer/index.html'">
+                    <span class="item-title">RCP Timer</span>
+                </li>
+                <li class="list-item" onclick="location.href='herramientas/glasgow/index.html'">
+                    <span class="item-title">Glasgow</span>
+                </li>
+                <li class="list-item" onclick="location.href='herramientas/signos-vitales/index.html'">
+                    <span class="item-title">Signos Vitales</span>
+                </li>
+                <li class="list-item" onclick="location.href='herramientas/conversor/index.html'">
+                    <span class="item-title">Conversor</span>
+                </li>
+            </ul>
         </section>
 
         <section class="section">
             <h2 class="section-title">MÓDULOS</h2>
-            <div class="grid">
-                <div class="card" onclick="location.href='modulos/atencion-prehospitalaria/index.html'">
-                    <h3>Atención Prehospitalaria</h3>
-                    <p>Protocolos médicos</p>
-                    <span class="badge">EN DESARROLLO</span>
-                </div>
-                <div class="card" onclick="location.href='modulos/comportamiento-fuego/index.html'">
-                    <h3>Comportamiento del Fuego</h3>
-                    <p>Ciencia del fuego</p>
-                    <span class="badge">EN DESARROLLO</span>
-                </div>
-                <div class="card" onclick="location.href='modulos/equipos-materiales/index.html'">
-                    <h3>Equipos y Materiales</h3>
-                    <p>EPP y herramientas</p>
-                    <span class="badge">EN DESARROLLO</span>
-                </div>
-                <div class="card" onclick="location.href='modulos/actividades-soporte/index.html'">
-                    <h3>Actividades de Soporte</h3>
-                    <p>Comunicaciones y logística</p>
-                    <span class="badge">EN DESARROLLO</span>
-                </div>
-                <div class="card" onclick="location.href='modulos/combate-incendio/index.html'">
-                    <h3>Combate contra Incendio</h3>
-                    <p>Técnicas y tácticas</p>
-                    <span class="badge">EN DESARROLLO</span>
-                </div>
-            </div>
+            <ul class="list-container">
+                <li class="list-item" onclick="location.href='modulos/atencion-prehospitalaria/index.html'">
+                    <span class="item-title">Atención Prehospitalaria</span>
+                </li>
+                <li class="list-item" onclick="location.href='modulos/comportamiento-fuego/index.html'">
+                    <span class="item-title">Comportamiento del Fuego</span>
+                </li>
+                <li class="list-item" onclick="location.href='modulos/equipos-materiales/index.html'">
+                    <span class="item-title">Equipos y Materiales</span>
+                </li>
+                <li class="list-item" onclick="location.href='modulos/actividades-soporte/index.html'">
+                    <span class="item-title">Actividades de Soporte</span>
+                </li>
+                <li class="list-item" onclick="location.href='modulos/combate-incendio/index.html'">
+                    <span class="item-title">Combate contra Incendio</span>
+                </li>
+            </ul>
         </section>
     </main>
 

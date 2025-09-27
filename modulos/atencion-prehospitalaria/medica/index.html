@@ -45,34 +45,6 @@
             margin-bottom: 5px;
         }
 
-        .nav-menu {
-            background: #0D0D0D;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-btn {
-            background: #BF3604;
-            color: #F2E4C9;
-            padding: 8px 15px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s;
-            font-size: 0.85em;
-        }
-
-        .nav-btn:hover {
-            background: #8C0303;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -96,7 +68,7 @@
 
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-bottom: 15px;
         }
@@ -183,7 +155,6 @@
         table td {
             background: #F2E4C9;
             color: #0D0D0D;
-            font-size: 0.9em;
         }
 
         .protocol-steps {
@@ -204,14 +175,6 @@
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
-                flex-direction: column;
-            }
-
-            .nav-btn {
-                width: 100%;
-            }
-
             .values-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -239,17 +202,6 @@
         <h1>EMERGENCIAS MÉDICAS</h1>
         <p>Manejo de crisis médicas agudas</p>
     </header>
-
-    <div class="nav-menu">
-        <button class="nav-btn" onclick="scrollTo('diabetes')">Diabetes</button>
-        <button class="nav-btn" onclick="scrollTo('convulsiones')">Convulsiones</button>
-        <button class="nav-btn" onclick="scrollTo('coronario')">Coronario</button>
-        <button class="nav-btn" onclick="scrollTo('asma')">Asma</button>
-        <button class="nav-btn" onclick="scrollTo('acv')">ACV</button>
-        <button class="nav-btn" onclick="scrollTo('anafilaxia')">Anafilaxia</button>
-        <button class="nav-btn" onclick="scrollTo('hipertension')">HTA</button>
-        <button class="nav-btn" onclick="scrollTo('traslado')">Traslado</button>
-    </div>
 
     <div class="container">
         <div class="section">
@@ -282,7 +234,7 @@
             </div>
         </div>
 
-        <div class="section" id="diabetes">
+        <div class="section">
             <h2>Crisis Diabéticas</h2>
             <div class="grid-2">
                 <div class="info-box">
@@ -293,11 +245,10 @@
                         <li><strong>Evolución:</strong> Rápida (minutos)</li>
                     </ul>
                     <div class="protocol-steps">
-                        <h4>MANEJO (Bomberos)</h4>
-                        <div class="step">Consciente: Azúcar oral/bebida azucarada</div>
-                        <div class="step">Inconsciente: Traslado urgente</div>
-                        <div class="step">Oxígeno si necesario</div>
-                        <div class="step">Monitoreo continuo</div>
+                        <h4>TRATAMIENTO</h4>
+                        <div class="step">Consciente: Glucosa oral 15-20g</div>
+                        <div class="step">Inconsciente: Glucosa IV 25g (D50% 50ml)</div>
+                        <div class="step">Alternativo: Glucagón 1mg IM</div>
                     </div>
                 </div>
 
@@ -309,20 +260,19 @@
                         <li><strong>Evolución:</strong> Lenta (horas-días)</li>
                     </ul>
                     <div class="protocol-steps">
-                        <h4>MANEJO (Bomberos)</h4>
-                        <div class="step">Oxígeno si hipoxemia</div>
-                        <div class="step">Posición confortable</div>
-                        <div class="step">Traslado urgente</div>
-                        <div class="step">Monitoreo signos vitales</div>
+                        <h4>TRATAMIENTO</h4>
+                        <div class="step">Rehidratación: Solución salina 0.9%</div>
+                        <div class="step">Adultos: 1-2L primera hora</div>
+                        <div class="step">Insulina: Solo en hospital</div>
                     </div>
                 </div>
             </div>
             <div class="alert-box">
-                Bomberos: Solo azúcar oral si consciente. Traslado urgente si inconsciente.
+                SIEMPRE verificar glucemia antes de administrar glucosa
             </div>
         </div>
 
-        <div class="section" id="convulsiones">
+        <div class="section">
             <h2>Crisis Convulsivas</h2>
             <div class="grid-2">
                 <div class="info-box">
@@ -339,10 +289,10 @@
                 <div class="info-box">
                     <h4>Estatus Epiléptico (&gt;5 min)</h4>
                     <ul>
-                        <li><strong>Bomberos:</strong> Traslado urgente inmediato</li>
-                        <li><strong>Oxígeno:</strong> Alto flujo</li>
-                        <li><strong>Posición:</strong> Lateral de seguridad</li>
-                        <li><strong>Proteger:</strong> Vía aérea</li>
+                        <li><strong>Tratamiento:</strong> Diazepam 5-10mg IV</li>
+                        <li><strong>Alternativo:</strong> Midazolam 5mg IM</li>
+                        <li><strong>Repetir:</strong> A los 5 min si persiste</li>
+                        <li><strong>Traslado:</strong> Urgente</li>
                     </ul>
                 </div>
             </div>
@@ -352,14 +302,14 @@
                 <ul>
                     <li>Posición de seguridad</li>
                     <li>Oxígeno si hipoxemia</li>
+                    <li>Verificar glucemia</li>
                     <li>Examinar traumatismos</li>
                     <li>Tranquilizar al paciente</li>
-                    <li>Traslado para evaluación</li>
                 </ul>
             </div>
         </div>
 
-        <div class="section" id="coronario">
+        <div class="section">
             <h2>Síndrome Coronario Agudo</h2>
             <div class="critical-box">
                 <h4>Síntomas Clave</h4>
@@ -372,24 +322,33 @@
                 </ul>
             </div>
 
-            <div class="info-box">
-                <h4>Manejo Inmediato (Bomberos)</h4>
-                <ul>
-                    <li><strong>Posición:</strong> Semisentado cómodo</li>
-                    <li><strong>Oxígeno:</strong> Si SatO2 &lt;94%</li>
-                    <li><strong>Reposo absoluto:</strong> Evitar esfuerzos</li>
-                    <li><strong>Monitoreo:</strong> Signos vitales continuos</li>
-                    <li><strong>Traslado:</strong> Código Infarto inmediato</li>
-                    <li><strong>AED:</strong> Disponible durante traslado</li>
-                </ul>
-            </div>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Manejo Inmediato</h4>
+                    <ul>
+                        <li><strong>Posición:</strong> Semisentado cómodo</li>
+                        <li><strong>Oxígeno:</strong> Si SatO2 &lt;94%</li>
+                        <li><strong>Nitroglicerina:</strong> 0.4mg sublingual</li>
+                        <li><strong>AAS:</strong> 300mg masticable</li>
+                        <li><strong>Monitoreo:</strong> ECG continuo</li>
+                        <li><strong>Acceso vascular:</strong> Vía periférica</li>
+                    </ul>
+                </div>
 
-            <div class="alert-box">
-                Medicamentos (AAS, Nitroglicerina): Solo administrados por personal médico
+                <div class="critical-box">
+                    <h4>Contraindicaciones Nitroglicerina</h4>
+                    <ul>
+                        <li>TAS &lt;90 mmHg</li>
+                        <li>Bradicardia &lt;50 lpm</li>
+                        <li>Viagra/Cialis últimas 24-48h</li>
+                        <li>Infarto ventrículo derecho</li>
+                        <li>Estenosis aórtica severa</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="section" id="asma">
+        <div class="section">
             <h2>Crisis Asmática Severa</h2>
             <div class="grid-2">
                 <div class="info-box">
@@ -403,12 +362,11 @@
                 </div>
 
                 <div class="info-box">
-                    <h4>Manejo (Bomberos)</h4>
+                    <h4>Tratamiento</h4>
                     <ul>
-                        <li><strong>Posición:</strong> Fowler 45-90°</li>
-                        <li><strong>Oxígeno:</strong> Alto flujo</li>
-                        <li><strong>Calmar:</strong> Tranquilizar paciente</li>
-                        <li><strong>Traslado:</strong> Urgente</li>
+                        <li><strong>Salbutamol:</strong> 2.5-5mg nebulizado</li>
+                        <li><strong>Ipratropio:</strong> 0.5mg + salbutamol</li>
+                        <li><strong>Repetir:</strong> Cada 20 min si necesario</li>
                     </ul>
                 </div>
             </div>
@@ -425,7 +383,7 @@
             </div>
         </div>
 
-        <div class="section" id="acv">
+        <div class="section">
             <h2>Accidente Cerebrovascular (ACV)</h2>
             <div class="alert-box">
                 Escala FAST: Face (cara) + Arms (brazos) + Speech (habla) + Time (tiempo)
@@ -437,8 +395,9 @@
                     <ul>
                         <li><strong>Causa:</strong> Trombo, embolia</li>
                         <li><strong>Síntomas:</strong> Déficit focal progresivo</li>
-                        <li><strong>Ventana terapéutica:</strong> &lt;4.5h</li>
-                        <li><strong>Manejo:</strong> Traslado código ictus</li>
+                        <li><strong>Tratamiento:</strong> Trombolisis &lt;4.5h</li>
+                        <li><strong>TA:</strong> No reducir agresivamente</li>
+                        <li><strong>Glucemia:</strong> Mantener 140-180</li>
                     </ul>
                 </div>
 
@@ -447,30 +406,20 @@
                     <ul>
                         <li><strong>Causa:</strong> Ruptura vascular</li>
                         <li><strong>Síntomas:</strong> Cefalea súbita severa</li>
-                        <li><strong>Manejo:</strong> Traslado urgente</li>
-                        <li><strong>Evitar:</strong> Movimientos bruscos</li>
+                        <li><strong>TA:</strong> Reducir si &gt;185/110</li>
+                        <li><strong>Tratamiento:</strong> Quirúrgico urgente</li>
+                        <li><strong>Contraindicado:</strong> Anticoagulantes</li>
                     </ul>
                 </div>
             </div>
-
-            <div class="info-box">
-                <h4>Manejo Prehospitalario (Bomberos)</h4>
-                <ul>
-                    <li><strong>Posición:</strong> Cabecera elevada 30°</li>
-                    <li><strong>Oxígeno:</strong> Solo si SpO2 &lt;94%</li>
-                    <li><strong>Monitoreo:</strong> Glasgow, signos vitales</li>
-                    <li><strong>Hora de inicio:</strong> Documentar exacta</li>
-                    <li><strong>Traslado:</strong> Código Ictus inmediato</li>
-                </ul>
-            </div>
         </div>
 
-        <div class="section" id="anafilaxia">
+        <div class="section">
             <h2>Anafilaxia</h2>
             <div class="critical-box">
                 <h4>Signos de Anafilaxia</h4>
                 <ul>
-                    <li>Compromiso respiratorio (estridor, disnea)</li>
+                    <li>Compromiso respiratorio</li>
                     <li>Hipotensión/shock</li>
                     <li>Compromiso neurológico</li>
                     <li>Urticaria generalizada</li>
@@ -478,20 +427,15 @@
             </div>
 
             <div class="protocol-steps">
-                <h4>MANEJO (Bomberos)</h4>
-                <div class="step">1. Oxígeno alto flujo 15 L/min</div>
-                <div class="step">2. Posición anti-shock (elevar piernas)</div>
-                <div class="step">3. Monitoreo continuo signos vitales</div>
-                <div class="step">4. Traslado urgente código rojo</div>
-                <div class="step">5. Preparar para RCP si deterioro</div>
-            </div>
-
-            <div class="alert-box">
-                Epinefrina: Solo administrada por personal médico capacitado
+                <h4>PROTOCOLO ANAFILAXIA</h4>
+                <div class="step">1. Epinefrina 0.3-0.5mg IM (muslo)</div>
+                <div class="step">2. Solución salina 1-2L IV rápido</div>
+                <div class="step">3. Hidrocortisona 200mg IV + Antihistamínicos</div>
+                <div class="step">4. Broncoespasmo: Salbutamol nebulizado</div>
             </div>
         </div>
 
-        <div class="section" id="hipertension">
+        <div class="section">
             <h2>Crisis Hipertensiva</h2>
             <div class="grid-2">
                 <div class="info-box">
@@ -499,8 +443,8 @@
                     <ul>
                         <li><strong>TA:</strong> &gt;180/110 sin síntomas</li>
                         <li><strong>Órganos:</strong> Sin afectación</li>
-                        <li><strong>Manejo:</strong> Traslado no urgente</li>
-                        <li><strong>Bomberos:</strong> Reposo, tranquilizar</li>
+                        <li><strong>Tratamiento:</strong> Oral, gradual</li>
+                        <li><strong>Objetivo:</strong> 10-20% en 24h</li>
                     </ul>
                 </div>
 
@@ -509,19 +453,19 @@
                     <ul>
                         <li><strong>TA:</strong> &gt;180/120 con síntomas</li>
                         <li><strong>Órganos:</strong> Afectación aguda</li>
-                        <li><strong>Manejo:</strong> Traslado urgente</li>
-                        <li><strong>Bomberos:</strong> Oxígeno + monitoreo</li>
+                        <li><strong>Tratamiento:</strong> IV, controlado</li>
+                        <li><strong>Objetivo:</strong> 10-15% primera hora</li>
                     </ul>
                 </div>
             </div>
 
             <div class="alert-box">
-                Bomberos: NO intentar reducir TA - Traslado para manejo médico
+                NO Reducir TA Bruscamente - Riesgo de ACV isquémico
             </div>
         </div>
 
         <div class="section">
-            <h2>Medicamentos de Referencia (Solo Personal Médico)</h2>
+            <h2>Medicamentos de Emergencia</h2>
             <table>
                 <thead>
                     <tr>
@@ -576,10 +520,9 @@
                     </tr>
                 </tbody>
             </table>
-            <p style="text-align: center; margin-top: 10px; font-size: 0.9em;">Tabla de referencia - Administración exclusiva por personal médico autorizado</p>
         </div>
 
-        <div class="section" id="traslado">
+        <div class="section">
             <h2>Prioridades de Traslado</h2>
             <table>
                 <thead>
@@ -625,11 +568,5 @@
             </table>
         </div>
     </div>
-
-    <script>
-        function scrollTo(id) {
-            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
-        }
-    </script>
 </body>
 </html>

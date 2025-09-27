@@ -4,20 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transferencia de Calor - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
     <style>
-        :root {
-            --primary-red: #e74c3c;
-            --primary-dark-red: #c0392b;
-            --success-green: #27ae60;
-            --warning-orange: #f39c12;
-            --dark-gray: #2c3e50;
-            --white: #ffffff;
-            --light-gray: #ecf0f1;
-            --blue: #3498db;
-            --purple: #9b59b6;
-            --yellow: #f1c40f;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -25,281 +13,214 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-            color: var(--dark-gray);
-            line-height: 1.6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
-            color: var(--white);
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .breadcrumb {
-            font-size: 0.8em;
-            margin-bottom: 8px;
-            opacity: 0.9;
+            font-size: 0.9em;
+            margin-bottom: 10px;
         }
 
         .breadcrumb a {
-            color: var(--white);
+            color: #F2E4C9;
             text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
         }
 
         .header h1 {
-            font-size: 1.6em;
+            font-size: 1.8em;
             margin-bottom: 5px;
         }
 
-        .header p {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .content-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            color: var(--primary-red);
-            font-size: 1.3em;
-            font-weight: bold;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        /* Tipos de transferencia */
-        .transfer-types-grid {
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
         .transfer-card {
-            border-radius: 10px;
-            padding: 25px;
-            color: var(--white);
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 20px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .conduction { background: linear-gradient(135deg, var(--warning-orange), #e67e22); }
-        .convection { background: linear-gradient(135deg, var(--blue), #2980b9); }
-        .radiation { background: linear-gradient(135deg, var(--primary-red), var(--primary-dark-red)); }
-
-        .transfer-icon {
-            font-size: 4em;
-            margin-bottom: 15px;
-            display: block;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .transfer-title {
-            font-size: 1.4em;
             font-weight: bold;
-            margin-bottom: 15px;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.2em;
         }
 
-        .transfer-definition {
-            background: rgba(255, 255, 255, 0.2);
+        .transfer-def {
+            background: #0D0D0D;
+            color: #F2E4C9;
             padding: 12px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-size: 0.95em;
-        }
-
-        .transfer-examples {
-            margin-top: 15px;
+            margin: 12px 0;
             font-size: 0.9em;
         }
 
-        .example-item {
-            background: rgba(255, 255, 255, 0.3);
-            padding: 8px 12px;
-            border-radius: 20px;
-            margin: 5px;
-            display: inline-block;
+        .transfer-examples {
+            margin-top: 10px;
             font-size: 0.85em;
-            font-weight: bold;
         }
 
-        /* Factores que influyen */
-        .factors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+        .transfer-examples span {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 4px 10px;
+            margin: 3px;
+            display: inline-block;
         }
 
         .factor-card {
-            background: var(--light-gray);
-            border-radius: 8px;
+            background: #F2E4C9;
+            color: #0D0D0D;
             padding: 15px;
-            border-left: 4px solid var(--primary-red);
         }
 
         .factor-title {
             font-weight: bold;
-            color: var(--primary-red);
+            color: #8C0303;
             margin-bottom: 8px;
         }
 
-        .factor-description {
+        .factor-desc {
             font-size: 0.9em;
-            color: var(--dark-gray);
-        }
-
-        /* Métodos de control */
-        .control-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
         }
 
         .control-card {
-            background: var(--success-green);
-            color: var(--white);
-            padding: 20px;
-            border-radius: 10px;
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 15px;
             text-align: center;
         }
 
-        .control-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
         .control-title {
-            font-size: 1.2em;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
-        .control-description {
+        .control-desc {
             font-size: 0.9em;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .control-examples {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(242, 228, 201, 0.2);
             padding: 10px;
-            border-radius: 8px;
             font-size: 0.85em;
         }
 
-        /* Ejemplos prácticos */
-        .practical-examples {
-            background: var(--yellow);
-            color: var(--dark-gray);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .example-scenario {
-            background: var(--white);
+        .scenario-card {
+            background: #F2E4C9;
+            color: #0D0D0D;
             padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid var(--primary-red);
         }
 
         .scenario-title {
             font-weight: bold;
-            color: var(--primary-red);
-            margin-bottom: 8px;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.05em;
         }
 
-        .scenario-description {
+        .scenario-desc {
             font-size: 0.9em;
         }
 
-        /* Punto clave */
-        .key-point {
-            background: linear-gradient(135deg, var(--warning-orange), #e67e22);
-            color: var(--white);
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        /* Warning box */
-        .warning-box {
-            background: #e74c3c;
-            color: var(--white);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 5px solid #c0392b;
-        }
-
-        .warning-title {
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 8px;
-        }
-
-        /* Visual demonstration */
-        .visual-demo {
-            text-align: center;
-            padding: 20px;
-            background: var(--light-gray);
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .demo-animation {
-            font-size: 2.5em;
             margin: 15px 0;
-            color: var(--primary-red);
+            text-align: center;
+            font-weight: bold;
         }
 
-        /* Responsive */
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .visual-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .visual-box h3 {
+            color: #8C0303;
+            margin-bottom: 15px;
+        }
+
+        .visual-flow {
+            font-size: 1.5em;
+            color: #BF3604;
+            margin: 15px 0;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .content-section {
-                padding: 15px;
-            }
-
-            .transfer-types-grid,
-            .factors-grid,
-            .control-methods {
+            .grid-2, .grid-3 {
                 grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .header h1 {
-                font-size: 1.4em;
-            }
-
-            .transfer-icon {
-                font-size: 3em;
             }
         }
     </style>
@@ -307,103 +228,90 @@
 <body>
     <header class="header">
         <div class="breadcrumb">
-            <a href="../../../index.html">Inicio</a> > 
-            <a href="../../">Módulos</a> > 
-            <a href="../index.html">Comportamiento del Fuego</a> >
-            Transferencia de Calor
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Comportamiento del Fuego</a> > Transferencia de Calor
         </div>
-        <h1>🌡️ Transferencia de Calor</h1>
+        <h1>TRANSFERENCIA DE CALOR</h1>
         <p>Cómo se propaga el calor y el fuego</p>
     </header>
 
     <div class="container">
-        <!-- Introducción -->
-        <div class="content-section">
-            <h2 class="section-title">🔥 ¿Por qué se Propaga el Fuego?</h2>
-            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
+        <div class="section">
+            <h2>Por Qué se Propaga el Fuego</h2>
+            <div class="info-box">
                 <p><strong>El fuego se propaga porque el CALOR viaja de un lugar a otro.</strong></p>
-                <p>Entender <strong>CÓMO</strong> se transfiere el calor es clave para:</p>
-                <ul style="margin: 10px 0 10px 20px;">
-                    <li>✅ <strong>Predecir</strong> hacia dónde se expandirá el fuego</li>
-                    <li>🛡️ <strong>Proteger</strong> estructuras y personas</li>
-                    <li>🚒 <strong>Atacar</strong> el fuego más eficientemente</li>
-                    <li>⚡ <strong>Ventilación</strong> estratégica</li>
+                <p><strong>Entender CÓMO se transfiere el calor es clave para:</strong></p>
+                <ul>
+                    <li>Predecir hacia dónde se expandirá el fuego</li>
+                    <li>Proteger estructuras y personas</li>
+                    <li>Atacar el fuego más eficientemente</li>
+                    <li>Ventilación estratégica</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Los 3 Mecanismos -->
-        <div class="content-section">
-            <h2 class="section-title">🌡️ Los 3 Mecanismos de Transferencia</h2>
-            
-            <div class="transfer-types-grid">
-                <!-- Conducción -->
-                <div class="transfer-card conduction">
-                    <span class="transfer-icon">🔧</span>
+        <div class="section">
+            <h2>Los 3 Mecanismos de Transferencia</h2>
+            <div class="grid-3">
+                <div class="transfer-card">
                     <div class="transfer-title">CONDUCCIÓN</div>
-                    <div class="transfer-definition">
+                    <div class="transfer-def">
                         Transferencia por <strong>CONTACTO DIRECTO</strong><br>
                         Calor viaja a través del material sólido
                     </div>
                     <div class="transfer-examples">
-                        <span class="example-item">Vigas metálicas</span>
-                        <span class="example-item">Tuberías</span>
-                        <span class="example-item">Cables</span>
-                        <span class="example-item">Paredes</span>
+                        <span>Vigas metálicas</span>
+                        <span>Tuberías</span>
+                        <span>Cables</span>
+                        <span>Paredes</span>
                     </div>
                 </div>
 
-                <!-- Convección -->
-                <div class="transfer-card convection">
-                    <span class="transfer-icon">🌪️</span>
+                <div class="transfer-card">
                     <div class="transfer-title">CONVECCIÓN</div>
-                    <div class="transfer-definition">
+                    <div class="transfer-def">
                         Transferencia por <strong>MOVIMIENTO DE FLUIDOS</strong><br>
                         Gases y líquidos calientes circulan
                     </div>
                     <div class="transfer-examples">
-                        <span class="example-item">Humo caliente</span>
-                        <span class="example-item">Gases de combustión</span>
-                        <span class="example-item">Aire caliente</span>
-                        <span class="example-item">Corrientes térmicas</span>
+                        <span>Humo caliente</span>
+                        <span>Gases combustión</span>
+                        <span>Aire caliente</span>
+                        <span>Corrientes térmicas</span>
                     </div>
                 </div>
 
-                <!-- Radiación -->
-                <div class="transfer-card radiation">
-                    <span class="transfer-icon">☀️</span>
+                <div class="transfer-card">
                     <div class="transfer-title">RADIACIÓN</div>
-                    <div class="transfer-definition">
+                    <div class="transfer-def">
                         Transferencia por <strong>ONDAS DE ENERGÍA</strong><br>
                         No necesita contacto ni medio material
                     </div>
                     <div class="transfer-examples">
-                        <span class="example-item">Calor directo</span>
-                        <span class="example-item">Llamas visibles</span>
-                        <span class="example-item">Superficies calientes</span>
-                        <span class="example-item">Brasas</span>
+                        <span>Calor directo</span>
+                        <span>Llamas visibles</span>
+                        <span>Superficies calientes</span>
+                        <span>Brasas</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Demostración visual -->
-        <div class="visual-demo">
-            <h3 style="color: var(--primary-red); margin-bottom: 15px;">🎯 Visualización Simple</h3>
-            <div class="demo-animation">
-                🔥 ➡️ 🔧 ➡️ 🌪️ ➡️ ☀️ ➡️ 🏠
+        <div class="section">
+            <div class="visual-box">
+                <h3>Visualización Simple</h3>
+                <div class="visual-flow">
+                    FUEGO → CONDUCCIÓN → CONVECCIÓN → RADIACIÓN → PROPAGACIÓN
+                </div>
+                <p>Los 3 mecanismos actúan simultáneamente en un incendio</p>
             </div>
-            <p><strong>Fuego → Conducción → Convección → Radiación → Propagación</strong></p>
         </div>
 
-        <!-- Factores que influyen -->
-        <div class="content-section">
-            <h2 class="section-title">⚡ Factores que Aceleran la Transferencia</h2>
-            
-            <div class="factors-grid">
+        <div class="section">
+            <h2>Factores que Aceleran la Transferencia</h2>
+            <div class="grid-3">
                 <div class="factor-card">
                     <div class="factor-title">Diferencia de Temperatura</div>
-                    <div class="factor-description">
+                    <div class="factor-desc">
                         <strong>Mayor diferencia = Transferencia más rápida</strong><br>
                         1000°C vs 20°C = Transferencia muy rápida
                     </div>
@@ -411,7 +319,7 @@
 
                 <div class="factor-card">
                     <div class="factor-title">Material Conductor</div>
-                    <div class="factor-description">
+                    <div class="factor-desc">
                         <strong>Metal > Madera > Concreto</strong><br>
                         Acero transfiere calor 50x más rápido que madera
                     </div>
@@ -419,7 +327,7 @@
 
                 <div class="factor-card">
                     <div class="factor-title">Área de Superficie</div>
-                    <div class="factor-description">
+                    <div class="factor-desc">
                         <strong>Más superficie = Más transferencia</strong><br>
                         Vigas expuestas vs protegidas con yeso
                     </div>
@@ -427,7 +335,7 @@
 
                 <div class="factor-card">
                     <div class="factor-title">Velocidad del Aire</div>
-                    <div class="factor-description">
+                    <div class="factor-desc">
                         <strong>Viento acelera convección</strong><br>
                         Ventilación inadecuada = Propagación rápida
                     </div>
@@ -435,7 +343,7 @@
 
                 <div class="factor-card">
                     <div class="factor-title">Distancia</div>
-                    <div class="factor-description">
+                    <div class="factor-desc">
                         <strong>Radiación disminuye con distancia</strong><br>
                         Doble distancia = Cuarto de la energía
                     </div>
@@ -443,7 +351,7 @@
 
                 <div class="factor-card">
                     <div class="factor-title">Humedad</div>
-                    <div class="factor-description">
+                    <div class="factor-desc">
                         <strong>Material húmedo = Menos propagación</strong><br>
                         Agua absorbe energía para evaporarse
                     </div>
@@ -451,16 +359,12 @@
             </div>
         </div>
 
-        <!-- Métodos de control -->
-        <div class="content-section">
-            <h2 class="section-title">🛡️ Métodos de Control de la Transferencia</h2>
-            
-            <div class="control-methods">
-                <!-- Control de Conducción -->
+        <div class="section">
+            <h2>Métodos de Control de la Transferencia</h2>
+            <div class="grid-3">
                 <div class="control-card">
-                    <span class="control-icon">🧊</span>
                     <div class="control-title">CONTROL DE CONDUCCIÓN</div>
-                    <div class="control-description">
+                    <div class="control-desc">
                         Enfriar o aislar materiales conductores
                     </div>
                     <div class="control-examples">
@@ -470,11 +374,9 @@
                     </div>
                 </div>
 
-                <!-- Control de Convección -->
                 <div class="control-card">
-                    <span class="control-icon">💨</span>
                     <div class="control-title">CONTROL DE CONVECCIÓN</div>
-                    <div class="control-description">
+                    <div class="control-desc">
                         Dirigir o eliminar corrientes de aire caliente
                     </div>
                     <div class="control-examples">
@@ -484,11 +386,9 @@
                     </div>
                 </div>
 
-                <!-- Control de Radiación -->
                 <div class="control-card">
-                    <span class="control-icon">🛡️</span>
                     <div class="control-title">CONTROL DE RADIACIÓN</div>
-                    <div class="control-description">
+                    <div class="control-desc">
                         Bloquear o absorber energía radiante
                     </div>
                     <div class="control-examples">
@@ -501,32 +401,30 @@
             </div>
         </div>
 
-        <!-- Ejemplos prácticos -->
-        <div class="content-section">
-            <h2 class="section-title">🚒 Escenarios Prácticos</h2>
-            
-            <div class="practical-examples">
-                <div class="example-scenario">
-                    <div class="scenario-title">🏠 Incendio en Casa de 2 Pisos</div>
-                    <div class="scenario-description">
+        <div class="section">
+            <h2>Escenarios Prácticos</h2>
+            <div class="grid-3">
+                <div class="scenario-card">
+                    <div class="scenario-title">INCENDIO EN CASA DE 2 PISOS</div>
+                    <div class="scenario-desc">
                         <strong>Conducción:</strong> Calor sube por escaleras metálicas<br>
                         <strong>Convección:</strong> Humo caliente sube por escaleras<br>
-                        <strong>Radiación:</strong> Ventanas del primer piso calientan el segundo
+                        <strong>Radiación:</strong> Ventanas del 1er piso calientan el 2do
                     </div>
                 </div>
 
-                <div class="example-scenario">
-                    <div class="scenario-title">🏢 Edificio de Oficinas</div>
-                    <div class="scenario-description">
+                <div class="scenario-card">
+                    <div class="scenario-title">EDIFICIO DE OFICINAS</div>
+                    <div class="scenario-desc">
                         <strong>Conducción:</strong> Vigas de acero transfieren calor entre pisos<br>
-                        <strong>Convección:</strong> Humo viaja por ductos de ventilación<br>
+                        <strong>Convección:</strong> Humo viaja por ductos ventilación<br>
                         <strong>Radiación:</strong> Fachada de vidrio concentra calor
                     </div>
                 </div>
 
-                <div class="example-scenario">
-                    <div class="scenario-title">🌲 Incendio Forestal</div>
-                    <div class="scenario-description">
+                <div class="scenario-card">
+                    <div class="scenario-title">INCENDIO FORESTAL</div>
+                    <div class="scenario-desc">
                         <strong>Conducción:</strong> Calor viaja por raíces y troncos<br>
                         <strong>Convección:</strong> Viento lleva brasas a distancia<br>
                         <strong>Radiación:</strong> Llamas calientan vegetación cercana
@@ -535,30 +433,50 @@
             </div>
         </div>
 
-        <!-- Punto clave -->
-        <div class="key-point">
-            🎯 REGLA DE ORO: Los 3 mecanismos actúan SIMULTÁNEAMENTE. Controla los 3 para detener la propagación.
+        <div class="section">
+            <h2>Velocidad de Transferencia por Material</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Conductividad Alta (Rápido):</h4>
+                    <ul>
+                        <li><strong>Cobre:</strong> 400 W/m·K</li>
+                        <li><strong>Aluminio:</strong> 237 W/m·K</li>
+                        <li><strong>Acero:</strong> 50 W/m·K</li>
+                        <li><strong>Riesgo:</strong> Propagación inmediata</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Conductividad Baja (Lento):</h4>
+                    <ul>
+                        <li><strong>Concreto:</strong> 1.7 W/m·K</li>
+                        <li><strong>Madera:</strong> 0.15 W/m·K</li>
+                        <li><strong>Lana mineral:</strong> 0.04 W/m·K</li>
+                        <li><strong>Protección:</strong> Retrasa propagación</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <!-- Warning crítico -->
-        <div class="warning-box">
-            <div class="warning-title">🚨 PELIGRO CRÍTICO</div>
-            <p><strong>El calor viaja más rápido que las llamas visibles.</strong></p>
-            <p>Pueden existir <strong>temperaturas letales</strong> sin llamas presentes. Los gases a 150°C ya son mortales para humanos.</p>
+        <div class="alert-box">
+            REGLA DE ORO: Los 3 mecanismos actúan SIMULTÁNEAMENTE. Controla los 3 para detener la propagación
         </div>
 
-        <!-- Para recordar en campo -->
-        <div class="content-section">
-            <h2 class="section-title">🎯 Para Recordar en Campo</h2>
-            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
-                <p><strong>✅ Al llegar a la escena, evalúa:</strong></p>
-                <ul style="margin: 10px 0 10px 20px;">
+        <div class="alert-box">
+            PELIGRO CRÍTICO: El calor viaja más rápido que las llamas visibles. Pueden existir temperaturas letales sin llamas presentes. Gases a 150°C ya son mortales
+        </div>
+
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>Al llegar a la escena, evalúa:</strong></p>
+                <ul>
                     <li><strong>¿Hay elementos metálicos?</strong> → Riesgo por conducción</li>
                     <li><strong>¿Hacia dónde va el humo?</strong> → Dirección de convección</li>
                     <li><strong>¿Qué está expuesto al calor directo?</strong> → Riesgo por radiación</li>
                     <li><strong>¿Cuál es la dirección del viento?</strong> → Acelera convección</li>
                 </ul>
-                <p><strong>🚨 Prioridad:</strong> Controlar la transferencia es más efectivo que atacar solo las llamas.</p>
+                <p style="margin-top: 10px;"><strong>PRIORIDAD:</strong> Controlar la transferencia es más efectivo que atacar solo las llamas.</p>
             </div>
         </div>
     </div>
