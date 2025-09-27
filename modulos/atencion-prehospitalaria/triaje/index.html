@@ -96,39 +96,44 @@
 
         .flowchart {
             background: #F2E4C9;
-            padding: 15px;
+            padding: 10px;
             margin: 15px 0;
         }
 
         .flowchart-step {
             background: #0D0D0D;
             color: #F2E4C9;
-            padding: 12px;
-            margin: 8px 0;
+            padding: 6px;
+            margin: 4px 0;
             text-align: center;
+            font-size: 0.75em;
+            line-height: 1.3;
         }
 
         .flowchart-step strong {
             color: #BF3604;
+            font-size: 0.95em;
         }
 
         .arrow {
             text-align: center;
-            font-size: 1.2em;
+            font-size: 0.85em;
             color: #8C0303;
-            margin: 5px 0;
+            margin: 2px 0;
+            font-weight: bold;
         }
 
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 6px;
         }
 
         .priority-result {
-            padding: 10px;
+            padding: 6px;
             text-align: center;
             font-weight: bold;
+            font-size: 0.75em;
         }
 
         .red { background: #8C0303; color: #F2E4C9; }
@@ -173,16 +178,25 @@
             }
 
             .flowchart {
-                padding: 8px;
+                padding: 6px;
             }
 
             .flowchart-step {
-                padding: 8px;
-                font-size: 0.85em;
+                padding: 5px;
+                font-size: 0.7em;
             }
 
             .grid-2 {
-                gap: 5px;
+                gap: 4px;
+            }
+
+            .priority-result {
+                font-size: 0.7em;
+                padding: 5px;
+            }
+
+            .arrow {
+                font-size: 0.75em;
             }
         }
     </style>
@@ -230,73 +244,71 @@
             <h2>Algoritmo START</h2>
             <div class="flowchart">
                 <div class="flowchart-step">
-                    <strong>¿Puede caminar?</strong><br>
-                    Solicitar que los que puedan caminar vayan a área específica
+                    <strong>¿Puede caminar?</strong> → Ir a área específica
                 </div>
                 
                 <div class="arrow">↓ NO</div>
                 
                 <div class="flowchart-step">
-                    <strong>RESPIRACIÓN</strong><br>
-                    ¿Respira espontáneamente?
+                    <strong>RESPIRACIÓN</strong> ¿Respira?
                 </div>
                 
                 <div class="grid-2">
                     <div>
-                        <div class="arrow">↓ NO</div>
+                        <div class="arrow">NO ↓</div>
                         <div class="flowchart-step">
-                            Abrir vía aérea<br>
-                            Reposicionar cabeza
+                            Abrir vía aérea
                         </div>
-                        <div class="arrow">↓</div>
                         <div class="flowchart-step">
                             ¿Inicia respiración?
                         </div>
                         <div class="grid-2">
                             <div>
-                                <div class="arrow">SÍ ↓</div>
+                                <div class="arrow">SÍ</div>
                                 <div class="priority-result red">ROJO</div>
                             </div>
                             <div>
-                                <div class="arrow">NO ↓</div>
+                                <div class="arrow">NO</div>
                                 <div class="priority-result black">NEGRO</div>
                             </div>
                         </div>
                     </div>
                     
                     <div>
-                        <div class="arrow">↓ SÍ</div>
+                        <div class="arrow">SÍ ↓</div>
                         <div class="flowchart-step">
-                            <strong>FRECUENCIA RESPIRATORIA</strong><br>
-                            ¿FR &gt;30 o &lt;10 rpm?
-                        </div>
-                        <div class="arrow">↓ SÍ</div>
-                        <div class="priority-result red">ROJO</div>
-                        <div class="arrow">↓ NO</div>
-                        <div class="flowchart-step">
-                            <strong>PERFUSIÓN</strong><br>
-                            Llenado capilar &gt;2 seg<br>
-                            o pulso radial ausente
+                            <strong>FR</strong> &gt;30 o &lt;10
                         </div>
                         <div class="grid-2">
                             <div>
-                                <div class="arrow">SÍ ↓</div>
+                                <div class="arrow">SÍ</div>
                                 <div class="priority-result red">ROJO</div>
                             </div>
                             <div>
                                 <div class="arrow">NO ↓</div>
                                 <div class="flowchart-step">
-                                    <strong>ESTADO MENTAL</strong><br>
-                                    ¿Obedece órdenes simples?
+                                    <strong>PERFUSIÓN</strong><br>LC&gt;2s
                                 </div>
                                 <div class="grid-2">
                                     <div>
-                                        <div class="arrow">NO ↓</div>
+                                        <div class="arrow">SÍ</div>
                                         <div class="priority-result red">ROJO</div>
                                     </div>
                                     <div>
-                                        <div class="arrow">SÍ ↓</div>
-                                        <div class="priority-result yellow">AMARILLO</div>
+                                        <div class="arrow">NO ↓</div>
+                                        <div class="flowchart-step">
+                                            <strong>MENTAL</strong><br>Obedece
+                                        </div>
+                                        <div class="grid-2">
+                                            <div>
+                                                <div class="arrow">NO</div>
+                                                <div class="priority-result red">ROJO</div>
+                                            </div>
+                                            <div>
+                                                <div class="arrow">SÍ</div>
+                                                <div class="priority-result yellow">AMARILLO</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +316,7 @@
                     </div>
                 </div>
                 
-                <div style="text-align: center; margin-top: 15px;">
+                <div style="text-align: center; margin-top: 10px;">
                     <div class="priority-result green">VERDE: Puede caminar</div>
                 </div>
             </div>

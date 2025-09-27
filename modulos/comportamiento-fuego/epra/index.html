@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos de Respiración EPRA - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
+        }
+
+        .header {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: #F2E4C9;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .value-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #8C0303;
+            margin-bottom: 5px;
+        }
+
+        .value-label {
+            font-size: 0.85em;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
+        }
+
+        .info-box h3 {
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .info-box li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #BF3604;
+            font-weight: bold;
+        }
+
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .critical-box {
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 15px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+
+        .step-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .step-number {
+            background: #8C0303;
+            color: #F2E4C9;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .step-box h4 {
+            font-size: 0.85em;
+            margin: 5px 0;
+        }
+
+        .step-box p {
+            font-size: 0.75em;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            min-width: 600px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #BF3604;
+        }
+
+        table th {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        table td {
+            font-size: 0.85em;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .value-box {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Comportamiento del Fuego</a> > Equipos de Respiración EPRA
+        </div>
+        <h1>EQUIPOS DE RESPIRACIÓN AUTÓNOMA (EPRA)</h1>
+        <p>Equipo de Protección Respiratoria Autónomo</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Valores de Referencia</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <div class="value-number">30-45 min</div>
+                    <div class="value-label">Duración típica</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">300 bar</div>
+                    <div class="value-label">Presión carga</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">55 bar</div>
+                    <div class="value-label">Alarma presión</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-number">1/3 - 2/3</div>
+                    <div class="value-label">Regla aire</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Componentes del EPRA</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h3>Cilindro de Aire</h3>
+                    <ul>
+                        <li>Material: Fibra de carbono o acero</li>
+                        <li>Capacidad: 6.8L o 9L típico</li>
+                        <li>Presión: 200-300 bar</li>
+                        <li>Válvula de apertura/cierre</li>
+                        <li>Manómetro de presión</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Sistema de Regulación</h3>
+                    <ul>
+                        <li>Reductor de presión</li>
+                        <li>Válvula de demanda (presión positiva)</li>
+                        <li>Alarma de baja presión (55 bar)</li>
+                        <li>Bypass de emergencia</li>
+                        <li>Manguera de media presión</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Máscara Facial</h3>
+                    <ul>
+                        <li>Visor panorámico</li>
+                        <li>Arnés de 5 puntos</li>
+                        <li>Válvula de exhalación</li>
+                        <li>Sistema de comunicación</li>
+                        <li>Sello hermético</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Secuencia de Colocación</h2>
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <h4>INSPECCIONAR</h4>
+                    <p>Revisar equipo completo</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <h4>ABRIR VÁLVULA</h4>
+                    <p>Lenta y completamente</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <h4>VERIFICAR</h4>
+                    <p>Presión y alarma</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <h4>PONERSE</h4>
+                    <p>Arnés ajustado</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">5</div>
+                    <h4>MÁSCARA</h4>
+                    <p>Sello hermético</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">6</div>
+                    <h4>CONECTAR</h4>
+                    <p>Manguera a máscara</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="critical-box">
+            <h3>REGLA DE ORO: 1/3 - 2/3</h3>
+            1/3 del aire para ENTRADA - 2/3 del aire para SALIDA y emergencias
+        </div>
+
+        <div class="section">
+            <h2>Verificación Pre-uso (Checklist)</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Inspección Visual</h4>
+                    <ul>
+                        <li>Arnés: sin cortes ni desgaste</li>
+                        <li>Cilindro: sin abolladuras</li>
+                        <li>Mangueras: sin grietas</li>
+                        <li>Máscara: visor limpio, sin daños</li>
+                        <li>Arnés facial: completo y flexible</li>
+                        <li>Válvulas: limpias y móviles</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Pruebas Funcionales</h4>
+                    <ul>
+                        <li>Abrir válvula: presión 200-300 bar</li>
+                        <li>Prueba de alarma: suena a 55 bar</li>
+                        <li>Bypass: funciona correctamente</li>
+                        <li>Demanda: flujo al inhalar</li>
+                        <li>Sello máscara: prueba presión positiva/negativa</li>
+                        <li>Sin fugas audibles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cálculo de Autonomía</h2>
+            <div class="info-box">
+                <h4>Fórmula Básica</h4>
+                <p><strong>Autonomía (min) = (Volumen cilindro × Presión inicial) / (Consumo promedio × Factor trabajo)</strong></p>
+                <br>
+                <h4>Ejemplos Prácticos:</h4>
+                <ul>
+                    <li><strong>Reposo/Caminata:</strong> 20-30 L/min → 45-60 min</li>
+                    <li><strong>Trabajo moderado:</strong> 40-50 L/min → 30-40 min</li>
+                    <li><strong>Trabajo intenso:</strong> 60-80 L/min → 20-25 min</li>
+                    <li><strong>Trabajo extremo:</strong> 100+ L/min → 15-20 min</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Procedimientos de Emergencia</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>Falla del EPRA</h3>
+                    <ul>
+                        <li>Activar bypass inmediatamente</li>
+                        <li>Controlar la respiración</li>
+                        <li>Salir por ruta de escape</li>
+                        <li>Activar PASS si disponible</li>
+                        <li>Pedir ayuda por radio</li>
+                        <li>Compartir aire si es posible</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Alarma de Baja Presión</h3>
+                    <ul>
+                        <li>SALIR INMEDIATAMENTE</li>
+                        <li>No continuar operaciones</li>
+                        <li>Avisar al equipo</li>
+                        <li>Ruta más corta de escape</li>
+                        <li>Respiración controlada</li>
+                        <li>Reportar al comando</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Limitaciones del EPRA</h2>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h3>Limitaciones de Tiempo</h3>
+                    <ul>
+                        <li>Autonomía limitada (30-45 min)</li>
+                        <li>Reduce con esfuerzo físico</li>
+                        <li>Afectada por temperatura</li>
+                        <li>Debe aplicarse regla 1/3 - 2/3</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Limitaciones Físicas</h3>
+                    <ul>
+                        <li>Peso: 12-18 kg adicionales</li>
+                        <li>Restringe movilidad</li>
+                        <li>Reduce campo visual</li>
+                        <li>Dificulta comunicación</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Limitaciones Ambientales</h3>
+                    <ul>
+                        <li>No protege la piel</li>
+                        <li>Requiere traje completo</li>
+                        <li>Puede empañarse el visor</li>
+                        <li>Ruido de la válvula</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mantenimiento y Cuidados</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Frecuencia</th>
+                            <th>Actividad</th>
+                            <th>Responsable</th>
+                            <th>Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Antes de cada uso</td>
+                            <td>Inspección visual y funcional completa</td>
+                            <td>Usuario</td>
+                            <td>Bitácora turno</td>
+                        </tr>
+                        <tr>
+                            <td>Después de cada uso</td>
+                            <td>Limpieza, desinfección, recarga</td>
+                            <td>Usuario</td>
+                            <td>Bitácora turno</td>
+                        </tr>
+                        <tr>
+                            <td>Semanal</td>
+                            <td>Revisión detallada, pruebas de flujo</td>
+                            <td>Encargado equipo</td>
+                            <td>Formato semanal</td>
+                        </tr>
+                        <tr>
+                            <td>Mensual</td>
+                            <td>Prueba hidrostática cilindro (según fabricante)</td>
+                            <td>Técnico</td>
+                            <td>Certificado</td>
+                        </tr>
+                        <tr>
+                            <td>Anual</td>
+                            <td>Mantenimiento completo, calibración</td>
+                            <td>Técnico certificado</td>
+                            <td>Certificado anual</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Atmósferas IDLH</h2>
+            <div class="info-box">
+                <h4>IDLH: Immediately Dangerous to Life or Health</h4>
+                <p>Atmósferas donde el EPRA es OBLIGATORIO:</p>
+                <ul>
+                    <li>Oxígeno &lt;19.5% o &gt;23.5%</li>
+                    <li>Presencia de gases tóxicos (CO, HCN, H₂S)</li>
+                    <li>Presencia de humo denso</li>
+                    <li>Contaminantes desconocidos</li>
+                    <li>Espacios confinados sin ventilación</li>
+                    <li>Incendios estructurales</li>
+                    <li>Derrames de materiales peligrosos</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Errores Comunes y Prevención</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>Errores Frecuentes</h3>
+                    <ul>
+                        <li>No verificar presión antes de entrar</li>
+                        <li>Mal ajuste del arnés facial</li>
+                        <li>No seguir regla 1/3 - 2/3</li>
+                        <li>Ignorar alarma de baja presión</li>
+                        <li>No realizar prueba de sello</li>
+                        <li>Dejar válvula parcialmente abierta</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Buenas Prácticas</h3>
+                    <ul>
+                        <li>Siempre hacer checklist completo</li>
+                        <li>Practicar colocación regularmente</li>
+                        <li>Conocer tu consumo personal</li>
+                        <li>Comunicar problemas inmediatamente</li>
+                        <li>Mantener equipo limpio y listo</li>
+                        <li>Respetar procedimientos de emergencia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            NUNCA entres a atmósfera IDLH sin EPRA funcionando correctamente
+        </div>
+
+        <div class="section">
+            <h2>Sistema de Compañeros (Buddy System)</h2>
+            <div class="info-box">
+                <h4>Trabajo en Equipo con EPRA</h4>
+                <ul>
+                    <li><strong>Siempre en parejas:</strong> Mínimo 2 bomberos juntos</li>
+                    <li><strong>Monitoreo mutuo:</strong> Verificar presión del compañero</li>
+                    <li><strong>Comunicación constante:</strong> Señas y contacto visual</li>
+                    <li><strong>Misma ruta:</strong> Entrar y salir por mismo camino</li>
+                    <li><strong>Salir juntos:</strong> El de menor presión determina salida</li>
+                    <li><strong>Compartir aire:</strong> Procedimiento de emergencia conocido</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

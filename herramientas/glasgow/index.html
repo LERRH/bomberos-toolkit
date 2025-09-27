@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escala de Glasgow - Bomberos Toolkit</title>
+    <title>Calculadora Escala de Glasgow - Bomberos Toolkit</title>
     <meta name="theme-color" content="#8C0303">
     <style>
         * {
@@ -49,6 +49,28 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+        }
+
+        .instructions {
+            background: #BF3604;
+            color: #F2E4C9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #F27405;
+        }
+
+        .instructions h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .instructions strong {
+            color: #F2E4C9;
         }
 
         .section {
@@ -188,13 +210,23 @@
 <body>
     <header class="header">
         <div class="breadcrumb">
-            <a href="../../index.html">← Inicio</a> > Escala de Glasgow
+            <a href="../../index.html">← Inicio</a> > Calculadora Escala de Glasgow
         </div>
-        <h1>ESCALA DE GLASGOW</h1>
+        <h1>CALCULADORA ESCALA DE GLASGOW</h1>
         <p>Evaluación del nivel de consciencia</p>
     </header>
 
     <div class="container">
+        <div class="instructions">
+            <h3>📋 CÓMO USAR ESTA CALCULADORA</h3>
+            <ol>
+                <li><strong>Evalúa las 3 respuestas</strong> del paciente: ocular, verbal y motora</li>
+                <li><strong>Selecciona una opción</strong> en cada categoría según lo observado</li>
+                <li><strong>El puntaje total</strong> se calculará automáticamente (3-15 puntos)</li>
+                <li><strong>Recibirás</strong> la clasificación de gravedad y acciones recomendadas</li>
+            </ol>
+        </div>
+
         <div class="section">
             <h3 class="section-title">RESPUESTA OCULAR</h3>
             <div class="option" onclick="select('ocular', 4, this)">
