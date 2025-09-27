@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Química del Fuego - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
     <style>
-        :root {
-            --primary-red: #e74c3c;
-            --primary-dark-red: #c0392b;
-            --success-green: #27ae60;
-            --warning-orange: #f39c12;
-            --dark-gray: #2c3e50;
-            --white: #ffffff;
-            --light-gray: #ecf0f1;
-            --blue: #3498db;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -23,153 +13,124 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-            color: var(--dark-gray);
-            line-height: 1.6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
-            color: var(--white);
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .breadcrumb {
-            font-size: 0.8em;
-            margin-bottom: 8px;
-            opacity: 0.9;
+            font-size: 0.9em;
+            margin-bottom: 10px;
         }
 
         .breadcrumb a {
-            color: var(--white);
+            color: #F2E4C9;
             text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
         }
 
         .header h1 {
-            font-size: 1.6em;
+            font-size: 1.8em;
             margin-bottom: 5px;
         }
 
-        .header p {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .content-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            color: var(--primary-red);
-            font-size: 1.3em;
-            font-weight: bold;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .concept-grid {
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
         }
 
         .concept-card {
-            background: var(--light-gray);
-            border-radius: 8px;
+            background: #F2E4C9;
+            color: #0D0D0D;
             padding: 15px;
-            border-left: 4px solid var(--primary-red);
         }
 
         .concept-title {
             font-weight: bold;
-            color: var(--primary-red);
-            margin-bottom: 8px;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
-        .concept-description {
+        .concept-desc {
             font-size: 0.9em;
-            color: var(--dark-gray);
-        }
-
-        /* Tipos de combustión */
-        .combustion-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
         }
 
         .combustion-card {
-            border-radius: 8px;
-            padding: 20px;
-            color: var(--white);
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
             text-align: center;
         }
 
-        .combustion-complete {
-            background: linear-gradient(135deg, var(--success-green), #1e8449);
-        }
-
-        .combustion-incomplete {
-            background: linear-gradient(135deg, var(--warning-orange), #d35400);
-        }
-
-        .combustion-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
-            display: block;
-        }
-
         .combustion-title {
-            font-size: 1.2em;
             font-weight: bold;
+            color: #8C0303;
             margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
         .combustion-formula {
-            background: rgba(255, 255, 255, 0.2);
+            background: #0D0D0D;
+            color: #BF3604;
             padding: 10px;
-            border-radius: 5px;
             margin: 10px 0;
-            font-family: monospace;
-            font-size: 0.9em;
+            font-weight: bold;
         }
 
         .combustion-products {
             font-size: 0.9em;
-            margin-top: 10px;
-        }
-
-        /* Temperaturas */
-        .temperature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
         }
 
         .temp-card {
-            background: linear-gradient(135deg, var(--blue), #2980b9);
-            color: var(--white);
+            background: #BF3604;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
             text-align: center;
         }
 
@@ -184,88 +145,60 @@
             margin: 10px 0;
         }
 
-        .temp-description {
+        .temp-desc {
             font-size: 0.85em;
         }
 
-        /* Productos peligrosos */
-        .danger-products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
         .danger-card {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: var(--white);
+            background: #8C0303;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
             text-align: center;
-        }
-
-        .danger-icon {
-            font-size: 2em;
-            margin-bottom: 8px;
-            display: block;
         }
 
         .danger-title {
             font-weight: bold;
             margin-bottom: 8px;
+            font-size: 1.05em;
         }
 
-        .danger-description {
+        .danger-desc {
             font-size: 0.85em;
         }
 
-        /* Punto clave */
-        .key-point {
-            background: linear-gradient(135deg, var(--warning-orange), #e67e22);
-            color: var(--white);
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
             font-weight: bold;
         }
 
-        /* Warning box */
-        .warning-box {
-            background: #e74c3c;
-            color: var(--white);
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
             padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 5px solid #c0392b;
         }
 
-        .warning-title {
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 8px;
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
         }
 
-        /* Responsive */
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .content-section {
-                padding: 15px;
-            }
-
-            .concept-grid,
-            .combustion-types,
-            .temperature-grid,
-            .danger-products {
+            .grid-2, .grid-3, .grid-4 {
                 grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .header h1 {
-                font-size: 1.4em;
             }
         }
     </style>
@@ -273,22 +206,18 @@
 <body>
     <header class="header">
         <div class="breadcrumb">
-            <a href="../../../index.html">Inicio</a> > 
-            <a href="../../">Módulos</a> > 
-            <a href="../index.html">Comportamiento del Fuego</a> >
-            Química del Fuego
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Comportamiento del Fuego</a> > Química del Fuego
         </div>
-        <h1>⚗️ Química del Fuego</h1>
+        <h1>QUÍMICA DEL FUEGO</h1>
         <p>Procesos de combustión y productos generados</p>
     </header>
 
     <div class="container">
-        <!-- ¿Qué es la combustión? -->
-        <div class="content-section">
-            <h2 class="section-title">🔥 ¿Qué es la Combustión?</h2>
+        <div class="section">
+            <h2>Qué es la Combustión</h2>
             <div class="concept-card">
                 <div class="concept-title">Reacción Química Exotérmica</div>
-                <div class="concept-description">
+                <div class="concept-desc">
                     <strong>Combustión = Combustible + Oxígeno → Productos + Energía (Calor + Luz)</strong><br><br>
                     Es una oxidación rápida que libera energía en forma de calor y luz. 
                     <strong>SIEMPRE</strong> consume oxígeno y produce gases.
@@ -296,55 +225,46 @@
             </div>
         </div>
 
-        <!-- Tipos de Combustión -->
-        <div class="content-section">
-            <h2 class="section-title">🔄 Tipos de Combustión</h2>
-            
-            <div class="combustion-types">
-                <!-- Combustión Completa -->
-                <div class="combustion-card combustion-complete">
-                    <span class="combustion-icon">✅</span>
+        <div class="section">
+            <h2>Tipos de Combustión</h2>
+            <div class="grid-2">
+                <div class="combustion-card">
                     <div class="combustion-title">COMBUSTIÓN COMPLETA</div>
                     <div class="combustion-formula">C + O₂ → CO₂ + H₂O + Energía</div>
                     <div class="combustion-products">
                         <strong>Productos:</strong><br>
                         • Dióxido de carbono (CO₂)<br>
                         • Vapor de agua (H₂O)<br>
-                        • Cenizas<br>
-                        <strong>✅ Menos tóxicos</strong>
+                        • Cenizas<br><br>
+                        <strong>Menos tóxicos</strong>
                     </div>
                 </div>
 
-                <!-- Combustión Incompleta -->
-                <div class="combustion-card combustion-incomplete">
-                    <span class="combustion-icon">⚠️</span>
+                <div class="combustion-card">
                     <div class="combustion-title">COMBUSTIÓN INCOMPLETA</div>
                     <div class="combustion-formula">C + O₂ → CO + Productos tóxicos</div>
                     <div class="combustion-products">
                         <strong>Productos:</strong><br>
                         • Monóxido de carbono (CO)<br>
                         • Humo negro<br>
-                        • Gases tóxicos<br>
-                        <strong>⚠️ MÁS PELIGROSA</strong>
+                        • Gases tóxicos<br><br>
+                        <strong>MÁS PELIGROSA</strong>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Punto clave sobre oxígeno -->
-        <div class="key-point">
-            🫁 REGLA CRÍTICA: Sin suficiente oxígeno = Combustión incompleta = MÁS GASES TÓXICOS
+        <div class="alert-box">
+            REGLA CRÍTICA: Sin suficiente oxígeno = Combustión incompleta = MÁS GASES TÓXICOS
         </div>
 
-        <!-- Temperaturas importantes -->
-        <div class="content-section">
-            <h2 class="section-title">🌡️ Temperaturas Críticas</h2>
-            
-            <div class="temperature-grid">
+        <div class="section">
+            <h2>Temperaturas Críticas</h2>
+            <div class="grid-3">
                 <div class="temp-card">
                     <div class="temp-title">Temperatura de Ignición</div>
                     <div class="temp-value">Varía</div>
-                    <div class="temp-description">
+                    <div class="temp-desc">
                         Temperatura mínima para que el material <strong>comience a arder</strong> con fuente externa de calor
                     </div>
                 </div>
@@ -352,7 +272,7 @@
                 <div class="temp-card">
                     <div class="temp-title">Temperatura de Autoignición</div>
                     <div class="temp-value">Mayor</div>
-                    <div class="temp-description">
+                    <div class="temp-desc">
                         Temperatura donde el material <strong>se enciende automáticamente</strong> sin fuente externa
                     </div>
                 </div>
@@ -360,22 +280,19 @@
                 <div class="temp-card">
                     <div class="temp-title">Punto de Inflamación</div>
                     <div class="temp-value">Líquidos</div>
-                    <div class="temp-description">
+                    <div class="temp-desc">
                         Temperatura mínima donde los <strong>vapores de líquidos</strong> pueden encenderse
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Productos peligrosos -->
-        <div class="content-section">
-            <h2 class="section-title">☠️ Productos Peligrosos de la Combustión</h2>
-            
-            <div class="danger-products">
+        <div class="section">
+            <h2>Productos Peligrosos de la Combustión</h2>
+            <div class="grid-4">
                 <div class="danger-card">
-                    <span class="danger-icon">💀</span>
                     <div class="danger-title">Monóxido de Carbono (CO)</div>
-                    <div class="danger-description">
+                    <div class="danger-desc">
                         <strong>ASESINO SILENCIOSO</strong><br>
                         Inodoro, incoloro<br>
                         Se une a la hemoglobina<br>
@@ -384,9 +301,8 @@
                 </div>
 
                 <div class="danger-card">
-                    <span class="danger-icon">🌫️</span>
                     <div class="danger-title">Humo y Hollín</div>
-                    <div class="danger-description">
+                    <div class="danger-desc">
                         Partículas microscópicas<br>
                         Irritan vías respiratorias<br>
                         Reducen visibilidad<br>
@@ -395,9 +311,8 @@
                 </div>
 
                 <div class="danger-card">
-                    <span class="danger-icon">🔥</span>
                     <div class="danger-title">Gases Calientes</div>
-                    <div class="danger-description">
+                    <div class="danger-desc">
                         Temperaturas > 500°C<br>
                         Queman vías respiratorias<br>
                         Causan edema pulmonar<br>
@@ -406,9 +321,8 @@
                 </div>
 
                 <div class="danger-card">
-                    <span class="danger-icon">⚗️</span>
                     <div class="danger-title">Químicos Tóxicos</div>
-                    <div class="danger-description">
+                    <div class="danger-desc">
                         Cianuro de hidrógeno (HCN)<br>
                         Acroleína<br>
                         Dióxido de azufre<br>
@@ -418,25 +332,65 @@
             </div>
         </div>
 
-        <!-- Warning crítico -->
-        <div class="warning-box">
-            <div class="warning-title">🚨 PELIGRO MORTAL</div>
-            <p><strong>El humo mata antes que las llamas.</strong> La mayoría de muertes en incendios son por inhalación de gases tóxicos, NO por quemaduras.</p>
+        <div class="alert-box">
+            PELIGRO MORTAL: El humo mata antes que las llamas. La mayoría de muertes en incendios son por inhalación de gases tóxicos, NO por quemaduras
         </div>
 
-        <!-- Para recordar en campo -->
-        <div class="content-section">
-            <h2 class="section-title">🎯 Para Recordar en Campo</h2>
-            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
-                <p><strong>✅ ANTES de entrar:</strong></p>
-                <ul style="margin: 10px 0 10px 20px;">
+        <div class="section">
+            <h2>Factores que Afectan la Combustión</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4>Oxígeno Disponible</h4>
+                    <ul>
+                        <li><strong>21%:</strong> Concentración normal - combustión completa</li>
+                        <li><strong>15-21%:</strong> Combustión lenta - más CO</li>
+                        <li><strong><15%:</strong> Combustión incompleta - muy tóxico</li>
+                        <li><strong>>21%:</strong> Combustión violenta</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Tipo de Combustible</h4>
+                    <ul>
+                        <li><strong>Madera:</strong> Produce CO₂, H₂O, CO</li>
+                        <li><strong>Plásticos:</strong> Gases tóxicos variados</li>
+                        <li><strong>Hidrocarburos:</strong> CO, hidrocarburos parciales</li>
+                        <li><strong>Sintéticos:</strong> Cianuro, cloro, otros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ecuaciones Químicas Básicas</h2>
+            <div class="info-box">
+                <h4>Combustión Completa (con suficiente O₂):</h4>
+                <p style="font-weight: bold; margin: 10px 0;">Hidrocarburos + O₂ → CO₂ + H₂O + Calor</p>
+                <p style="font-size: 0.9em;">Ejemplo: CH₄ + 2O₂ → CO₂ + 2H₂O</p>
+            </div>
+            <div class="info-box" style="margin-top: 15px;">
+                <h4>Combustión Incompleta (sin suficiente O₂):</h4>
+                <p style="font-weight: bold; margin: 10px 0;">Hidrocarburos + O₂ → CO + H₂O + Carbón + Calor</p>
+                <p style="font-size: 0.9em;">Ejemplo: 2CH₄ + 3O₂ → 2CO + 4H₂O</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>ANTES de entrar:</strong></p>
+                <ul>
                     <li><strong>Humo negro y denso</strong> = Combustión incompleta = MÁS peligroso</li>
                     <li><strong>Humo gris claro</strong> = Combustión más completa = Menos tóxico</li>
                     <li><strong>SIEMPRE usar EPRA</strong> - El CO es indetectable</li>
                     <li><strong>Ventilación adecuada</strong> mejora la combustión (menos CO)</li>
                 </ul>
-                <p><strong>🚨 NUNCA olvides:</strong> Los gases calientes suben, pero el CO se mezcla uniformemente.</p>
+                <p style="margin-top: 10px;"><strong>NUNCA olvides:</strong> Los gases calientes suben, pero el CO se mezcla uniformemente.</p>
             </div>
+        </div>
+
+        <div class="alert-box">
+            La diferencia entre sobrevivir y morir puede ser entender qué gases se están produciendo según el COLOR y DENSIDAD del humo
         </div>
     </div>
 </body>

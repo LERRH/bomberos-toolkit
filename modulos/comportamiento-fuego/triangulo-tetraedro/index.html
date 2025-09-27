@@ -4,17 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Triángulo y Tetraedro del Fuego - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#8C0303">
     <style>
-        :root {
-            --primary-red: #e74c3c;
-            --primary-dark-red: #c0392b;
-            --success-green: #27ae60;
-            --warning-orange: #f39c12;
-            --dark-gray: #2c3e50;
-            --white: #ffffff;
-            --light-gray: #ecf0f1;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -22,216 +13,201 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-            color: var(--dark-gray);
-            line-height: 1.6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F2E4C9;
+            color: #0D0D0D;
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
-            color: var(--white);
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: #8C0303;
+            color: #F2E4C9;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .breadcrumb {
-            font-size: 0.8em;
-            margin-bottom: 8px;
-            opacity: 0.9;
+            font-size: 0.9em;
+            margin-bottom: 10px;
         }
 
         .breadcrumb a {
-            color: var(--white);
+            color: #F2E4C9;
             text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
         }
 
         .header h1 {
-            font-size: 1.6em;
+            font-size: 1.8em;
             margin-bottom: 5px;
         }
 
-        .header p {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Pastillas de contenido */
-        .content-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
+        .section {
+            background: #0D0D0D;
+            color: #F2E4C9;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            color: var(--primary-red);
-            font-size: 1.3em;
-            font-weight: bold;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .concept-grid {
+        .section h2 {
+            color: #BF3604;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BF3604;
+            padding-bottom: 10px;
+        }
+
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
         }
 
         .concept-card {
-            background: var(--light-gray);
-            border-radius: 8px;
+            background: #F2E4C9;
+            color: #0D0D0D;
             padding: 15px;
-            border-left: 4px solid var(--primary-red);
         }
 
         .concept-title {
             font-weight: bold;
-            color: var(--primary-red);
-            margin-bottom: 8px;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
-        .concept-description {
+        .concept-desc {
             font-size: 0.9em;
-            color: var(--dark-gray);
         }
 
-        /* Lista de elementos */
-        .elements-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-
-        .element-item {
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark-red));
-            color: var(--white);
+        .element-card {
+            background: #BF3604;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
             text-align: center;
+        }
+
+        .element-title {
             font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
         }
 
-        .element-icon {
-            font-size: 2em;
-            margin-bottom: 8px;
-            display: block;
+        .element-subtitle {
+            font-size: 0.85em;
+            opacity: 0.9;
         }
 
-        /* Métodos de extinción */
-        .extinction-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+        .special-element {
+            background: #8C0303;
         }
 
         .method-card {
-            background: var(--success-green);
-            color: var(--white);
+            background: #F2E4C9;
+            color: #0D0D0D;
             padding: 15px;
-            border-radius: 8px;
             text-align: center;
         }
 
         .method-title {
             font-weight: bold;
-            margin-bottom: 8px;
+            color: #8C0303;
+            margin-bottom: 10px;
+            font-size: 1.05em;
         }
 
-        .method-description {
+        .method-desc {
             font-size: 0.9em;
         }
 
-        /* Punto clave */
-        .key-point {
-            background: linear-gradient(135deg, var(--warning-orange), #e67e22);
-            color: var(--white);
+        .alert-box {
+            background: #BF3604;
+            color: #F2E4C9;
             padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
             font-weight: bold;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .content-section {
-                padding: 15px;
-            }
-
-            .concept-grid,
-            .elements-list,
-            .extinction-methods {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .header h1 {
-                font-size: 1.4em;
-            }
+        .info-box {
+            background: #F2E4C9;
+            color: #0D0D0D;
+            padding: 15px;
         }
 
-        /* Visual helpers */
-        .triangle-visual, .tetrahedron-visual {
-            text-align: center;
-            font-size: 3em;
-            margin: 20px 0;
-            color: var(--primary-red);
+        .info-box h4 {
+            color: #8C0303;
+            margin-bottom: 10px;
         }
 
-        .vs-indicator {
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .visual-indicator {
             text-align: center;
             font-size: 2em;
-            color: var(--warning-orange);
+            color: #BF3604;
             margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="breadcrumb">
-            <a href="../../../index.html">Inicio</a> > 
-            <a href="../../">Módulos</a> > 
-            <a href="../index.html">Comportamiento del Fuego</a> >
-            Triángulo y Tetraedro
+            <a href="../../../index.html">← Inicio</a> > <a href="../../">Módulos</a> > <a href="../">Comportamiento del Fuego</a> > Triángulo y Tetraedro
         </div>
-        <h1>🔺 Triángulo y Tetraedro del Fuego</h1>
+        <h1>TRIÁNGULO Y TETRAEDRO DEL FUEGO</h1>
         <p>Elementos esenciales para la combustión y extinción</p>
     </header>
 
     <div class="container">
-        <!-- Conceptos fundamentales -->
-        <div class="content-section">
-            <h2 class="section-title">🔥 Conceptos Fundamentales</h2>
-            <div class="concept-grid">
+        <div class="section">
+            <h2>Conceptos Fundamentales</h2>
+            <div class="grid-2">
                 <div class="concept-card">
                     <div class="concept-title">Triángulo del Fuego</div>
-                    <div class="concept-description">
+                    <div class="concept-desc">
                         Modelo básico que representa los 3 elementos esenciales para que exista combustión. 
                         <strong>Sin cualquiera de estos elementos, NO hay fuego.</strong>
                     </div>
                 </div>
                 <div class="concept-card">
                     <div class="concept-title">Tetraedro del Fuego</div>
-                    <div class="concept-description">
+                    <div class="concept-desc">
                         Modelo avanzado que incluye un 4° elemento: la reacción química en cadena. 
                         <strong>Más completo y preciso para entender la combustión.</strong>
                     </div>
@@ -239,101 +215,166 @@
             </div>
         </div>
 
-        <!-- Triángulo del Fuego -->
-        <div class="content-section">
-            <h2 class="section-title">🔺 Triángulo del Fuego</h2>
-            <div class="triangle-visual">🔺</div>
-            
-            <div class="elements-list">
-                <div class="element-item">
-                    <span class="element-icon">🪵</span>
-                    <div>COMBUSTIBLE</div>
-                    <div style="font-size: 0.8em; margin-top: 5px;">Materiales que arden</div>
+        <div class="section">
+            <h2>Triángulo del Fuego - 3 Elementos</h2>
+            <div class="grid-3">
+                <div class="element-card">
+                    <div class="element-title">COMBUSTIBLE</div>
+                    <div class="element-subtitle">Materiales que arden</div>
                 </div>
-                <div class="element-item">
-                    <span class="element-icon">💨</span>
-                    <div>COMBURENTE</div>
-                    <div style="font-size: 0.8em; margin-top: 5px;">Oxígeno (O₂)</div>
+                <div class="element-card">
+                    <div class="element-title">COMBURENTE</div>
+                    <div class="element-subtitle">Oxígeno (O₂)</div>
                 </div>
-                <div class="element-item">
-                    <span class="element-icon">🌡️</span>
-                    <div>CALOR</div>
-                    <div style="font-size: 0.8em; margin-top: 5px;">Energía de activación</div>
+                <div class="element-card">
+                    <div class="element-title">CALOR</div>
+                    <div class="element-subtitle">Energía de activación</div>
                 </div>
             </div>
         </div>
 
-        <div class="vs-indicator">⬇️</div>
+        <div class="visual-indicator">⬇</div>
 
-        <!-- Tetraedro del Fuego -->
-        <div class="content-section">
-            <h2 class="section-title">🔷 Tetraedro del Fuego</h2>
-            <div class="tetrahedron-visual">🔷</div>
-            
-            <div class="elements-list">
-                <div class="element-item">
-                    <span class="element-icon">🪵</span>
-                    <div>COMBUSTIBLE</div>
+        <div class="section">
+            <h2>Tetraedro del Fuego - 4 Elementos</h2>
+            <div class="grid-4">
+                <div class="element-card">
+                    <div class="element-title">COMBUSTIBLE</div>
+                    <div class="element-subtitle">Material que arde</div>
                 </div>
-                <div class="element-item">
-                    <span class="element-icon">💨</span>
-                    <div>COMBURENTE</div>
+                <div class="element-card">
+                    <div class="element-title">COMBURENTE</div>
+                    <div class="element-subtitle">Oxígeno (O₂)</div>
                 </div>
-                <div class="element-item">
-                    <span class="element-icon">🌡️</span>
-                    <div>CALOR</div>
+                <div class="element-card">
+                    <div class="element-title">CALOR</div>
+                    <div class="element-subtitle">Energía</div>
                 </div>
-                <div class="element-item" style="background: linear-gradient(135deg, var(--warning-orange), #e67e22);">
-                    <span class="element-icon">⚗️</span>
-                    <div>REACCIÓN EN CADENA</div>
-                    <div style="font-size: 0.8em; margin-top: 5px;">Proceso químico continuo</div>
+                <div class="element-card special-element">
+                    <div class="element-title">REACCIÓN EN CADENA</div>
+                    <div class="element-subtitle">Proceso químico continuo</div>
                 </div>
             </div>
         </div>
 
-        <!-- Punto clave -->
-        <div class="key-point">
-            ⚡ REGLA DE ORO: Elimina cualquiera de estos elementos = EXTINCIÓN del fuego
+        <div class="alert-box">
+            REGLA DE ORO: Elimina cualquiera de estos elementos = EXTINCIÓN del fuego
         </div>
 
-        <!-- Métodos de extinción -->
-        <div class="content-section">
-            <h2 class="section-title">🚒 Métodos de Extinción</h2>
-            <p style="margin-bottom: 20px;"><strong>Cada método ataca un elemento específico:</strong></p>
+        <div class="section">
+            <h2>Métodos de Extinción</h2>
+            <p style="margin-bottom: 15px;"><strong>Cada método ataca un elemento específico:</strong></p>
             
-            <div class="extinction-methods">
+            <div class="grid-4">
                 <div class="method-card">
-                    <div class="method-title">🌊 ENFRIAMIENTO</div>
-                    <div class="method-description">Elimina el CALOR<br>• Agua<br>• Espuma</div>
+                    <div class="method-title">ENFRIAMIENTO</div>
+                    <div class="method-desc">
+                        Elimina el CALOR<br><br>
+                        • Agua<br>
+                        • Espuma
+                    </div>
                 </div>
                 <div class="method-card">
-                    <div class="method-title">🫧 SOFOCACIÓN</div>
-                    <div class="method-description">Elimina el OXÍGENO<br>• CO₂<br>• Espuma<br>• Mantas</div>
+                    <div class="method-title">SOFOCACIÓN</div>
+                    <div class="method-desc">
+                        Elimina el OXÍGENO<br><br>
+                        • CO₂<br>
+                        • Espuma<br>
+                        • Mantas
+                    </div>
                 </div>
                 <div class="method-card">
-                    <div class="method-title">🚫 REMOCIÓN</div>
-                    <div class="method-description">Elimina el COMBUSTIBLE<br>• Cortar suministro<br>• Crear cortafuegos</div>
+                    <div class="method-title">REMOCIÓN</div>
+                    <div class="method-desc">
+                        Elimina el COMBUSTIBLE<br><br>
+                        • Cortar suministro<br>
+                        • Crear cortafuegos
+                    </div>
                 </div>
                 <div class="method-card">
-                    <div class="method-title">⚗️ INHIBICIÓN</div>
-                    <div class="method-description">Rompe la REACCIÓN<br>• Polvo químico<br>• Halones<br>• Agentes limpios</div>
+                    <div class="method-title">INHIBICIÓN</div>
+                    <div class="method-desc">
+                        Rompe la REACCIÓN<br><br>
+                        • Polvo químico<br>
+                        • Halones<br>
+                        • Agentes limpios
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Aplicación práctica -->
-        <div class="content-section">
-            <h2 class="section-title">🎯 Para Recordar en Campo</h2>
-            <div style="background: var(--light-gray); padding: 15px; border-radius: 8px;">
-                <p><strong>✅ ANTES de atacar, identifica:</strong></p>
-                <ul style="margin: 10px 0 10px 20px;">
+        <div class="section">
+            <h2>Elementos del Combustible</h2>
+            <div class="info-box">
+                <h4>Combustible - Material que arde:</h4>
+                <ul>
+                    <li><strong>Sólidos:</strong> Madera, papel, telas, plásticos</li>
+                    <li><strong>Líquidos:</strong> Gasolina, aceites, alcohol</li>
+                    <li><strong>Gases:</strong> Propano, metano, gas natural</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Nota:</strong> Cada tipo requiere tácticas específicas de extinción</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Comburente - Oxígeno</h2>
+            <div class="info-box">
+                <h4>Concentración necesaria para combustión:</h4>
+                <ul>
+                    <li><strong>21%:</strong> Concentración normal del aire</li>
+                    <li><strong>15-21%:</strong> Combustión posible pero lenta</li>
+                    <li><strong><15%:</strong> Combustión se extingue</li>
+                    <li><strong>>21%:</strong> Combustión violenta (ambientes enriquecidos)</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Método:</strong> Sofocación reduce concentración de O₂</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Calor - Energía de Activación</h2>
+            <div class="info-box">
+                <h4>Fuentes comunes de calor:</h4>
+                <ul>
+                    <li><strong>Llama abierta:</strong> Fósforos, velas, soldadura</li>
+                    <li><strong>Chispas:</strong> Electricidad, fricción, estática</li>
+                    <li><strong>Superficies calientes:</strong> Motores, tuberías, equipos</li>
+                    <li><strong>Reacciones químicas:</strong> Combustión espontánea</li>
+                    <li><strong>Solar:</strong> Concentración de luz solar</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Método:</strong> Enfriamiento reduce temperatura bajo punto de ignición</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Reacción en Cadena</h2>
+            <div class="info-box">
+                <h4>Proceso químico autosostenido:</h4>
+                <ul>
+                    <li>El fuego genera calor que libera más combustible</li>
+                    <li>El combustible liberado reacciona con oxígeno</li>
+                    <li>Se produce más calor que mantiene el ciclo</li>
+                    <li>El proceso continúa hasta agotar combustible u oxígeno</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Método:</strong> Agentes químicos interrumpen este ciclo</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Para Recordar en Campo</h2>
+            <div class="info-box">
+                <p><strong>ANTES de atacar, identifica:</strong></p>
+                <ul>
                     <li>¿Qué está ardiendo? (Combustible)</li>
                     <li>¿Hay ventilación? (Oxígeno)</li>
                     <li>¿Cuál es la fuente de calor?</li>
                     <li>¿Qué método de extinción usar?</li>
                 </ul>
-                <p><strong>🚨 NUNCA olvides:</strong> Sin los 4 elementos del tetraedro NO hay combustión sostenida.</p>
+                <p style="margin-top: 10px;"><strong>NUNCA olvides:</strong> Sin los 4 elementos del tetraedro NO hay combustión sostenida.</p>
             </div>
+        </div>
+
+        <div class="alert-box">
+            La diferencia entre TRIÁNGULO y TETRAEDRO es la REACCIÓN EN CADENA. El tetraedro explica mejor por qué funcionan los agentes químicos
         </div>
     </div>
 </body>
