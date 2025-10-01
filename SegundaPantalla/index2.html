@@ -16,37 +16,45 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #19171b;
-            color: #F2E4C9;
+            color: #ffffff;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 40px 20px 40px 100px;
+            background-image: url('../assets/icons/index2.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
         }
 
         .header {
             margin-bottom: 50px;
+            width: 100%;
         }
 
         .header h1 {
             font-size: 3rem;
             font-weight: 700;
-            color: #F2E4C9;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
         .back-button {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 45px;
-            height: 45px;
-            background: rgba(117, 2, 15, 0.8);
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: rgba(117, 2, 15, 0.9);
             border: none;
             border-radius: 50%;
-            color: #F2E4C9;
+            color: #ffffff;
             font-size: 1.5rem;
             cursor: pointer;
             display: flex;
@@ -54,6 +62,7 @@
             justify-content: center;
             transition: all 0.3s ease;
             z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
         .back-button:hover {
@@ -65,11 +74,12 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            width: 50%;
         }
 
         .tool-item {
-            background: #3a3840;
-            color: #F2E4C9;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
             padding: 18px 25px;
             border-radius: 15px;
             font-size: 1.1rem;
@@ -81,7 +91,7 @@
         }
 
         .tool-item:hover {
-            background: #51080d;
+            background: rgba(117, 2, 15, 0.8);
             border-color: #75020f;
             transform: translateX(10px);
         }
@@ -99,15 +109,25 @@
                 font-size: 2.5rem;
             }
 
+            .container {
+                align-items: stretch;
+            }
+
+            .tools-list {
+                width: 100%;
+            }
+
             .tool-item {
                 padding: 20px 25px;
                 font-size: 1.1rem;
             }
 
             .back-button {
-                width: 40px;
-                height: 40px;
+                width: 50px;
+                height: 50px;
                 font-size: 1.3rem;
+                bottom: 20px;
+                right: 20px;
             }
         }
 
