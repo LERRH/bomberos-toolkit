@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#19171b">
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #19171b;
+            color: #F2E4C9;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #F2E4C9;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(117, 2, 15, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: #F2E4C9;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: #75020f;
+            transform: scale(1.1);
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .service-item {
+            background: #3a3840;
+            color: #F2E4C9;
+            padding: 18px 25px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: left;
+        }
+
+        .service-item:hover {
+            background: #51080d;
+            border-color: #75020f;
+            transform: translateX(10px);
+        }
+
+        .service-item:active {
+            transform: translateX(10px) scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .service-item {
+                padding: 20px 25px;
+                font-size: 1.1rem;
+            }
+
+            .back-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .service-item {
+                padding: 18px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">←</button>
+
+    <div class="container">
+        <header class="header">
+            <h1>Servicios</h1>
+        </header>
+
+        <main class="services-list">
+            <div class="service-item" onclick="openService('https://sgonorte.bomberosperu.gob.pe/24horas')">
+                Emergencia 24H
+            </div>
+
+            <div class="service-item" onclick="openService('https://www.bomberosperu.gob.pe/sgo/ceem/SGO_CEEM_CDVehiculos.asp')">
+                Unidades en servicio
+            </div>
+
+            <div class="service-item" onclick="openService('https://cel.sis.gob.pe/SisConsultaEnLinea')">
+                SIS
+            </div>
+
+            <div class="service-item" onclick="openService('https://dondemeatiendo.essalud.gob.pe/#/consulta')">
+                ESSALUD
+            </div>
+
+            <div class="service-item" onclick="openService('https://www.interseguro.pe/soat/consulta-soat')">
+                SOAT
+            </div>
+
+            <div class="service-item" onclick="openService('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio')">
+                Consulta Vehicular
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function openService(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

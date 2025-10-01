@@ -17,216 +17,186 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #F2E4C9;
-            color: #0D0D0D;
-            line-height: 1.6;
-        }
-
-        .header {
-            background: #8C0303;
+            background: #0D0D0D;
             color: #F2E4C9;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: url('assets/icons/fondo.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 40px;
-            height: 40px;
-        }
-
-        .header-text h1 {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .header-text p {
-            font-size: 0.8rem;
-            opacity: 0.9;
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 13, 13, 0.3);
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 15px;
-        }
-
-        .section {
-            background: #0D0D0D;
-            color: #F2E4C9;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .section-title {
-            color: #BF3604;
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #BF3604;
-            padding-bottom: 8px;
-        }
-
-        .list-container {
-            list-style: none;
-            padding: 0;
-        }
-
-        .list-item {
-            background: #F2E4C9;
-            color: #0D0D0D;
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 40px 20px;
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
         }
 
-        .list-item:hover {
-            background: #BF3604;
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
             color: #F2E4C9;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
         }
 
-        .item-title {
-            font-weight: 600;
-            font-size: 0.9rem;
+        .section-card {
+            background: rgba(13, 13, 13, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            margin-right: auto;
+            width: 240px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(242, 228, 201, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .badge {
-            padding: 3px 8px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            background: #8C0303;
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(140, 3, 3, 0.4);
+            border-color: rgba(191, 54, 4, 0.3);
+        }
+
+        .section-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: #F2E4C9;
+            margin-bottom: 10px;
         }
 
-        .badge.external {
-            background: #0D0D0D;
-            color: #F2E4C9;
+        .section-card p {
+            font-size: 0.95rem;
+            color: rgba(242, 228, 201, 0.8);
+            line-height: 1.4;
         }
 
         .footer {
-            background: #8C0303;
-            color: #F2E4C9;
+            margin-top: auto;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 30px 20px;
+            color: rgba(242, 228, 201, 0.6);
+            font-size: 0.85rem;
         }
 
         .footer p {
             margin: 5px 0;
-            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            .header-text h1 {
-                font-size: 1.4rem;
+            .container {
+                padding: 30px 15px;
             }
-            
-            .list-item {
+
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-card {
+                padding: 25px 20px;
+                max-width: 100%;
+            }
+
+            .section-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section-card h2 {
+                font-size: 1.3rem;
+            }
+
+            .section-card p {
                 font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <img src="assets/icons/logo.svg" alt="Logo" class="logo">
-            <div class="header-text">
-                <h1>BOMBEROS TOOLKIT</h1>
-                <p>Herramientas profesionales</p>
+    <div class="container">
+        <header class="header">
+            <img src="assets/icons/logo.svg" alt="Bomberos Toolkit" class="logo">
+            <h1>ToolKit</h1>
+        </header>
+
+        <main>
+            <div class="section-card" onclick="showServiciosMenu()">
+                <h2>Servicios</h2>
+                <p>Enlaces web externos</p>
             </div>
-        </div>
-    </header>
 
-    <main class="container">
-        <section class="section">
-            <h2 class="section-title">SERVICIOS</h2>
-            <ul class="list-container">
-                <li class="list-item" onclick="window.open('https://sgonorte.bomberosperu.gob.pe/24horas','_blank')">
-                    <span class="item-title">EMERGENCIAS 24H</span>
-                    <span class="badge external">EXTERNO</span>
-                </li>
-                <li class="list-item" onclick="window.open('https://www.bomberosperu.gob.pe/sgo/ceem/SGO_CEEM_CDVehiculos.asp','_blank')">
-                    <span class="item-title">UNIDADES EN SERVICIO</span>
-                    <span class="badge external">EXTERNO</span>
-                </li>
-                <li class="list-item" onclick="window.open('https://cel.sis.gob.pe/SisConsultaEnLinea','_blank')">
-                    <span class="item-title">SIS</span>
-                    <span class="badge external">EXTERNO</span>
-                </li>
-                <li class="list-item" onclick="window.open('https://dondemeatiendo.essalud.gob.pe/#/consulta','_blank')">
-                    <span class="item-title">ESSALUD</span>
-                    <span class="badge external">EXTERNO</span>
-                </li>
-                <li class="list-item" onclick="window.open('https://www.interseguro.pe/soat/consulta-soat','_blank')">
-                    <span class="item-title">SOAT</span>
-                    <span class="badge external">EXTERNO</span>
-                </li>
-                <li class="list-item" onclick="window.open('https://consultavehicular.sunarp.gob.pe/consulta-vehicular/inicio','_blank')">
-                    <span class="item-title">CONSULTA VEHICULAR</span>
-                    <span class="badge external">EXTERNO</span>
-                </li>
-            </ul>
-        </section>
+            <div class="section-card" onclick="showHerramientasMenu()">
+                <h2>Herramientas</h2>
+                <p>Herramientas prácticas<br>a la mano</p>
+            </div>
 
-        <section class="section">
-            <h2 class="section-title">HERRAMIENTAS</h2>
-            <ul class="list-container">
-                <li class="list-item" onclick="location.href='herramientas/claves/index.html'">
-                    <span class="item-title">Claves</span>
-                </li>
-                <li class="list-item" onclick="location.href='herramientas/rcp-timer/index.html'">
-                    <span class="item-title">RCP Timer</span>
-                </li>
-                <li class="list-item" onclick="location.href='herramientas/glasgow/index.html'">
-                    <span class="item-title">Glasgow</span>
-                </li>
-                <li class="list-item" onclick="location.href='herramientas/signos-vitales/index.html'">
-                    <span class="item-title">Signos Vitales</span>
-                </li>
-                <li class="list-item" onclick="location.href='herramientas/conversor/index.html'">
-                    <span class="item-title">Conversor</span>
-                </li>
-            </ul>
-        </section>
+            <div class="section-card" onclick="showModulosMenu()">
+                <h2>Módulos</h2>
+                <p>Lecciones organizadas<br>por ejes temáticos</p>
+            </div>
+        </main>
 
-        <section class="section">
-            <h2 class="section-title">MÓDULOS</h2>
-            <ul class="list-container">
-                <li class="list-item" onclick="location.href='modulos/atencion-prehospitalaria/index.html'">
-                    <span class="item-title">Atención Prehospitalaria</span>
-                </li>
-                <li class="list-item" onclick="location.href='modulos/comportamiento-fuego/index.html'">
-                    <span class="item-title">Comportamiento del Fuego</span>
-                </li>
-                <li class="list-item" onclick="location.href='modulos/equipos-materiales/index.html'">
-                    <span class="item-title">Equipos y Materiales</span>
-                </li>
-                <li class="list-item" onclick="location.href='modulos/actividades-soporte/index.html'">
-                    <span class="item-title">Actividades de Soporte</span>
-                </li>
-                <li class="list-item" onclick="location.href='modulos/combate-incendio/index.html'">
-                    <span class="item-title">Combate contra Incendio</span>
-                </li>
-            </ul>
-        </section>
-    </main>
+        <footer class="footer">
+            <p><strong>BOMBEROS TOOLKIT</strong></p>
+            <p>Desarrollado para bomberos</p>
+            <p>Versión 1.0 | SEP-2025 | WhatsApp: +51 946772995</p>
+        </footer>
+    </div>
 
-    <footer class="footer">
-        <p><strong>BOMBEROS TOOLKIT</strong></p>
-        <p>Desarrollado para bomberos</p>
-        <p>Versión 1.0 | SEP-2025 | WhatsApp: +51 946772995</p>
-    </footer>
+    <script>
+        function showServiciosMenu() {
+            location.href = 'SegundaPantalla/index1.html';
+        }
+
+        function showHerramientasMenu() {
+            location.href = 'SegundaPantalla/index2.html';
+        }
+
+        function showModulosMenu() {
+            location.href = 'SegundaPantalla/index3.html';
+        }
+    </script>
 </body>
 </html>
