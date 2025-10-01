@@ -3,9 +3,9 @@
   "short_name": "Bomberos Toolkit",
   "description": "Herramientas y conocimiento para bomberos del Cuerpo General de Bomberos Voluntarios del Perú",
   "version": "1.0.0",
-  "start_url": "./",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#F2E4C9",
+  "background_color": "#0D0D0D",
   "theme_color": "#8C0303",
   "orientation": "portrait-primary",
   "scope": "./",
@@ -70,31 +70,31 @@
   ],
   "shortcuts": [
     {
-      "name": "Claves CGBVP",
-      "short_name": "Claves",
-      "description": "Acceso rápido a códigos de comunicación",
-      "url": "./?herramienta=claves",
+      "name": "Servicios",
+      "short_name": "Servicios",
+      "description": "Acceso rápido a servicios de emergencia",
+      "url": "./SegundaPantalla/index1.html",
+      "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Herramientas",
+      "short_name": "Herramientas",
+      "description": "Acceso rápido a herramientas",
+      "url": "./SegundaPantalla/index2.html",
       "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
     },
     {
       "name": "Timer RCP",
       "short_name": "RCP",
       "description": "Cronómetro para reanimación cardiopulmonar",
-      "url": "./?herramienta=rcp",
+      "url": "./herramientas/rcp-timer/index.html",
       "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
     },
     {
-      "name": "Conversor",
-      "short_name": "Conversor", 
-      "description": "Conversor de unidades y medidas",
-      "url": "./?herramienta=conversor",
-      "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
-    },
-    {
-      "name": "Escala de Glasgow",
-      "short_name": "Glasgow",
-      "description": "Evaluación del nivel de consciencia",
-      "url": "./?herramienta=glasgow",
+      "name": "Claves CGBVP",
+      "short_name": "Claves",
+      "description": "Códigos de comunicación",
+      "url": "./herramientas/claves/index.html",
       "icons": [{ "src": "assets/icons/logo.svg", "sizes": "any" }]
     }
   ],

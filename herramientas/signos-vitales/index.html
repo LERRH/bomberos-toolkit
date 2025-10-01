@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signos Vitales - Bomberos Toolkit</title>
-    <meta name="theme-color" content="#8C0303">
+    <meta name="theme-color" content="#19171b">
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <style>
         * {
             margin: 0;
@@ -14,34 +15,52 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #F2E4C9;
-            color: #0D0D0D;
+            background: #19171b;
+            color: #ffffff;
         }
 
         .header {
-            background: #8C0303;
-            color: #F2E4C9;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: #2b0307;
+            color: #ffffff;
+            padding: 20px 20px 20px 80px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
-        .breadcrumb {
-            font-size: 0.9em;
-            margin-bottom: 10px;
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(117, 2, 15, 0.9);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100;
         }
 
-        .breadcrumb a {
-            color: #F2E4C9;
-            text-decoration: none;
-            opacity: 0.8;
-        }
-
-        .breadcrumb a:hover {
-            opacity: 1;
+        .back-button:hover {
+            background: #75020f;
+            transform: scale(1.1);
         }
 
         .header h1 {
             font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.8;
         }
 
         .container {
@@ -52,30 +71,41 @@
 
         .tabs {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 20px;
             overflow-x: auto;
             flex-wrap: wrap;
+            padding-bottom: 10px;
         }
 
         .tab {
-            padding: 10px 15px;
-            background: #0D0D0D;
-            color: #F2E4C9;
-            border: none;
+            padding: 10px 18px;
+            background: #19171b;
+            color: #ffffff;
+            border: 2px solid #51080d;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.9em;
+            font-weight: 600;
             white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: #51080d;
+            border-color: #75020f;
         }
 
         .tab.active {
-            background: #8C0303;
+            background: #75020f;
+            border-color: #75020f;
         }
 
         .section {
-            background: #0D0D0D;
-            color: #F2E4C9;
-            padding: 20px;
+            background: #2b0307;
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
             display: none;
         }
 
@@ -84,9 +114,11 @@
         }
 
         .section-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+            font-size: 1.6em;
+            margin-bottom: 25px;
             text-align: center;
+            color: #ffffff;
+            font-weight: 600;
         }
 
         table {
@@ -95,10 +127,11 @@
         }
 
         th {
-            background: #8C0303;
-            padding: 12px 8px;
+            background: #75020f;
+            padding: 14px 10px;
             text-align: center;
-            font-size: 0.9em;
+            font-size: 0.95em;
+            color: #ffffff;
         }
 
         th:first-child {
@@ -106,68 +139,124 @@
         }
 
         td {
-            padding: 10px 8px;
-            border-bottom: 1px solid #BF3604;
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(117, 2, 15, 0.3);
             text-align: center;
-            font-size: 0.85em;
+            font-size: 0.9em;
+            color: #ffffff;
         }
 
         td:first-child {
             text-align: left;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .normal {
             background: #27ae60;
             color: #fff;
-            padding: 5px 8px;
+            padding: 6px 10px;
             display: inline-block;
+            border-radius: 4px;
+            font-weight: 600;
         }
 
         .warning {
             background: #f39c12;
             color: #fff;
-            padding: 5px 8px;
+            padding: 6px 10px;
             display: inline-block;
+            border-radius: 4px;
+            font-weight: 600;
         }
 
         .danger {
             background: #c0392b;
             color: #fff;
-            padding: 5px 8px;
+            padding: 6px 10px;
             display: inline-block;
+            border-radius: 4px;
+            font-weight: 600;
         }
 
         .disclaimer {
-            background: #0D0D0D;
-            color: #F2E4C9;
+            background: #51080d;
+            color: #ffffff;
             padding: 20px;
             margin-top: 20px;
+            border-radius: 8px;
             text-align: center;
+            line-height: 1.6;
+        }
+
+        .disclaimer strong {
+            color: #75020f;
+            font-size: 1.1em;
         }
 
         @media (max-width: 768px) {
-            .tab {
-                font-size: 0.75em;
-                padding: 8px 12px;
+            .container {
+                padding: 15px;
             }
 
+            .header {
+                padding: 15px 15px 15px 70px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .back-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+
+            .tabs {
+                gap: 8px;
+            }
+
+            .tab {
+                font-size: 0.8em;
+                padding: 8px 14px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            th, td {
+                padding: 10px 6px;
+                font-size: 0.8em;
+            }
+
+            .normal, .warning, .danger {
+                padding: 4px 8px;
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
             th, td {
                 padding: 8px 4px;
                 font-size: 0.75em;
             }
 
-            .section-title {
-                font-size: 1.2em;
+            .normal, .warning, .danger {
+                padding: 3px 6px;
+                font-size: 0.8em;
             }
         }
     </style>
 </head>
 <body>
+    <button class="back-button" onclick="window.history.back()">←</button>
+
     <header class="header">
-        <div class="breadcrumb">
-            <a href="../../index.html">← Inicio</a> > Signos Vitales
-        </div>
         <h1>SIGNOS VITALES</h1>
         <p>Valores de referencia por edad</p>
     </header>

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor - Bomberos Toolkit</title>
-    <meta name="theme-color" content="#8C0303">
+    <meta name="theme-color" content="#19171b">
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <style>
         * {
             margin: 0;
@@ -14,35 +15,78 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #F2E4C9;
-            color: #0D0D0D;
+            background: #19171b;
+            color: #ffffff;
         }
 
         .header {
-            background: #8C0303;
-            color: #F2E4C9;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: #2b0307;
+            color: #ffffff;
+            padding: 20px 20px 20px 80px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
-        .breadcrumb {
-            font-size: 0.9em;
-            margin-bottom: 10px;
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(117, 2, 15, 0.9);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100;
         }
 
-        .breadcrumb a {
-            color: #F2E4C9;
-            text-decoration: none;
-            opacity: 0.8;
-        }
-
-        .breadcrumb a:hover {
-            opacity: 1;
+        .back-button:hover {
+            background: #75020f;
+            transform: scale(1.1);
         }
 
         .header h1 {
             font-size: 1.8em;
             margin-bottom: 5px;
+        }
+
+        .quick-nav {
+            background: #2b0307;
+            padding: 15px 20px;
+            margin-bottom: 0;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 82px;
+            z-index: 40;
+        }
+
+        .quick-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #51080d;
+            border-radius: 6px;
+            background: #19171b;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .quick-nav a:hover {
+            background: #51080d;
+            border-color: #75020f;
         }
 
         .container {
@@ -51,42 +95,20 @@
             padding: 20px;
         }
 
-        .quick-nav {
-            background: #0D0D0D;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            flex-wrap: wrap;
-        }
-
-        .quick-nav a {
-            color: #F2E4C9;
-            text-decoration: none;
-            padding: 8px 15px;
-            border: 2px solid #8C0303;
-            transition: all 0.2s;
-            white-space: nowrap;
-            font-size: 0.9em;
-        }
-
-        .quick-nav a:hover {
-            background: #8C0303;
-        }
-
         .converter-section {
-            background: #0D0D0D;
-            padding: 20px;
+            background: #2b0307;
+            padding: 25px;
             margin-bottom: 20px;
+            border-radius: 8px;
+            scroll-margin-top: 140px;
         }
 
         .section-title {
-            color: #F2E4C9;
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #8C0303;
+            color: #ffffff;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #75020f;
         }
 
         .converter-row {
@@ -99,47 +121,132 @@
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 8px;
         }
 
         .input-group label {
-            color: #F2E4C9;
+            color: #ffffff;
             font-size: 0.9em;
+            font-weight: 600;
         }
 
         .input-group input {
-            padding: 10px;
-            border: 2px solid #8C0303;
-            background: #F2E4C9;
-            color: #0D0D0D;
+            padding: 12px;
+            border: 2px solid #51080d;
+            border-radius: 6px;
+            background: #19171b;
+            color: #ffffff;
             font-size: 1em;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: #BF3604;
+            border-color: #75020f;
         }
 
-        .result {
-            background: #8C0303;
-            color: #F2E4C9;
-            padding: 10px;
-            text-align: center;
+        .input-group input::placeholder {
+            color: rgba(242, 228, 201, 0.4);
+        }
+
+        .input-group input[readonly] {
+            background: #75020f;
+            color: #ffffff;
             font-weight: bold;
+            cursor: not-allowed;
+        }
+
+        .calc-button {
+            width: 100%;
+            padding: 14px;
+            background: #75020f;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .calc-button:hover {
+            background: #51080d;
+            transform: translateY(-2px);
+        }
+
+        .calc-button:active {
+            transform: translateY(0);
+        }
+
+        .quick-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #75020f;
+            color: #ffffff;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            z-index: 99;
+        }
+
+        .quick-btn:hover {
+            background: #51080d;
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 15px 15px 15px 70px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .quick-nav {
+                padding: 12px 15px;
+                top: 72px;
+            }
+
+            .converter-section {
+                padding: 20px;
+                scroll-margin-top: 130px;
+            }
+
             .converter-row {
                 grid-template-columns: 1fr;
+            }
+
+            .back-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+
+            .quick-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <button class="back-button" onclick="window.history.back()">←</button>
+
     <header class="header">
-        <div class="breadcrumb">
-            <a href="../../index.html">← Inicio</a> > Conversor
-        </div>
         <h1>CONVERSOR DE UNIDADES</h1>
     </header>
 
@@ -162,21 +269,21 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>PSI</label>
-                    <input type="number" id="psi" oninput="convertPresion('psi')">
+                    <input type="number" id="psi" oninput="convertPresion('psi')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>Bar</label>
-                    <input type="number" id="bar" oninput="convertPresion('bar')">
+                    <input type="number" id="bar" oninput="convertPresion('bar')" placeholder="0.00">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>kPa</label>
-                    <input type="number" id="kpa" oninput="convertPresion('kpa')">
+                    <input type="number" id="kpa" oninput="convertPresion('kpa')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>mH2O</label>
-                    <input type="number" id="mh2o" oninput="convertPresion('mh2o')">
+                    <input type="number" id="mh2o" oninput="convertPresion('mh2o')" placeholder="0.00">
                 </div>
             </div>
         </div>
@@ -187,21 +294,21 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>Metros</label>
-                    <input type="number" id="metros" oninput="convertDistancia('metros')">
+                    <input type="number" id="metros" oninput="convertDistancia('metros')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>Pies</label>
-                    <input type="number" id="pies" oninput="convertDistancia('pies')">
+                    <input type="number" id="pies" oninput="convertDistancia('pies')" placeholder="0.00">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>Pulgadas</label>
-                    <input type="number" id="pulgadas" oninput="convertDistancia('pulgadas')">
+                    <input type="number" id="pulgadas" oninput="convertDistancia('pulgadas')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>Centímetros</label>
-                    <input type="number" id="cm" oninput="convertDistancia('cm')">
+                    <input type="number" id="cm" oninput="convertDistancia('cm')" placeholder="0.00">
                 </div>
             </div>
         </div>
@@ -212,17 +319,17 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>m²</label>
-                    <input type="number" id="m2" oninput="convertArea('m2')">
+                    <input type="number" id="m2" oninput="convertArea('m2')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>ft²</label>
-                    <input type="number" id="ft2" oninput="convertArea('ft2')">
+                    <input type="number" id="ft2" oninput="convertArea('ft2')" placeholder="0.00">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>Hectáreas</label>
-                    <input type="number" id="hectareas" oninput="convertArea('hectareas')">
+                    <input type="number" id="hectareas" oninput="convertArea('hectareas')" placeholder="0.0000">
                 </div>
             </div>
         </div>
@@ -233,17 +340,17 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>Litros</label>
-                    <input type="number" id="litros" oninput="convertVolumen('litros')">
+                    <input type="number" id="litros" oninput="convertVolumen('litros')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>Galones</label>
-                    <input type="number" id="galones" oninput="convertVolumen('galones')">
+                    <input type="number" id="galones" oninput="convertVolumen('galones')" placeholder="0.00">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>m³</label>
-                    <input type="number" id="m3" oninput="convertVolumen('m3')">
+                    <input type="number" id="m3" oninput="convertVolumen('m3')" placeholder="0.000">
                 </div>
             </div>
         </div>
@@ -254,17 +361,17 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>Kilogramos</label>
-                    <input type="number" id="kg" oninput="convertPeso('kg')">
+                    <input type="number" id="kg" oninput="convertPeso('kg')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>Libras</label>
-                    <input type="number" id="lb" oninput="convertPeso('lb')">
+                    <input type="number" id="lb" oninput="convertPeso('lb')" placeholder="0.00">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>Gramos</label>
-                    <input type="number" id="gramos" oninput="convertPeso('gramos')">
+                    <input type="number" id="gramos" oninput="convertPeso('gramos')" placeholder="0">
                 </div>
             </div>
         </div>
@@ -275,17 +382,17 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>Newton (N)</label>
-                    <input type="number" id="newton" oninput="convertFuerza('newton')">
+                    <input type="number" id="newton" oninput="convertFuerza('newton')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>kgf</label>
-                    <input type="number" id="kgf" oninput="convertFuerza('kgf')">
+                    <input type="number" id="kgf" oninput="convertFuerza('kgf')" placeholder="0.00">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>lbf</label>
-                    <input type="number" id="lbf" oninput="convertFuerza('lbf')">
+                    <input type="number" id="lbf" oninput="convertFuerza('lbf')" placeholder="0.00">
                 </div>
             </div>
         </div>
@@ -296,17 +403,17 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>Celsius (°C)</label>
-                    <input type="number" id="celsius" oninput="convertTemp('celsius')">
+                    <input type="number" id="celsius" oninput="convertTemp('celsius')" placeholder="0.0">
                 </div>
                 <div class="input-group">
                     <label>Fahrenheit (°F)</label>
-                    <input type="number" id="fahrenheit" oninput="convertTemp('fahrenheit')">
+                    <input type="number" id="fahrenheit" oninput="convertTemp('fahrenheit')" placeholder="0.0">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>Kelvin (K)</label>
-                    <input type="number" id="kelvin" oninput="convertTemp('kelvin')">
+                    <input type="number" id="kelvin" oninput="convertTemp('kelvin')" placeholder="0.0">
                 </div>
             </div>
         </div>
@@ -317,21 +424,21 @@
             <div class="converter-row">
                 <div class="input-group">
                     <label>LPM (L/min)</label>
-                    <input type="number" id="lpm" oninput="convertCaudal('lpm')">
+                    <input type="number" id="lpm" oninput="convertCaudal('lpm')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>GPM (gal/min)</label>
-                    <input type="number" id="gpm" oninput="convertCaudal('gpm')">
+                    <input type="number" id="gpm" oninput="convertCaudal('gpm')" placeholder="0.00">
                 </div>
             </div>
             <div class="converter-row">
                 <div class="input-group">
                     <label>L/s</label>
-                    <input type="number" id="ls" oninput="convertCaudal('ls')">
+                    <input type="number" id="ls" oninput="convertCaudal('ls')" placeholder="0.00">
                 </div>
                 <div class="input-group">
                     <label>m³/s</label>
-                    <input type="number" id="m3s" oninput="convertCaudal('m3s')">
+                    <input type="number" id="m3s" oninput="convertCaudal('m3s')" placeholder="0.00000">
                 </div>
             </div>
         </div>
@@ -346,7 +453,7 @@
                 </div>
                 <div class="input-group">
                     <label>Factor del cilindro</label>
-                    <input type="number" id="oxFactor" value="0.28">
+                    <input type="number" id="oxFactor" value="0.28" step="0.01">
                 </div>
             </div>
             <div class="converter-row">
@@ -356,12 +463,14 @@
                 </div>
                 <div class="input-group">
                     <label>Duración (minutos)</label>
-                    <input type="number" id="oxDuracion" readonly style="background: #8C0303; color: #F2E4C9; font-weight: bold;">
+                    <input type="number" id="oxDuracion" readonly>
                 </div>
             </div>
-            <button onclick="calcularOxigeno()" style="width: 100%; padding: 12px; background: #BF3604; color: #F2E4C9; border: none; cursor: pointer; font-weight: bold; font-size: 1em;">CALCULAR</button>
+            <button class="calc-button" onclick="calcularOxigeno()">CALCULAR DURACIÓN</button>
         </div>
     </div>
+
+    <button class="quick-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">↑</button>
 
     <script>
         function convertPresion(from) {
@@ -509,6 +618,8 @@
             if (flujo > 0) {
                 const duracion = (presion * factor) / flujo;
                 document.getElementById('oxDuracion').value = duracion.toFixed(1);
+            } else {
+                document.getElementById('oxDuracion').value = '';
             }
         }
     </script>

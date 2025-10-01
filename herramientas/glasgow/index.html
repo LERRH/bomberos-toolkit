@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Escala de Glasgow - Bomberos Toolkit</title>
-    <meta name="theme-color" content="#8C0303">
+    <meta name="theme-color" content="#19171b">
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <style>
         * {
             margin: 0;
@@ -14,35 +15,52 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #F2E4C9;
-            color: #0D0D0D;
+            background: #19171b;
+            color: #ffffff;
         }
 
         .header {
-            background: #8C0303;
-            color: #F2E4C9;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: #2b0307;
+            color: #ffffff;
+            padding: 20px 20px 20px 80px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
-        .breadcrumb {
-            font-size: 0.9em;
-            margin-bottom: 10px;
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(117, 2, 15, 0.9);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100;
         }
 
-        .breadcrumb a {
-            color: #F2E4C9;
-            text-decoration: none;
-            opacity: 0.8;
-        }
-
-        .breadcrumb a:hover {
-            opacity: 1;
+        .back-button:hover {
+            background: #75020f;
+            transform: scale(1.1);
         }
 
         .header h1 {
             font-size: 1.8em;
             margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.8;
         }
 
         .container {
@@ -52,11 +70,12 @@
         }
 
         .instructions {
-            background: #BF3604;
-            color: #F2E4C9;
+            background: #51080d;
+            color: #ffffff;
             padding: 20px;
             margin-bottom: 20px;
-            border-left: 5px solid #F27405;
+            border-radius: 8px;
+            border-left: 4px solid #75020f;
         }
 
         .instructions h3 {
@@ -70,91 +89,102 @@
         }
 
         .instructions strong {
-            color: #F2E4C9;
+            color: #ffffff;
         }
 
         .section {
-            background: #0D0D0D;
+            background: #2b0307;
             padding: 20px;
             margin-bottom: 15px;
+            border-radius: 8px;
         }
 
         .section-title {
-            color: #F2E4C9;
+            color: #ffffff;
             font-size: 1.1em;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #8C0303;
+            border-bottom: 2px solid #75020f;
         }
 
         .option {
-            background: #F2E4C9;
-            border: 2px solid #8C0303;
-            padding: 10px;
-            margin-bottom: 8px;
+            background: #19171b;
+            border: 2px solid #51080d;
+            border-radius: 6px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
 
         .option:hover {
-            background: #e8d8b3;
+            background: #51080d;
+            border-color: #75020f;
         }
 
         .option.selected {
-            background: #8C0303;
-            color: #F2E4C9;
+            background: #75020f;
+            border-color: #75020f;
+            color: #ffffff;
         }
 
         .option-score {
             font-weight: bold;
             min-width: 30px;
             text-align: right;
+            font-size: 1.1em;
         }
 
         .result {
-            background: #0D0D0D;
-            color: #F2E4C9;
-            padding: 20px;
+            background: #2b0307;
+            color: #ffffff;
+            padding: 25px;
             text-align: center;
+            border-radius: 8px;
         }
 
         .result-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .result-item {
-            background: #8C0303;
-            padding: 15px;
+            background: #51080d;
+            padding: 20px;
+            border-radius: 8px;
         }
 
         .result-number {
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: bold;
+            color: #ffffff;
         }
 
         .result-label {
             font-size: 0.9em;
-            margin-top: 5px;
+            margin-top: 8px;
+            color: rgba(242, 228, 201, 0.8);
         }
 
         .total {
-            font-size: 3em;
+            font-size: 3.5em;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 25px 0;
+            color: #ffffff;
         }
 
         .severity {
             display: inline-block;
-            padding: 10px 20px;
-            margin: 10px 0;
+            padding: 12px 25px;
+            margin: 15px 0;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.2em;
+            border-radius: 6px;
         }
 
         .severity-leve { background: #27ae60; color: #fff; }
@@ -162,14 +192,17 @@
         .severity-severo { background: #c0392b; color: #fff; }
 
         .actions {
-            background: #8C0303;
-            padding: 15px;
-            margin-top: 15px;
+            background: #51080d;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
             text-align: left;
         }
 
         .actions h4 {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            color: #ffffff;
         }
 
         .actions ul {
@@ -177,25 +210,51 @@
         }
 
         .actions li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
 
         .reset-btn {
-            background: #BF3604;
-            color: #F2E4C9;
+            background: #75020f;
+            color: #ffffff;
             border: none;
-            padding: 12px 30px;
+            border-radius: 6px;
+            padding: 14px 35px;
             font-size: 1em;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
+            transition: all 0.3s;
         }
 
         .reset-btn:hover {
-            background: #F27405;
+            background: #51080d;
+            transform: translateY(-2px);
+        }
+
+        .reset-btn:active {
+            transform: translateY(0);
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 15px 15px 15px 70px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .back-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+
             .result-grid {
                 grid-template-columns: 1fr;
                 gap: 10px;
@@ -204,21 +263,29 @@
             .total {
                 font-size: 2.5em;
             }
+
+            .result-number {
+                font-size: 2em;
+            }
+
+            .severity {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="back-button" onclick="window.history.back()">←</button>
+
     <header class="header">
-        <div class="breadcrumb">
-            <a href="../../index.html">← Inicio</a> > Calculadora Escala de Glasgow
-        </div>
-        <h1>CALCULADORA ESCALA DE GLASGOW</h1>
+        <h1>ESCALA DE GLASGOW</h1>
         <p>Evaluación del nivel de consciencia</p>
     </header>
 
     <div class="container">
         <div class="instructions">
-            <h3>📋 CÓMO USAR ESTA CALCULADORA</h3>
+            <h3>CÓMO USAR ESTA CALCULADORA</h3>
             <ol>
                 <li><strong>Evalúa las 3 respuestas</strong> del paciente: ocular, verbal y motora</li>
                 <li><strong>Selecciona una opción</strong> en cada categoría según lo observado</li>

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer RCP - Bomberos Toolkit</title>
-    <meta name="theme-color" content="#8C0303">
+    <meta name="theme-color" content="#19171b">
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <style>
         * {
             margin: 0;
@@ -14,30 +15,42 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #F2E4C9;
-            color: #0D0D0D;
+            background: #19171b;
+            color: #ffffff;
         }
 
         .header {
-            background: #8C0303;
-            color: #F2E4C9;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: #2b0307;
+            color: #ffffff;
+            padding: 20px 20px 20px 80px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
-        .breadcrumb {
-            font-size: 0.9em;
-            margin-bottom: 10px;
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(117, 2, 15, 0.9);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100;
         }
 
-        .breadcrumb a {
-            color: #F2E4C9;
-            text-decoration: none;
-            opacity: 0.8;
-        }
-
-        .breadcrumb a:hover {
-            opacity: 1;
+        .back-button:hover {
+            background: #75020f;
+            transform: scale(1.1);
         }
 
         .header h1 {
@@ -51,90 +64,153 @@
         }
 
         .phase-box {
-            background: #0D0D0D;
-            color: #F2E4C9;
-            padding: 30px;
+            background: #2b0307;
+            color: #ffffff;
+            padding: 40px 30px;
             margin-bottom: 20px;
             text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
         .phase-title {
             font-size: 2em;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: #ffffff;
         }
 
         .timer {
-            font-size: 4em;
+            font-size: 4.5em;
             font-weight: bold;
             font-family: monospace;
-            margin: 20px 0;
+            margin: 25px 0;
+            color: #75020f;
+            text-shadow: 0 0 20px rgba(117, 2, 15, 0.5);
         }
 
         .count {
             font-size: 2em;
             font-weight: bold;
-            margin: 15px 0;
+            margin: 20px 0;
+            color: #ffffff;
         }
 
         .info {
-            background: #0D0D0D;
-            color: #F2E4C9;
-            padding: 15px;
+            background: #2b0307;
+            color: #ffffff;
+            padding: 18px;
             margin-bottom: 20px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
+            font-size: 1.1em;
         }
 
         .controls {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .btn {
             padding: 18px;
             border: none;
+            border-radius: 8px;
             font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
-            color: #F2E4C9;
+            color: #ffffff;
+            transition: all 0.3s;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn:active:not(:disabled) {
+            transform: translateY(0);
         }
 
         .btn-start {
-            background: #BF3604;
-            font-size: 1.3em;
-            padding: 22px;
+            background: #75020f;
+            font-size: 1.4em;
+            padding: 24px;
         }
 
         .btn-pause {
-            background: #F27405;
+            background: #f39c12;
         }
 
         .btn-next {
-            background: #8C0303;
+            background: #51080d;
         }
 
         .btn-reset {
-            background: #0D0D0D;
+            background: #19171b;
+            border: 2px solid #51080d;
         }
 
         .btn:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
         }
 
         .guide {
-            background: #0D0D0D;
-            color: #F2E4C9;
-            padding: 15px;
+            background: #2b0307;
+            color: #ffffff;
+            padding: 20px;
             margin-top: 20px;
+            text-align: center;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .guide strong {
+            color: #75020f;
+            font-size: 1.1em;
+        }
+
+        .shortcuts {
+            background: #51080d;
+            color: #ffffff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
             text-align: center;
         }
 
+        .shortcuts kbd {
+            background: #19171b;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0 3px;
+        }
+
         @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 15px 15px 15px 70px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .back-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+
             .timer {
-                font-size: 3em;
+                font-size: 3.5em;
             }
 
             .phase-title {
@@ -144,14 +220,17 @@
             .count {
                 font-size: 1.6em;
             }
+
+            .phase-box {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="back-button" onclick="window.history.back()">←</button>
+
     <header class="header">
-        <div class="breadcrumb">
-            <a href="../../index.html">← Inicio</a> > Timer RCP
-        </div>
         <h1>TIMER RCP</h1>
     </header>
 
@@ -163,27 +242,29 @@
         </div>
 
         <div class="info">
-            <span>Ciclo: <span id="cycle">0</span> / 5</span>
-            <span>Total: <span id="total">00:00</span></span>
+            <span>Ciclo: <strong id="cycle">0</strong> / 5</span>
+            <span>Total: <strong id="total">00:00</strong></span>
         </div>
 
         <div class="controls">
             <button class="btn btn-start" id="startBtn" onclick="start()">INICIAR</button>
             <button class="btn btn-pause" id="pauseBtn" onclick="pause()" disabled>PAUSAR</button>
-            <button class="btn btn-next" id="nextBtn" onclick="next()" disabled>SIGUIENTE</button>
+            <button class="btn btn-next" id="nextBtn" onclick="next()" disabled>SIGUIENTE FASE</button>
             <button class="btn btn-reset" onclick="reset()">REINICIAR</button>
         </div>
 
         <div class="guide">
             <strong>30 compresiones + 2 ventilaciones = 1 ciclo</strong><br>
-            Evaluar cada 5 ciclos (2 minutos)
+            Evaluar pulso cada 5 ciclos (≈2 minutos)
         </div>
+
+
     </div>
 
     <script>
         let running = false;
         let paused = false;
-        let phase = 'stopped'; // 'compressions', 'ventilations'
+        let phase = 'stopped';
         let phaseTime = 0;
         let totalTime = 0;
         let cycles = 0;
@@ -197,12 +278,10 @@
         const COMP_TIME = 18;
         const VENT_TIME = 4;
 
-        // Inicializar AudioContext una sola vez
         function initAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
-            // Reactivar si está suspendido
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
@@ -252,11 +331,11 @@
             compInterval = setInterval(() => {
                 if (compressions < 30 && phase === 'compressions' && !paused) {
                     compressions++;
-                    beep(600, 0.08); // Beep corto para compresiones
+                    beep(600, 0.08);
                     update();
                     if (compressions >= 30) {
                         clearInterval(compInterval);
-                        beep(1000, 0.2); // Beep largo al terminar
+                        beep(1000, 0.2);
                     }
                 }
             }, 600);
@@ -267,14 +346,14 @@
             ventInterval = setInterval(() => {
                 if (ventilations < 2 && phase === 'ventilations' && !paused) {
                     ventilations++;
-                    beep(900, 0.3); // Beep más largo y agudo para ventilaciones
+                    beep(900, 0.3);
                     update();
                     if (ventilations >= 2) {
                         clearInterval(ventInterval);
-                        beep(1200, 0.2); // Beep de finalización
+                        beep(1200, 0.2);
                     }
                 }
-            }, 2000); // Cada 2 segundos
+            }, 2000);
         }
 
         function stopCompressions() {
@@ -292,7 +371,7 @@
         }
 
         function start() {
-            initAudio(); // Activar audio al iniciar
+            initAudio();
             
             if (!running) {
                 running = true;
