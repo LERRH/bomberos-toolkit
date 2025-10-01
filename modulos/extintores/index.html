@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extintores - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-btn {
+            color: #75020f;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f8f8f8;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .box {
+            background: #f8f8f8;
+            padding: 18px;
+            border-radius: 8px;
+        }
+
+        .box h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #75020f;
+            margin-bottom: 10px;
+        }
+
+        .box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .box li {
+            padding: 3px 0;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .box li strong {
+            color: #1a1a1a;
+        }
+
+        .alert {
+            background: #fff5f5;
+            border-left: 4px solid #75020f;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .alert strong {
+            color: #75020f;
+            font-size: 0.9rem;
+        }
+
+        .alert p {
+            font-size: 0.85rem;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .grid-2, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../" class="back-btn">Volver</a>
+        <h1>Extintores Portatiles</h1>
+        <p>Tipos, uso y mantenimiento</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Tipos por Clase de Fuego</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3>PQS (Polvo Quimico Seco)</h3>
+                    <ul>
+                        <li><strong>Clases:</strong> A, B, C</li>
+                        <li><strong>Capacidad:</strong> 4, 6, 9, 12 kg</li>
+                        <li><strong>Alcance:</strong> 3-7m</li>
+                        <li><strong>Duracion:</strong> 10-30 seg</li>
+                        <li>Mas comun y versatil</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>CO2 (Dioxido Carbono)</h3>
+                    <ul>
+                        <li><strong>Clases:</strong> B, C</li>
+                        <li><strong>Capacidad:</strong> 4.5, 6.8 kg</li>
+                        <li><strong>Alcance:</strong> 1-2m</li>
+                        <li><strong>Duracion:</strong> 8-15 seg</li>
+                        <li>Equipos electricos, no residuos</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Agua Presurizada</h3>
+                    <ul>
+                        <li><strong>Clases:</strong> A solamente</li>
+                        <li><strong>Capacidad:</strong> 9 litros</li>
+                        <li><strong>Alcance:</strong> 8-10m</li>
+                        <li><strong>Duracion:</strong> 50-60 seg</li>
+                        <li>NUNCA en electricos</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Acetato Potasio (K)</h3>
+                    <ul>
+                        <li><strong>Clases:</strong> K (aceites)</li>
+                        <li><strong>Capacidad:</strong> 6 litros</li>
+                        <li><strong>Alcance:</strong> 3-4m</li>
+                        <li><strong>Duracion:</strong> 40-50 seg</li>
+                        <li>Cocinas comerciales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Metodo P.A.S.S.</h2>
+            <div class="grid-4">
+                <div class="box">
+                    <h3>P - Pull</h3>
+                    <ul>
+                        <li>Halar pasador</li>
+                        <li>Romper precinto</li>
+                        <li>Desbloquear</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>A - Aim</h3>
+                    <ul>
+                        <li>Apuntar a BASE</li>
+                        <li>NO a llamas</li>
+                        <li>Distancia 2-3m</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>S - Squeeze</h3>
+                    <ul>
+                        <li>Apretar palanca</li>
+                        <li>Presion constante</li>
+                        <li>Controlar descarga</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>S - Sweep</h3>
+                    <ul>
+                        <li>Barrer lado a lado</li>
+                        <li>Cubrir toda area</li>
+                        <li>Avanzar si extingue</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Compatibilidad por Clase</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Clase A (solidos):</strong> PQS, Agua, Espuma</li>
+                    <li><strong>Clase B (liquidos):</strong> PQS, CO2, Espuma</li>
+                    <li><strong>Clase C (electricos):</strong> PQS, CO2, Agentes limpios</li>
+                    <li><strong>Clase D (metales):</strong> Polvo especial grafico/sal</li>
+                    <li><strong>Clase K (aceites):</strong> Acetato de potasio</li>
+                </ul>
+            </div>
+            <div class="alert">
+                <strong>NUNCA agua en electricos o liquidos inflamables</strong>
+                <p>Agua conduce electricidad y expande liquidos inflamables. Usar PQS o CO2.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cuando NO Usar Extintor</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3>NO usar si:</h3>
+                    <ul>
+                        <li>Fuego mayor 2 metros cuadrados</li>
+                        <li>Bloquea salida</li>
+                        <li>Sin ruta escape</li>
+                        <li>Humo denso toxico</li>
+                        <li>Tipo fuego desconocido</li>
+                        <li>Extintor inadecuado</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Accion correcta:</h3>
+                    <ul>
+                        <li>Evacuar inmediato</li>
+                        <li>Cerrar puertas</li>
+                        <li>Activar alarma</li>
+                        <li>Llamar 116 Bomberos</li>
+                        <li>Reunirse punto seguro</li>
+                        <li>Informar a bomberos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Inspeccion y Mantenimiento</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3>Mensual (usuario)</h3>
+                    <ul>
+                        <li>Ubicacion accesible</li>
+                        <li>Manometro zona verde</li>
+                        <li>Precinto intacto</li>
+                        <li>Manguera sin danos</li>
+                        <li>Etiqueta legible</li>
+                        <li>Peso correcto</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Anual (tecnico)</h3>
+                    <ul>
+                        <li>Prueba hidrostatica cada 5 anos</li>
+                        <li>Recarga si necesario</li>
+                        <li>Revision valvulas</li>
+                        <li>Verificar cilindro</li>
+                        <li>Etiqueta actualizada</li>
+                        <li>Registro documentado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Errores Comunes</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Apuntar a llamas:</strong> Correcto = apuntar a BASE del fuego</li>
+                    <li><strong>Estar muy cerca:</strong> Correcto = 2-3 metros distancia</li>
+                    <li><strong>Dar espalda al fuego:</strong> Correcto = salida siempre atras</li>
+                    <li><strong>Agua en electricos:</strong> Correcto = PQS o CO2</li>
+                    <li><strong>CO2 en Clase A:</strong> Correcto = PQS o Agua (CO2 reignicion)</li>
+                    <li><strong>Vaciar todo:</strong> Correcto = guardar reserva por si resurge</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Normativa Peru (NTP)</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Altura colocacion:</strong> 1.5m desde suelo a parte superior</li>
+                    <li><strong>Senalizacion:</strong> Letrero fotoluminiscente rojo</li>
+                    <li><strong>Distancia maxima Clase A:</strong> 23 metros recorrido</li>
+                    <li><strong>Distancia maxima Clase B:</strong> 15 metros recorrido</li>
+                    <li><strong>Visibilidad:</strong> Senal visible desde cualquier punto</li>
+                    <li><strong>NTP 399.010-1:</strong> Seleccion y distribucion</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Reglas Criticas</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>PQS:</strong> Mas versatil (A, B, C), mas comun en Peru</li>
+                    <li><strong>Metodo PASS:</strong> Pull, Aim (base), Squeeze, Sweep</li>
+                    <li><strong>Distancia:</strong> 2-3 metros, nunca muy cerca</li>
+                    <li><strong>Ruta escape:</strong> SIEMPRE tener salida atras</li>
+                    <li><strong>Tamano fuego:</strong> Solo incipientes menor 2m cuadrados</li>
+                    <li><strong>Duracion:</strong> 10-60 seg segun tipo, actuar rapido</li>
+                    <li><strong>Inspeccion:</strong> Mensual usuario, anual tecnico</li>
+                    <li><strong>Duda:</strong> Si no sabes = EVACUA, no arriesgues</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert">
+            <strong>Regla de oro:</strong>
+            <p>Extintores para fuegos PEQUENOS e INCIPIENTES. Si tienes duda sobre tamano, tipo o extintor correcto = EVACUA y llama 116.</p>
+        </div>
+    </div>
+</body>
+</html>

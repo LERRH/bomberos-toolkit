@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCI - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-btn {
+            color: #75020f;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f8f8f8;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .box {
+            background: #f8f8f8;
+            padding: 18px;
+            border-radius: 8px;
+        }
+
+        .box h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #75020f;
+            margin-bottom: 10px;
+        }
+
+        .box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .box li {
+            padding: 3px 0;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .box li strong {
+            color: #1a1a1a;
+        }
+
+        .alert {
+            background: #fff5f5;
+            border-left: 4px solid #75020f;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .alert strong {
+            color: #75020f;
+            font-size: 0.9rem;
+        }
+
+        .alert p {
+            font-size: 0.85rem;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../" class="back-btn">Volver</a>
+        <h1>Sistema de Comando de Incidentes (SCI)</h1>
+        <p>Estructura estandarizada para manejo de emergencias</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Que es el SCI</h2>
+            <div class="box">
+                <p>Sistema de gestion para manejo efectivo de incidentes, integrando instalaciones, equipo, personal, procedimientos y comunicaciones en una estructura organizacional comun. Permite respuesta coordinada entre multiples instituciones.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>8 Funciones del SCI</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3>Mando</h3>
+                    <ul>
+                        <li>Comandante Incidente (CI)</li>
+                        <li>Administra, coordina, dirige</li>
+                        <li>Maxima autoridad</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Seguridad</h3>
+                    <ul>
+                        <li>Oficial Seguridad</li>
+                        <li>Vigila condiciones</li>
+                        <li>Garantiza seguridad personal</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Info Publica</h3>
+                    <ul>
+                        <li>Oficial Info Publica</li>
+                        <li>Maneja medios prensa</li>
+                        <li>Autorizado por CI</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Enlace</h3>
+                    <ul>
+                        <li>Oficial Enlace</li>
+                        <li>Contacto instituciones</li>
+                        <li>Coordinacion externa</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Planificacion</h3>
+                    <ul>
+                        <li>Jefe Planificacion</li>
+                        <li>Elabora PAI</li>
+                        <li>Registro recursos</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Operaciones</h3>
+                    <ul>
+                        <li>Jefe Operaciones</li>
+                        <li>Tactica en campo</li>
+                        <li>Ejecuta PAI</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Logistica</h3>
+                    <ul>
+                        <li>Jefe Logistica</li>
+                        <li>Recursos y servicios</li>
+                        <li>Alimentacion, agua</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Admin/Finanzas</h3>
+                    <ul>
+                        <li>Jefe Admin/Finanzas</li>
+                        <li>Control costos</li>
+                        <li>Registro gastos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Instalaciones SCI</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3>PC - Puesto Comando</h3>
+                    <ul>
+                        <li>Lugar fijo desde donde CI ejerce mando</li>
+                        <li>Visible, seguro, accesible</li>
+                        <li>Con comunicaciones</li>
+                        <li>Simbolo: rectangulo naranja con PC negro</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>E - Area Espera</h3>
+                    <ul>
+                        <li>Recursos disponibles esperan asignacion</li>
+                        <li>Cercana a escena</li>
+                        <li>Evita congestion</li>
+                        <li>Simbolo: circulo amarillo con E negro</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>ACV - Concentracion Victimas</h3>
+                    <ul>
+                        <li>Clasificacion, estabilizacion, transporte</li>
+                        <li>Seguro, accesible ambulancias</li>
+                        <li>Fuera vista publico</li>
+                        <li>Simbolo: circulo amarillo con ACV negro</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>B - Base</h3>
+                    <ul>
+                        <li>Funciones logisticas primarias</li>
+                        <li>Alimentacion, materiales, descanso</li>
+                        <li>Solo una por incidente</li>
+                        <li>Simbolo: circulo amarillo con B negro</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mando Unico vs Comando Unificado</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3>Mando Unico (MU)</h3>
+                    <ul>
+                        <li>Una sola institucion responsable</li>
+                        <li>Un CI con autoridad total</li>
+                        <li>Jurisdiccion clara</li>
+                        <li>Ejemplo: incendio estructural, bomberos</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Comando Unificado (CU)</h3>
+                    <ul>
+                        <li>Multiples instituciones con competencia</li>
+                        <li>Decisiones conjuntas</li>
+                        <li>Un solo PAI</li>
+                        <li>Ejemplo: accidente MATPEL (bomberos, policia, salud)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Pasos Primer Respondedor</h2>
+            <div class="box">
+                <h3>8 pasos al llegar a escena</h3>
+                <ul>
+                    <li><strong>1. Informar arribo:</strong> A central comunicaciones</li>
+                    <li><strong>2. Asumir mando y establecer PC:</strong> Identificar ubicacion</li>
+                    <li><strong>3. Evaluar situacion:</strong> Que paso, amenazas, area afectada</li>
+                    <li><strong>4. Perimetro seguridad:</strong> Aislar area peligrosa</li>
+                    <li><strong>5. Establecer objetivos:</strong> Que queremos lograr</li>
+                    <li><strong>6. Estrategias y tacticas:</strong> Como lo haremos</li>
+                    <li><strong>7. Necesidades recursos:</strong> Solicitar apoyo, instalaciones</li>
+                    <li><strong>8. Transferir mando:</strong> Si llega autoridad superior</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Transferencia de Mando</h2>
+            <div class="box">
+                <h3>Informacion a transmitir</h3>
+                <ul>
+                    <li>Estado incidente (que paso, que se logro)</li>
+                    <li>Situacion actual seguridad</li>
+                    <li>Objetivos y prioridades</li>
+                    <li>Organizacion actual</li>
+                    <li>Recursos asignados y solicitados</li>
+                    <li>Instalaciones establecidas</li>
+                    <li>Plan comunicaciones</li>
+                    <li>Probable evolucion</li>
+                </ul>
+            </div>
+            <div class="alert">
+                <strong>Importante:</strong>
+                <p>Transferencia siempre verbal, cara a cara. CI saliente informa primero, luego CI entrante. Ambos informan a central.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Principios SCI</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Terminologia comun:</strong> Mismo lenguaje entre instituciones</li>
+                    <li><strong>Cadena mando:</strong> Linea jerarquica clara</li>
+                    <li><strong>Unidad mando:</strong> Cada persona responde a un solo jefe</li>
+                    <li><strong>Alcance control:</strong> 3-7 subordinados (optimo 5)</li>
+                    <li><strong>Organizacion modular:</strong> Crece o decrece segun necesidad</li>
+                    <li><strong>PAI:</strong> Plan Accion Incidente (escrito u oral)</li>
+                    <li><strong>Comunicaciones integradas:</strong> Todos pueden comunicarse</li>
+                    <li><strong>Manejo recursos:</strong> Registro y control</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Estados de Recursos</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3>Asignados</h3>
+                    <p>Trabajando con tarea especifica</p>
+                </div>
+                <div class="box">
+                    <h3>Disponibles</h3>
+                    <p>En Area Espera, listos</p>
+                </div>
+            </div>
+            <div class="box">
+                <h3>No disponibles</h3>
+                <p>Mantenimiento, descanso, condiciones adversas</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Reglas Criticas</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>PC siempre:</strong> Primera instalacion, visible y seguro</li>
+                    <li><strong>CI unico:</strong> Aunque sea MU o CU, un solo mando</li>
+                    <li><strong>Alcance 5:</strong> Maximo 5 subordinados directos</li>
+                    <li><strong>PAI obligatorio:</strong> Mental en inicio, escrito en periodos operacionales</li>
+                    <li><strong>Solo delegar si necesario:</strong> CI asume todo inicialmente</li>
+                    <li><strong>Registro recursos:</strong> Todo recurso debe registrarse al llegar</li>
+                    <li><strong>Comunicar cambios:</strong> Cualquier cambio mando/estructura a central</li>
+                    <li><strong>Seguridad primero:</strong> Siempre prioridad</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert">
+            <strong>Esencia del SCI:</strong>
+            <p>Organizacion estandarizada flexible que permite trabajo coordinado interinstitucional, manteniendo cadena mando clara y comunicacion efectiva para manejo eficiente de cualquier incidente.</p>
+        </div>
+    </div>
+</body>
+</html>

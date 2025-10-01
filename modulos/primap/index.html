@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATPEL - Bomberos Toolkit</title>
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-btn {
+            color: #75020f;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #75020f;
+            margin-bottom: 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .box h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #75020f;
+            margin-bottom: 12px;
+        }
+
+        .box ul {
+            list-style: none;
+        }
+
+        .box li {
+            padding: 6px 0;
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .box li:before {
+            content: "•";
+            color: #75020f;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+        }
+
+        .alert {
+            background: #fff5f5;
+            border-left: 4px solid #75020f;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .alert strong {
+            color: #75020f;
+            font-size: 0.95rem;
+        }
+
+        .alert p {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../" class="back-btn">← Volver</a>
+        <h1>Materiales Peligrosos (MATPEL)</h1>
+        <p>Primera respuesta a incidentes con sustancias peligrosas</p>
+    </header>
+
+    <div class="container">
+        <div class="alert">
+            <strong>Nivel Advertencia:</strong>
+            <p>Reconocer, protegerse, asegurar el área y solicitar personal especializado. NO ingresar a zona de peligro.</p>
+        </div>
+
+        <!-- DEFINICIÓN -->
+        <div class="section">
+            <h2>¿Qué es un Material Peligroso?</h2>
+            <div class="box">
+                <p><strong>Sustancia que al liberarse es capaz de hacer daño al personal, propiedad y ambiente.</strong></p>
+                <p style="margin-top: 10px;">Incluye agentes químicos, biológicos, radiológicos y armas de destrucción masiva (ADM).</p>
+            </div>
+        </div>
+
+        <!-- RECONOCIMIENTO -->
+        <div class="section">
+            <h2>Reconocimiento de MATPEL</h2>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Por Localización</h3>
+                    <ul>
+                        <li>Plantas químicas</li>
+                        <li>Expendios de combustible</li>
+                        <li>Hospitales y laboratorios</li>
+                        <li>Ferreterías</li>
+                        <li>Almacenes agrícolas</li>
+                        <li>Supermercados</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Por Señalización</h3>
+                    <ul>
+                        <li>Placas y etiquetas ONU</li>
+                        <li>Diamante NFPA 704</li>
+                        <li>Panel de seguridad (naranja)</li>
+                        <li>Número ONU (4 dígitos)</li>
+                        <li>Forma del contenedor</li>
+                        <li>Marcas corporativas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLASES ONU -->
+        <div class="section">
+            <h2>9 Clases de Riesgo ONU</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Clase 1:</strong> Explosivos</li>
+                    <li><strong>Clase 2:</strong> Gases (comprimidos, licuados, tóxicos)</li>
+                    <li><strong>Clase 3:</strong> Líquidos inflamables</li>
+                    <li><strong>Clase 4:</strong> Sólidos inflamables</li>
+                    <li><strong>Clase 5:</strong> Oxidantes y peróxidos orgánicos</li>
+                    <li><strong>Clase 6:</strong> Tóxicos e infecciosos</li>
+                    <li><strong>Clase 7:</strong> Radioactivos</li>
+                    <li><strong>Clase 8:</strong> Corrosivos</li>
+                    <li><strong>Clase 9:</strong> Misceláneos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- GLP Y GNV -->
+        <div class="section">
+            <h2>GLP y GNV - Diferencias Críticas</h2>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>GLP (Gas Licuado Petróleo)</h3>
+                    <ul>
+                        <li>Propano/Butano</li>
+                        <li>Líquido a presión moderada</li>
+                        <li>Presión: 8-15 bar</li>
+                        <li><strong>Más pesado que el aire</strong></li>
+                        <li>Se acumula en partes bajas</li>
+                        <li>Tanques: balones, cilindros</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>GNV (Gas Natural Vehicular)</h3>
+                    <ul>
+                        <li>Metano (CH₄) 95%</li>
+                        <li>Gas comprimido</li>
+                        <li>Presión: 200-250 bar</li>
+                        <li><strong>Más liviano que el aire</strong></li>
+                        <li>Sube y se dispersa</li>
+                        <li>Cilindros alta presión</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLEVE -->
+        <div class="section">
+            <h2>BLEVE - Explosión de Vapor en Expansión</h2>
+            
+            <div class="alert">
+                <strong>PELIGRO EXTREMO:</strong>
+                <p>Ruptura catastrófica de contenedor presurizado con líquido sobrecalentado. Explosión masiva + bola de fuego + metralla.</p>
+            </div>
+
+            <div class="box" style="margin-bottom: 20px;">
+                <h3>Secuencia del BLEVE</h3>
+                <ol style="padding-left: 20px; line-height: 1.8;">
+                    <li>Exposición al fuego calienta el tanque</li>
+                    <li>Zona sin líquido se debilita (400°C pierde 50% resistencia)</li>
+                    <li>Ruptura catastrófica del contenedor</li>
+                    <li>Vaporización instantánea del líquido</li>
+                    <li>Explosión + onda expansiva + bola de fuego + proyección fragmentos</li>
+                </ol>
+            </div>
+
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Indicadores BLEVE Inminente</h3>
+                    <ul>
+                        <li>Tanque silba/sisea constantemente</li>
+                        <li>Decoloración del tanque (negro/azul)</li>
+                        <li>Llama directa sobre tanque</li>
+                        <li>Tanque vibra o se mueve</li>
+                        <li>Deformación visible (se hincha)</li>
+                        <li>Válvula alivio activa constante</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Distancias de Seguridad</h3>
+                    <ul>
+                        <li><strong>0-100m:</strong> Muerte segura</li>
+                        <li><strong>100-300m:</strong> Quemaduras graves</li>
+                        <li><strong>300-800m:</strong> Quemaduras leves</li>
+                        <li><strong>&gt;800m:</strong> Zona segura</li>
+                        <li>Comando: mínimo 800m</li>
+                        <li>Si BLEVE inminente: EVACUAR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TÁCTICAS -->
+        <div class="section">
+            <h2>Tácticas de Intervención</h2>
+            
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Fuego en Balón GLP</h3>
+                    <ul>
+                        <li>¿Puedes cerrar válvula? → cierra con protección</li>
+                        <li>Enfriar con agua en chorro</li>
+                        <li>NO apagar si no puedes cerrar válvula</li>
+                        <li>Distancia mínimo 30m</li>
+                        <li>Si BLEVE inminente: evacuar 100m</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Fuego en Tanque GNV</h3>
+                    <ul>
+                        <li>NO apagar llama si PRD funciona</li>
+                        <li>Enfriar cilindro con agua abundante</li>
+                        <li>Proteger exposiciones</li>
+                        <li>Distancia segura 50m</li>
+                        <li>Dejar quemar hasta consumir gas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>Fuga SIN Fuego</h3>
+                <ul>
+                    <li>Eliminar fuentes ignición 15m radio</li>
+                    <li>Ventilar área (natural o forzada)</li>
+                    <li>GLP: ventilar zonas bajas (sótanos)</li>
+                    <li>GNV: ventilar techos y altura</li>
+                    <li>NO usar agua (excepto para dispersar GNV)</li>
+                    <li>Cerrar válvulas si es seguro</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- GUÍA DE RESPUESTA -->
+        <div class="section">
+            <h2>Uso de la GRE (Guía de Respuesta en Emergencia)</h2>
+            
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Secciones de Colores</h3>
+                    <ul>
+                        <li><strong>Amarilla:</strong> Índice numérico (N° ONU)</li>
+                        <li><strong>Azul:</strong> Índice alfabético (nombre)</li>
+                        <li><strong>Naranja:</strong> Guías de emergencia</li>
+                        <li><strong>Verde:</strong> Distancias aislamiento</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Cómo Usar</h3>
+                    <ul>
+                        <li>Identificar N° ONU o nombre</li>
+                        <li>Buscar en páginas amarillas/azules</li>
+                        <li>Obtener número de guía</li>
+                        <li>Ir a página naranja correspondiente</li>
+                        <li>Si RIT: revisar páginas verdes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPOSICIÓN Y DESCONTAMINACIÓN -->
+        <div class="section">
+            <h2>Vías de Exposición</h2>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>4 Vías Principales</h3>
+                    <ul>
+                        <li><strong>Inhalación:</strong> Sistema respiratorio</li>
+                        <li><strong>Absorción:</strong> Piel y ojos</li>
+                        <li><strong>Ingestión:</strong> Tracto digestivo</li>
+                        <li><strong>Inyección:</strong> Heridas/punciones</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Prevención</h3>
+                    <ul>
+                        <li>Mantenerse a distancia segura</li>
+                        <li>Usar EPP adecuado</li>
+                        <li>NO comer ni fumar en escena</li>
+                        <li>Evitar contacto con contaminados</li>
+                        <li>Descontaminar antes de atender</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert">
+                <strong>Regla vital:</strong>
+                <p>Una víctima NO es paciente hasta ser descontaminada. Toda persona sin EPP que ingrese a zona contaminada es víctima.</p>
+            </div>
+        </div>
+
+        <!-- ZONAS DE TRABAJO -->
+        <div class="section">
+            <h2>Zonas de Trabajo</h2>
+            
+            <div class="box" style="margin-bottom: 20px;">
+                <h3>Zona Caliente (Roja)</h3>
+                <ul>
+                    <li>Área donde está el MATPEL</li>
+                    <li>Máximo peligro</li>
+                    <li>Solo técnicos con EPP completo</li>
+                    <li>Nivel Advertencia NO debe ingresar</li>
+                </ul>
+            </div>
+
+            <div class="box" style="margin-bottom: 20px;">
+                <h3>Zona Tibia (Amarilla)</h3>
+                <ul>
+                    <li>Transición entre caliente y fría</li>
+                    <li>Área de descontaminación</li>
+                    <li>EPP específico requerido</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h3>Zona Fría (Verde)</h3>
+                <ul>
+                    <li>Fuera de contaminación</li>
+                    <li>Puesto de Comando aquí</li>
+                    <li>Área de tratamiento médico</li>
+                    <li>Rehabilitación del personal</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ACCIONES INICIALES -->
+        <div class="section">
+            <h2>Acciones del Primer Respondedor</h2>
+            
+            <div class="box">
+                <h3>Secuencia de Respuesta</h3>
+                <ol style="padding-left: 20px; line-height: 1.8;">
+                    <li>Informar arribo a base</li>
+                    <li>Asumir mando, establecer PC</li>
+                    <li>Evaluar situación a distancia (100m)</li>
+                    <li>Aproximarse: a favor viento, terreno alto, aguas arriba</li>
+                    <li>Reconocer/identificar MATPEL</li>
+                    <li>Establecer perímetro seguridad (mínimo 30m)</li>
+                    <li>Solicitar equipo especializado</li>
+                    <li>Controlar acceso (entradas/salidas)</li>
+                    <li>Evacuar o proteger in situ</li>
+                    <li>Transferir mando cuando llegue técnico</li>
+                </ol>
+            </div>
+
+            <div class="alert">
+                <strong>Distancias iniciales de seguridad:</strong>
+                <p>Químicos: 100m | Explosivos: 500m | Siempre a favor del viento</p>
+            </div>
+        </div>
+
+        <!-- DATOS PARA REPORTAR -->
+        <div class="section">
+            <h2>Información para Reportar</h2>
+            <div class="box">
+                <ul>
+                    <li>Lugar exacto y hora del incidente</li>
+                    <li>Tipo y cantidad de vehículos/contenedores</li>
+                    <li>Número ONU o nombre del producto (deletrear)</li>
+                    <li>Placas, etiquetas, marcas visibles</li>
+                    <li>Estado físico de la sustancia (sólido/líquido/gas)</li>
+                    <li>Liberación visible (derrame/vapor/humo)</li>
+                    <li>Víctimas: cantidad y condición</li>
+                    <li>Fuego o explosión presente</li>
+                    <li>Dirección del viento</li>
+                    <li>Condiciones meteorológicas</li>
+                    <li>Sonidos anormales (silbidos, ronroneos)</li>
+                    <li>Olores raros</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- EPP -->
+        <div class="section">
+            <h2>Equipo de Protección Personal</h2>
+            
+            <div class="alert">
+                <strong>Limitación crítica:</strong>
+                <p>Ropa común y traje de bombero estructural NO protegen contra exposición química. Solo protegen vía inhalatoria si usas SCBA.</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Nivel Advertencia</h3>
+                    <ul>
+                        <li>Traje estructural + SCBA</li>
+                        <li>Protección respiratoria únicamente</li>
+                        <li>NO protege contacto piel</li>
+                        <li>Mantenerse a distancia</li>
+                        <li>NO ingresar zona caliente</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Técnicos MATPEL</h3>
+                    <ul>
+                        <li>Trajes químicos especiales</li>
+                        <li>Nivel A, B, C según riesgo</li>
+                        <li>SCBA presión positiva</li>
+                        <li>Guantes y botas químicas</li>
+                        <li>Capacitación especializada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- EFECTOS A LA SALUD -->
+        <div class="section">
+            <h2>Efectos Nocivos Principales</h2>
+            
+            <div class="box">
+                <ul>
+                    <li><strong>Asfixiantes:</strong> Privan tejido de oxígeno (CO, CO₂, metano)</li>
+                    <li><strong>Corrosivos:</strong> Destruyen tejidos (ácidos, cáusticos)</li>
+                    <li><strong>Tóxicos:</strong> Envenenan sistemas del cuerpo</li>
+                    <li><strong>Irritantes:</strong> Inflaman mucosas y piel</li>
+                    <li><strong>Sensibilizantes:</strong> Causan alergias futuras</li>
+                    <li><strong>Carcinógenos:</strong> Causan cáncer (años después)</li>
+                    <li><strong>Neurotóxicos:</strong> Dañan sistema nervioso</li>
+                    <li><strong>Radioactivos:</strong> Radiación ionizante</li>
+                    <li><strong>Biológicos:</strong> Infecciones (virus, bacterias)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert">
+            <strong>Recuerda:</strong>
+            <p>Lo primero es TU seguridad. Si no puedes hacerlo seguro, NO lo hagas. Espera personal especializado.</p>
+        </div>
+    </div>
+</body>
+</html>

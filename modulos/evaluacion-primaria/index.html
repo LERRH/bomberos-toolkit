@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Primaria XABCDE</title>
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-btn {
+            color: #75020f;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .step {
+            margin-bottom: 40px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .letter {
+            width: 50px;
+            height: 50px;
+            background: #75020f;
+            color: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-title h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .step-title p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .box h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #75020f;
+            margin-bottom: 12px;
+        }
+
+        .box ul {
+            list-style: none;
+        }
+
+        .box li {
+            padding: 6px 0;
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .box li:before {
+            content: "•";
+            color: #75020f;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+        }
+
+        .alert {
+            background: #fff5f5;
+            border-left: 4px solid #75020f;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .alert strong {
+            color: #75020f;
+            font-size: 0.95rem;
+        }
+
+        .alert p {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .letter {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .step-title h2 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../" class="back-btn">← Volver</a>
+        <h1>Evaluación Primaria XABCDE</h1>
+        <p>Protocolo sistemático de evaluación inicial</p>
+    </header>
+
+    <div class="container">
+        <!-- X: HEMORRAGIA -->
+        <div class="step">
+            <div class="step-header">
+                <div class="letter">X</div>
+                <div class="step-title">
+                    <h2>Control de Hemorragias</h2>
+                    <p>Detener sangrado masivo</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Evaluar</h3>
+                    <ul>
+                        <li>Arterial: rojo brillante, a borbotones</li>
+                        <li>Venosa: rojo oscuro, flujo continuo</li>
+                        <li>Capilar: goteo lento</li>
+                        <li>Estimar volumen perdido</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Actuar</h3>
+                    <ul>
+                        <li>Presión directa 5-10 min</li>
+                        <li>Vendaje compresivo</li>
+                        <li>Empaquetamiento de herida</li>
+                        <li>Torniquete si es extremidad</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert">
+                <strong>Orden de prioridad:</strong>
+                <p>1° Presión directa → 2° Vendaje compresivo → 3° Empaquetamiento → 4° Torniquete</p>
+            </div>
+        </div>
+
+        <!-- A: VÍA AÉREA -->
+        <div class="step">
+            <div class="step-header">
+                <div class="letter">A</div>
+                <div class="step-title">
+                    <h2>Vía Aérea</h2>
+                    <p>Con control cervical</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Evaluar</h3>
+                    <ul>
+                        <li>¿Puede hablar?</li>
+                        <li>¿Obstrucción visible?</li>
+                        <li>¿Ruidos anormales?</li>
+                        <li>¿Secreciones o vómito?</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Actuar</h3>
+                    <ul>
+                        <li>Frente-mentón (sin trauma)</li>
+                        <li>Tracción mandibular (con trauma)</li>
+                        <li>Collarín cervical</li>
+                        <li>Aspirar secreciones</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert">
+                <strong>Regla:</strong>
+                <p>Si hay trauma de cuello/cabeza → siempre inmovilizar columna cervical</p>
+            </div>
+        </div>
+
+        <!-- B: RESPIRACIÓN -->
+        <div class="step">
+            <div class="step-header">
+                <div class="letter">B</div>
+                <div class="step-title">
+                    <h2>Respiración</h2>
+                    <p>Ventilación y oxigenación</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Evaluar</h3>
+                    <ul>
+                        <li>Frecuencia: normal 12-20/min</li>
+                        <li>Expansión torácica bilateral</li>
+                        <li>Profundidad respiratoria</li>
+                        <li>Esfuerzo (uso de músculos)</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Actuar</h3>
+                    <ul>
+                        <li>Oxígeno alto flujo 15 L/min</li>
+                        <li>Ventilación asistida si necesario</li>
+                        <li>Sellar heridas torácicas</li>
+                        <li>Posición semi-sentada si tolera</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert">
+                <strong>Alerta roja:</strong>
+                <p>FR &lt;8 o &gt;30, SpO₂ &lt;90%, cianosis, estridor</p>
+            </div>
+        </div>
+
+        <!-- C: CIRCULACIÓN -->
+        <div class="step">
+            <div class="step-header">
+                <div class="letter">C</div>
+                <div class="step-title">
+                    <h2>Circulación</h2>
+                    <p>Perfusión y estado de shock</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Evaluar</h3>
+                    <ul>
+                        <li>Pulso: radial, carotídeo</li>
+                        <li>Llenado capilar &lt;2 seg</li>
+                        <li>Color y temperatura de piel</li>
+                        <li>Presión arterial</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Actuar</h3>
+                    <ul>
+                        <li>Controlar hemorragias</li>
+                        <li>Posición anti-shock (piernas arriba)</li>
+                        <li>Mantener temperatura corporal</li>
+                        <li>Traslado urgente</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert">
+                <strong>Shock hemorrágico:</strong>
+                <p>Clase I (&lt;15%) → II (15-30%) → III (30-40%) → IV (&gt;40%)</p>
+            </div>
+        </div>
+
+        <!-- D: DISCAPACIDAD -->
+        <div class="step">
+            <div class="step-header">
+                <div class="letter">D</div>
+                <div class="step-title">
+                    <h2>Discapacidad</h2>
+                    <p>Estado neurológico</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Evaluar</h3>
+                    <ul>
+                        <li>Glasgow: 3-15 puntos</li>
+                        <li>Pupilas: tamaño y reacción</li>
+                        <li>AVDI: Alerta/Voz/Dolor/Inconsciente</li>
+                        <li>Movimiento de extremidades</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Actuar</h3>
+                    <ul>
+                        <li>Posición neutra de cabeza</li>
+                        <li>Oxígeno suplementario</li>
+                        <li>Monitoreo continuo Glasgow</li>
+                        <li>Traslado urgente si &lt;14</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert">
+                <strong>Grave:</strong>
+                <p>Glasgow &lt;9 requiere manejo avanzado de vía aérea</p>
+            </div>
+        </div>
+
+        <!-- E: EXPOSICIÓN -->
+        <div class="step">
+            <div class="step-header">
+                <div class="letter">E</div>
+                <div class="step-title">
+                    <h2>Exposición</h2>
+                    <p>Examen completo del paciente</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="box">
+                    <h3>Evaluar</h3>
+                    <ul>
+                        <li>Exponer área afectada</li>
+                        <li>Inspeccionar toda la superficie</li>
+                        <li>Revisar espalda (log roll)</li>
+                        <li>Temperatura corporal</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Actuar</h3>
+                    <ul>
+                        <li>Retirar ropa húmeda/dañada</li>
+                        <li>Cubrir con manta térmica</li>
+                        <li>Proteger privacidad</li>
+                        <li>Documentar lesiones</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert">
+                <strong>Prevenir hipotermia:</strong>
+                <p>La triada mortal del trauma incluye hipotermia, coagulopatía y acidosis</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
