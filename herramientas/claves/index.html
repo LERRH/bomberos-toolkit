@@ -379,8 +379,9 @@
             <button class="filter-tab" data-filter="especiales">Especiales</button>
             <button class="filter-tab" data-filter="jerarquia">Jerarquías</button>
             <button class="filter-tab" data-filter="compania">Compañía</button>
-            <button class="filter-tab" data-filter="locales">Locales</button>
-            <button class="filter-tab" data-filter="personal">Personal</button>
+            <button class="filter-tab" data-filter="alarmas">Alarmas</button>
+            <button class="filter-tab" data-filter="asociacion">Asociación</button>
+            <button class="filter-tab" data-filter="comando">Comando Nacional</button>
         </div>
 
         <div class="emergency-legend" id="emergencyLegend">
@@ -537,12 +538,47 @@
             { codigo: "30.18", descripcion: "Jefe de servicio", categoria: "compania" },
             { codigo: "30.19", descripcion: "Jefe de disciplina", categoria: "compania" },
             { codigo: "30.22", descripcion: "Médico de turno", categoria: "compania" },
-            { codigo: "X7", descripcion: "Cuartel de compañía", categoria: "locales" },
-            { codigo: "X14", descripcion: "Domicilio", categoria: "locales" },
-            { codigo: "X15", descripcion: "Centro de trabajo", categoria: "locales" },
-            { codigo: "1.01", descripcion: "Contador", categoria: "personal" },
-            { codigo: "1.02", descripcion: "Secretaria", categoria: "personal" },
-            { codigo: "1.06", descripcion: "Operador de radio", categoria: "personal" }
+            { codigo: "Alarma 1", descripcion: "(2) Unidades de Agua", categoria: "alarmas" },
+            { codigo: "Alarma 2", descripcion: "(2) Unidades de Agua (1) Rescate (1) Sanidad (1) Aérea", categoria: "alarmas" },
+            { codigo: "Alarma 3", descripcion: "(3) Unidades de Agua (1) Rescate (1) Sanidad (1) Aérea", categoria: "alarmas" },
+            { codigo: "Alarma 4", descripcion: "(4) Unidades de Agua (1) Rescate (3) Sanidad (1) Aérea", categoria: "alarmas" },
+            { codigo: "Código 0", descripcion: "Ninguno", categoria: "asociacion" },
+            { codigo: "Código 1", descripcion: "Ninguna", categoria: "asociacion" },
+            { codigo: "Código 2", descripcion: "Alarma 1", categoria: "asociacion" },
+            { codigo: "Código 3", descripcion: "Alarma 1 + Alarma 2", categoria: "asociacion" },
+            { codigo: "Código 4", descripcion: "Alarma 1 + Alarma 2 + Alarma 3", categoria: "asociacion" },
+            { codigo: "Código 5", descripcion: "Alarma 1 + Alarma 2 + Alarma 3 + Alarma 4", categoria: "asociacion" },
+            { codigo: "Código 6", descripcion: "Alarma 1 + Alarma 2 + Alarma 3 + Alarma 4 más lo requerido del Cdte. De Incidente", categoria: "asociacion" },
+            { codigo: "90.11", descripcion: "Comandante General", categoria: "comando" },
+            { codigo: "90.12", descripcion: "Vice Comandante General", categoria: "comando" },
+            { codigo: "90.12.1", descripcion: "Comandante Territorial Lima Callao", categoria: "comando" },
+            { codigo: "90.12.2", descripcion: "Comandante Territorial Norte", categoria: "comando" },
+            { codigo: "90.12.3", descripcion: "Comandante Territorial Centro", categoria: "comando" },
+            { codigo: "90.12.4", descripcion: "Comandante Territorial Sur", categoria: "comando" },
+            { codigo: "90.12.5", descripcion: "Comandante Territorial Oriente", categoria: "comando" },
+            { codigo: "90.13", descripcion: "Inspector General", categoria: "comando" },
+            { codigo: "90.14", descripcion: "Presidente del Consejo Nacional de Disciplina", categoria: "comando" },
+            { codigo: "90.15", descripcion: "Asesor Jurídico", categoria: "comando" },
+            { codigo: "90.16", descripcion: "Dirección General de Operaciones", categoria: "comando" },
+            { codigo: "90.17", descripcion: "Dirección General de Prevención e Investigación de Incendios", categoria: "comando" },
+            { codigo: "90.18", descripcion: "Dirección General del Voluntariado", categoria: "comando" },
+            { codigo: "90.19", descripcion: "Dirección General de Formación Académica", categoria: "comando" },
+            { codigo: "90.20", descripcion: "Dirección General de Gestión Interinstitucional", categoria: "comando" },
+            { codigo: "90.21", descripcion: "Dirección de Gestión de Riesgo y Desastre", categoria: "comando" },
+            { codigo: "90.22", descripcion: "Dirección de Programa de Respuesta", categoria: "comando" },
+            { codigo: "90.23", descripcion: "Dirección de Comunicaciones", categoria: "comando" },
+            { codigo: "90.24", descripcion: "Dirección de Ingeniería", categoria: "comando" },
+            { codigo: "90.25", descripcion: "Dirección de Prevención e Investigación de Incendios", categoria: "comando" },
+            { codigo: "90.26", descripcion: "Jefe Nacional USAR", categoria: "comando" },
+            { codigo: "90.27", descripcion: "Jefe Nacional Materiales Peligrosos", categoria: "comando" },
+            { codigo: "90.28", descripcion: "Jefe Nacional Forestal", categoria: "comando" },
+            { codigo: "90.29", descripcion: "Jefe Nacional de Gestión de Emergencias", categoria: "comando" },
+            { codigo: "90.30", descripcion: "Jefe Nacional de Programa de Soporte de Tecnología de Emergencias", categoria: "comando" },
+            { codigo: "90.31", descripcion: "Jefe Nacional de Rescate Técnico", categoria: "comando" },
+            { codigo: "90.32", descripcion: "Jefe Nacional de Combate Técnico Estructural", categoria: "comando" },
+            { codigo: "90.33", descripcion: "Jefe Nacional de Atención Pre Hospitalaria", categoria: "comando" },
+            { codigo: "90.34", descripcion: "Jefe Nacional de la Central de Emergencias", categoria: "comando" },
+            { codigo: "90.35", descripcion: "Jefe de la Oficina de Tecnología de la Información y Telecomunicaciones (OTIT)", categoria: "comando" }
         ];
 
         let currentFilter = 'all';
@@ -625,6 +661,4 @@
         updateStats();
     </script>
 </body>
-
 </html>
-
