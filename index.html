@@ -2,212 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bomberos Toolkit</title>
-    <meta name="description" content="Herramientas profesionales para bomberos">
-    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#8C0303">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L9S6V0X5X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7L9S6V0X5X');
-</script>
-
+    <meta http-equiv="refresh" content="0; url=https://webapp-prueba2.vercel.app/">
+    <title>Redirigiendo a Bomberos Toolkit...</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #0D0D0D;
             color: #ffffff;
-            line-height: 1.6;
-            min-height: 100vh;
-            background-image: url('assets/icons/fondo.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(13, 13, 13, 0.3);
-            z-index: 0;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-        }
-
-        .header {
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
             text-align: center;
-            margin-bottom: 60px;
         }
-
+        .container {
+            max-width: 400px;
+            padding: 40px;
+        }
         .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            margin-bottom: 10px;
-        }
-
-        .section-card {
-            background: rgba(13, 13, 13, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px 25px;
+            font-size: 4rem;
             margin-bottom: 20px;
-            margin-right: auto;
-            width: 240px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(242, 228, 201, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-
-        .section-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(140, 3, 3, 0.4);
-            border-color: rgba(191, 54, 4, 0.3);
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
-
-        .section-card h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        .section-card p {
+        p {
+            color: #9ca3af;
             font-size: 0.95rem;
-            color: rgba(242, 228, 201, 0.8);
-            line-height: 1.4;
-        }
-
-        .footer {
-            margin-top: auto;
-            text-align: center;
-            padding: 30px 20px;
-            color: rgba(242, 228, 201, 0.6);
-            font-size: 0.85rem;
-        }
-
-        .footer p {
-            margin: 5px 0;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 15px;
-            }
-
-            .logo {
-                width: 100px;
-                height: 100px;
-            }
-
-            .header h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-card {
-                padding: 25px 20px;
-                max-width: 100%;
-            }
-
-            .section-card h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .section-card h2 {
-                font-size: 1.3rem;
-            }
-
-            .section-card p {
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <img src="assets/icons/logo.svg" alt="Bomberos Toolkit" class="logo">
-            <h1>ToolKit</h1>
-        </header>
-
-        <main>
-            <div class="section-card" onclick="showServiciosMenu()">
-                <h2>Servicios</h2>
-                <p>Enlaces web externos</p>
-            </div>
-
-            <div class="section-card" onclick="showHerramientasMenu()">
-                <h2>Herramientas</h2>
-                <p>Herramientas prácticas<br>a la mano</p>
-            </div>
-
-            <div class="section-card" onclick="showModulosMenu()">
-                <h2>Módulos</h2>
-                <p>Lecciones organizadas<br>por ejes temáticos</p>
-            </div>
-        </main>
-
-        <footer class="footer">
-            <p><strong>BOMBEROS TOOLKIT</strong></p>
-            <p>Desarrollado para bomberos</p>
-            <p>Versión 1.0 | Oct-2025 | WA: +51 946772995</p>
-        </footer>
+        <div class="logo">🚒</div>
+        <h1>Redirigiendo...</h1>
+        <p>Bomberos Toolkit se ha movido a una nueva ubicación.</p>
+        <p style="margin-top: 10px; font-size: 0.85rem;">Si no eres redirigido automáticamente, 
+           <a href="https://webapp-prueba2.vercel.app/" style="color: #0088cc;">haz clic aquí</a>
+        </p>
     </div>
-
+    
     <script>
-        function showServiciosMenu() {
-            location.href = 'SegundaPantalla/index1.html';
-        }
-
-        function showHerramientasMenu() {
-            location.href = 'SegundaPantalla/index2.html';
-        }
-
-        function showModulosMenu() {
-            location.href = 'SegundaPantalla/index3.html';
-        }
+        // Redirección inmediata por JavaScript (backup)
+        window.location.href = "https://webapp-prueba2.vercel.app/";
     </script>
 </body>
 </html>
